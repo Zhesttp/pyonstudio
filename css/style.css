@@ -298,6 +298,18 @@ img {
     margin-bottom: 24px;
     line-height: 1.1;
     color: var(--white);
+    background: linear-gradient(90deg, #e0e0e0, #ffffff, #e0e0e0);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% center;
+  }
 }
 
 .hero__subtitle {

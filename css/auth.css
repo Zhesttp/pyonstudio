@@ -1,7 +1,7 @@
 :root {
-    --primary-color: #6c9a8b;
-    --bg-color: #f4f1de;
-    --text-color: #3d405b;
+    --primary-color: #b5a8b0;
+    --bg-color: #685c64;
+    --text-color: #685c64;
     --heading-font: 'Playfair Display', serif;
     --body-font: 'Lato', sans-serif;
     --white: #ffffff;
@@ -48,13 +48,13 @@
     margin-bottom: 8px;
     font-weight: bold;
     font-size: 14px;
-    color: #5e617a;
+    color: var(--text-color);
 }
 
 .form-group input {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--text-color);
     border-radius: 8px;
     font-family: var(--body-font);
     font-size: 16px;
@@ -64,7 +64,7 @@
 .form-group input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(108, 154, 139, 0.2);
+    box-shadow: 0 0 0 3px rgba(181, 168, 176, 0.2);
 }
 
 
@@ -77,7 +77,7 @@
 
 .auth-box__switch {
     margin-top: 25px;
-    color: #5e617a;
+    color: var(--text-color);
 }
 
 .auth-box__switch a {
