@@ -84,3 +84,17 @@
     color: var(--primary-color);
     font-weight: bold;
 }
+
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 0 20px;
+    }
+    
+    .auth-box {
+        padding: 30px;
+    }
+
+    .auth-box__title {
+        font-size: 28px;
+    }
+}

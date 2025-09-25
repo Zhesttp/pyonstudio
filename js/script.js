@@ -35,3 +35,35 @@ const observer = new IntersectionObserver((entries) => {
 animatedElements.forEach(el => {
     observer.observe(el);
 });
+
+// Mobile navigation
+const burgerMenu = document.querySelector('.burger-menu');
+const mobileNav = document.querySelector('.mobile-nav-wrapper');
+
+if (burgerMenu && mobileNav) {
+    burgerMenu.addEventListener('click', () => {
+        burgerMenu.classList.toggle('is-active');
+        mobileNav.classList.toggle('is-open');
+    });
+
+    // Close menu when a link is clicked
+    mobileNav.querySelectorAll('.nav__link').forEach(link => {
+        link.addEventListener('click', () => {
+            burgerMenu.classList.remove('is-active');
+            mobileNav.classList.remove('is-open');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (event) => {
+        if (mobileNav.classList.contains('is-open')) {
+            const isClickInsideNav = mobileNav.contains(event.target);
+            const isClickOnBurger = burgerMenu.contains(event.target);
+
+            if (!isClickInsideNav && !isClickOnBurger) {
+                burgerMenu.classList.remove('is-active');
+                mobileNav.classList.remove('is-open');
+            }
+        }
+    });
+}

@@ -63,18 +63,17 @@ body {
 /* Sidebar */
 .sidebar {
     width: 280px;
-    background: linear-gradient(180deg, var(--sidebar-bg) 0%, var(--sidebar-light) 100%);
+    background-color: var(--sidebar-bg);
     color: var(--text-light-on-dark);
     display: flex;
     flex-direction: column;
-    padding: 30px 24px 50px;
-    flex-shrink: 0;
-    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
-    z-index: 100;
+    z-index: 1000;
+    padding: 30px 24px;
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-sizing: border-box;
 }
 
@@ -1886,4 +1885,136 @@ ul {
     padding: 8px 16px;
     font-size: 12px;
     min-width: auto;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .sidebar {
+        left: -280px;
+        z-index: 1100;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+    }
+    
+    .dashboard-layout.sidebar-open .sidebar {
+        left: 0;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .burger-menu-dashboard {
+        display: flex;
+        position: fixed;
+        top: 25px;
+        right: 25px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--white);
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        padding: 13px;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 992px) {
+    .main-content {
+        padding: 40px;
+    }
+
+    .user-welcome {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .user-stats {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .profile-content {
+        grid-template-columns: 1fr;
+    }
+
+    .schedule-filters {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 30px;
+    }
+
+    .main-header {
+        padding: 30px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-form .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .subscription-actions {
+        flex-direction: column;
+    }
+
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .workouts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 20px;
+    }
+
+    .main-header {
+        padding: 20px;
+    }
+
+    .stat-item {
+        padding: 12px;
+    }
+
+    .stat-number {
+        font-size: 24px;
+    }
+
+    .card {
+        padding: 24px;
+    }
+}
+
+.burger-menu-dashboard span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-dark);
+    border-radius: 2px;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease;
+    transform-origin: center;
+}
+
+.burger-menu-dashboard.is-active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.burger-menu-dashboard.is-active span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.burger-menu-dashboard.is-active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
 }
