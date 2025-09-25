@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренировки - Flow & Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&family=Playfair+Display:wght@400;700;800&family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar__header">
+                <a href="index.html" class="logo">
+                    <img src="assets/logo/logo.png" alt="PYon studio logo" class="logo__img">
+                </a>
+            </div>
+            <nav class="sidebar__nav">
+                <a href="dashboard.html" class="nav-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Главная</span></a>
+                <a href="schedule.html" class="nav-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Расписание</span></a>
+                <a href="workouts.html" class="nav-item active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg><span>Тренировки</span></a>
+                <a href="profile.html" class="nav-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Профиль</span></a>
+            </nav>
+            <div class="sidebar__footer">
+                <a href="index.html" class="nav-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span>Выйти</span></a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div class="page-header">
+                    <h1>Онлайн-тренировки</h1>
+                    <p class="page-subtitle">Практикуйте йогу и пилатес в любое удобное время</p>
+                </div>
+                <div class="workout-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-info">
+                            <span class="stat-number">24</span>
+                            <span class="stat-label">Тренировки</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⏰</div>
+                        <div class="stat-info">
+                            <span class="stat-number">15-60</span>
+                            <span class="stat-label">Минут</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Уровня</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="workouts-content">
+                <div class="workout-categories">
+                    <button class="category-btn active">Все тренировки</button>
+                    <button class="category-btn">Йога</button>
+                    <button class="category-btn">Пилатес</button>
+                    <button class="category-btn">Растяжка</button>
+                    <button class="category-btn">Медитация</button>
+                </div>
+
+                <div class="workouts-grid">
+                    <div class="workout-card" data-category="yoga">
+                        <div class="workout-image">
+                            <img src="assets/workout1.jpg" alt="Йога для начинающих">
+                            <div class="workout-overlay">
+                                <div class="workout-duration">30 мин</div>
+                                <div class="workout-difficulty">Начинающий</div>
+                            </div>
+                            <div class="workout-play">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5,3 19,12 5,21"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="workout-card__content">
+                            <div class="workout-header">
+                                <h3>Йога для начинающих</h3>
+                                <div class="workout-trainer">
+                                    <img src="assets/trainer1.jpg" alt="Анна Смирнова">
+                                    <span>Анна Смирнова</span>
+                                </div>
+                            </div>
+                            <p class="workout-description">Идеальное начало вашего пути в йогу. Базовые асаны и дыхательные практики.</p>
+                            <div class="workout-meta">
+                                <span class="workout-level">🟢 Начинающий</span>
+                                <span class="workout-views">👁 1,234 просмотра</span>
+                            </div>
+                            <button class="btn btn--primary workout-btn">Начать тренировку</button>
+                        </div>
+                    </div>
+
+                    <div class="workout-card" data-category="pilates">
+                        <div class="workout-image">
+                            <img src="assets/workout2.jpg" alt="Пилатес на пресс">
+                            <div class="workout-overlay">
+                                <div class="workout-duration">25 мин</div>
+                                <div class="workout-difficulty">Средний</div>
+                            </div>
+                            <div class="workout-play">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5,3 19,12 5,21"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="workout-card__content">
+                            <div class="workout-header">
+                                <h3>Пилатес на пресс</h3>
+                                <div class="workout-trainer">
+                                    <img src="assets/trainer2.jpg" alt="Михаил Иванов">
+                                    <span>Михаил Иванов</span>
+                                </div>
+                            </div>
+                            <p class="workout-description">Укрепление мышц кора и улучшение осанки через классические упражнения пилатеса.</p>
+                            <div class="workout-meta">
+                                <span class="workout-level">🟡 Средний</span>
+                                <span class="workout-views">👁 856 просмотров</span>
+                            </div>
+                            <button class="btn btn--primary workout-btn">Начать тренировку</button>
+                        </div>
+                    </div>
+
+                    <div class="workout-card" data-category="stretch">
+                        <div class="workout-image">
+                            <img src="assets/workout3.jpg" alt="Вечерняя растяжка">
+                            <div class="workout-overlay">
+                                <div class="workout-duration">20 мин</div>
+                                <div class="workout-difficulty">Все уровни</div>
+                            </div>
+                            <div class="workout-play">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5,3 19,12 5,21"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="workout-card__content">
+                            <div class="workout-header">
+                                <h3>Вечерняя растяжка</h3>
+                                <div class="workout-trainer">
+                                    <img src="assets/trainer3.jpg" alt="Елена Петрова">
+                                    <span>Елена Петрова</span>
+                                </div>
+                            </div>
+                            <p class="workout-description">Расслабляющие упражнения на растяжку для восстановления после дня.</p>
+                            <div class="workout-meta">
+                                <span class="workout-level">🟢 Все уровни</span>
+                                <span class="workout-views">👁 2,341 просмотр</span>
+                            </div>
+                            <button class="btn btn--primary workout-btn">Начать тренировку</button>
+                        </div>
+                    </div>
+
+                    <div class="workout-card" data-category="yoga">
+                        <div class="workout-image">
+                            <img src="assets/workout4.jpg" alt="Силовая виньяса">
+                            <div class="workout-overlay">
+                                <div class="workout-duration">45 мин</div>
+                                <div class="workout-difficulty">Продвинутый</div>
+                            </div>
+                            <div class="workout-play">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5,3 19,12 5,21"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="workout-card__content">
+                            <div class="workout-header">
+                                <h3>Силовая виньяса</h3>
+                                <div class="workout-trainer">
+                                    <img src="assets/trainer1.jpg" alt="Анна Смирнова">
+                                    <span>Анна Смирнова</span>
+                                </div>
+                            </div>
+                            <p class="workout-description">Динамичная последовательность асан для развития силы и выносливости.</p>
+                            <div class="workout-meta">
+                                <span class="workout-level">🔴 Продвинутый</span>
+                                <span class="workout-views">👁 567 просмотров</span>
+                            </div>
+                            <button class="btn btn--primary workout-btn">Начать тренировку</button>
+                        </div>
+                    </div>
+
+                    <div class="workout-card" data-category="meditation">
+                        <div class="workout-image">
+                            <img src="assets/workout5.jpg" alt="Утренняя медитация">
+                            <div class="workout-overlay">
+                                <div class="workout-duration">15 мин</div>
+                                <div class="workout-difficulty">Все уровни</div>
+                            </div>
+                            <div class="workout-play">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5,3 19,12 5,21"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="workout-card__content">
+                            <div class="workout-header">
+                                <h3>Утренняя медитация</h3>
+                                <div class="workout-trainer">
+                                    <img src="assets/trainer3.jpg" alt="Елена Петрова">
+                                    <span>Елена Петрова</span>
+                                </div>
+                            </div>
+                            <p class="workout-description">Медитация для начала дня с позитивным настроем и ясностью ума.</p>
+                            <div class="workout-meta">
+                                <span class="workout-level">🟢 Все уровни</span>
+                                <span class="workout-views">👁 1,892 просмотра</span>
+                            </div>
+                            <button class="btn btn--primary workout-btn">Начать тренировку</button>
+                        </div>
+                    </div>
+
+                    <div class="workout-card" data-category="pilates">
+                        <div class="workout-image">
+                            <img src="assets/workout6.jpg" alt="Пилатес для спины">
+                            <div class="workout-overlay">
+                                <div class="workout-duration">35 мин</div>
+                                <div class="workout-difficulty">Средний</div>
+                            </div>
+                            <div class="workout-play">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5,3 19,12 5,21"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="workout-card__content">
+                            <div class="workout-header">
+                                <h3>Пилатес для спины</h3>
+                                <div class="workout-trainer">
+                                    <img src="assets/trainer2.jpg" alt="Михаил Иванов">
+                                    <span>Михаил Иванов</span>
+                                </div>
+                            </div>
+                            <p class="workout-description">Упражнения для укрепления мышц спины и улучшения осанки.</p>
+                            <div class="workout-meta">
+                                <span class="workout-level">🟡 Средний</span>
+                                <span class="workout-views">👁 723 просмотра</span>
+                            </div>
+                            <button class="btn btn--primary workout-btn">Начать тренировку</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - Flow & Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&family=Playfair+Display:wght@400;700;800&family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar__header">
+                <a href="index.html" class="logo">
+                    <img src="assets/logo/logo.png" alt="PYon studio logo" class="logo__img">
+                </a>
+            </div>
+            <nav class="sidebar__nav">
+                <a href="dashboard.html" class="nav-item active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Главная</span></a>
+                <a href="schedule.html" class="nav-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Расписание</span></a>
+                <a href="workouts.html" class="nav-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg><span>Тренировки</span></a>
+                <a href="profile.html" class="nav-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Профиль</span></a>
+            </nav>
+            <div class="sidebar__footer">
+                <a href="index.html" class="nav-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span>Выйти</span></a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div class="user-welcome">
+                    <div class="welcome-text">
+                        <h1>Намасте, <span class="user-name">Алексей</span>! 🙏</h1>
+                        <p class="welcome-subtitle">Ваша следующая тренировка: <strong>Пилатес для начинающих</strong> в 18:00</p>
+                    </div>
+                    <div class="user-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Посещений</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Минут практики</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Уровень</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="dashboard-grid">
+                <div class="card card--progress">
+                    <div class="card-header">
+                        <h2>Прогресс месяца</h2>
+                        <div class="progress-ring">
+                            <svg width="80" height="80" viewBox="0 0 42 42">
+                                <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#e6f3f0" stroke-width="2"/>
+                                <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#6c9a8b" stroke-width="2" stroke-dasharray="75 25" stroke-dashoffset="25" transform="rotate(-90 21 21)"/>
+                            </svg>
+                            <span class="progress-text">75%</span>
+                        </div>
+                    </div>
+                    <p>Вы посетили <strong>6 из 8</strong> занятий в этом месяце</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+
+                <div class="card card--actions">
+                    <h2>Быстрые действия</h2>
+                    <div class="action-buttons">
+                        <a href="schedule.html" class="action-btn">
+                            <div class="action-icon">📅</div>
+                            <div class="action-text">
+                                <span class="action-title">Записаться</span>
+                                <span class="action-subtitle">на занятие</span>
+                            </div>
+                        </a>
+                        <a href="workouts.html" class="action-btn">
+                            <div class="action-icon">🎯</div>
+                            <div class="action-text">
+                                <span class="action-title">Тренировка</span>
+                                <span class="action-subtitle">онлайн</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card card--schedule full-width">
+                    <div class="card-header">
+                        <h2>Ближайшие занятия</h2>
+                        <a href="schedule.html" class="view-all">Посмотреть все</a>
+                    </div>
+                    <div class="schedule-list">
+                        <div class="schedule-item">
+                            <div class="schedule-time">Сегодня, 18:00</div>
+                            <div class="schedule-info">
+                                <h4>Пилатес для начинающих</h4>
+                                <p>Анна Смирнова • Студия A</p>
+                            </div>
+                            <div class="schedule-status status-upcoming">Предстоит</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">Завтра, 09:00</div>
+                            <div class="schedule-info">
+                                <h4>Утренняя виньяса-йога</h4>
+                                <p>Анна Смирнова • Онлайн</p>
+                            </div>
+                            <div class="schedule-status status-available">Доступно</div>
+                        </div>
+                        <div class="schedule-item">
+                            <div class="schedule-time">Чт, 26.09</div>
+                            <div class="schedule-info">
+                                <h4>Силовая йога</h4>
+                                <p>Михаил Иванов • Студия B</p>
+                            </div>
+                            <div class="schedule-status status-available">Доступно</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>
