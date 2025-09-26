@@ -98,3 +98,11 @@
         font-size: 28px;
     }
 }
+
+@media (max-width: 768px) {
+    html,
+    body.login-page {
+        height: 100%;
+        overflow: hidden;
+    }
+}
