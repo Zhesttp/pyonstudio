@@ -61,8 +61,17 @@
             </header>
 
             <section class="schedule-content">
+                <div class="day-switcher">
+                    <button class="day-tab" data-day="mon">Пн</button>
+                    <button class="day-tab" data-day="tue">Вт</button>
+                    <button class="day-tab" data-day="wed">Ср</button>
+                    <button class="day-tab" data-day="thu">Чт</button>
+                    <button class="day-tab" data-day="fri">Пт</button>
+                    <button class="day-tab" data-day="sat">Сб</button>
+                </div>
+
                 <div class="schedule-grid">
-                    <div class="day-column">
+                    <div class="day-column" data-day="mon">
                         <div class="day-header">
                             <h3>Понедельник</h3>
                             <span class="day-date">23 сент</span>
@@ -87,7 +96,7 @@
                         </div>
                     </div>
 
-                    <div class="day-column">
+                    <div class="day-column" data-day="tue">
                         <div class="day-header">
                             <h3>Вторник</h3>
                             <span class="day-date">24 сент</span>
@@ -121,7 +130,7 @@
                         </div>
                     </div>
 
-                    <div class="day-column today">
+                    <div class="day-column" data-day="wed">
                         <div class="day-header">
                             <h3>Среда</h3>
                             <span class="day-date">25 сент</span>
@@ -146,7 +155,7 @@
                         </div>
                     </div>
 
-                    <div class="day-column">
+                    <div class="day-column" data-day="thu">
                         <div class="day-header">
                             <h3>Четверг</h3>
                             <span class="day-date">26 сент</span>
@@ -162,7 +171,7 @@
                         </div>
                     </div>
 
-                    <div class="day-column">
+                    <div class="day-column today" data-day="fri">
                         <div class="day-header">
                             <h3>Пятница</h3>
                             <span class="day-date">27 сент</span>
@@ -178,7 +187,7 @@
                         </div>
                     </div>
 
-                    <div class="day-column">
+                    <div class="day-column" data-day="sat">
                         <div class="day-header">
                             <h3>Суббота</h3>
                             <span class="day-date">28 сент</span>
