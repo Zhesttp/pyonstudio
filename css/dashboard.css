@@ -1194,6 +1194,10 @@ ul {
     box-sizing: border-box;
 }
 
+.profile-form input[type="date"] {
+    min-width: 0;
+}
+
 .profile-form input:focus,
 .profile-form select:focus {
     outline: none;
