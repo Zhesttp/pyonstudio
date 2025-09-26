@@ -1,5 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- SECURITY CHECK ---
+    // This should be the very first thing on any admin page.
+    if (sessionStorage.getItem('userRole') !== 'admin') {
+        // If the user is not an admin, redirect them to the login page.
+        // This prevents direct URL access to admin pages.
+        window.location.href = 'login.html';
+        return; // Stop further script execution
+    }
 
+    // --- Sidebar Logic ---
+    const burgerMenu = document.querySelector('.burger-menu-dashboard');
+    const layout = document.querySelector('.dashboard-layout');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (burgerMenu && layout && sidebar) {
+        burgerMenu.addEventListener('click', (event) => {
+            event.stopPropagation();
+            burgerMenu.classList.toggle('is-active');
+            layout.classList.toggle('sidebar-open');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (layout.classList.contains('sidebar-open')) {
+                const isClickInsideSidebar = sidebar.contains(event.target);
+                const isClickOnBurger = burgerMenu.contains(event.target);
+
+                if (!isClickInsideSidebar && !isClickOnBurger) {
+                    burgerMenu.classList.remove('is-active');
+                    layout.classList.remove('sidebar-open');
+                }
+            }
+        });
+    }
+
+
+    // --- Admin Pages Logic ---
     const clientsPage = document.querySelector('body.profile-page');
     if (!clientsPage) return;
 
@@ -9,6 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('client-modal');
     const modalBody = document.getElementById('modal-body');
     const closeModal = document.querySelector('.modal-close');
+    const tariffFilter = document.getElementById('tariff-filter');
+    const statusFilter = document.getElementById('status-filter');
 
     const clientsData = {
         1: {
@@ -73,21 +110,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- Search Logic ---
-    if (searchInput && tableBody) {
-        searchInput.addEventListener('keyup', () => {
-            const searchTerm = searchInput.value.toLowerCase();
-            const rows = tableBody.querySelectorAll('tr');
-            rows.forEach(row => {
-                const fullName = row.cells[0].textContent.toLowerCase();
-                if (fullName.includes(searchTerm)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
+    function filterClients() {
+        const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+        const selectedTariff = tariffFilter ? tariffFilter.value : 'all';
+        const selectedStatus = statusFilter ? statusFilter.value : 'all';
+        
+        if (!tableBody) return;
+        const rows = tableBody.querySelectorAll('tr');
+
+        rows.forEach(row => {
+            const fullName = row.cells[0].textContent.toLowerCase();
+            const tariff = row.cells[3].textContent;
+            const status = row.cells[4].textContent;
+
+            const matchesSearch = fullName.includes(searchTerm);
+            const matchesTariff = selectedTariff === 'all' || tariff === selectedTariff;
+            const matchesStatus = selectedStatus === 'all' || status === selectedStatus;
+
+            if (matchesSearch && matchesTariff && matchesStatus) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
         });
     }
+
+    // --- Event Listeners ---
+    if (searchInput) {
+        searchInput.addEventListener('keyup', filterClients);
+    }
+    if (tariffFilter) {
+        tariffFilter.addEventListener('change', filterClients);
+    }
+    if(statusFilter) {
+        statusFilter.addEventListener('change', filterClients);
+    }
+
 
     // --- Modal Logic ---
     function openModalWithClientData(clientId) {

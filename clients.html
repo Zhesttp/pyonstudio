@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&family=Playfair+Display:wght@400;700;800&family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin.css">
 </head>
 <body class="profile-page">
 
@@ -46,6 +47,24 @@
                 <div class="card">
                     <div class="card-header">
                         <h2>Все клиенты</h2>
+                        <div class="card-header__filters">
+                            <div class="filter-group">
+                                <select id="tariff-filter">
+                                    <option value="all">Все тарифы</option>
+                                    <option value="Тариф &quot;Баланс&quot;">Тариф "Баланс"</option>
+                                    <option value="Тариф &quot;Интенсив&quot;">Тариф "Интенсив"</option>
+                                    <option value="Тариф &quot;Утро&quot;">Тариф "Утро"</option>
+                                    <option value="Тариф &quot;Профи&quot;">Тариф "Профи"</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <select id="status-filter">
+                                    <option value="all">Все статусы</option>
+                                    <option value="Активен">Активен</option>
+                                    <option value="Неактивен">Неактивен</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="search-wrapper">
                              <input type="text" id="client-search" placeholder="Поиск по ФИО...">
                         </div>

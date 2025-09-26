@@ -1,0 +1,73 @@
+/* Admin Panel Specific Styles */
+
+/* Fix for header layout */
+.card-header .search-wrapper {
+    flex-grow: 0; /* Override default grow to prevent overlap */
+}
+
+/* Filters */
+.card-header__filters {
+    display: flex;
+    gap: 16px;
+    flex-grow: 0; /* Let's be explicit, no grow */
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.filter-group select {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 2px solid rgba(181, 168, 176, 0.2);
+    font-family: var(--body-font);
+    font-size: 15px;
+    background: var(--white);
+    transition: all 0.3s ease;
+    color: var(--text-dark);
+    box-sizing: border-box;
+    min-width: 180px;
+    cursor: pointer;
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(181, 168, 176, 0.15);
+}
+
+
+/* Responsive adjustments for filters */
+@media (max-width: 992px) {
+    .card-header {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+    .card-header h2 {
+        width: 100%;
+        margin-bottom: 0;
+    }
+    .card-header__filters {
+        order: 3;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .search-wrapper {
+        order: 1;
+    }
+    .card-header .btn {
+        order: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-header__filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-wrapper {
+       flex-grow: 0;
+    }
+}
