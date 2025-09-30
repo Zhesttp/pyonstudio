@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Расписание тренера - Flow & Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&family=Playfair+Display:wght@400;700;800&family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="trainer-schedule-page">
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar__header">
+                <a href="#" class="logo" aria-label="Flow & Form logo">
+                    <img src="assets/logo/logo.png" alt="Flow & Form logo" class="logo__img">
+                </a>
+            </div>
+            <!-- Навигация намеренно минимальна и не содержит ссылок на другие страницы -->
+            <nav class="sidebar__nav">
+                <span class="nav-item active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Расписание</span></span>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <button class="burger-menu-dashboard" aria-label="Открыть меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="page-header">
+                    <h1>Мои занятия</h1>
+                    <p class="page-subtitle">Просматривайте и управляйте своими классами</p>
+                </div>
+            </header>
+
+            <section class="schedule-content">
+                <div class="day-switcher">
+                    <button class="day-tab" data-day="mon">Пн</button>
+                    <button class="day-tab" data-day="tue">Вт</button>
+                    <button class="day-tab" data-day="wed">Ср</button>
+                    <button class="day-tab" data-day="thu">Чт</button>
+                    <button class="day-tab" data-day="fri">Пт</button>
+                    <button class="day-tab" data-day="sat">Сб</button>
+                </div>
+
+                <div class="schedule-grid">
+                    <div class="day-column today" data-day="mon">
+                        <div class="day-header">
+                            <h3>Понедельник</h3>
+                            <span class="day-date">23 сент</span>
+                        </div>
+                        <div class="class-item">
+                            <div class="class-time">09:00 - 10:30</div>
+                            <div class="class-info">
+                                <h4>Утренняя Виньяса</h4>
+                                <p>Студия A</p>
+                                <div class="class-level">Средний</div>
+                            </div>
+                            <button class="btn btn--outline btn--small">Изменить</button>
+                        </div>
+                        <div class="class-item">
+                            <div class="class-time">18:00 - 19:30</div>
+                            <div class="class-info">
+                                <h4>Расслабляющая йога</h4>
+                                <p>Студия B</p>
+                                <div class="class-level level-beginner">Начинающий</div>
+                            </div>
+                            <button class="btn btn--outline btn--small">Изменить</button>
+                        </div>
+                    </div>
+
+                    <!-- Шаблон остальных дней сокращён; при необходимости дублировать и изменять -->
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
