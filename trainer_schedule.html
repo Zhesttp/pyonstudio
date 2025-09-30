@@ -46,10 +46,11 @@
                     <button class="day-tab" data-day="thu">Чт</button>
                     <button class="day-tab" data-day="fri">Пт</button>
                     <button class="day-tab" data-day="sat">Сб</button>
+                    <button class="day-tab" data-day="sun">Вс</button>
                 </div>
 
                 <div class="schedule-grid">
-                    <div class="day-column today" data-day="mon">
+                    <div class="day-column" data-day="mon">
                         <div class="day-header">
                             <h3>Понедельник</h3>
                             <span class="day-date">23 сент</span>
@@ -74,7 +75,14 @@
                         </div>
                     </div>
 
-                    <!-- Шаблон остальных дней сокращён; при необходимости дублировать и изменять -->
+                    <div class="day-column" data-day="tue"></div>
+                    <div class="day-column" data-day="wed"></div>
+                    <div class="day-column" data-day="thu"></div>
+                    <div class="day-column" data-day="fri"></div>
+                    <div class="day-column" data-day="sat"></div>
+                    <div class="day-column" data-day="sun"></div>
+
+                    <!-- Дни без занятий оставлены пустыми для примера -->
 
                 </div>
             </section>
@@ -82,5 +90,41 @@
     </div>
 
     <script src="js/dashboard.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const page = document.querySelector('.trainer-schedule-page');
+            if (!page) return;
+
+            const dayMap = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+            const todayKey = dayMap[new Date().getDay()];
+
+            const tabs = page.querySelectorAll('.day-tab');
+            const columns = page.querySelectorAll('.day-column');
+
+            let activeTab = null;
+            let activeColumn = null;
+
+            const setActive = (key) => {
+                if (activeTab) activeTab.classList.remove('active');
+                if (activeColumn) activeColumn.classList.remove('active', 'today');
+
+                activeTab = page.querySelector(`.day-tab[data-day="${key}"]`);
+                activeColumn = page.querySelector(`.day-column[data-day="${key}"]`);
+
+                if (activeTab) activeTab.classList.add('active');
+                if (activeColumn) activeColumn.classList.add('active', 'today');
+            };
+
+            // initial
+            setActive(todayKey);
+
+            page.querySelector('.day-switcher').addEventListener('click', (e) => {
+                if (e.target.classList.contains('day-tab')) {
+                    setActive(e.target.dataset.day);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
