@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&family=Playfair+Display:wght@400;700;800&family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/schedule_client.css">
 </head>
 <body class="schedule-page">
 
@@ -68,6 +69,7 @@
                     <button class="day-tab" data-day="thu">Чт</button>
                     <button class="day-tab" data-day="fri">Пт</button>
                     <button class="day-tab" data-day="sat">Сб</button>
+                    <button class="day-tab" data-day="sun">Вс</button>
                 </div>
 
                 <div class="schedule-grid">
@@ -171,7 +173,7 @@
                         </div>
                     </div>
 
-                    <div class="day-column today" data-day="fri">
+                    <div class="day-column" data-day="fri">
                         <div class="day-header">
                             <h3>Пятница</h3>
                             <span class="day-date">27 сент</span>
@@ -211,11 +213,85 @@
                             <button class="btn btn--outline btn--small">Записаться</button>
                         </div>
                     </div>
+                    <div class="day-column" data-day="sun">
+                        <div class="day-header">
+                            <h3>Воскресенье</h3>
+                            <span class="day-date">—</span>
+                        </div>
+                        <div class="class-item class-item--empty"><span>Нет занятий</span></div>
+                    </div>
                 </div>
             </section>
         </main>
     </div>
 
     <script src="js/dashboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const page = document.querySelector('.schedule-page');
+            if (!page) return;
+
+            const dayMap = ['sun','mon','tue','wed','thu','fri','sat'];
+            const monthsRu=['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+
+            const setActive=(key)=>{
+                page.querySelectorAll('.day-tab').forEach(t=>t.classList.toggle('active',t.dataset.day===key));
+                page.querySelectorAll('.day-column').forEach(c=>{
+                    const isActive=c.dataset.day===key;
+                    c.classList.toggle('active',isActive);
+                    c.classList.toggle('today',isActive);
+                });
+            };
+
+            const updateWeekDates=()=>{
+                const today=new Date();
+                const monday=new Date(today);
+                monday.setDate(today.getDate() - ((today.getDay()+6)%7));
+                const order=dayMap.slice(1).concat(['sun']);
+                order.forEach((key,idx)=>{
+                    const d=new Date(monday);d.setDate(monday.getDate()+idx);
+                    const span=page.querySelector(`.day-column[data-day="${key}"] .day-date`);
+                    if(span) span.textContent=`${d.getDate()} ${monthsRu[d.getMonth()]}`;
+                });
+                setActive(dayMap[new Date().getDay()]);
+            };
+
+            const renderSchedule = (data) => {
+                Object.keys(data).forEach(dayKey => {
+                    const column = page.querySelector(`.day-column[data-day="${dayKey}"]`);
+                    if (!column) return;
+                    column.querySelectorAll('.class-item').forEach(i=>i.remove());
+                    const classes = data[dayKey];
+                    if(!classes || classes.length===0){
+                        const empty = document.createElement('div');
+                        empty.className = 'class-item class-item--empty';
+                        empty.innerHTML = '<span>Нет занятий</span>';
+                        column.appendChild(empty);
+                        return;
+                    }
+                    classes.forEach(cls=>{
+                        const item=document.createElement('div');
+                        item.className='class-item';
+                        item.innerHTML=`<div class=\"class-time\">${cls.time}</div><div class=\"class-info\"><h4>${cls.title}</h4><p>${cls.trainer} • ${cls.place}</p><div class=\"class-level\">${cls.level||''}</div></div>`;
+                        column.appendChild(item);
+                    });
+                });
+            };
+
+            updateWeekDates();
+
+            fetch('data/client_schedule.json')
+                .then(r=>r.json())
+                .then(renderSchedule);
+
+            const now=new Date();
+            const msUntilMidnight=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1,0,0,5)-now;
+            setTimeout(()=>{updateWeekDates();setInterval(updateWeekDates,24*60*60*1000);},msUntilMidnight);
+
+            page.querySelector('.day-switcher').addEventListener('click',e=>{
+                if(e.target.classList.contains('day-tab')) setActive(e.target.dataset.day);
+            });
+        });
+    </script>
 </body>
 </html>

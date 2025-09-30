@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&family=Playfair+Display:wght@400;700;800&family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/schedule_trainer.css">
 </head>
 <body class="trainer-schedule-page">
 
@@ -160,31 +160,69 @@
                 if (activeColumn) activeColumn.classList.add('active', 'today');
             };
 
-            // Populate dates for the current week
-            const monthsRu = ['янв', 'фев', 'март', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
-            const today = new Date();
-            const monday = new Date(today);
-            // shift to Monday (0=Sun)
-            const shift = (today.getDay() + 6) % 7;
-            monday.setDate(today.getDate() - shift);
+            const monthsRu = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
 
-            dayMap.slice(1).concat(['sun']).forEach((key, idx) => {
-                // key order: mon..sun ; slice(1) removes sun at start, append at end
-                const d = new Date(monday);
-                d.setDate(monday.getDate() + idx);
-                const text = `${d.getDate()} ${monthsRu[d.getMonth()]}`;
-                const span = page.querySelector(`.day-column[data-day="${key}"] .day-date`);
-                if (span) span.textContent = text;
-            });
+            const updateWeekDates = () => {
+                const today = new Date();
+                const monday = new Date(today);
+                const shift = (today.getDay() + 6) % 7; // days since Monday
+                monday.setDate(today.getDate() - shift);
 
-            // initial
-            setActive(todayKey);
+                const order = dayMap.slice(1).concat(['sun']); // mon..sun
+                order.forEach((key, idx) => {
+                    const d = new Date(monday);
+                    d.setDate(monday.getDate() + idx);
+                    const span = page.querySelector(`.day-column[data-day="${key}"] .day-date`);
+                    if (span) span.textContent = `${d.getDate()} ${monthsRu[d.getMonth()]}`;
+                });
+
+                // refresh active highlight in case week changed
+                const newTodayKey = dayMap[new Date().getDay()];
+                setActive(newTodayKey);
+            };
+
+            const renderSchedule = (data) => {
+                Object.keys(data).forEach(dayKey => {
+                    const column = page.querySelector(`.day-column[data-day="${dayKey}"]`);
+                    if (!column) return;
+                    // remove old class items except header
+                    column.querySelectorAll('.class-item').forEach(i=>i.remove());
+                    const classes = data[dayKey];
+                    if(!classes || classes.length===0){
+                        const empty = document.createElement('div');
+                        empty.className = 'class-item class-item--empty';
+                        empty.innerHTML = '<span>Нет занятий</span>';
+                        column.appendChild(empty);
+                        return;
+                    }
+                    classes.forEach(cls=>{
+                        const item=document.createElement('div');
+                        item.className='class-item';
+                        item.innerHTML=`<div class="class-time">${cls.time}</div><div class="class-info"><h4>${cls.title}</h4><p>${cls.place}</p><div class="class-level">${cls.level||''}</div></div>`;
+                        column.appendChild(item);
+                    });
+                });
+            };
+
+            updateWeekDates();
+
+            // set timer to update just after midnight
+            const now = new Date();
+            const msUntilMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 5) - now;
+            setTimeout(() => {
+                updateWeekDates();
+                setInterval(updateWeekDates, 24 * 60 * 60 * 1000); // every 24h
+            }, msUntilMidnight);
 
             page.querySelector('.day-switcher').addEventListener('click', (e) => {
                 if (e.target.classList.contains('day-tab')) {
                     setActive(e.target.dataset.day);
                 }
             });
+
+            fetch('data/trainer_schedule.json')
+                .then(r=>r.json())
+                .then(renderSchedule);
         });
     </script>
 </body>
