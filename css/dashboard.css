@@ -2326,3 +2326,8 @@ ul {
 #modal-body .profile-content {
     grid-template-columns: 1fr;
 }
+
+.class-item--empty {
+    justify-content: center;
+    color: var(--text-muted);
+}
