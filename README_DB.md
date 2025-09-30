@@ -1,56 +1,84 @@
-# Pyon Studio DB
+# Pyon Studio База данных
 
-PostgreSQL 15 schema (`db/schema.sql`).
+Схема PostgreSQL 15 (`db/schema.sql`).
 
-## Quick start
-```
+## Быстрый старт
+```bash
 psql -U postgres -c "CREATE USER pyon WITH PASSWORD 'pyon123';"
 psql -U postgres -f db/schema.sql
 ```
-Database `pyon_db` will be created. Connection URL:
+Будет создана база `pyon_db`. Строка подключения:
 ```
 postgres://pyon:pyon123@localhost:5432/pyon_db
 ```
-## Main entities
-| Table | Purpose |
-|-------|---------|
-| admins | studio administrators |
-| users  | clients |
-| trainers | instructors |
-| plans | subscription plans |
-| user_subscriptions | plan purchases |
-| classes | scheduled sessions |
-| bookings | client ↔ class linkage |
+## Основные сущности
+| Таблица | Назначение |
+|---------|------------|
+| admins | администраторы студии |
+| users | клиенты |
+| trainers | тренеры |
+| plans | абонементы |
+| user_subscriptions | покупки абонементов |
+| classes | расписание занятий |
+| bookings | запись клиента на занятие |
 
-Extended tables: roles/permissions, payments, attendance, uploads, audit_log, settings, translations, webhooks, waitlists.
+Дополнительные таблицы: roles/permissions, payments, attendance, uploads, audit_log, settings, translations, webhooks, waitlists.
 
-## Workflows
-### Sign-up & Booking
-1. `users` row created (password hashed with bcrypt).
-2. Admin assigns `plan` via `user_subscriptions`.
-3. Client books a class → insert into `bookings` (status `booked`).
-4. If class full, insert into `waitlist_entries`.
-5. Trainer marks attendance → insert/update `attendance`.
+## Сценарии работы
+### Регистрация и запись
+1. Создаётся запись в `users` (пароль — bcrypt).  
+2. Админ назначает `plan` через `user_subscriptions`.  
+3. Клиент записывается на занятие → вставка в `bookings` (`status = booked`).  
+4. Если мест нет — запись в `waitlist_entries`.  
+5. Тренер отмечает посещаемость → `attendance`.
 
-### Admin actions audited
-Trigger functions should `INSERT` into `audit_log` capturing `OLD`, `NEW` rows.
+### Аудит действий администратора
+Триггеры должны писать в `audit_log` с фиксацией `OLD` и `NEW`.
 
-### Payments
-After successful provider webhook, row in `payments` updated to `paid`, optional renewal of `user_subscriptions`.
+### Платежи
+После веб-хука провайдера обновляется `payments.status = paid`, при необходимости продлевается `user_subscriptions`.
 
-## Partitioning (optional)
-```
+## Партиционирование (опционально)
+```sql
 CREATE TABLE classes_2025 PARTITION OF classes FOR VALUES FROM ('2025-01-01') TO ('2026-01-01');
 ```
-Automate yearly.
+Автоматизация — ежегодно.
 
-## API pointers
-* `/auth/*` – JWT issuing using `admins` / `users`.
-* `/classes`   – list from `classes` join `trainers`.
-* `/bookings`  – CRUD with checks on `plan` validity, capacity.
-* `/attendance` – trainer updates.
+## Точки API
+* `/auth/*` – выдача JWT (admins / users).
+* `/classes` – список занятий (join `classes` + `trainers`).
+* `/bookings` – CRUD с проверкой абонемента и вместимости.
+* `/attendance` – отметки тренера.
 
-## Security notes
-* Store only bcrypt hashes.
-* Use roles/permissions to guard endpoints.
-* Enable `row_level_security` if multi-tenant.
+## Замечания по безопасности
+* Хранить только bcrypt-хэши.  
+* Использовать roles/permissions для защиты эндпоинтов.  
+* При мультитенантности включить `row_level_security`.
+
+---
+
+## Подключение и просмотр данных
+
+```bash
+# Подключаемся под пользователем pyon
+psql "postgres://pyon:pyon123@localhost:5432/pyon_db"
+
+-- посмотреть список таблиц
+\dt
+
+-- посмотреть структуру таблицы
+\d bookings
+
+-- выборка первых 20 строк
+SELECT * FROM bookings LIMIT 20;
+```
+
+Используйте `\h` внутри psql для справки по SQL-командам.
+
+```bash
+# Если база запущена в контейнере Docker
+# Предположим контейнер называется pyon-db
+
+docker exec -it pyon-db psql -U pyon -d pyon_db -c "\dt"   # список таблиц
+docker exec -it pyon-db psql -U pyon -d pyon_db -c "SELECT * FROM users LIMIT 10;"
+```
