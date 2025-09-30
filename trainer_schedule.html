@@ -160,6 +160,23 @@
                 if (activeColumn) activeColumn.classList.add('active', 'today');
             };
 
+            // Populate dates for the current week
+            const monthsRu = ['янв', 'фев', 'март', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+            const today = new Date();
+            const monday = new Date(today);
+            // shift to Monday (0=Sun)
+            const shift = (today.getDay() + 6) % 7;
+            monday.setDate(today.getDate() - shift);
+
+            dayMap.slice(1).concat(['sun']).forEach((key, idx) => {
+                // key order: mon..sun ; slice(1) removes sun at start, append at end
+                const d = new Date(monday);
+                d.setDate(monday.getDate() + idx);
+                const text = `${d.getDate()} ${monthsRu[d.getMonth()]}`;
+                const span = page.querySelector(`.day-column[data-day="${key}"] .day-date`);
+                if (span) span.textContent = text;
+            });
+
             // initial
             setActive(todayKey);
 
