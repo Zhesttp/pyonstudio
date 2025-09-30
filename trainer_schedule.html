@@ -23,6 +23,9 @@
             <nav class="sidebar__nav">
                 <span class="nav-item active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Расписание</span></span>
             </nav>
+            <div class="sidebar__footer">
+                <a href="index.html" class="nav-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span>Выйти</span></a>
+            </div>
         </aside>
 
         <main class="main-content">
@@ -131,6 +134,11 @@
                 </div>
             </section>
         </main>
+        <div id="client-modal" class="modal">
+            <div class="modal-content" id="client-modal-body">
+                <button class="modal-close" aria-label="Close">&times;</button>
+            </div>
+        </div>
     </div>
 
     <script src="js/dashboard.js"></script>
@@ -198,10 +206,35 @@
                     classes.forEach(cls=>{
                         const item=document.createElement('div');
                         item.className='class-item';
-                        item.innerHTML=`<div class="class-time">${cls.time}</div><div class="class-info"><h4>${cls.title}</h4><p>${cls.place}</p><div class="class-level">${cls.level||''}</div></div>`;
+                        item.innerHTML=`<div class=\"class-time\">${cls.time}</div><div class=\"class-info\"><h4>${cls.title}</h4><p>${cls.place}</p><div class=\"class-level\">${cls.level||''}</div></div><button class=\"btn btn--outline btn--small details-btn\" data-id=\"${cls.id}\">Подробнее</button>`;
                         column.appendChild(item);
+
+                        item.querySelector('.details-btn').addEventListener('click',()=>showClients(cls));
                     });
                 });
+            };
+
+            const modal = document.getElementById('client-modal');
+            const modalBody = document.getElementById('client-modal-body');
+            modal.querySelector('.modal-close').addEventListener('click',()=>modal.style.display='none');
+            modal.addEventListener('click',e=>{if(e.target===modal) modal.style.display='none';});
+
+            const showClients = (cls) => {
+                modalBody.innerHTML = `<h2>${cls.title}</h2>`;
+                const list=document.createElement('div');
+                list.style.display='flex';list.style.flexDirection='column';list.style.gap='16px';
+                cls.clients.forEach(c=>{
+                    const row=document.createElement('div');
+                    row.style.display='flex';row.style.alignItems='center';row.style.cursor='pointer';
+                    row.innerHTML=`<img src=\"${c.photo}\" alt=\"${c.name}\" style=\"width:40px;height:40px;border-radius:50%;margin-right:12px;\"><span>${c.name}</span>`;
+                    row.addEventListener('click',()=>{
+                        modalBody.innerHTML=`<h2>${c.name}</h2><p>Всего занятий: ${c.total}</p><button class=\"btn btn--outline modal-back\">Назад</button>`;
+                        modalBody.querySelector('.modal-back').addEventListener('click',()=>showClients(cls));
+                    });
+                    list.appendChild(row);
+                });
+                modalBody.appendChild(list);
+                modal.style.display='block';
             };
 
             updateWeekDates();

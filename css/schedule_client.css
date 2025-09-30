@@ -1,2 +1,7 @@
 @import url('dashboard.css');
 /* Client schedule specific overrides go here */
+
+.schedule-page .day-switcher .day-tab.active{background-color:var(--sidebar-light);color:#fff !important;border-color:var(--sidebar-light);}
+
+.class-item--booked{background:rgba(108,154,139,0.15);border:2px solid var(--primary-color);}
+.class-item--booked .btn{background:var(--primary-color);color:#fff;}
