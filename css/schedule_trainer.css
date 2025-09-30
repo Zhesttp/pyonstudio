@@ -22,6 +22,7 @@
   .trainer-schedule-page .day-switcher{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;overflow-x:visible;padding-bottom:0}
   .trainer-schedule-page .day-tab{flex:1 1 auto;padding:10px 16px;font-size:14px;font-weight:600;color:var(--text-light);background-color:var(--card-bg);border:1px solid var(--border-color);border-radius:12px;cursor:pointer}
   .trainer-schedule-page .day-tab.active{background-color:var(--sidebar-light);color:#fff;border-color:var(--sidebar-light)}
+  .trainer-schedule-page .day-tab.active{color:#fff!important;}
   .trainer-schedule-page .day-column{width:100%!important;max-width:100%;padding:20px 16px;box-sizing:border-box}
   .trainer-schedule-page .class-item{flex-wrap:wrap}
   .trainer-schedule-page .class-time{min-width:90px}

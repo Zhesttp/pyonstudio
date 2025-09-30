@@ -274,7 +274,9 @@
                         item.className='class-item';
                         const booked=localStorage.getItem(`booking_${cls.id}`)==='1';
                         if(booked) item.classList.add('class-item--booked');
-                        item.innerHTML=`<div class=\"class-time\">${cls.time}</div><div class=\"class-info\"><h4>${cls.title}</h4><p>${cls.trainer} • ${cls.place}</p><div class=\"class-level\">${cls.level||''}</div></div><button class=\"btn btn--outline btn--small book-btn\">${booked?'Отписаться':'Записаться'}</button>`;
+                        const isPast=Date.now()>Date.parse(cls.start);
+                        if(isPast) item.classList.add('class-item--disabled');
+                        item.innerHTML=`<div class=\"class-time\">${cls.time}</div><div class=\"class-info\"><h4>${cls.title}</h4><p>${cls.trainer} • ${cls.place}</p><div class=\"class-level\">${cls.level||''}</div></div><button class=\"btn btn--outline btn--small book-btn\" ${isPast?'disabled':''}>${isPast?'Завершено':(booked?'Отписаться':'Записаться')}</button>`;
                         column.appendChild(item);
 
                         const btn=item.querySelector('.book-btn');

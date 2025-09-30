@@ -221,9 +221,11 @@
 
             const showClients = (cls) => {
                 modalBody.innerHTML = `<h2>${cls.title}</h2>`;
+                const bookings=localStorage.getItem(`booking_${cls.id}`)==='1'?[{id:'me',name:'Вы (записан)',photo:'https://i.pravatar.cc/100?u=you',total:'—'}]:[];
+                const clientList=[...cls.clients,...bookings];
                 const list=document.createElement('div');
                 list.style.display='flex';list.style.flexDirection='column';list.style.gap='16px';
-                cls.clients.forEach(c=>{
+                clientList.forEach(c=>{
                     const row=document.createElement('div');
                     row.style.display='flex';row.style.alignItems='center';row.style.cursor='pointer';
                     row.innerHTML=`<img src=\"${c.photo}\" alt=\"${c.name}\" style=\"width:40px;height:40px;border-radius:50%;margin-right:12px;\"><span>${c.name}</span>`;
