@@ -12,14 +12,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = passwordInput ? passwordInput.value : '';
 
             const errBox=document.getElementById('login-error');errBox.style.display='none';
+            const csrf=document.cookie.split('; ').find(c=>c.startsWith('XSRF-TOKEN='))?.split('=')[1];
             fetch('http://localhost:3000/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
+                headers:{'Content-Type':'application/json','X-CSRF-Token':csrf},
                 body: JSON.stringify({ email, password })
             })
-                .then(r => {
-                    if (r.status === 200) { window.location.href = 'http://localhost:3000/profile'; return;}
+                .then(async r => {
+                    const errBox=document.getElementById('login-error');errBox.style.display='none';
+                    if (r.status === 200){
+                       const resp=await r.json();
+                       if(resp.role==='admin'){
+                         sessionStorage.setItem('userRole','admin');
+                         window.location.href='/admin';
+                       }
+                       else
+                         window.location.href='/profile';
+                       return;
+                    }
                     else if (r.status === 404) {errBox.textContent='Пользователь не зарегистрирован';errBox.style.display='block';}
                     else if (r.status === 401) {errBox.textContent='Неверная почта или пароль';errBox.style.display='block';}
                     else {errBox.textContent='Ошибка входа';errBox.style.display='block';}
