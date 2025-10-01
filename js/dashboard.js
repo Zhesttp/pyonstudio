@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // load user stats for dashboard
     if(document.querySelector('.dashboard-page')||document.querySelector('.dashboard-layout')){
+      if(document.body.classList.contains('admin-page')) return; // admin pages static
       fetch('/api/me').then(r=>{
         if(r.status!==200)return;
         return r.json();

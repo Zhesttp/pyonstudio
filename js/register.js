@@ -7,10 +7,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   const btn=form.querySelector('button[type=submit]');
   btn.disabled=true;
   const errBox=document.getElementById('reg-error');errBox.style.display='none';
+  const csrf=document.cookie.split('; ').find(c=>c.startsWith('XSRF-TOKEN='))?.split('=')[1];
   try{
     const r=await fetch('http://localhost:3000/api/register',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{'Content-Type':'application/json','X-CSRF-Token':csrf},
       credentials:'include',
       body:JSON.stringify(data)
     });
