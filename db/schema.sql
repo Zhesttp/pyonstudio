@@ -1,11 +1,11 @@
--- pyon_db schema for PostgreSQL
--- Run: psql -U postgres -f schema.sql
-
-CREATE DATABASE pyon_db ENCODING 'UTF8';
-\c pyon_db;
+-- Reset schema
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+SET search_path TO public;
 
 -- EXTENSIONS
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS citext;
 
 -- ADMINS
 CREATE TABLE admins (
@@ -27,6 +27,8 @@ CREATE TABLE users (
     password_hash TEXT NOT NULL,
     level TEXT,
     avatar_url TEXT,
+    visits_count INT DEFAULT 0,
+    minutes_practice INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -208,3 +210,28 @@ CREATE TABLE webhooks (
 
 -- OPTIMISTIC LOCK EXAMPLE
 ALTER TABLE users ADD COLUMN row_version INT DEFAULT 1;
+
+-- ACHIEVEMENTS META
+
+CREATE TABLE achievements (
+    id SERIAL PRIMARY KEY,
+    code TEXT UNIQUE NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT,
+    icon TEXT
+);
+
+INSERT INTO achievements(code,title,description,icon) VALUES
+  ('first_class','Первое занятие','Проведено 5 занятий','fa-star'),
+  ('streak_5_weeks','Серия посещений','5 недель без пропусков','fa-fire'),
+  ('yoga_master','Йога-мастер','50 посещённых занятий','fa-award'),
+  ('discipline_3_months','Дисциплина','3 месяца регулярной практики','fa-calendar-check');
+
+-- USER ACHIEVEMENTS
+
+CREATE TABLE user_achievements (
+    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
+    achievement_id INT REFERENCES achievements(id) ON DELETE CASCADE,
+    unlocked_at TIMESTAMP DEFAULT NOW(),
+    PRIMARY KEY (user_id, achievement_id)
+);

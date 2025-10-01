@@ -1,4 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // load user stats for dashboard
+    if(document.querySelector('.dashboard-page')||document.querySelector('.dashboard-layout')){
+      fetch('/api/me').then(r=>{
+        if(r.status!==200)return;
+        return r.json();
+      }).then(data=>{
+        if(!data)return;
+        const nameEl=document.querySelector('.user-name');
+        if(nameEl) nameEl.textContent=data.first_name;
+        const visitEl=document.querySelector('#stat-visits');
+        if(visitEl) visitEl.textContent=data.visits_count||0;
+        const minEl=document.querySelector('#stat-minutes');
+        if(minEl) minEl.textContent=data.minutes_practice||0;
+        const progTxt=document.getElementById('progress-text');
+        const progFill=document.getElementById('progress-fill');
+        if(progTxt&&progFill){
+          const pct=Math.min(100,((data.visits_count||0)%8)/8*100);
+          progTxt.textContent=`${data.visits_count%8}/8`;
+          progFill.style.width=pct+'%';
+        }
+      }).catch(console.error);
+    }
     const burgerMenu = document.querySelector('.burger-menu-dashboard');
     const layout = document.querySelector('.dashboard-layout');
     const sidebar = document.querySelector('.sidebar');

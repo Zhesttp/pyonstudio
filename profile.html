@@ -60,28 +60,28 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Имя</label>
-                                <input type="text" id="name" value="Алексей">
+                                <input type="text" id="name" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="surname">Фамилия</label>
-                                <input type="text" id="surname" value="Иванов">
+                                <input type="text" id="surname" disabled>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" value="alexey@example.com" disabled>
+                            <input type="email" id="email" disabled>
                         </div>
                         <div class="form-group">
                             <label for="phone">Телефон</label>
-                            <input type="tel" id="phone" value="+7 (999) 123-45-67">
+                            <input type="tel" id="phone" disabled>
                         </div>
                         <div class="form-group">
                             <label for="birthdate">Дата рождения</label>
-                            <input type="date" id="birthdate" value="1990-01-15">
+                            <input type="date" id="birthdate" disabled>
                         </div>
                         <div class="form-group">
                             <label for="level">Уровень подготовки</label>
-                            <select id="level">
+                            <select id="level" disabled>
                                 <option value="beginner">Начинающий</option>
                                 <option value="intermediate" selected>Средний</option>
                                 <option value="advanced">Продвинутый</option>
@@ -94,44 +94,48 @@
                     </form>
                 </div>
 
-                <div class="card card--subscription">
+                <div class="card card--subscription" id="subscription-card" style="display:none;">
                     <div class="card-header">
                         <h2>Абонемент</h2>
-                        <div class="subscription-status status-active">Активен</div>
+                        <div class="subscription-status status-active" id="subscription-status"></div>
                     </div>
                     <div class="subscription-info">
                         <div class="subscription-plan">
-                            <h3>Тариф "Баланс"</h3>
+                            <h3 id="plan-title"></h3>
                             <p class="plan-description">12 занятий в месяц + скидка 10% на массаж</p>
                         </div>
                         <div class="subscription-details">
                             <div class="detail-item">
                                 <span class="detail-label">Действует до:</span>
-                                <span class="detail-value">23.10.2025</span>
+                                <span class="detail-value" id="plan-end"></span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Осталось занятий:</span>
-                                <span class="detail-value">7 из 12</span>
+                                <span class="detail-value" id="plan-left"></span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Стоимость:</span>
-                                <span class="detail-value">5,000₽/мес</span>
+                                <span class="detail-value" id="plan-price"></span>
                             </div>
                         </div>
                         <div class="subscription-progress">
                             <div class="progress-info">
                                 <span>Использовано занятий</span>
-                                <span>7 из 12</span>
+                                <span id="progress-text"></span>
                             </div>
                             <div class="progress-bar">
-                                <div class="progress-fill" style="width: 58%"></div>
+                                <div class="progress-fill" id="progress-fill" style="width:0"></div>
                             </div>
                         </div>
                         <div class="subscription-actions">
-                            <button class="btn btn--secondary">Продлить абонемент</button>
-                            <button class="btn btn--outline">Изменить тариф</button>
+                            <button class="btn btn--secondary" id="extend-btn">Продлить абонемент</button>
+                            <button class="btn btn--outline" id="change-plan-btn">Изменить тариф</button>
                         </div>
                     </div>
+                </div>
+                <div class="card" id="no-subscription" style="display:none;">
+                   <h2>Абонемент</h2>
+                   <p>У вас нет активного абонемента.</p>
                 </div>
 
                 <div class="card card--achievements">
@@ -180,5 +184,6 @@
     </div>
 
     <script src="js/dashboard.js"></script>
+    <script src="js/profile.js"></script>
 </body>
 </html>
