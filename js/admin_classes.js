@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // --- GLOBAL VARIABLES ---
     let classes = [];
     let trainers = [];
+    let classTypes = [];
     let currentEditingId = null;
 
     // --- DOM ELEMENTS ---
@@ -33,9 +34,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     const modalClose = document.querySelector('.modal-close');
     const trainerFilter = document.getElementById('trainer-filter');
     const dateFilter = document.getElementById('date-filter');
+    
+    // Type modal elements
+    const addTypeBtn = document.getElementById('add-type-btn');
+    const typeModal = document.getElementById('type-modal');
+    const typeForm = document.getElementById('type-form');
+    const typeCancelBtn = document.getElementById('type-cancel');
 
     // --- INITIALIZATION ---
     await loadTrainers();
+    await loadClassTypes();
     await loadClasses();
     setupEventListeners();
 
@@ -45,17 +53,60 @@ document.addEventListener('DOMContentLoaded', async () => {
         classForm.addEventListener('submit', handleFormSubmit);
         classDeleteBtn.addEventListener('click', handleDelete);
         modalClose.addEventListener('click', closeModal);
+        
+        // Type modal event listeners
+        addTypeBtn.addEventListener('click', openTypeModal);
+        typeForm.addEventListener('submit', handleTypeFormSubmit);
+        typeCancelBtn.addEventListener('click', closeTypeModal);
+        
         classModal.addEventListener('click', (e) => {
             if (e.target === classModal) closeModal();
         });
+        
+        typeModal.addEventListener('click', (e) => {
+            if (e.target === typeModal) closeTypeModal();
+        });
+        
         trainerFilter.addEventListener('change', filterClasses);
         dateFilter.addEventListener('change', filterClasses);
+        
+        // Делегирование событий для кнопок в таблице
+        classesBody.addEventListener('click', (e) => {
+            const target = e.target.closest('button');
+            if (!target) return;
+            
+            if (target.classList.contains('btn--edit')) {
+                const classId = target.dataset.classId;
+                if (classId) editClass(classId);
+            } else if (target.classList.contains('btn--delete')) {
+                const classId = target.dataset.classId;
+                if (classId) deleteClass(classId);
+            }
+        });
+    }
+
+    // --- UTILITY FUNCTIONS ---
+    function getCsrfToken() {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            const [name, value] = cookie.trim().split('=');
+            if (name === 'XSRF-TOKEN') {
+                return decodeURIComponent(value);
+            }
+        }
+        return null;
+    }
+
+    function isClassPast(classItem) {
+        const now = new Date();
+        const classDateTime = new Date(`${classItem.class_date}T${classItem.start_time}`);
+        return classDateTime < now;
     }
 
     // --- API FUNCTIONS ---
     async function loadClasses() {
         try {
-            const response = await fetch('/api/classes', { credentials: 'include' });
+            const response = await fetch('/api/admin/classes', { credentials: 'include' });
             if (!response.ok) throw new Error('Failed to load classes');
             
             classes = await response.json();
@@ -79,15 +130,64 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    async function loadClassTypes() {
+        try {
+            const response = await fetch('/api/admin/class-types', { credentials: 'include' });
+            if (!response.ok) throw new Error('Failed to load class types');
+            
+            classTypes = await response.json();
+            populateClassTypeSelects();
+        } catch (error) {
+            console.error('Error loading class types:', error);
+            showError('Ошибка загрузки типов занятий');
+        }
+    }
+
+    async function createClassType(typeData) {
+        const csrfToken = getCsrfToken();
+
+        try {
+            const response = await fetch('/api/admin/class-types', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-XSRF-TOKEN': csrfToken
+                },
+                credentials: 'include',
+                body: JSON.stringify(typeData)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to create class type');
+            }
+
+            const result = await response.json();
+            await loadClassTypes(); // Перезагружаем типы
+            closeTypeModal();
+            showSuccess('Тип занятия создан');
+            
+            // Автоматически выбираем созданный тип
+            document.getElementById('class-type').value = result.id;
+            
+            return result;
+        } catch (error) {
+            console.error('Error creating class type:', error);
+            showError(error.message || 'Ошибка создания типа занятия');
+        }
+    }
+
     async function saveClass(classData) {
-        const url = currentEditingId ? `/api/classes/${currentEditingId}` : '/api/classes';
+        const url = currentEditingId ? `/api/admin/classes/${currentEditingId}` : '/api/admin/classes';
         const method = currentEditingId ? 'PUT' : 'POST';
+        const csrfToken = getCsrfToken();
 
         try {
             const response = await fetch(url, {
                 method,
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-XSRF-TOKEN': csrfToken
                 },
                 credentials: 'include',
                 body: JSON.stringify(classData)
@@ -110,9 +210,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function deleteClass(id) {
         if (!confirm('Вы уверены, что хотите удалить это занятие?')) return;
 
+        const csrfToken = getCsrfToken();
+
         try {
-            const response = await fetch(`/api/classes/${id}`, {
+            const response = await fetch(`/api/admin/classes/${id}`, {
                 method: 'DELETE',
+                headers: {
+                    'X-XSRF-TOKEN': csrfToken
+                },
                 credentials: 'include'
             });
 
@@ -133,37 +238,40 @@ document.addEventListener('DOMContentLoaded', async () => {
     // --- UI FUNCTIONS ---
     function renderClasses(classesToRender) {
         if (classesToRender.length === 0) {
-            classesBody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 40px;">Занятия не найдены</td></tr>';
+            classesBody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 40px;">Занятия не найдены</td></tr>';
             return;
         }
 
         classesBody.innerHTML = classesToRender.map(classItem => {
             const classDate = new Date(classItem.class_date);
-            const time = classItem.class_time;
-            const trainer = trainers.find(t => t.id === classItem.trainer_id);
-            const trainerName = trainer ? `${trainer.first_name} ${trainer.last_name}` : 'Не назначен';
+            const time = classItem.start_time;
+            const trainerName = classItem.trainer_name || 'Не назначен';
             const status = getClassStatus(classItem);
             const statusBadge = getStatusBadge(status);
+            const isPast = isClassPast(classItem);
+            const rowClass = isPast ? 'class-row--past' : '';
 
             return `
-                <tr>
+                <tr class="${rowClass}">
                     <td>${classDate.toLocaleDateString('ru-RU')}</td>
                     <td>${time}</td>
+                    <td>${classItem.duration_minutes || 60} мин</td>
+                    <td>${classItem.type_name || 'Не указано'}</td>
                     <td>${trainerName}</td>
-                    <td>${getClassTypeLabel(classItem.class_type)}</td>
-                    <td>${classItem.max_participants}</td>
-                    <td>${classItem.booked_count || 0}</td>
+                    <td>${classItem.title || 'Не указано'}</td>
+                    <td>${classItem.place || 'Не указано'}</td>
+                    <td>${classItem.bookings_count || 0}</td>
                     <td>${statusBadge}</td>
                     <td>
                         <div class="action-buttons">
-                            <button class="btn btn--small btn--edit" onclick="editClass('${classItem.id}')">
+                            <button class="btn btn--small btn--edit" data-class-id="${classItem.id}">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                                 </svg>
                                 Редактировать
                             </button>
-                            <button class="btn btn--small btn--delete" onclick="deleteClass('${classItem.id}')">
+                            <button class="btn btn--small btn--delete" data-class-id="${classItem.id}">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="3 6 5 6 21 6"></polyline>
                                     <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -193,6 +301,24 @@ document.addEventListener('DOMContentLoaded', async () => {
                 select.appendChild(option);
             });
             
+            if (currentValue) select.value = currentValue;
+        });
+    }
+
+    function populateClassTypeSelects() {
+        const classTypeSelects = document.querySelectorAll('#class-type');
+        
+        classTypeSelects.forEach(select => {
+            const currentValue = select.value;
+            select.innerHTML = '<option value="">Выберите тип</option>';
+            
+            classTypes.forEach(type => {
+                const option = document.createElement('option');
+                option.value = type.id;
+                option.textContent = type.name;
+                select.appendChild(option);
+            });
+
             if (currentValue) select.value = currentValue;
         });
     }
@@ -242,7 +368,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('class-date').value = today;
         
         classModal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('modal-open');
+        
+        // Добавляем анимацию
+        setTimeout(() => {
+            classModal.classList.add('show');
+        }, 10);
     }
 
     function editClass(id) {
@@ -255,21 +386,57 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Fill form with class data
         document.getElementById('class-id').value = classItem.id;
+        document.getElementById('class-title').value = classItem.title || '';
         document.getElementById('class-date').value = classItem.class_date;
-        document.getElementById('class-time').value = classItem.class_time;
-        document.getElementById('class-trainer').value = classItem.trainer_id;
-        document.getElementById('class-type').value = classItem.class_type;
-        document.getElementById('class-max-participants').value = classItem.max_participants;
+        document.getElementById('class-time').value = classItem.start_time;
+        document.getElementById('class-duration').value = classItem.duration_minutes || 60;
+        // Найдем trainer_id по имени тренера
+        const trainer = trainers.find(t => `${t.first_name} ${t.last_name}` === classItem.trainer_name);
+        document.getElementById('class-trainer').value = trainer ? trainer.id : '';
+        // Найдем type_id по имени типа
+        const classType = classTypes.find(t => t.name === classItem.type_name);
+        document.getElementById('class-type').value = classType ? classType.id : '';
+        document.getElementById('class-place').value = classItem.place || '';
         document.getElementById('class-description').value = classItem.description || '';
 
         classModal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('modal-open');
+        
+        // Добавляем анимацию
+        setTimeout(() => {
+            classModal.classList.add('show');
+        }, 10);
     }
 
     function closeModal() {
-        classModal.style.display = 'none';
-        document.body.style.overflow = '';
-        currentEditingId = null;
+        // Убираем анимацию
+        classModal.classList.remove('show');
+        
+        // Ждем завершения анимации и скрываем модальное окно
+        setTimeout(() => {
+            classModal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+            currentEditingId = null;
+        }, 300);
+    }
+
+    function openTypeModal() {
+        typeForm.reset();
+        typeModal.style.display = 'block';
+        document.body.classList.add('modal-open');
+        
+        setTimeout(() => {
+            typeModal.classList.add('show');
+        }, 10);
+    }
+
+    function closeTypeModal() {
+        typeModal.classList.remove('show');
+        
+        setTimeout(() => {
+            typeModal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+        }, 300);
     }
 
     // --- FORM HANDLING ---
@@ -278,22 +445,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         const formData = new FormData(classForm);
         const classData = {
+            title: document.getElementById('class-title').value,
             class_date: document.getElementById('class-date').value,
-            class_time: document.getElementById('class-time').value,
+            start_time: document.getElementById('class-time').value,
+            end_time: document.getElementById('class-time').value, // Пока используем то же время
+            duration_minutes: parseInt(document.getElementById('class-duration').value),
             trainer_id: document.getElementById('class-trainer').value,
-            class_type: document.getElementById('class-type').value,
-            max_participants: parseInt(document.getElementById('class-max-participants').value),
-            description: document.getElementById('class-description').value
+            type_id: document.getElementById('class-type').value,
+            description: document.getElementById('class-description').value,
+            place: document.getElementById('class-place').value
         };
 
         // Validation
-        if (!classData.class_date || !classData.class_time || !classData.trainer_id || !classData.class_type) {
+        if (!classData.title || !classData.class_date || !classData.start_time || !classData.trainer_id || !classData.place || !classData.duration_minutes || !classData.type_id) {
             showError('Пожалуйста, заполните все обязательные поля');
-            return;
-        }
-
-        if (classData.max_participants < 1 || classData.max_participants > 20) {
-            showError('Количество участников должно быть от 1 до 20');
             return;
         }
 
@@ -304,6 +469,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (currentEditingId) {
             await deleteClass(currentEditingId);
         }
+    }
+
+    async function handleTypeFormSubmit(e) {
+        e.preventDefault();
+        
+        const typeData = {
+            name: document.getElementById('type-name').value,
+            description: document.getElementById('type-description').value
+        };
+
+        if (!typeData.name) {
+            showError('Пожалуйста, введите название типа');
+            return;
+        }
+
+        await createClassType(typeData);
     }
 
     // --- FILTERING ---
@@ -392,7 +573,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 5000);
     }
 
-    // --- GLOBAL FUNCTIONS (for onclick handlers) ---
-    window.editClass = editClass;
-    window.deleteClass = deleteClass;
+    // Функции editClass и deleteClass теперь используются через делегирование событий
 });

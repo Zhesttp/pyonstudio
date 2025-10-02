@@ -13,7 +13,7 @@ router.get('/admin/classes', adminOnly, async (req, res) => {
   try {
     client = await pool.connect();
     const q = `
-      SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place,
+      SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.duration_minutes, c.place,
              t.first_name || ' ' || t.last_name AS trainer_name,
              ct.name AS type_name,
              COUNT(b.id) AS bookings_count
@@ -21,7 +21,7 @@ router.get('/admin/classes', adminOnly, async (req, res) => {
       LEFT JOIN trainers t ON c.trainer_id = t.id
       LEFT JOIN class_types ct ON c.type_id = ct.id
       LEFT JOIN bookings b ON c.id = b.class_id AND b.status != 'cancelled'
-      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, t.first_name, t.last_name, ct.name
+      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.duration_minutes, c.place, t.first_name, t.last_name, ct.name
       ORDER BY c.class_date DESC, c.start_time
     `;
     const { rows } = await client.query(q);
@@ -36,21 +36,21 @@ router.get('/admin/classes', adminOnly, async (req, res) => {
 
 // POST /api/admin/classes - создать новое занятие
 router.post('/admin/classes', adminOnly, async (req, res) => {
-  const { title, description, class_date, start_time, end_time, place, trainer_id, type_id } = req.body;
+  const { title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id, type_id } = req.body;
   
-  if (!title || !class_date || !start_time || !end_time) {
-    return res.status(400).json({ message: 'Обязательные поля: название, дата, время начала и конца' });
+  if (!title || !class_date || !start_time || !end_time || !duration_minutes) {
+    return res.status(400).json({ message: 'Обязательные поля: название, дата, время начала, время конца и длительность' });
   }
 
   let client;
   try {
     client = await pool.connect();
     const q = `
-      INSERT INTO classes (title, description, class_date, start_time, end_time, place, trainer_id, type_id)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      INSERT INTO classes (title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id, type_id)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
       RETURNING id
     `;
-    const { rows } = await client.query(q, [title, description, class_date, start_time, end_time, place, trainer_id || null, type_id || null]);
+    const { rows } = await client.query(q, [title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id || null, type_id || null]);
     res.status(201).json({ id: rows[0].id, message: 'Занятие успешно создано' });
   } catch (error) {
     console.error('Error creating class:', error);
@@ -63,7 +63,7 @@ router.post('/admin/classes', adminOnly, async (req, res) => {
 // PUT /api/admin/classes/:id - обновить занятие
 router.put('/admin/classes/:id', adminOnly, async (req, res) => {
   const { id } = req.params;
-  const { title, description, class_date, start_time, end_time, place, trainer_id, type_id } = req.body;
+  const { title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id, type_id } = req.body;
 
   const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   if (!uuidRegex.test(id)) {
@@ -76,10 +76,10 @@ router.put('/admin/classes/:id', adminOnly, async (req, res) => {
     const q = `
       UPDATE classes 
       SET title = $1, description = $2, class_date = $3, start_time = $4, end_time = $5, 
-          place = $6, trainer_id = $7, type_id = $8
-      WHERE id = $9
+          duration_minutes = $6, place = $7, trainer_id = $8, type_id = $9
+      WHERE id = $10
     `;
-    const result = await client.query(q, [title, description, class_date, start_time, end_time, place, trainer_id || null, type_id || null, id]);
+    const result = await client.query(q, [title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id || null, type_id || null, id]);
     
     if (result.rowCount === 0) {
       return res.status(404).json({ message: 'Занятие не найдено' });

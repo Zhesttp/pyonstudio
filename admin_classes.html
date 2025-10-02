@@ -71,15 +71,17 @@
                                 <tr>
                                     <th>Дата</th>
                                     <th>Время</th>
+                                    <th>Длительность</th>
+                                    <th>Тип</th>
                                     <th>Тренер</th>
-                                    <th>Тип занятия</th>
-                                    <th>Макс. участников</th>
+                                    <th>Название</th>
+                                    <th>Место</th>
                                     <th>Забронировано</th>
                                     <th>Статус</th>
                                     <th>Действия</th>
                                 </tr>
                             </thead>
-                            <tbody id="classes-body"><tr><td colspan="8">Загрузка...</td></tr></tbody>
+                            <tbody id="classes-body"><tr><td colspan="10">Загрузка...</td></tr></tbody>
                         </table>
                     </div>
                 </div>
@@ -87,17 +89,22 @@
         </main>
     </div>
 
-    <!-- Class Modal -->
-    <div id="class-modal" class="modal">
-      <div class="modal-content">
+      <!-- Class Modal -->
+      <div id="class-modal" class="modal">
+        <div class="modal-wrapper">
+          <div class="modal-content">
         <div class="modal-header">
           <h2 id="class-modal-title">Новое занятие</h2>
           <button class="modal-close" aria-label="Закрыть">&times;</button>
         </div>
         
         <div class="modal-body">
-          <form id="class-form">
-            <input type="hidden" id="class-id">
+            <form id="class-form">
+              <input type="hidden" id="class-id">
+              <div class="form-group">
+                <label for="class-title">Название занятия</label>
+                <input type="text" id="class-title" required placeholder="Введите название занятия">
+              </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="class-date">Дата</label>
@@ -110,6 +117,16 @@
             </div>
             <div class="form-row">
               <div class="form-group">
+                <label for="class-duration">Длительность (минуты)</label>
+                <input type="number" id="class-duration" min="15" max="180" step="15" value="60" required placeholder="60">
+              </div>
+              <div class="form-group">
+                <label for="class-place">Место проведения</label>
+                <input type="text" id="class-place">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
                 <label for="class-trainer">Тренер</label>
                 <select id="class-trainer" required>
                   <option value="">Выберите тренера</option>
@@ -117,19 +134,19 @@
               </div>
               <div class="form-group">
                 <label for="class-type">Тип занятия</label>
-                <select id="class-type" required>
-                  <option value="">Выберите тип</option>
-                  <option value="pilates">Пилатес</option>
-                  <option value="yoga">Йога</option>
-                  <option value="stretching">Стретчинг</option>
-                  <option value="fitness">Фитнес</option>
-                  <option value="dance">Танцы</option>
-                </select>
+                <div class="type-select-container">
+                  <select id="class-type" required>
+                    <option value="">Выберите тип</option>
+                  </select>
+                  <button type="button" id="add-type-btn" class="btn btn--small btn--secondary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Добавить тип
+                  </button>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="class-max-participants">Максимальное количество участников</label>
-              <input type="number" id="class-max-participants" min="1" max="20" required placeholder="10">
             </div>
             <div class="form-group">
               <label for="class-description">Описание</label>
@@ -152,9 +169,43 @@
             </svg>
             Сохранить
           </button>
+          </div>
+        </div>
         </div>
       </div>
-    </div>
+
+      <!-- Type Modal -->
+      <div id="type-modal" class="modal">
+        <div class="modal-wrapper">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 id="type-modal-title">Новый тип занятия</h2>
+              <button class="modal-close" aria-label="Закрыть">&times;</button>
+            </div>
+            <div class="modal-body">
+              <form id="type-form">
+                <div class="form-group">
+                  <label for="type-name">Название типа</label>
+                  <input type="text" id="type-name" required placeholder="Например: Йога, Пилатес">
+                </div>
+                <div class="form-group">
+                  <label for="type-description">Описание</label>
+                  <textarea id="type-description" rows="3" placeholder="Описание типа занятия..."></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-actions">
+              <button type="button" id="type-cancel" class="btn btn--secondary">Отмена</button>
+              <button type="submit" form="type-form" class="btn btn--primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+                Создать тип
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <script src="/js/admin.js"></script>
     <script src="/js/admin_classes.js"></script>

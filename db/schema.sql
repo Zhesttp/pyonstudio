@@ -96,6 +96,7 @@ CREATE TABLE classes (
     class_date DATE NOT NULL,
     start_time TIME NOT NULL,
     end_time TIME NOT NULL,
+    duration_minutes INT NOT NULL DEFAULT 60 CHECK (duration_minutes > 0),
     place TEXT,
     trainer_id UUID REFERENCES trainers(id) ON DELETE SET NULL,
     created_at TIMESTAMP DEFAULT NOW()
@@ -192,6 +193,7 @@ CREATE TABLE class_types (
     name TEXT UNIQUE NOT NULL,
     description TEXT
 );
+
 ALTER TABLE classes ADD COLUMN type_id INT REFERENCES class_types(id);
 
 -- WAITLIST

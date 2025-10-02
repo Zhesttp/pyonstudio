@@ -435,4 +435,50 @@ router.delete('/admin/clients/:id/subscription', adminOnly, async (req, res) => 
   }
 });
 
+// GET /api/admin/class-types - список всех типов занятий
+router.get('/admin/class-types', adminOnly, async (req, res) => {
+    let client;
+    try {
+        client = await pool.connect();
+        const q = 'SELECT id, name, description FROM class_types ORDER BY name';
+        const { rows } = await client.query(q);
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching class types:', error);
+        res.status(500).json({ message: 'Ошибка загрузки типов занятий' });
+    } finally {
+        if (client) client.release();
+    }
+});
+
+// POST /api/admin/class-types - создать новый тип занятия
+router.post('/admin/class-types', adminOnly, async (req, res) => {
+    const { name, description } = req.body;
+    
+    if (!name) {
+        return res.status(400).json({ message: 'Название типа обязательно' });
+    }
+
+    let client;
+    try {
+        client = await pool.connect();
+        const q = `
+            INSERT INTO class_types (name, description)
+            VALUES ($1, $2)
+            RETURNING id
+        `;
+        const { rows } = await client.query(q, [name, description || null]);
+        res.status(201).json({ id: rows[0].id, message: 'Тип занятия создан' });
+    } catch (error) {
+        console.error('Error creating class type:', error);
+        if (error.code === '23505') { // Unique constraint violation
+            res.status(400).json({ message: 'Тип занятия с таким названием уже существует' });
+        } else {
+            res.status(500).json({ message: 'Ошибка создания типа занятия' });
+        }
+    } finally {
+        if (client) client.release();
+    }
+});
+
 export default router;
