@@ -4,6 +4,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const search=document.getElementById('client-search');
   const tariffFilter=document.getElementById('tariff-filter');
   const statusFilter=document.getElementById('status-filter');
+  const modal=document.getElementById('client-modal');
+  const modalBody=document.getElementById('modal-body');
+  const modalClose=modal.querySelector('.modal-close');
+  modalClose.addEventListener('click',()=>modal.style.display='none');
+  window.addEventListener('click',e=>{if(e.target===modal) modal.style.display='none';});
+
+  async function openModalWithClientData(id){
+    modalBody.innerHTML='<p>Загрузка...</p>';
+    modal.style.display='block';
+    try{
+      const r=await fetch(`/api/admin/clients/${id}`,{credentials:'include'});
+      if(!r.ok){modalBody.textContent='Ошибка загрузки';return;}
+      const c=await r.json();
+      const until=c.end_date?new Date(c.end_date).toLocaleDateString('ru-RU'):'—';
+      modalBody.innerHTML=`<section class="profile-content"><div class="card card--profile"><div class="card-header"><h2>Личные данные</h2></div><div class="profile-info"><p><strong>Email:</strong> ${c.email||''}</p><p><strong>Телефон:</strong> ${c.phone||''}</p><p><strong>Дата рождения:</strong> ${c.birth_date?new Date(c.birth_date).toLocaleDateString('ru-RU'):''}</p><p><strong>Уровень:</strong> ${c.level||''}</p></div></div><div class="card card--subscription"><div class="card-header"><h2>Абонемент</h2><div class="subscription-status ${c.sub_status==='Активен'?'status-active':'status-inactive'}">${c.sub_status}</div></div><div class="subscription-info"><div class="subscription-plan"><h3>${c.plan_title??'—'}</h3></div><p><strong>Действует до:</strong> ${until}</p></div></div></section>`;
+    }catch{modalBody.textContent='Ошибка';}
+  }
+
   let clients=[];
 
   const render=()=>{
