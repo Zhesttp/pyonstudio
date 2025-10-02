@@ -49,6 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const csrf=document.cookie.split('; ').find(c=>c.startsWith('XSRF-TOKEN='))?.split('=')[1];
       fetch(`/api/admin/clients/${id}`,{method:'DELETE',credentials:'include',headers:{'X-CSRF-Token':csrf}})
         .then(r=>{if(r.status===204){clients=clients.filter(c=>c.id!==id);render();}});
+    }else{
+      const tr=e.target.closest('tr');
+      if(tr) openModalWithClientData(tr.dataset.clientId);
     }
   });
 });
