@@ -38,7 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const tr=e.target.closest('tr');
       const id=tr.dataset.clientId;
       if(!confirm('Удалить клиента?')) return;
-      fetch(`/api/admin/clients/${id}`,{method:'DELETE',credentials:'include'})
+      const csrf=document.cookie.split('; ').find(c=>c.startsWith('XSRF-TOKEN='))?.split('=')[1];
+      fetch(`/api/admin/clients/${id}`,{method:'DELETE',credentials:'include',headers:{'X-CSRF-Token':csrf}})
         .then(r=>{if(r.status===204){clients=clients.filter(c=>c.id!==id);render();}});
     }
   });

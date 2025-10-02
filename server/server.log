@@ -1,0 +1,75 @@
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+ForbiddenError: invalid csrf token
+    at csrf (/Users/zhest/Documents/work/konstantin/server/node_modules/csurf/index.js:112:19)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:280:10)
+    at cookieParser (/Users/zhest/Documents/work/konstantin/server/node_modules/cookie-parser/index.js:71:5)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+ForbiddenError: invalid csrf token
+    at csrf (/Users/zhest/Documents/work/konstantin/server/node_modules/csurf/index.js:112:19)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:280:10)
+    at cookieParser (/Users/zhest/Documents/work/konstantin/server/node_modules/cookie-parser/index.js:71:5)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+ForbiddenError: invalid csrf token
+    at csrf (/Users/zhest/Documents/work/konstantin/server/node_modules/csurf/index.js:112:19)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:280:10)
+    at cookieParser (/Users/zhest/Documents/work/konstantin/server/node_modules/cookie-parser/index.js:71:5)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+ForbiddenError: invalid csrf token
+    at csrf (/Users/zhest/Documents/work/konstantin/server/node_modules/csurf/index.js:112:19)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:280:10)
+    at cookieParser (/Users/zhest/Documents/work/konstantin/server/node_modules/cookie-parser/index.js:71:5)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+ForbiddenError: invalid csrf token
+    at csrf (/Users/zhest/Documents/work/konstantin/server/node_modules/csurf/index.js:112:19)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:280:10)
+    at cookieParser (/Users/zhest/Documents/work/konstantin/server/node_modules/cookie-parser/index.js:71:5)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
