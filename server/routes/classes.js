@@ -14,14 +14,16 @@ router.get('/admin/classes', adminOnly, async (req, res) => {
     client = await pool.connect();
     const q = `
       SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.duration_minutes, c.place,
+             c.trainer_id,
              t.first_name || ' ' || t.last_name AS trainer_name,
+             c.type_id,
              ct.name AS type_name,
              COUNT(b.id) AS bookings_count
       FROM classes c
       LEFT JOIN trainers t ON c.trainer_id = t.id
       LEFT JOIN class_types ct ON c.type_id = ct.id
       LEFT JOIN bookings b ON c.id = b.class_id AND b.status != 'cancelled'
-      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.duration_minutes, c.place, t.first_name, t.last_name, ct.name
+      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.duration_minutes, c.place, c.trainer_id, t.first_name, t.last_name, c.type_id, ct.name
       ORDER BY c.class_date DESC, c.start_time
     `;
     const { rows } = await client.query(q);

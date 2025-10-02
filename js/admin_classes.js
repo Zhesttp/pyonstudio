@@ -59,13 +59,33 @@ document.addEventListener('DOMContentLoaded', async () => {
         typeForm.addEventListener('submit', handleTypeFormSubmit);
         typeCancelBtn.addEventListener('click', closeTypeModal);
         
+        // Закрытие по ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (classModal.style.display === 'block') {
+                    closeModal();
+                } else if (typeModal.style.display === 'block') {
+                    closeTypeModal();
+                }
+            }
+        });
+        
         classModal.addEventListener('click', (e) => {
             if (e.target === classModal) closeModal();
         });
         
+        // Закрытие модального окна типов по клику на фон
         typeModal.addEventListener('click', (e) => {
-            if (e.target === typeModal) closeTypeModal();
+            if (e.target === typeModal || e.target.classList.contains('modal-wrapper')) {
+                closeTypeModal();
+            }
         });
+        
+        // Закрытие модального окна типов по крестику
+        const typeModalClose = typeModal.querySelector('.modal-close');
+        if (typeModalClose) {
+            typeModalClose.addEventListener('click', closeTypeModal);
+        }
         
         trainerFilter.addEventListener('change', filterClasses);
         dateFilter.addEventListener('change', filterClasses);
@@ -325,7 +345,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function getClassStatus(classItem) {
         const now = new Date();
-        const classDateTime = new Date(`${classItem.class_date}T${classItem.class_time}`);
+        const classDateTime = new Date(`${classItem.class_date}T${classItem.start_time}`);
         
         if (classDateTime < now) {
             return 'completed';
@@ -494,7 +514,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Filter by trainer
         const selectedTrainer = trainerFilter.value;
         if (selectedTrainer) {
-            filteredClasses = filteredClasses.filter(c => c.trainer_id === selectedTrainer);
+            filteredClasses = filteredClasses.filter(c => {
+                const matches = c.trainer_id === selectedTrainer;
+                console.log(`Class ${c.id}: trainer_id=${c.trainer_id}, selected=${selectedTrainer}, matches=${matches}`);
+                return matches;
+            });
         }
 
         // Filter by date
@@ -523,6 +547,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         }
 
+        console.log(`Filtered classes: ${filteredClasses.length} out of ${classes.length}`);
         renderClasses(filteredClasses);
     }
 
