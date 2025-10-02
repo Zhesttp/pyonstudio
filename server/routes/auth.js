@@ -85,7 +85,7 @@ router.post('/login', loginValidation, async (req, res) => {
 
     try {
         const client = await pool.connect();
-        const result = await client.query('SELECT id, password_hash FROM users WHERE email = $1', [email]);
+        const result = await client.query('SELECT id, email, password_hash FROM users WHERE email = $1', [email]);
         
         if (result.rowCount === 0) {
             // try admin table
