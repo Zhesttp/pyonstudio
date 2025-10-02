@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Burger menu logic - должно работать на всех страницах с dashboard-layout
     const burgerMenu = document.querySelector('.burger-menu-dashboard');
     const layout = document.querySelector('.dashboard-layout');
     const sidebar = document.querySelector('.sidebar');
@@ -21,6 +22,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+    }
+
+    // load user stats for dashboard - only for non-admin pages
+    if((document.querySelector('.dashboard-page')||document.querySelector('.dashboard-layout')) 
+       && !document.body.classList.contains('admin-page')){
+      
+      const loadUserData = async () => {
+        const r = await fetch('/api/me');
+        if (r.status !== 200) {
+          location.href = '/login';
+          return;
+        }
+        const data = await r.json();
+        
+        const nameEl=document.querySelector('.user-name');
+        if(nameEl) nameEl.textContent=data.first_name;
+        const visitEl=document.querySelector('#stat-visits');
+        if(visitEl) visitEl.textContent=data.visits_count||0;
+        const minEl=document.querySelector('#stat-minutes');
+        if(minEl) minEl.textContent=data.minutes_practice||0;
+        const progTxt=document.getElementById('progress-text');
+        const progFill=document.getElementById('progress-fill');
+        if(progTxt&&progFill){
+          const pct=Math.min(100,((data.visits_count||0)%8)/8*100);
+          progTxt.textContent=`${data.visits_count%8}/8`;
+          progFill.style.width=pct+'%';
+        }
+      };
+      
+      loadUserData().catch(() => {
+        location.href = '/login';
+      });
     }
 
     // Schedule page day switcher logic
