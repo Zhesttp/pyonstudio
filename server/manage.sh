@@ -50,7 +50,22 @@ stop_server() {
   fi
 }
 
-restart_server() { stop_server; start_server; }
+stop_all_servers() {
+  echo "Останавливаю все серверы Node.js..."
+  # Останавливаем все процессы node app.js
+  pkill -f "node app.js" 2>/dev/null && echo "Все серверы Node.js остановлены" || echo "Серверы Node.js не найдены"
+  
+  # Удаляем PID файл если он есть
+  [[ -f $PID_FILE ]] && rm "$PID_FILE" && echo "PID файл удален"
+  
+  # Ждем немного чтобы процессы точно завершились
+  sleep 2
+}
+
+restart_server() { 
+  stop_all_servers
+  start_server
+}
 
 show_logs() {
   tail -n 100 "$LOG_FILE"
@@ -60,25 +75,27 @@ while true; do
   echo "\n===== PYon Management Menu ====="
   echo "1) Запустить сервер"
   echo "2) Остановить сервер"
-  echo "3) Перезапустить сервер"
-  echo "4) Показать последние логи"
-  echo "5) Добавить/обновить админа"
-  echo "6) Удалить админа"
-  echo "7) Список админов"
-  echo "8) Показать все таблицы БД"
-  echo "9) Показать содержимое таблицы"
+  echo "3) Перезапустить сервер (остановить все + запустить)"
+  echo "4) Остановить ВСЕ серверы Node.js"
+  echo "5) Показать последние логи"
+  echo "6) Добавить/обновить админа"
+  echo "7) Удалить админа"
+  echo "8) Список админов"
+  echo "9) Показать все таблицы БД"
+  echo "10) Показать содержимое таблицы"
   echo "0) Выход"
   read -p "Выбор: " choice
   case $choice in
     1) start_server;;
     2) stop_server;;
     3) restart_server;;
-    4) show_logs;;
-    5) add_admin;;
-    6) delete_admin;;
-    7) list_admins;;
-    8) show_tables;;
-    9) show_table;;
+    4) stop_all_servers;;
+    5) show_logs;;
+    6) add_admin;;
+    7) delete_admin;;
+    8) list_admins;;
+    9) show_tables;;
+    10) show_table;;
     0) exit 0;;
     *) echo "Неверный выбор";;
   esac

@@ -81,13 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         trainersGrid.innerHTML = allTrainers.map(trainer => {
-            const photoUrl = trainer.photo_url || `https://i.pravatar.cc/150?u=${trainer.id}`;
+            const photoUrl = trainer.photo_url || `data:image/svg+xml;base64,${btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"><rect width="150" height="150" fill="#f0f0f0"/><circle cx="75" cy="60" r="25" fill="#ccc"/><path d="M30 120 Q75 100 120 120 L120 150 L30 150 Z" fill="#ccc"/></svg>`)}`;
             const fullName = `${trainer.first_name} ${trainer.last_name}`;
             const classesText = trainer.classes_count ? `${trainer.classes_count} занятий` : 'Нет занятий';
             
             return `
                 <div class="trainer-card" data-trainer-id="${trainer.id}">
-                    <img src="${photoUrl}" alt="Фото тренера" onerror="this.src='https://i.pravatar.cc/150?u=${trainer.id}'">
+                    <img src="${photoUrl}" alt="Фото тренера" data-trainer-id="${trainer.id}">
                     <h4>${fullName}</h4>
                     <p>${trainer.bio || 'Описание не указано'}</p>
                     <span class="trainer-stat">${classesText}</span>
@@ -285,6 +285,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- Обработка ошибок изображений ---
+    const handleImageError = (e) => {
+        const img = e.target;
+        const trainerId = img.dataset.trainerId;
+        // Устанавливаем SVG placeholder при ошибке загрузки
+        img.src = `data:image/svg+xml;base64,${btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150"><rect width="150" height="150" fill="#f0f0f0"/><circle cx="75" cy="60" r="25" fill="#ccc"/><path d="M30 120 Q75 100 120 120 L120 150 L30 150 Z" fill="#ccc"/></svg>`)}`;
+    };
+
     // --- Инициализация ---
     loadTrainers();
+    
+    // Добавляем обработчик ошибок для всех изображений
+    document.addEventListener('error', handleImageError, true);
 });

@@ -116,22 +116,8 @@ CREATE TABLE bookings (
 CREATE INDEX ON classes (class_date);
 CREATE INDEX ON bookings (user_id);
 
--- SAMPLE ADMIN (пароль admin123 захешируем через pgcrypto)
-INSERT INTO admins (name, email, password_hash)
-VALUES ('SuperAdmin','admin@pyon.local', crypt('admin123', gen_salt('bf')));
 
--- SAMPLE TRAINERS
-INSERT INTO trainers (first_name, last_name, birth_date, photo_url, bio) VALUES
-('Анна', 'Смирнова', '1990-05-15', 'https://i.pravatar.cc/150?img=1', 'Инструктор по йоге и пилатесу. Опыт работы более 8 лет. Сертификат международной школы йоги.'),
-('Дмитрий', 'Васильев', '1985-08-22', 'https://i.pravatar.cc/150?img=2', 'Тренер по стретчингу и силовым тренировкам. Кандидат в мастера спорта по гимнастике.'),
-('Екатерина', 'Новикова', '1992-12-03', 'https://i.pravatar.cc/150?img=3', 'Специалист по йоге в гамаках и воздушной гимнастике. Творческий подход к каждому занятию.');
 
--- SAMPLE PLANS
-INSERT INTO plans (title, description, duration_days, class_count, price) VALUES
-('Тариф "Старт"', 'Идеальный выбор для начинающих', 30, 4, 60.00),
-('Тариф "Баланс"', 'Оптимальный вариант для регулярных занятий', 30, 8, 100.00),
-('Тариф "Интенсив"', 'Для активных и целеустремленных', 30, 12, 140.00),
-('Тариф "Безлимит"', 'Неограниченное количество занятий', 30, NULL, 180.00);
 
 -- === EXTENDED TABLES ===
 
@@ -262,11 +248,6 @@ CREATE TABLE achievements (
     icon TEXT
 );
 
-INSERT INTO achievements(code,title,description,icon) VALUES
-  ('first_class','Первое занятие','Проведено 5 занятий','fa-star'),
-  ('streak_5_weeks','Серия посещений','5 недель без пропусков','fa-fire'),
-  ('yoga_master','Йога-мастер','50 посещённых занятий','fa-award'),
-  ('discipline_3_months','Дисциплина','3 месяца регулярной практики','fa-calendar-check');
 
 -- USER ACHIEVEMENTS
 
