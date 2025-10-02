@@ -104,7 +104,7 @@
     padding: 0;
     width: 100%;
     max-width: 560px;
-    max-height: calc(100vh - 40px);
+    max-height: calc(100vh - 20px);
     overflow: hidden;
     position: relative;
     box-shadow: 
@@ -185,7 +185,7 @@
 .clients-page .modal-body {
     padding: 32px 28px;
     overflow-y: auto;
-    max-height: calc(100vh - 200px); /* Учитываем header и footer */
+    max-height: calc(100vh - 180px); /* Учитываем header и footer */
     scrollbar-width: thin;
     scrollbar-color: var(--primary-color) transparent;
 }
@@ -284,15 +284,16 @@
     border-top: 1px solid rgba(181, 168, 176, 0.1);
     display: flex !important;
     gap: 12px;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    min-height: 70px;
+    min-height: 80px;
     position: relative;
     z-index: 10;
 }
 
 .modal-actions .btn {
     min-width: 120px;
+    min-height: 44px;
     font-weight: 600;
     font-family: var(--modern-font);
     letter-spacing: 0.3px;
@@ -306,6 +307,7 @@
     font-size: 14px;
     text-decoration: none;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 .modal-actions .btn--primary {
@@ -387,14 +389,24 @@
     
     .clients-page .modal-actions {
         padding: 16px 20px;
-        flex-direction: column-reverse;
-        gap: 8px;
+        flex-direction: column;
+        gap: 12px;
+        min-height: 100px;
     }
     
     .clients-page .modal-actions .btn {
         width: 100%;
         justify-content: center;
         min-width: auto;
+        order: unset;
+    }
+    
+    .clients-page .modal-actions .btn--primary {
+        order: 1; /* Кнопка "Сохранить" первой на мобильных */
+    }
+    
+    .clients-page .modal-actions .btn--danger {
+        order: 2; /* Кнопка "Удалить" второй на мобильных */
     }
 }
 
@@ -436,6 +448,7 @@
     
     .clients-page .modal-actions {
         padding: 12px 16px;
+        min-height: 90px;
     }
 }
 
@@ -1148,12 +1161,31 @@ body.modal-open {
 }
 
 /* Client modal actions layout */
-.modal-actions .btn--danger {
+.clients-page .modal-actions .btn--danger {
     margin-right: auto; /* Кнопка удаления слева */
+    order: 1; /* Кнопка удаления первой */
 }
 
-.modal-actions .btn--primary {
+.clients-page .modal-actions .btn--primary {
     margin-left: 8px; /* Кнопка сохранения справа */
+    order: 2; /* Кнопка сохранения второй */
+}
+
+/* Для модального окна назначения абонемента - кнопка по центру */
+#client-assign-modal-actions .btn--primary {
+    margin: 0 auto; /* Кнопка по центру */
+}
+
+/* Убеждаемся, что кнопки помещаются в модальном окне */
+.clients-page .modal-actions {
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Кнопки занимают по 50% ширины, чтобы поместиться две в ряд */
+.clients-page .modal-actions .btn {
+    flex: 1 1 calc(50% - 6px);
+    min-width: 0; /* Убираем жёсткий минимум для адаптивности */
 }
 
 /* Mobile optimizations for client modal */
@@ -1176,13 +1208,13 @@ body.modal-open {
     }
     
     /* На мобильных кнопки друг под другом */
-    .modal-actions .btn--danger,
-    .modal-actions .btn--primary {
+    .clients-page .modal-actions .btn--danger,
+    .clients-page .modal-actions .btn--primary {
         margin: 0;
         margin-bottom: 8px;
     }
     
-    .modal-actions .btn--primary {
+    .clients-page .modal-actions .btn--primary {
         margin-bottom: 0;
         order: -1; /* Кнопка "Сохранить" первой на мобильных */
     }

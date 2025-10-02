@@ -6,12 +6,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('client-search');
     const tariffFilter = document.getElementById('tariff-filter');
     const statusFilter = document.getElementById('status-filter');
-    const modal = document.getElementById('client-modal');
-    const modalBody = document.getElementById('modal-body');
-    const modalClose = modal.querySelector('.modal-close');
-    const modalActions = document.getElementById('modal-actions');
+    
+    // Модальные окна
+    const editModal = document.getElementById('client-edit-modal');
+    const assignModal = document.getElementById('client-assign-modal');
+    
+    // Элементы модального окна редактирования
+    const editModalBody = document.getElementById('client-edit-modal-body');
+    const editModalClose = editModal.querySelector('.modal-close');
+    const editModalActions = document.getElementById('client-edit-modal-actions');
     const deleteSubBtn = document.getElementById('delete-subscription-btn');
     const saveBtn = document.getElementById('save-client-btn');
+    
+    // Элементы модального окна назначения абонемента
+    const assignModalBody = document.getElementById('client-assign-modal-body');
+    const assignModalClose = assignModal.querySelector('.modal-close');
+    const assignModalActions = document.getElementById('client-assign-modal-actions');
+    const assignSubBtn = document.getElementById('assign-subscription-btn');
 
     // --- Состояние приложения ---
     let allClients = []; // Все загруженные клиенты
@@ -73,9 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     };
 
-    // --- Модальное окно ---
-    const closeModal = () => {
-        modal.style.display = 'none';
+    // --- Модальные окна ---
+    const closeModal = (modalElement) => {
+        modalElement.style.display = 'none';
         
         // Восстанавливаем скролл
         const scrollY = document.body.style.top;
@@ -86,13 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Скрыть ошибки
-        const errorElements = modal.querySelectorAll('.form-error');
+        const errorElements = modalElement.querySelectorAll('.form-error');
         errorElements.forEach(el => {
             el.style.display = 'none';
             el.textContent = '';
         });
-        
-        // Кнопки остаются всегда видны
     };
 
 
@@ -101,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const birthDate = client.birth_date ? new Date(client.birth_date).toISOString().split('T')[0] : '';
         currentClient = client;
         
-        modalBody.innerHTML = `
+        editModalBody.innerHTML = `
             <form id="edit-client-form">
                 <div class="form-row">
                     <div class="form-group">
@@ -154,10 +163,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
+
+            // Перемещаем блок действий между уровнем подготовки и информацией об абонементе
+            if (editModalActions && editModalBody) {
+                editModalActions.style.borderTop = 'none';
+                editModalActions.style.background = 'transparent';
+                editModalActions.style.padding = '0';
+                editModalActions.style.gap = '12px';
+                const subInfo = editModalBody.querySelector('.subscription-info');
+                if (subInfo) {
+                    editModalBody.insertBefore(editModalActions, subInfo);
+                } else {
+                    editModalBody.appendChild(editModalActions);
+                }
+            }
         
         // Настраиваем видимость и текст кнопок для редактирования
-        saveBtn.querySelector('span').textContent = 'Сохранить изменения';
-        deleteSubBtn.querySelector('span').textContent = 'Удалить абонемент';
+        saveBtn.querySelector('span').textContent = 'Сохранить';
+        deleteSubBtn.querySelector('span').textContent = 'Удалить';
         
         document.getElementById('edit-client-form').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -186,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Показываем уведомление об успехе
                 showNotification('Данные клиента успешно обновлены', 'success');
-                closeModal();
+                closeModal(editModal);
                 loadClients();
                 
             } catch (err) {
@@ -202,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const planOptions = allPlans.map(p => `<option value="${p.id}">${p.title} (${p.price} BYN, ${p.duration_days} дн.)</option>`).join('');
         currentClient = client;
         
-        modalBody.innerHTML = `
+        assignModalBody.innerHTML = `
             <div class="client-info">
                 <p><strong>Клиент:</strong> ${client.first_name} ${client.last_name}</p>
                 <p><strong>Email:</strong> ${client.email}</p>
@@ -221,8 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         
         // Настраиваем видимость и текст кнопок для назначения абонемента
-        saveBtn.querySelector('span').textContent = 'Назначить абонемент';
-        deleteSubBtn.querySelector('span').textContent = 'Удалить абонемент';
+        assignSubBtn.querySelector('span').textContent = 'Назначить';
         
         document.getElementById('assign-sub-form').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -244,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Показываем уведомление об успехе
                 showNotification('Абонемент успешно назначен', 'success');
-                closeModal();
+                closeModal(assignModal);
                 loadClients();
                 
             } catch (err) {
@@ -260,17 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Сначала показываем модальное окно с загрузкой
         const scrollY = window.scrollY;
         document.body.style.top = `-${scrollY}px`;
-        
-        modal.style.display = 'flex';
         document.body.classList.add('modal-open');
-        
-        // Показываем состояние загрузки
-        const modalTitle = document.getElementById('client-modal-title');
-        const modalActions = document.getElementById('modal-actions');
-        
-        modalTitle.textContent = 'Загрузка данных...';
-        modalBody.innerHTML = '<div style="text-align: center; padding: 40px;"><p>Загрузка...</p></div>';
-        modalActions.style.display = 'flex';
         
         try {
             const clientRes = await fetch(`/api/admin/clients/${clientId}`, { credentials: 'include' });
@@ -279,27 +291,31 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Определяем тип модального окна и рендерим контент
             if (!client.plan_title || client.sub_status === 'Неактивен') {
-                modalTitle.textContent = 'Назначить абонемент';
+                // Открываем модальное окно назначения абонемента
+                assignModal.style.display = 'flex';
                 renderAssignSubscriptionModal(client);
+                
+                // Focus на первое поле
+                setTimeout(() => {
+                    const firstInput = assignModal.querySelector('input, select');
+                    if (firstInput) firstInput.focus();
+                }, 100);
             } else { 
-                modalTitle.textContent = 'Редактировать клиента';
+                // Открываем модальное окно редактирования
+                editModal.style.display = 'flex';
                 renderEditClientModal(client);
+                
+                // Focus на первое поле
+                setTimeout(() => {
+                    const firstInput = editModal.querySelector('input, select');
+                    if (firstInput) firstInput.focus();
+                }, 100);
             }
-            
-            // Убеждаемся что кнопки действий видны
-            if (modalActions) {
-                modalActions.style.display = 'flex';
-            }
-            
-            // Focus на первое поле
-            setTimeout(() => {
-                const firstInput = modal.querySelector('input, select');
-                if (firstInput) firstInput.focus();
-            }, 100);
             
         } catch (err) {
-        modalTitle.textContent = 'Ошибка';
-        modalBody.innerHTML = `<div style="text-align: center; padding: 40px; color: red;"><p>${err.message}</p></div>`;
+            // Показываем ошибку в модальном окне редактирования
+            editModal.style.display = 'flex';
+            editModalBody.innerHTML = `<div style="text-align: center; padding: 40px; color: red;"><p>${err.message}</p></div>`;
         }
     };
     
@@ -363,11 +379,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 
                 showNotification('Абонемент успешно удален', 'success');
-                closeModal();
+                closeModal(editModal);
                 loadClients();
             } catch (error) {
                 showNotification(`Ошибка удаления абонемента: ${error.message}`, 'error');
             }
+        }
+    });
+    
+    // Кнопка назначения абонемента
+    assignSubBtn.addEventListener('click', async () => {
+        if (!currentClient) {
+            showNotification('Данные клиента не загружены', 'error');
+            return;
+        }
+
+        const assignForm = document.getElementById('assign-sub-form');
+        
+        if (assignForm) {
+            const selectedPlan = assignForm.querySelector('#plan-select').value;
+            
+            if (!selectedPlan) {
+                showNotification('Выберите абонемент для назначения', 'warning');
+                assignForm.querySelector('#plan-select').focus();
+                return;
+            }
+            
+            if (assignForm.checkValidity()) {
+                assignForm.dispatchEvent(new Event('submit'));
+            } else {
+                assignForm.reportValidity();
+            }
+        } else {
+            showNotification('Форма не найдена. Попробуйте перезагрузить страницу', 'error');
         }
     });
     
@@ -379,7 +423,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const editForm = document.getElementById('edit-client-form');
-        const assignForm = document.getElementById('assign-sub-form');
         
         if (editForm) {
             // Проверяем валидность формы перед проверкой изменений
@@ -422,20 +465,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Если есть изменения, отправляем форму
             editForm.dispatchEvent(new Event('submit'));
             
-        } else if (assignForm) {
-            const selectedPlan = assignForm.querySelector('#plan-select').value;
-            
-            if (!selectedPlan) {
-                showNotification('Выберите абонемент для назначения', 'warning');
-                assignForm.querySelector('#plan-select').focus();
-                return;
-            }
-            
-            if (assignForm.checkValidity()) {
-                assignForm.dispatchEvent(new Event('submit'));
-            } else {
-                assignForm.reportValidity();
-            }
         } else {
             showNotification('Форма не найдена. Попробуйте перезагрузить страницу', 'error');
         }
@@ -475,19 +504,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    modalClose.addEventListener('click', closeModal);
+    // Обработчики закрытия модальных окон
+    editModalClose.addEventListener('click', () => closeModal(editModal));
+    assignModalClose.addEventListener('click', () => closeModal(assignModal));
     
     // Закрытие по клику на фон (wrapper) но не на сам контент
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal || e.target.classList.contains('modal-wrapper')) {
-            closeModal();
+    editModal.addEventListener('click', (e) => {
+        if (e.target === editModal || e.target.classList.contains('modal-wrapper')) {
+            closeModal(editModal);
+        }
+    });
+    
+    assignModal.addEventListener('click', (e) => {
+        if (e.target === assignModal || e.target.classList.contains('modal-wrapper')) {
+            closeModal(assignModal);
         }
     });
     
     // Закрытие по ESC
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.style.display === 'flex') {
-            closeModal();
+        if (e.key === 'Escape') {
+            if (editModal.style.display === 'flex') {
+                closeModal(editModal);
+            } else if (assignModal.style.display === 'flex') {
+                closeModal(assignModal);
+            }
         }
     });
 
