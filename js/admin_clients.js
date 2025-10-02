@@ -1,78 +1,274 @@
 document.addEventListener('DOMContentLoaded', () => {
-  if(!document.body.classList.contains('clients-page')) return;
-  const tbody=document.getElementById('clients-body');
-  const search=document.getElementById('client-search');
-  const tariffFilter=document.getElementById('tariff-filter');
-  const statusFilter=document.getElementById('status-filter');
-  const modal=document.getElementById('client-modal');
-  const modalBody=document.getElementById('modal-body');
-  const modalClose=modal.querySelector('.modal-close');
-  const closeModal=()=>{modal.style.display='none';document.body.classList.remove('modal-open');};
-  modalClose.addEventListener('click',closeModal);
-  window.addEventListener('click',e=>{if(e.target===modal) closeModal();});
+    if (!document.body.classList.contains('clients-page')) return;
 
-  async function openModalWithClientData(id){
-    modalBody.innerHTML='<p>Загрузка...</p>';
-    modal.style.display='block';
-    document.body.classList.add('modal-open');
-    try{
-      const r=await fetch(`/api/admin/clients/${id}`,{credentials:'include'});
-      if(!r.ok){modalBody.textContent='Ошибка загрузки';return;}
-      const c=await r.json();
-      const until=c.end_date?new Date(c.end_date).toLocaleDateString('ru-RU'):'—';
-      const levelRu={beginner:'Начинающий',medium:'Средний',advanced:'Продвинутый'};
-      modalBody.innerHTML=`<section class="profile-content"><div class="card card--profile"><div class="card-header"><h2>Личные данные</h2></div><div class="profile-info"><p><strong>Email:</strong> ${c.email||''}</p><p><strong>Телефон:</strong> ${c.phone||''}</p><p><strong>Дата рождения:</strong> ${c.birth_date?new Date(c.birth_date).toLocaleDateString('ru-RU'):''}</p><p><strong>Уровень:</strong> ${levelRu[c.level]||c.level||''}</p></div></div><div class="card card--subscription"><div class="card-header"><h2>Абонемент</h2><div class="subscription-status ${c.sub_status==='Активен'?'status-active':'status-inactive'}">${c.sub_status}</div></div><div class="subscription-info"><div class="subscription-plan"><h3>${c.plan_title??'—'}</h3></div><p><strong>Действует до:</strong> ${until}</p></div></div></section>`;
-    }catch{modalBody.textContent='Ошибка';}
-  }
+    // --- DOM-элементы ---
+    const tbody = document.getElementById('clients-body');
+    const searchInput = document.getElementById('client-search');
+    const tariffFilter = document.getElementById('tariff-filter');
+    const statusFilter = document.getElementById('status-filter');
+    const modal = document.getElementById('client-modal');
+    const modalBody = document.getElementById('modal-body');
+    const modalClose = modal.querySelector('.modal-close');
 
-  let clients=[];
+    // --- Состояние приложения ---
+    let allClients = []; // Все загруженные клиенты
+    let allPlans = []; // Все абонементы для селектора
+    
+    // --- Утилиты ---
+    const getCsrfToken = () => document.cookie.split('; ').find(c => c.startsWith('XSRF-TOKEN='))?.split('=')[1];
+    
+    // --- Логика рендеринга ---
 
-  const render=()=>{
-    let list=clients;
-    const term=search.value.toLowerCase();
-    if(term) list=list.filter(c=>c.full_name.toLowerCase().includes(term));
-    const t=tariffFilter.value;
-    if(t!=='all') list=list.filter(c=>c.plan_title===t);
-    const s=statusFilter.value;
-    if(s!=='all') list=list.filter(c=>c.status===s);
+    // Рендер таблицы
+    const renderTable = () => {
+        let filteredClients = [...allClients];
+        
+        const searchTerm = searchInput.value.toLowerCase();
+        if (searchTerm) {
+            filteredClients = filteredClients.filter(c => c.full_name.toLowerCase().includes(searchTerm));
+        }
+        
+        const tariff = tariffFilter.value;
+        if (tariff !== 'all') {
+            filteredClients = filteredClients.filter(c => c.plan_title === tariff);
+        }
+        
+        const status = statusFilter.value;
+        if (status !== 'all') {
+            filteredClients = filteredClients.filter(c => c.status === status);
+        }
 
-    if(!list.length){
-      tbody.innerHTML='<tr><td colspan="6">Клиентов нет</td></tr>';return;}
-    tbody.innerHTML='';
-    list.forEach(c=>{
-      const tr=document.createElement('tr');
-      tr.dataset.clientId=c.id;
-      tr.innerHTML=`<td>${c.full_name}</td><td>${c.email||''}</td><td>${c.phone||''}</td><td>${c.plan_title||'—'}</td><td><span class="${c.status==='Активен'?'status-active':'status-inactive'}">${c.status}</span></td><td><button class='btn btn--icon btn-edit' title='Просмотр'><svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' stroke='currentColor' fill='none' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 20h9'/><path d='M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4 12.5-12.5z'/></svg></button> <button class='btn btn--icon btn--danger' title='Удалить'><svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' stroke='currentColor' fill='none' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='3 6 5 6 21 6'/><path d='M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'/><line x1='10' y1='11' x2='10' y2='17'/><line x1='14' y1='11' x2='14' y2='17'/></svg></button></td>`;
-      tbody.appendChild(tr);
+        if (filteredClients.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6">Клиенты не найдены</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = filteredClients.map(client => `
+            <tr data-client-id="${client.id}">
+                <td>${client.full_name}</td>
+                <td>${client.email || '—'}</td>
+                <td>${client.phone || '—'}</td>
+                <td>${client.plan_title || '—'}</td>
+                <td><span class="${client.status === 'Активен' ? 'status-active' : 'status-inactive'}">${client.status}</span></td>
+                <td class="actions-cell">
+                    <button class="btn btn--icon btn-edit" title="Редактировать">
+                        <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' stroke='currentColor' fill='none' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 20h9'/><path d='M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4 12.5-12.5z'/></svg>
+                    </button>
+                    <button class="btn btn--icon btn--danger" title="Удалить">
+                        <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' stroke='currentColor' fill='none' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='3 6 5 6 21 6'/><path d='M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'/><line x1='10' y1='11' x2='10' y2='17'/><line x1='14' y1='11' x2='14' y2='17'/></svg>
+                    </button>
+                </td>
+            </tr>
+        `).join('');
+    };
+
+    // --- Модальное окно ---
+    const closeModal = () => {
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+    };
+
+    // Форма редактирования данных клиента
+    const renderEditClientModal = (client) => {
+        const birthDate = client.birth_date ? new Date(client.birth_date).toISOString().split('T')[0] : '';
+        const levelRu = { beginner: 'Начинающий', medium: 'Средний', advanced: 'Продвинутый' };
+        
+        modalBody.innerHTML = `
+            <h2>Редактировать клиента</h2>
+            <form id="edit-client-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input type="text" id="first_name" value="${client.first_name}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Фамилия</label>
+                        <input type="text" id="last_name" value="${client.last_name}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" value="${client.email || ''}" required>
+                </div>
+                <div class="form-group">
+                    <label>Телефон</label>
+                    <input type="tel" id="phone" value="${client.phone || ''}">
+                </div>
+                <div class="form-group">
+                    <label>Дата рождения</label>
+                    <input type="date" id="birth_date" value="${birthDate}">
+                </div>
+                <div class="form-group">
+                    <label>Уровень</label>
+                    <select id="level">
+                        <option value="beginner" ${client.level === 'beginner' ? 'selected' : ''}>Начинающий</option>
+                        <option value="medium" ${client.level === 'medium' ? 'selected' : ''}>Средний</option>
+                        <option value="advanced" ${client.level === 'advanced' ? 'selected' : ''}>Продвинутый</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn--primary">Сохранить</button>
+                </div>
+                <div class="form-error" style="display:none;"></div>
+            </form>
+            <hr>
+            <h3>Абонемент</h3>
+            <p><strong>Текущий:</strong> ${client.plan_title || 'Нет'}</p>
+            <p><strong>Статус:</strong> <span class="${client.sub_status === 'Активен' ? 'status-active' : 'status-inactive'}">${client.sub_status || 'Нет'}</span></p>
+            <p><strong>Действует до:</strong> ${client.end_date ? new Date(client.end_date).toLocaleDateString('ru-RU') : '—'}</p>
+        `;
+        
+        document.getElementById('edit-client-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const updatedClient = {
+                first_name: form.querySelector('#first_name').value,
+                last_name: form.querySelector('#last_name').value,
+                email: form.querySelector('#email').value,
+                phone: form.querySelector('#phone').value,
+                birth_date: form.querySelector('#birth_date').value,
+                level: form.querySelector('#level').value,
+            };
+
+            try {
+                const res = await fetch(`/api/admin/clients/${client.id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': getCsrfToken() },
+                    credentials: 'include',
+                    body: JSON.stringify(updatedClient)
+                });
+                if (!res.ok) throw new Error('Ошибка сохранения');
+                closeModal();
+                loadClients();
+            } catch (err) {
+                form.querySelector('.form-error').textContent = err.message;
+                form.querySelector('.form-error').style.display = 'block';
+            }
+        });
+    };
+    
+    // Форма назначения абонемента
+    const renderAssignSubscriptionModal = (client) => {
+        const planOptions = allPlans.map(p => `<option value="${p.id}">${p.title} (${p.price} BYN, ${p.duration_days} дн.)</option>`).join('');
+        modalBody.innerHTML = `
+            <h2>Назначить абонемент</h2>
+            <p><strong>Клиент:</strong> ${client.first_name} ${client.last_name}</p>
+            <form id="assign-sub-form">
+                <div class="form-group">
+                    <label for="plan-select">Выберите абонемент:</label>
+                    <select id="plan-select" required>${planOptions}</select>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn--primary">Назначить</button>
+                </div>
+                <div class="form-error" style="display:none;"></div>
+            </form>
+        `;
+        
+        document.getElementById('assign-sub-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const planId = form.querySelector('#plan-select').value;
+            try {
+                const res = await fetch(`/api/admin/clients/${client.id}/subscription`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': getCsrfToken() },
+                    credentials: 'include',
+                    body: JSON.stringify({ plan_id: planId })
+                });
+                if (!res.ok) throw new Error('Ошибка назначения');
+                closeModal();
+                loadClients();
+            } catch (err) {
+                form.querySelector('.form-error').textContent = err.message;
+                form.querySelector('.form-error').style.display = 'block';
+            }
+        });
+    };
+    
+    // Главная функция открытия модального окна
+    const openClientModal = async (clientId) => {
+        modal.style.display = 'block';
+        document.body.classList.add('modal-open');
+        modalBody.innerHTML = '<p>Загрузка...</p>';
+        try {
+            const clientRes = await fetch(`/api/admin/clients/${clientId}`, { credentials: 'include' });
+            if (!clientRes.ok) throw new Error('Не удалось загрузить данные клиента');
+            const client = await clientRes.json();
+            
+            // Если у клиента нет абонемента ИЛИ он неактивен, показываем форму назначения
+            if (!client.plan_title || client.sub_status === 'Неактивен') {
+                 renderAssignSubscriptionModal(client);
+            } else { // Иначе - форму редактирования
+                 renderEditClientModal(client);
+            }
+        } catch (err) {
+            modalBody.innerHTML = `<p style="color: red;">${err.message}</p>`;
+        }
+    };
+    
+    // --- Загрузка данных ---
+    const loadClients = async () => {
+        try {
+            const res = await fetch('/api/admin/clients', { credentials: 'include' });
+            if (!res.ok) throw new Error('Ошибка сети');
+            allClients = await res.json();
+            renderTable();
+        } catch (error) {
+            tbody.innerHTML = '<tr><td colspan="6">Ошибка загрузки клиентов</td></tr>';
+        }
+    };
+    
+    const loadPlans = async () => {
+        try {
+            const res = await fetch('/api/admin/plans', { credentials: 'include' });
+            if (!res.ok) return;
+            allPlans = await res.json();
+            tariffFilter.innerHTML = '<option value="all">Все абонементы</option>' + 
+                allPlans.map(p => `<option value="${p.title}">${p.title}</option>`).join('');
+        } catch (error) {
+            // Ошибка не критична, фильтр просто будет неполным
+        }
+    };
+    
+    // --- Обработчики событий ---
+    [searchInput, tariffFilter, statusFilter].forEach(el => el.addEventListener('input', renderTable));
+
+    tbody.addEventListener('click', (e) => {
+        const editButton = e.target.closest('.btn-edit');
+        const deleteButton = e.target.closest('.btn--danger');
+        
+        if (editButton) {
+            const clientId = editButton.closest('tr').dataset.clientId;
+            openClientModal(clientId);
+            return;
+        }
+
+        if (deleteButton) {
+            const row = deleteButton.closest('tr');
+            const clientId = row.dataset.clientId;
+            if (confirm('Вы уверены, что хотите удалить этого клиента?')) {
+                fetch(`/api/admin/clients/${clientId}`, {
+                    method: 'DELETE',
+                    headers: { 'X-CSRF-Token': getCsrfToken() },
+                    credentials: 'include',
+                }).then(res => {
+                    if (res.ok) {
+                        row.remove();
+                        allClients = allClients.filter(c => c.id !== clientId);
+                        if (allClients.length === 0) renderTable();
+                    } else {
+                        alert('Не удалось удалить клиента.');
+                    }
+                });
+            }
+        }
     });
-  };
 
-  fetch('/api/admin/clients',{credentials:'include'})
-    .then(r=>{if(!r.ok) throw new Error(r.status); return r.json();})
-    .then(data=>{clients=data;render();})
-    .catch(()=>{tbody.innerHTML='<tr><td colspan="6">Ошибка загрузки</td></tr>';});
+    modalClose.addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-  // fetch all plans for filter
-  fetch('/api/admin/plans',{credentials:'include'})
-    .then(r=>r.ok?r.json():[])
-    .then(plans=>{
-       tariffFilter.innerHTML='<option value="all">Все абонементы</option>';
-       plans.forEach(p=>{const o=document.createElement('option');o.value=p.title;o.textContent=p.title;tariffFilter.appendChild(o);});
-    });
-
-  [search,tariffFilter,statusFilter].forEach(el=>el&&el.addEventListener('input',render));
-
-  tbody.addEventListener('click',e=>{
-    if(e.target.classList.contains('btn--danger')){
-      const tr=e.target.closest('tr');
-      const id=tr.dataset.clientId;
-      if(!confirm('Удалить клиента?')) return;
-      const csrf=document.cookie.split('; ').find(c=>c.startsWith('XSRF-TOKEN='))?.split('=')[1];
-      fetch(`/api/admin/clients/${id}`,{method:'DELETE',credentials:'include',headers:{'X-CSRF-Token':csrf}})
-        .then(r=>{if(r.status===204){clients=clients.filter(c=>c.id!==id);render();}});
-    }else if(e.target.closest('.btn-edit')){
-      const tr=e.target.closest('tr');
-      if(tr) openModalWithClientData(tr.dataset.clientId);
-    }
-  });
+    // --- Инициализация ---
+    loadPlans();
+    loadClients();
 });
