@@ -31,6 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data=>{clients=data;render();})
     .catch(()=>{tbody.innerHTML='<tr><td colspan="6">Ошибка загрузки</td></tr>';});
 
+  // fetch all plans for filter
+  fetch('/api/admin/plans',{credentials:'include'})
+    .then(r=>r.ok?r.json():[])
+    .then(plans=>{
+       tariffFilter.innerHTML='<option value="all">Все абонементы</option>';
+       plans.forEach(p=>{const o=document.createElement('option');o.value=p.title;o.textContent=p.title;tariffFilter.appendChild(o);});
+    });
+
   [search,tariffFilter,statusFilter].forEach(el=>el&&el.addEventListener('input',render));
 
   tbody.addEventListener('click',e=>{
