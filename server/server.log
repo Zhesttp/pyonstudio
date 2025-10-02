@@ -98,3 +98,264 @@ Server started on 3000
 > node app.js
 
 Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Ошибка назначения абонемента: error: invalid input syntax for type uuid: "undefined"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:98:9 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $1 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'uuid.c',
+  line: '137',
+  routine: 'string_to_uuid'
+}
+Ошибка назначения абонемента: error: invalid input syntax for type uuid: "undefined"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:98:9 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $1 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'uuid.c',
+  line: '137',
+  routine: 'string_to_uuid'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:114
+        await client.query('ROLLBACK');
+        ^
+
+ReferenceError: client is not defined
+    at file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:114:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Node.js v22.15.1
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Ошибка назначения абонемента: error: invalid input syntax for type uuid: "undefined"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:103:9 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $1 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'uuid.c',
+  line: '137',
+  routine: 'string_to_uuid'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+me error error: column p.class_count does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/profile.js:57:64 {
+  length: 112,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '226',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+me error error: column p.class_count does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/profile.js:57:64 {
+  length: 112,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '226',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+me error error: column p.class_count does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/profile.js:57:64 {
+  length: 112,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '226',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+me error error: column p.class_count does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/profile.js:57:64 {
+  length: 112,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '226',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Registration error: error: new row for relation "users" violates check constraint "users_level_check"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/auth.js:56:25 {
+  length: 427,
+  severity: 'ERROR',
+  code: '23514',
+  detail: 'Failing row contains (f3b10875-488b-4365-9923-6d40ca9f6bee, Иван, Новиков, 2005-08-28, +375295738948, vanyanovikov17@gmail.com, $2b$12$XR4wrOHyKIcG86QL1OWs8e5k2RzV8iT4DFqwWbcq45xZIcRZa3rfG, beginner, null, 0, 0, 2025-10-02 05:02:29.401886, 1).',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'users',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'users_level_check',
+  file: 'execMain.c',
+  line: '1943',
+  routine: 'ExecConstraints'
+}
+Registration error: error: new row for relation "users" violates check constraint "users_level_check"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/auth.js:56:25 {
+  length: 427,
+  severity: 'ERROR',
+  code: '23514',
+  detail: 'Failing row contains (6c71f8a4-83f3-481b-ad5c-2a6745d7d202, Иван, Новиков, 2005-08-28, +375295738948, vanyanovikov17@gmail.com, $2b$12$FTFK4bZz7CCMBOF5wj9UUOw4SNbV0JFus7ZGaXWhE/0M4aq4flTmi, beginner, null, 0, 0, 2025-10-02 05:06:24.050614, 1).',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'users',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'users_level_check',
+  file: 'execMain.c',
+  line: '1943',
+  routine: 'ExecConstraints'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000

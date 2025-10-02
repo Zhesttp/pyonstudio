@@ -39,6 +39,13 @@ router.post('/register', registerValidation, async (req, res) => {
 
     const { first_name, last_name, phone, email, password, birth, level } = req.body;
 
+    const levelMap = {
+        beginner: 'Начинающий',
+        medium: 'Средний',
+        advanced: 'Продвинутый'
+    };
+    const russianLevel = levelMap[level] || 'Начинающий'; // По умолчанию 'Начинающий'
+
     try {
         const client = await pool.connect();
         const existingUser = await client.query('SELECT 1 FROM users WHERE email = $1 OR phone = $2', [email, phone]);
@@ -53,7 +60,7 @@ router.post('/register', registerValidation, async (req, res) => {
             INSERT INTO users(first_name, last_name, birth_date, phone, email, password_hash, level)
             VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id;
         `;
-        const newUser = await client.query(newUserQuery, [first_name, last_name, birth, phone, email, hashedPassword, level]);
+        const newUser = await client.query(newUserQuery, [first_name, last_name, birth, phone, email, hashedPassword, russianLevel]);
         
         const userId = newUser.rows[0].id;
         client.release();

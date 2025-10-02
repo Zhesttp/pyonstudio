@@ -71,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Форма редактирования данных клиента
     const renderEditClientModal = (client) => {
         const birthDate = client.birth_date ? new Date(client.birth_date).toISOString().split('T')[0] : '';
-        const levelRu = { beginner: 'Начинающий', medium: 'Средний', advanced: 'Продвинутый' };
         
         modalBody.innerHTML = `
             <h2>Редактировать клиента</h2>
@@ -101,9 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="form-group">
                     <label>Уровень</label>
                     <select id="level">
-                        <option value="beginner" ${client.level === 'beginner' ? 'selected' : ''}>Начинающий</option>
-                        <option value="medium" ${client.level === 'medium' ? 'selected' : ''}>Средний</option>
-                        <option value="advanced" ${client.level === 'advanced' ? 'selected' : ''}>Продвинутый</option>
+                        <option value="Начинающий" ${client.level === 'Начинающий' ? 'selected' : ''}>Начинающий</option>
+                        <option value="Средний" ${client.level === 'Средний' ? 'selected' : ''}>Средний</option>
+                        <option value="Продвинутый" ${client.level === 'Продвинутый' ? 'selected' : ''}>Продвинутый</option>
                     </select>
                 </div>
                 <div class="modal-actions">
@@ -153,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalBody.innerHTML = `
             <h2>Назначить абонемент</h2>
             <p><strong>Клиент:</strong> ${client.first_name} ${client.last_name}</p>
-            <form id="assign-sub-form">
+            <form id="assign-sub-form" data-client-id="${client.id}">
                 <div class="form-group">
                     <label for="plan-select">Выберите абонемент:</label>
                     <select id="plan-select" required>${planOptions}</select>
@@ -169,8 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const form = e.target;
             const planId = form.querySelector('#plan-select').value;
+            const clientId = form.dataset.clientId; // <-- Получаем ID из data-атрибута
             try {
-                const res = await fetch(`/api/admin/clients/${client.id}/subscription`, {
+                const res = await fetch(`/api/admin/clients/${clientId}/subscription`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': getCsrfToken() },
                     credentials: 'include',

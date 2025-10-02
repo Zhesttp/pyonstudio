@@ -110,3 +110,51 @@ body.modal-open{overflow:hidden;}
   .data-table td{padding:4px 0;font-size:14px;}
   .data-table td.actions-cell{grid-column:1/3;justify-content:flex-start;}
 }
+
+/* Styles for Subscription Assignment Modal */
+#assign-sub-form {
+    margin-top: 1.5rem;
+}
+
+#assign-sub-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+#assign-sub-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+}
+
+#assign-sub-form #plan-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+}
+
+#assign-sub-form #plan-select:focus {
+    outline: none;
+    border-color: #4C51BF;
+    box-shadow: 0 0 0 3px rgba(76, 81, 191, 0.2);
+}
+
+.modal-content h2 + p {
+    margin-top: -0.5rem;
+    color: #718096;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1rem;
+}

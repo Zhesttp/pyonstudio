@@ -49,7 +49,7 @@ CREATE TABLE users (
     phone TEXT UNIQUE,
     email CITEXT UNIQUE NOT NULL,
     password_hash TEXT NOT NULL,
-    level TEXT,
+    level TEXT CHECK (level IN ('Начинающий', 'Средний', 'Продвинутый')),
     avatar_url TEXT,
     visits_count INT DEFAULT 0,
     minutes_practice INT DEFAULT 0,
@@ -73,6 +73,7 @@ CREATE TABLE plans (
     title TEXT NOT NULL,
     description TEXT,
     duration_days INT NOT NULL,
+    class_count INT, -- <-- Новое поле: количество занятий
     price NUMERIC(10,2) NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );

@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&family=Playfair+Display:wght@400;700;800&family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body class="profile-page">
@@ -46,50 +47,35 @@
                 <div class="card card--profile">
                     <div class="card-header">
                         <h2>Личные данные</h2>
-                        <div class="profile-avatar-wrapper">
-                            <div class="profile-avatar">
-                                <img src="assets/avatar.jpg" alt="Фото профиля">
-                                <button class="avatar-upload">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                                    <span>Изменить</span>
-                                </button>
-                            </div>
-                        </div>
                     </div>
                     <form class="profile-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Имя</label>
-                                <input type="text" id="name" disabled>
+                        <div class="form-fields">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="first_name">Имя</label>
+                                    <input type="text" id="first_name" required disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="last_name">Фамилия</label>
+                                    <input type="text" id="last_name" required disabled>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="surname">Фамилия</label>
-                                <input type="text" id="surname" disabled>
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required disabled>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Телефон</label>
-                            <input type="tel" id="phone" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="birthdate">Дата рождения</label>
-                            <input type="date" id="birthdate" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="level">Уровень подготовки</label>
-                            <select id="level" disabled>
-                                <option value="beginner">Начинающий</option>
-                                <option value="intermediate" selected>Средний</option>
-                                <option value="advanced">Продвинутый</option>
-                            </select>
-                        </div>
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn--primary">Сохранить изменения</button>
-                            <button type="button" class="btn btn--outline">Отмена</button>
+                            <div class="form-group">
+                                <label for="phone">Телефон</label>
+                                <input type="tel" id="phone" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthdate">Дата рождения</label>
+                                <input type="date" id="birthdate" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="level">Уровень подготовки</label>
+                                <input type="text" id="level" disabled>
+                            </div>
                         </div>
                     </form>
                 </div>

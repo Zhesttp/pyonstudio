@@ -40,7 +40,7 @@ router.get('/admin/clients/:id', adminOnly, async (req,res)=>{
   const {id}=req.params;
   try{
     const client=await pool.connect();
-    const q=`SELECT u.first_name,u.last_name,u.email,u.phone,u.birth_date,u.level, p.title AS plan_title, us.end_date,
+    const q=`SELECT u.id, u.first_name,u.last_name,u.email,u.phone,u.birth_date,u.level, p.title AS plan_title, us.end_date,
             (CASE WHEN us.end_date>=CURRENT_DATE THEN 'Активен' ELSE 'Неактивен' END) AS sub_status
             FROM users u
             LEFT JOIN user_subscriptions us ON us.user_id=u.id
@@ -80,12 +80,16 @@ router.post('/admin/clients/:id/subscription', adminOnly, async (req, res) => {
     const { plan_id } = req.body;
     const { id: user_id } = req.params;
 
-    if (!plan_id) {
-        return res.status(400).json({ message: 'Не выбран абонемент' });
+    // Более строгая проверка: id должен быть похож на UUID
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+    if (!plan_id || !user_id || !uuidRegex.test(user_id)) {
+        return res.status(400).json({ message: 'Некорректный ID клиента или абонемента' });
     }
 
+    let client;
     try {
-        const client = await pool.connect();
+        client = await pool.connect();
         const planRes = await client.query('SELECT duration_days FROM plans WHERE id=$1', [plan_id]);
 
         if (planRes.rowCount === 0) {
@@ -94,19 +98,26 @@ router.post('/admin/clients/:id/subscription', adminOnly, async (req, res) => {
         }
         const duration = planRes.rows[0].duration_days;
 
-        // ON CONFLICT (user_id) DO UPDATE - обновит абонемент, если он уже был. Это удобно.
+        // Ищем существующую подписку, чтобы обновить ее или создать новую.
+        // ON CONFLICT (user_id) требует уникального индекса ТОЛЬКО по user_id. 
+        // Если его нет, придется делать SELECT+INSERT/UPDATE.
+        // Допустим, мы просто удаляем старые и вставляем новую для простоты.
+        await client.query('BEGIN');
+        await client.query('DELETE FROM user_subscriptions WHERE user_id = $1', [user_id]);
         await client.query(
             `INSERT INTO user_subscriptions (user_id, plan_id, start_date, end_date)
-             VALUES ($1, $2, CURRENT_DATE, CURRENT_DATE + ($3 * INTERVAL '1 day'))
-             ON CONFLICT (user_id) DO UPDATE SET
-                plan_id = EXCLUDED.plan_id,
-                start_date = EXCLUDED.start_date,
-                end_date = EXCLUDED.end_date;`,
+             VALUES ($1, $2, CURRENT_DATE, CURRENT_DATE + ($3 * INTERVAL '1 day'))`,
             [user_id, plan_id, duration]
         );
+        await client.query('COMMIT');
+
         client.release();
         res.status(201).json({ message: 'Абонемент успешно назначен' });
     } catch (e) {
+        if (client) {
+            await client.query('ROLLBACK');
+            client.release();
+        }
         console.error('Ошибка назначения абонемента:', e);
         res.status(500).json({ message: 'Внутренняя ошибка сервера' });
     }
