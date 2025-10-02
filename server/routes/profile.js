@@ -6,14 +6,39 @@ import jwt from 'jsonwebtoken';
 const router = Router();
 
 router.get('/me', async (req, res, next) => {
-  // if admin token present return minimal info
+  // Check admin token first
   if(req.cookies?.admin_token){
     try{
       const data=jwt.verify(req.cookies.admin_token,process.env.JWT_SECRET);
-      return res.json({role:'admin',email:'admin'});
-    }catch{/* fallthrough to auth */}
+      if(data.role === 'admin') {
+        return res.json({
+          role: 'admin',
+          email: data.email || 'admin',
+          id: data.id
+        });
+      }
+    }catch(error){
+      console.error('Admin token verification failed:', error.message);
+    }
   }
-  auth(req,res,next);
+  
+  // Check user token
+  if(req.cookies?.token) {
+    try{
+      const data=jwt.verify(req.cookies.token,process.env.JWT_SECRET);
+      if(data.role === 'user' || !data.role) { // backwards compatibility
+        // Continue to user data fetching
+        req.user = data;
+        next();
+        return;
+      }
+    }catch(error){
+      console.error('User token verification failed:', error.message);
+    }
+  }
+  
+  // No valid tokens found
+  return res.status(401).json({ message: 'Требуется авторизация' });
 },async (req,res)=>{
   try {
     const client = await pool.connect();
@@ -33,8 +58,9 @@ router.get('/me', async (req, res, next) => {
                     AND c.class_date >= us.start_date 
                     AND c.class_date <= us.end_date
                ) as attended_classes,
+               us.remaining_classes,
                CASE
-                   WHEN us.end_date >= CURRENT_DATE THEN 'Активен'
+                   WHEN us.end_date >= CURRENT_DATE AND us.is_active = TRUE THEN 'Активен'
                    ELSE 'Неактивен'
                END AS subscription_status
         FROM users u

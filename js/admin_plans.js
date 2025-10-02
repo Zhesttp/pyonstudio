@@ -15,13 +15,15 @@ document.addEventListener('DOMContentLoaded',()=>{
   const mTitle=document.getElementById('plan-modal-title');
 
   let plans=[];
-  const clearForm=()=>{idField.value='';titleField.value='';priceField.value='';durField.value='';descField.value='';};
+  const classesField=document.getElementById('plan-classes');
+  const clearForm=()=>{idField.value='';titleField.value='';priceField.value='';durField.value='';classesField.value='';descField.value='';};
   const openModal=(plan=null)=>{
     if(plan){
       idField.value=plan.id;
       titleField.value=plan.title;
       priceField.value=plan.price;
       durField.value=plan.duration_days;
+      classesField.value=plan.class_count||'';
       descField.value=plan.description||'';
       delBtn.style.display='inline-block';
       mTitle.textContent='Редактировать абонемент';
@@ -39,23 +41,25 @@ document.addEventListener('DOMContentLoaded',()=>{
   addBtn.onclick=()=>openModal();
 
   const render=()=>{
-    if(!plans.length){tbody.innerHTML='<tr><td colspan="5">Абонементов нет</td></tr>';return;}
+    if(!plans.length){tbody.innerHTML='<tr><td colspan="6">Абонементов нет</td></tr>';return;}
     tbody.innerHTML='';
     plans.forEach(p=>{
       const tr=document.createElement('tr');
       tr.dataset.planId=p.id;
       const price=Number(p.price).toFixed(2)+' BYN';
-      tr.innerHTML=`<td>${p.title}</td><td>${price}</td><td>${p.duration_days}</td><td>${p.description||''}</td><td><button class="btn btn--sm btn--outline">Редактировать</button></td>`;
+      const duration=p.duration_days+' дней';
+      const classes=p.class_count?p.class_count:'Безлимит';
+      tr.innerHTML=`<td>${p.title}</td><td>${price}</td><td>${duration}</td><td>${classes}</td><td>${p.description||''}</td><td><button class="btn btn--sm btn--outline">Редактировать</button></td>`;
       tbody.appendChild(tr);
     });
   };
 
   const load=()=>{
-    tbody.innerHTML='<tr><td colspan="5">Загрузка...</td></tr>';
+    tbody.innerHTML='<tr><td colspan="6">Загрузка...</td></tr>';
     fetch('/api/admin/plans',{credentials:'include'})
       .then(r=>{if(!r.ok) throw new Error();return r.json();})
       .then(data=>{plans=data;render();})
-      .catch(()=>{tbody.innerHTML='<tr><td colspan="5">Ошибка загрузки</td></tr>';});
+      .catch(()=>{tbody.innerHTML='<tr><td colspan="6">Ошибка загрузки</td></tr>';});
   };
 
   tbody.addEventListener('click',e=>{
@@ -68,7 +72,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   form.addEventListener('submit',e=>{
     e.preventDefault();
-    const body={title:titleField.value,price:parseFloat(priceField.value),duration_days:parseInt(durField.value,10),description:descField.value};
+    const body={title:titleField.value,price:parseFloat(priceField.value),duration_days:parseInt(durField.value,10),class_count:classesField.value?parseInt(classesField.value,10):null,description:descField.value};
     const method=idField.value?'PUT':'POST';
     const url=idField.value?`/api/admin/plans/${idField.value}`:'/api/admin/plans';
     const csrf=document.cookie.split('; ').find(c=>c.startsWith('XSRF-TOKEN='))?.split('=')[1];

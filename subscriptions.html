@@ -55,12 +55,13 @@
                                 <tr>
                                     <th>Название</th>
                                     <th>Цена</th>
-                                    <th>Занятий в месяц</th>
+                                    <th>Длительность</th>
+                                    <th>Кол-во занятий</th>
                                     <th>Описание</th>
                                     <th>Действия</th>
                                 </tr>
                             </thead>
-                            <tbody id="plans-body"><tr><td colspan="5">Загрузка...</td></tr></tbody>
+                            <tbody id="plans-body"><tr><td colspan="6">Загрузка...</td></tr></tbody>
                         </table>
                     </div>
                 </div>
@@ -78,6 +79,7 @@
           <div class="form-group"><label>Название</label><input type="text" id="plan-title" required></div>
           <div class="form-group"><label>Цена (BYN)</label><input type="number" id="plan-price" min="0" step="0.01" required></div>
           <div class="form-group"><label>Длительность (дней)</label><input type="number" id="plan-duration" min="1" required></div>
+          <div class="form-group"><label>Количество занятий</label><input type="number" id="plan-classes" min="0" placeholder="Оставьте пустым для безлимита"></div>
           <div class="form-group"><label>Описание</label><textarea id="plan-desc"></textarea></div>
           <div class="modal-actions">
             <button type="submit" class="btn btn--primary">Сохранить</button>

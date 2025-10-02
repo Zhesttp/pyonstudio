@@ -92,29 +92,47 @@ router.post('/login', loginValidation, async (req, res) => {
 
     try {
         const client = await pool.connect();
-        const result = await client.query('SELECT id, email, password_hash FROM users WHERE email = $1', [email]);
         
-        if (result.rowCount === 0) {
-            // try admin table
-            const a = await client.query('SELECT id,password_hash FROM admins WHERE email=$1',[email]);
-            if(!a.rowCount) return res.status(404).json({ message: 'Пользователь не найден' });
-            const admin=a.rows[0];
-            const ok=await bcrypt.compare(password, admin.password_hash);
-            if(!ok) return res.status(401).json({ message: 'Неверные учетные данные' });
-            const adminTok=jwt.sign({id:admin.id,role:'admin'},process.env.JWT_SECRET,{expiresIn:'7d'});
-            res.cookie('admin_token',adminTok,{httpOnly:true,sameSite:'lax',secure:false,maxAge:7*24*60*60*1000});
+        // Try admin table first
+        const adminResult = await client.query('SELECT id, email, password_hash FROM admins WHERE email = $1', [email]);
+        
+        if (adminResult.rowCount > 0) {
+            const admin = adminResult.rows[0];
+            const isMatch = await bcrypt.compare(password, admin.password_hash);
+            
+            if (!isMatch) {
+                client.release();
+                return res.status(401).json({ message: 'Неверные учетные данные' });
+            }
+            
+            const adminToken = jwt.sign({id: admin.id, email: admin.email, role: 'admin'}, process.env.JWT_SECRET, {expiresIn: '7d'});
+            res.cookie('admin_token', adminToken, {
+                httpOnly: true,
+                sameSite: 'lax',
+                secure: process.env.NODE_ENV === 'production',
+                maxAge: 7 * 24 * 60 * 60 * 1000
+            });
             client.release();
-            return res.json({ role:'admin' });
+            return res.json({ role: 'admin', message: 'Вход выполнен успешно' });
         }
 
-        const user = result.rows[0];
+        // Try user table
+        const userResult = await client.query('SELECT id, email, password_hash FROM users WHERE email = $1', [email]);
+        
+        if (userResult.rowCount === 0) {
+            client.release();
+            return res.status(404).json({ message: 'Пользователь не найден' });
+        }
+
+        const user = userResult.rows[0];
         const isMatch = await bcrypt.compare(password, user.password_hash);
 
         if (!isMatch) {
+            client.release();
             return res.status(401).json({ message: 'Неверные учетные данные' });
         }
 
-        const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '7d' });
+        const token = jwt.sign({ id: user.id, email: user.email, role: 'user' }, process.env.JWT_SECRET, { expiresIn: '7d' });
         res.cookie('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
@@ -123,7 +141,7 @@ router.post('/login', loginValidation, async (req, res) => {
         });
 
         client.release();
-        res.status(200).json({ message: 'Вход выполнен успешно' });
+        res.status(200).json({ message: 'Вход выполнен успешно', role: 'user' });
 
     } catch (error) {
         console.error('Login error:', error);
@@ -132,23 +150,3 @@ router.post('/login', loginValidation, async (req, res) => {
 });
 
 export default router;
-
-// --- ADMIN LOGIN ---
-
-router.post('/admin/login', body('email').isEmail(), body('password').notEmpty(), async (req,res)=>{
-  const errors = validationResult(req);
-  if(!errors.isEmpty()) return res.status(400).json({errors:errors.array()});
-  const {email,password}=req.body;
-  try{
-    const client=await pool.connect();
-    const r=await client.query('SELECT id,password_hash FROM admins WHERE email=$1',[email]);
-    client.release();
-    if(!r.rowCount) return res.status(404).json({message:'Admin not found'});
-    const admin=r.rows[0];
-    const ok=await bcrypt.compare(password,admin.password_hash);
-    if(!ok) return res.status(401).json({message:'Invalid credentials'});
-    const token=jwt.sign({id:admin.id,role:'admin'},process.env.JWT_SECRET,{expiresIn:'7d'});
-    res.cookie('admin_token',token,{httpOnly:true,sameSite:'lax',secure:false,maxAge:7*24*60*60*1000});
-    res.sendStatus(200);
-  }catch(e){console.error('Admin login',e);res.sendStatus(500);}
-});

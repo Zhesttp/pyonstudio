@@ -13,28 +13,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const errBox=document.getElementById('login-error');errBox.style.display='none';
             const csrf=document.cookie.split('; ').find(c=>c.startsWith('XSRF-TOKEN='))?.split('=')[1];
-            fetch('http://localhost:3000/api/login', {
+            fetch('/api/login', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': csrf
+                },
                 credentials: 'include',
-                headers:{'Content-Type':'application/json','X-CSRF-Token':csrf},
                 body: JSON.stringify({ email, password })
             })
                 .then(async r => {
-                    const errBox=document.getElementById('login-error');errBox.style.display='none';
+                    const errBox=document.getElementById('login-error');
+                    errBox.style.display='none';
+                    
                     if (r.status === 200){
                        const resp=await r.json();
                        if(resp.role==='admin'){
-                         sessionStorage.setItem('userRole','admin');
                          window.location.href='/admin';
-                       }
-                       else
+                       } else {
                          window.location.href='/profile';
+                       }
                        return;
                     }
-                    else if (r.status === 404) {errBox.textContent='Пользователь не зарегистрирован';errBox.style.display='block';}
-                    else if (r.status === 401) {errBox.textContent='Неверная почта или пароль';errBox.style.display='block';}
-                    else {errBox.textContent='Ошибка входа';errBox.style.display='block';}
+                    else if (r.status === 404) {
+                        errBox.textContent='Пользователь не зарегистрирован';
+                        errBox.style.display='block';
+                    }
+                    else if (r.status === 401) {
+                        errBox.textContent='Неверная почта или пароль';
+                        errBox.style.display='block';
+                    }
+                    else {
+                        errBox.textContent='Ошибка входа';
+                        errBox.style.display='block';
+                    }
                 })
                 .catch(() => alert('Сервер недоступен'));
         });

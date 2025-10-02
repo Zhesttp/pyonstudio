@@ -359,3 +359,8 @@ Registration error: error: new row for relation "users" violates check constrain
 > node app.js
 
 Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000

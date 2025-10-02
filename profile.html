@@ -80,7 +80,7 @@
                     </form>
                 </div>
 
-                <div class="card card--subscription" id="subscription-card" style="display:none;">
+                <div class="card card--subscription" id="subscription-card">
                     <div class="card-header">
                         <h2>Абонемент</h2>
                         <div class="subscription-status status-active" id="subscription-status"></div>
@@ -95,7 +95,7 @@
                                 <span class="detail-label">Действует до:</span>
                                 <span class="detail-value" id="plan-end"></span>
                             </div>
-                            <div class="detail-item">
+                            <div class="detail-item" id="plan-left-item">
                                 <span class="detail-label">Осталось занятий:</span>
                                 <span class="detail-value" id="plan-left"></span>
                             </div>
@@ -112,10 +112,6 @@
                             <div class="progress-bar">
                                 <div class="progress-fill" id="progress-fill" style="width:0"></div>
                             </div>
-                        </div>
-                        <div class="subscription-actions">
-                            <button class="btn btn--secondary" id="extend-btn">Продлить абонемент</button>
-                            <button class="btn btn--outline" id="change-plan-btn">Изменить тариф</button>
                         </div>
                     </div>
                 </div>

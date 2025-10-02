@@ -85,6 +85,9 @@ CREATE TABLE user_subscriptions (
     plan_id UUID REFERENCES plans(id) ON DELETE CASCADE,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
+    remaining_classes INT, -- NULL означает безлимит
+    is_active BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT NOW(),
     UNIQUE(user_id, plan_id, start_date)
 );
 
