@@ -35,4 +35,15 @@ router.get('/admin/clients', adminOnly, async (req, res) => {
   }
 });
 
+// DELETE /api/admin/clients/:id – remove client
+router.delete('/admin/clients/:id', adminOnly, async (req,res)=>{
+  const {id}=req.params;
+  try{
+    const client=await pool.connect();
+    await client.query('DELETE FROM users WHERE id=$1',[id]);
+    client.release();
+    res.sendStatus(204);
+  }catch(e){console.error('del client',e);res.sendStatus(500);} 
+});
+
 export default router;
