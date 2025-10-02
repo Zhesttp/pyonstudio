@@ -52,7 +52,7 @@ app.use('/api', classesRoutes);
 
 // admin pages
 import { adminOnly } from './middleware/admin.js';
-['/admin.html','/clients.html','/trainers.html','/subscriptions.html','/admin','/clients','/trainers','/subscriptions'].forEach(route=>{
+['/admin.html','/clients.html','/trainers.html','/subscriptions.html','/admin_classes.html','/admin','/clients','/trainers','/subscriptions','/admin_classes'].forEach(route=>{
   app.get(route, adminOnly, (req,res)=>{
     const file=route.replace('/','');
     res.sendFile(path.join(__dirname,'../', file.includes('.html')?file:`${file}.html`));
