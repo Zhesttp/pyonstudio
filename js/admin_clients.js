@@ -9,10 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('client-modal');
     const modalBody = document.getElementById('modal-body');
     const modalClose = modal.querySelector('.modal-close');
+    const modalActions = document.getElementById('modal-actions');
+    const deleteSubBtn = document.getElementById('delete-subscription-btn');
+    const saveBtn = document.getElementById('save-client-btn');
 
     // --- Состояние приложения ---
     let allClients = []; // Все загруженные клиенты
     let allPlans = []; // Все абонементы для селектора
+    
+    // Инициализация кнопок модального окна
+    if (deleteSubBtn && saveBtn) {
+        deleteSubBtn.style.display = 'inline-flex';
+        saveBtn.style.display = 'inline-flex';
+        deleteSubBtn.className = 'btn btn--danger';
+        saveBtn.className = 'btn btn--primary';
+    }
     
     // --- Утилиты ---
     const getCsrfToken = () => document.cookie.split('; ').find(c => c.startsWith('XSRF-TOKEN='))?.split('=')[1];
@@ -65,57 +76,88 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Модальное окно ---
     const closeModal = () => {
         modal.style.display = 'none';
+        
+        // Восстанавливаем скролл
+        const scrollY = document.body.style.top;
         document.body.classList.remove('modal-open');
+        document.body.style.top = '';
+        if (scrollY) {
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }
+        
+        // Скрыть ошибки
+        const errorElements = modal.querySelectorAll('.form-error');
+        errorElements.forEach(el => {
+            el.style.display = 'none';
+            el.textContent = '';
+        });
+        
+        // Кнопки остаются всегда видны
     };
+
 
     // Форма редактирования данных клиента
     const renderEditClientModal = (client) => {
         const birthDate = client.birth_date ? new Date(client.birth_date).toISOString().split('T')[0] : '';
+        currentClient = client;
         
         modalBody.innerHTML = `
-            <h2>Редактировать клиента</h2>
             <form id="edit-client-form">
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Имя</label>
-                        <input type="text" id="first_name" value="${client.first_name}" required>
+                        <label for="first_name">Имя</label>
+                        <input type="text" id="first_name" value="${client.first_name}" required placeholder="Введите имя">
                     </div>
                     <div class="form-group">
-                        <label>Фамилия</label>
-                        <input type="text" id="last_name" value="${client.last_name}" required>
+                        <label for="last_name">Фамилия</label>
+                        <input type="text" id="last_name" value="${client.last_name}" required placeholder="Введите фамилию">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="email" value="${client.email || ''}" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" value="${client.email || ''}" required placeholder="example@email.com">
                 </div>
                 <div class="form-group">
-                    <label>Телефон</label>
-                    <input type="tel" id="phone" value="${client.phone || ''}">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" value="${client.phone || ''}" placeholder="+375 (XX) XXX-XX-XX">
                 </div>
                 <div class="form-group">
-                    <label>Дата рождения</label>
+                    <label for="birth_date">Дата рождения</label>
                     <input type="date" id="birth_date" value="${birthDate}">
                 </div>
                 <div class="form-group">
-                    <label>Уровень</label>
+                    <label for="level">Уровень подготовки</label>
                     <select id="level">
                         <option value="Начинающий" ${client.level === 'Начинающий' ? 'selected' : ''}>Начинающий</option>
                         <option value="Средний" ${client.level === 'Средний' ? 'selected' : ''}>Средний</option>
                         <option value="Продвинутый" ${client.level === 'Продвинутый' ? 'selected' : ''}>Продвинутый</option>
                     </select>
                 </div>
-                <div class="modal-actions">
-                    <button type="submit" class="btn btn--primary">Сохранить</button>
-                </div>
                 <div class="form-error" style="display:none;"></div>
             </form>
-            <hr>
-            <h3>Абонемент</h3>
-            <p><strong>Текущий:</strong> ${client.plan_title || 'Нет'}</p>
-            <p><strong>Статус:</strong> <span class="${client.sub_status === 'Активен' ? 'status-active' : 'status-inactive'}">${client.sub_status || 'Нет'}</span></p>
-            <p><strong>Действует до:</strong> ${client.end_date ? new Date(client.end_date).toLocaleDateString('ru-RU') : '—'}</p>
+            
+            <div class="subscription-info">
+                <h3>Информация об абонементе</h3>
+                <div class="subscription-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Текущий абонемент:</span>
+                        <span class="detail-value">${client.plan_title || 'Не назначен'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Статус:</span>
+                        <span class="detail-value ${client.sub_status === 'Активен' ? 'status-active' : 'status-inactive'}">${client.sub_status || 'Неактивен'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Действует до:</span>
+                        <span class="detail-value">${client.end_date ? new Date(client.end_date).toLocaleDateString('ru-RU') : '—'}</span>
+                    </div>
+                </div>
+            </div>
         `;
+        
+        // Настраиваем видимость и текст кнопок для редактирования
+        saveBtn.querySelector('span').textContent = 'Сохранить изменения';
+        deleteSubBtn.querySelector('span').textContent = 'Удалить абонемент';
         
         document.getElementById('edit-client-form').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -136,12 +178,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     credentials: 'include',
                     body: JSON.stringify(updatedClient)
                 });
-                if (!res.ok) throw new Error('Ошибка сохранения');
+                
+                if (!res.ok) {
+                    const error = await res.json();
+                    throw new Error(error.message || 'Ошибка сохранения');
+                }
+                
+                // Показываем уведомление об успехе
+                showNotification('Данные клиента успешно обновлены', 'success');
                 closeModal();
                 loadClients();
+                
             } catch (err) {
                 form.querySelector('.form-error').textContent = err.message;
                 form.querySelector('.form-error').style.display = 'block';
+                showNotification(err.message, 'error');
             }
         });
     };
@@ -149,20 +200,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Форма назначения абонемента
     const renderAssignSubscriptionModal = (client) => {
         const planOptions = allPlans.map(p => `<option value="${p.id}">${p.title} (${p.price} BYN, ${p.duration_days} дн.)</option>`).join('');
+        currentClient = client;
+        
         modalBody.innerHTML = `
-            <h2>Назначить абонемент</h2>
-            <p><strong>Клиент:</strong> ${client.first_name} ${client.last_name}</p>
+            <div class="client-info">
+                <p><strong>Клиент:</strong> ${client.first_name} ${client.last_name}</p>
+                <p><strong>Email:</strong> ${client.email}</p>
+            </div>
+            
             <form id="assign-sub-form" data-client-id="${client.id}">
                 <div class="form-group">
-                    <label for="plan-select">Выберите абонемент:</label>
-                    <select id="plan-select" required>${planOptions}</select>
-                </div>
-                <div class="modal-actions">
-                    <button type="submit" class="btn btn--primary">Назначить</button>
+                    <label for="plan-select">Выберите абонемент</label>
+                    <select id="plan-select" required>
+                        <option value="">Выберите абонемент...</option>
+                        ${planOptions}
+                    </select>
                 </div>
                 <div class="form-error" style="display:none;"></div>
             </form>
         `;
+        
+        // Настраиваем видимость и текст кнопок для назначения абонемента
+        saveBtn.querySelector('span').textContent = 'Назначить абонемент';
+        deleteSubBtn.querySelector('span').textContent = 'Удалить абонемент';
         
         document.getElementById('assign-sub-form').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -176,34 +236,70 @@ document.addEventListener('DOMContentLoaded', () => {
                     credentials: 'include',
                     body: JSON.stringify({ plan_id: planId })
                 });
-                if (!res.ok) throw new Error('Ошибка назначения');
+                
+                if (!res.ok) {
+                    const error = await res.json();
+                    throw new Error(error.message || 'Ошибка назначения');
+                }
+                
+                // Показываем уведомление об успехе
+                showNotification('Абонемент успешно назначен', 'success');
                 closeModal();
                 loadClients();
+                
             } catch (err) {
                 form.querySelector('.form-error').textContent = err.message;
                 form.querySelector('.form-error').style.display = 'block';
+                showNotification(err.message, 'error');
             }
         });
     };
     
     // Главная функция открытия модального окна
     const openClientModal = async (clientId) => {
-        modal.style.display = 'block';
+        // Сначала показываем модальное окно с загрузкой
+        const scrollY = window.scrollY;
+        document.body.style.top = `-${scrollY}px`;
+        
+        modal.style.display = 'flex';
         document.body.classList.add('modal-open');
-        modalBody.innerHTML = '<p>Загрузка...</p>';
+        
+        // Показываем состояние загрузки
+        const modalTitle = document.getElementById('client-modal-title');
+        const modalActions = document.getElementById('modal-actions');
+        
+        modalTitle.textContent = 'Загрузка данных...';
+        modalBody.innerHTML = '<div style="text-align: center; padding: 40px;"><p>Загрузка...</p></div>';
+        modalActions.style.display = 'flex';
+        
         try {
             const clientRes = await fetch(`/api/admin/clients/${clientId}`, { credentials: 'include' });
             if (!clientRes.ok) throw new Error('Не удалось загрузить данные клиента');
             const client = await clientRes.json();
             
-            // Если у клиента нет абонемента ИЛИ он неактивен, показываем форму назначения
+            // Определяем тип модального окна и рендерим контент
             if (!client.plan_title || client.sub_status === 'Неактивен') {
-                 renderAssignSubscriptionModal(client);
-            } else { // Иначе - форму редактирования
-                 renderEditClientModal(client);
+                modalTitle.textContent = 'Назначить абонемент';
+                renderAssignSubscriptionModal(client);
+            } else { 
+                modalTitle.textContent = 'Редактировать клиента';
+                renderEditClientModal(client);
             }
+            
+            // Убеждаемся что кнопки действий видны
+            if (modalActions) {
+                modalActions.style.display = 'flex';
+            }
+            
+            // Focus на первое поле
+            setTimeout(() => {
+                const firstInput = modal.querySelector('input, select');
+                if (firstInput) firstInput.focus();
+            }, 100);
+            
         } catch (err) {
-            modalBody.innerHTML = `<p style="color: red;">${err.message}</p>`;
+        modalTitle.textContent = 'Ошибка';
+        modalBody.innerHTML = `<div style="text-align: center; padding: 40px; color: red;"><p>${err.message}</p></div>`;
         }
     };
     
@@ -230,6 +326,120 @@ document.addEventListener('DOMContentLoaded', () => {
             // Ошибка не критична, фильтр просто будет неполным
         }
     };
+    
+    // --- Обработчики событий кнопок модального окна ---
+    let currentClient = null;
+    
+    // Кнопка удаления абонемента
+    deleteSubBtn.addEventListener('click', async () => {
+        if (!currentClient) {
+            showNotification('Данные клиента не загружены', 'error');
+            return;
+        }
+        
+        // Более точная проверка наличия активного абонемента
+        const hasActiveSubscription = currentClient.plan_title && 
+            currentClient.sub_status && 
+            currentClient.sub_status !== 'Неактивен' &&
+            currentClient.end_date &&
+            new Date(currentClient.end_date) > new Date();
+        
+        if (!hasActiveSubscription) {
+            showNotification('У клиента нет активного абонемента для удаления', 'warning');
+            return;
+        }
+        
+        if (confirm(`Вы уверены, что хотите удалить абонемент "${currentClient.plan_title}" у ${currentClient.first_name} ${currentClient.last_name}?`)) {
+            try {
+                const res = await fetch(`/api/admin/clients/${currentClient.id}/subscription`, {
+                    method: 'DELETE',
+                    headers: { 'X-CSRF-Token': getCsrfToken() },
+                    credentials: 'include'
+                });
+                
+                if (!res.ok) {
+                    const error = await res.json();
+                    throw new Error(error.message || 'Ошибка удаления абонемента');
+                }
+                
+                showNotification('Абонемент успешно удален', 'success');
+                closeModal();
+                loadClients();
+            } catch (error) {
+                showNotification(`Ошибка удаления абонемента: ${error.message}`, 'error');
+            }
+        }
+    });
+    
+    // Кнопка сохранения
+    saveBtn.addEventListener('click', async () => {
+        if (!currentClient) {
+            showNotification('Данные клиента не загружены', 'error');
+            return;
+        }
+
+        const editForm = document.getElementById('edit-client-form');
+        const assignForm = document.getElementById('assign-sub-form');
+        
+        if (editForm) {
+            // Проверяем валидность формы перед проверкой изменений
+            if (!editForm.checkValidity()) {
+                editForm.reportValidity();
+                showNotification('Пожалуйста, заполните все обязательные поля корректно', 'warning');
+                return;
+            }
+
+            // Собираем текущие данные формы
+            const currentData = {
+                first_name: editForm.querySelector('#first_name').value.trim(),
+                last_name: editForm.querySelector('#last_name').value.trim(),
+                email: editForm.querySelector('#email').value.trim(),
+                phone: editForm.querySelector('#phone').value.trim(),
+                birth_date: editForm.querySelector('#birth_date').value,
+                level: editForm.querySelector('#level').value
+            };
+
+            // Нормализуем оригинальные данные для сравнения
+            const originalData = {
+                first_name: (currentClient.first_name || '').trim(),
+                last_name: (currentClient.last_name || '').trim(),
+                email: (currentClient.email || '').trim(),
+                phone: (currentClient.phone || '').trim(),
+                birth_date: currentClient.birth_date ? currentClient.birth_date.split('T')[0] : '',
+                level: currentClient.level || ''
+            };
+            
+            // Проверяем наличие изменений
+            const hasChanges = Object.keys(currentData).some(key => 
+                currentData[key] !== originalData[key]
+            );
+            
+            if (!hasChanges) {
+                showNotification('Нет изменений для сохранения', 'warning');
+                return;
+            }
+            
+            // Если есть изменения, отправляем форму
+            editForm.dispatchEvent(new Event('submit'));
+            
+        } else if (assignForm) {
+            const selectedPlan = assignForm.querySelector('#plan-select').value;
+            
+            if (!selectedPlan) {
+                showNotification('Выберите абонемент для назначения', 'warning');
+                assignForm.querySelector('#plan-select').focus();
+                return;
+            }
+            
+            if (assignForm.checkValidity()) {
+                assignForm.dispatchEvent(new Event('submit'));
+            } else {
+                assignForm.reportValidity();
+            }
+        } else {
+            showNotification('Форма не найдена. Попробуйте перезагрузить страницу', 'error');
+        }
+    });
     
     // --- Обработчики событий ---
     [searchInput, tariffFilter, statusFilter].forEach(el => el.addEventListener('input', renderTable));
@@ -266,7 +476,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     modalClose.addEventListener('click', closeModal);
-    window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    
+    // Закрытие по клику на фон (wrapper) но не на сам контент
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.classList.contains('modal-wrapper')) {
+            closeModal();
+        }
+    });
+    
+    // Закрытие по ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeModal();
+        }
+    });
+
+    // --- Уведомления (аналогично admin_trainers.js) ---
+    const showNotification = (message, type = 'info') => {
+        const notification = document.createElement('div');
+        notification.className = `notification notification--${type}`;
+        notification.innerHTML = `
+            <span>${message}</span>
+            <button class="notification-close">&times;</button>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Автоудаление через 4 секунды
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.remove();
+            }
+        }, 4000);
+        
+        // Кнопка закрытия
+        notification.querySelector('.notification-close').addEventListener('click', () => {
+            notification.remove();
+        });
+    };
 
     // --- Инициализация ---
     loadPlans();

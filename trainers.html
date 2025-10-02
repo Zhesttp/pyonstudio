@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/admin.css">
 </head>
-<body class="profile-page">
+<body class="admin-page trainers-page">
 
     <div class="dashboard-layout">
         <aside class="sidebar">
@@ -51,36 +51,7 @@
                     </div>
                     <div class="card__content">
                         <div class="trainers-grid">
-                            <div class="trainer-card">
-                                <img src="https://i.pravatar.cc/150?img=1" alt="Фото тренера">
-                                <h4>Анна Смирнова</h4>
-                                <p>Йога, Пилатес</p>
-                                <span class="trainer-stat">15 занятий в неделю</span>
-                                <div class="trainer-actions">
-                                    <button class="btn btn--sm btn--outline">Редактировать</button>
-                                    <button class="btn btn--sm btn--danger">Удалить</button>
-                                </div>
-                            </div>
-                             <div class="trainer-card">
-                                <img src="https://i.pravatar.cc/150?img=2" alt="Фото тренера">
-                                <h4>Дмитрий Васильев</h4>
-                                <p>Стретчинг, Силовые</p>
-                                <span class="trainer-stat">12 занятий в неделю</span>
-                                <div class="trainer-actions">
-                                    <button class="btn btn--sm btn--outline">Редактировать</button>
-                                    <button class="btn btn--sm btn--danger">Удалить</button>
-                                </div>
-                            </div>
-                             <div class="trainer-card">
-                                <img src="https://i.pravatar.cc/150?img=3" alt="Фото тренера">
-                                <h4>Екатерина Новикова</h4>
-                                <p>Йога в гамаках</p>
-                                <span class="trainer-stat">10 занятий в неделю</span>
-                                <div class="trainer-actions">
-                                    <button class="btn btn--sm btn--outline">Редактировать</button>
-                                    <button class="btn btn--sm btn--danger">Удалить</button>
-                                </div>
-                            </div>
+                            <!-- Тренеры загружаются через JS -->
                         </div>
                     </div>
                 </div>
@@ -88,6 +59,72 @@
         </main>
     </div>
 
+    <!-- Trainer Modal -->
+    <div id="trainer-modal" class="modal">
+        <div class="modal-wrapper">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="trainer-modal-title">Добавить тренера</h2>
+                    <button class="modal-close" aria-label="Закрыть">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <form id="trainer-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="trainer-first-name">Имя</label>
+                                <input type="text" id="trainer-first-name" name="first_name" required placeholder="Введите имя">
+                            </div>
+                            <div class="form-group">
+                                <label for="trainer-last-name">Фамилия</label>
+                                <input type="text" id="trainer-last-name" name="last_name" required placeholder="Введите фамилию">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="trainer-birth-date">Дата рождения</label>
+                            <input type="date" id="trainer-birth-date" name="birth_date">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="trainer-photo-url">URL фотографии</label>
+                            <input type="url" id="trainer-photo-url" name="photo_url" placeholder="https://example.com/photo.jpg">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="trainer-bio">Описание/Специализация</label>
+                            <textarea id="trainer-bio" name="bio" rows="4" placeholder="Расскажите о специализации, опыте работы, достижениях тренера..."></textarea>
+                        </div>
+                        
+                        <div class="form-error" style="display:none;"></div>
+                    </form>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" id="trainer-delete" class="btn btn--danger" style="display: none;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        Удалить
+                    </button>
+                    <button type="submit" form="trainer-form" class="btn btn--primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 6L9 17l-5-5"></path>
+                        </svg>
+                        Сохранить
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/admin.js"></script>
+    <script src="js/admin_trainers.js"></script>
 </body>
 </html>

@@ -192,9 +192,9 @@ router.post('/classes/:id/book', auth, async (req, res) => {
 
     // Check if user has active subscription
     const subscriptionCheck = await client.query(`
-      SELECT us.id, us.remaining_classes 
+      SELECT us.id 
       FROM user_subscriptions us 
-      WHERE us.user_id = $1 AND us.end_date >= CURRENT_DATE AND us.is_active = TRUE
+      WHERE us.user_id = $1 AND us.end_date >= CURRENT_DATE
       ORDER BY us.end_date DESC LIMIT 1
     `, [user_id]);
     
@@ -203,27 +203,10 @@ router.post('/classes/:id/book', auth, async (req, res) => {
       return res.status(403).json({ message: 'У вас нет активного абонемента' });
     }
 
-    const subscription = subscriptionCheck.rows[0];
-    
-    // Check if user has remaining classes (null means unlimited)
-    if (subscription.remaining_classes !== null && subscription.remaining_classes <= 0) {
-      await client.query('ROLLBACK');
-      return res.status(403).json({ message: 'У вас закончились занятия по абонементу' });
-    }
-
     // Create booking
     await client.query(`
       INSERT INTO bookings (user_id, class_id, status) VALUES ($1, $2, 'booked')
     `, [user_id, class_id]);
-
-    // Decrease remaining classes if not unlimited
-    if (subscription.remaining_classes !== null) {
-      await client.query(`
-        UPDATE user_subscriptions 
-        SET remaining_classes = remaining_classes - 1 
-        WHERE id = $1
-      `, [subscription.id]);
-    }
 
     await client.query('COMMIT');
     res.status(201).json({ message: 'Запись на занятие прошла успешно' });
@@ -250,10 +233,8 @@ router.delete('/classes/:id/cancel', auth, async (req, res) => {
 
     // Find the booking
     const bookingResult = await client.query(`
-      SELECT b.id, us.id as subscription_id, us.remaining_classes
+      SELECT b.id
       FROM bookings b
-      JOIN classes c ON b.class_id = c.id
-      LEFT JOIN user_subscriptions us ON b.user_id = us.user_id AND us.is_active = TRUE
       WHERE b.user_id = $1 AND b.class_id = $2 AND b.status = 'booked'
     `, [user_id, class_id]);
 
@@ -262,21 +243,10 @@ router.delete('/classes/:id/cancel', auth, async (req, res) => {
       return res.status(404).json({ message: 'Запись на занятие не найдена' });
     }
 
-    const booking = bookingResult.rows[0];
-
     // Cancel the booking
     await client.query(`
       UPDATE bookings SET status = 'cancelled' WHERE id = $1
-    `, [booking.id]);
-
-    // Return class to subscription if not unlimited
-    if (booking.subscription_id && booking.remaining_classes !== null) {
-      await client.query(`
-        UPDATE user_subscriptions 
-        SET remaining_classes = remaining_classes + 1 
-        WHERE id = $1
-      `, [booking.subscription_id]);
-    }
+    `, [bookingResult.rows[0].id]);
 
     await client.query('COMMIT');
     res.status(200).json({ message: 'Запись на занятие отменена' });

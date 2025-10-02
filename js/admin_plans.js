@@ -16,6 +16,28 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   let plans=[];
   const classesField=document.getElementById('plan-classes');
+  
+  // Notification system
+  const showNotification = (message, type = 'info') => {
+    const notification = document.createElement('div');
+    notification.className = `notification notification--${type}`;
+    notification.innerHTML = `
+      <span>${message}</span>
+      <button class="notification-close">&times;</button>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.remove();
+      }
+    }, 4000);
+    
+    notification.querySelector('.notification-close').addEventListener('click', () => {
+      notification.remove();
+    });
+  };
   const clearForm=()=>{idField.value='';titleField.value='';priceField.value='';durField.value='';classesField.value='';descField.value='';};
   const openModal=(plan=null)=>{
     if(plan){
@@ -25,18 +47,42 @@ document.addEventListener('DOMContentLoaded',()=>{
       durField.value=plan.duration_days;
       classesField.value=plan.class_count||'';
       descField.value=plan.description||'';
-      delBtn.style.display='inline-block';
+      delBtn.style.display='inline-flex';
       mTitle.textContent='Редактировать абонемент';
     }else{
       clearForm();
       delBtn.style.display='none';
       mTitle.textContent='Новый абонемент';
     }
-    modal.style.display='block';
+    modal.style.display='flex';
+    document.body.classList.add('modal-open');
+    
+    // Focus на первое поле
+    setTimeout(() => {
+      titleField.focus();
+    }, 100);
   };
-  const closeModal=()=>{modal.style.display='none';};
+  
+  const closeModal=()=>{
+    modal.style.display='none';
+    document.body.classList.remove('modal-open');
+  };
+  
   mClose.onclick=closeModal;
-  window.addEventListener('click',e=>{if(e.target===modal) closeModal();});
+  
+  // Закрытие по клику на фон
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal || e.target.classList.contains('modal-wrapper')) {
+      closeModal();
+    }
+  });
+  
+  // Закрытие по ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'flex') {
+      closeModal();
+    }
+  });
 
   addBtn.onclick=()=>openModal();
 
@@ -70,25 +116,108 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
   });
 
-  form.addEventListener('submit',e=>{
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const body={title:titleField.value,price:parseFloat(priceField.value),duration_days:parseInt(durField.value,10),class_count:classesField.value?parseInt(classesField.value,10):null,description:descField.value};
-    const method=idField.value?'PUT':'POST';
-    const url=idField.value?`/api/admin/plans/${idField.value}`:'/api/admin/plans';
-    const csrf=document.cookie.split('; ').find(c=>c.startsWith('XSRF-TOKEN='))?.split('=')[1];
-    fetch(url,{method,headers:{'Content-Type':'application/json','X-CSRF-Token':csrf},credentials:'include',body:JSON.stringify(body)})
-      .then(r=>{if(!r.ok) throw new Error();return (method==='POST'?r.json():null);})
-      .then(data=>{if(data&&data.id) body.id=data.id; if(method==='POST') plans.push({...body}); else plans=plans.map(p=>p.id===idField.value?{...p,...body}:p); render(); closeModal();})
-      .catch(()=>alert('Ошибка сохранения'));
+    
+    // Validation
+    const title = titleField.value.trim();
+    const price = parseFloat(priceField.value);
+    const duration = parseInt(durField.value, 10);
+    const classes = classesField.value ? parseInt(classesField.value, 10) : null;
+    
+    if (!title) {
+      alert('Название абонемента обязательно');
+      titleField.focus();
+      return;
+    }
+    
+    if (isNaN(price) || price <= 0) {
+      alert('Цена должна быть положительным числом');
+      priceField.focus();
+      return;
+    }
+    
+    if (isNaN(duration) || duration <= 0) {
+      alert('Длительность должна быть положительным числом дней');
+      durField.focus();
+      return;
+    }
+    
+    if (classes !== null && (isNaN(classes) || classes < 0)) {
+      alert('Количество занятий должно быть положительным числом или пустым');
+      classesField.focus();
+      return;
+    }
+    
+    const body = { title, price, duration_days: duration, class_count: classes, description: descField.value.trim() || null };
+    const method = idField.value ? 'PUT' : 'POST';
+    const url = idField.value ? `/api/admin/plans/${idField.value}` : '/api/admin/plans';
+    const csrf = document.cookie.split('; ').find(c => c.startsWith('XSRF-TOKEN='))?.split('=')[1];
+    
+    try {
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf },
+        credentials: 'include',
+        body: JSON.stringify(body)
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Ошибка сохранения');
+      }
+      
+      const data = method === 'POST' ? await response.json() : null;
+      
+      if (data && data.id) body.id = data.id;
+      
+      if (method === 'POST') {
+        plans.push({ ...body });
+        showNotification('Абонемент успешно создан', 'success');
+      } else {
+        plans = plans.map(p => p.id === idField.value ? { ...p, ...body } : p);
+        showNotification('Абонемент успешно обновлен', 'success');
+      }
+      
+      render();
+      closeModal();
+      
+    } catch (error) {
+      console.error('Error saving plan:', error);
+      alert(error.message);
+    }
   });
 
-  delBtn.addEventListener('click',()=>{
-    const id=idField.value;
-    if(!confirm('Удалить абонемент?')) return;
-    const csrf=document.cookie.split('; ').find(c=>c.startsWith('XSRF-TOKEN='))?.split('=')[1];
-    fetch(`/api/admin/plans/${id}`,{method:'DELETE',credentials:'include',headers:{'X-CSRF-Token':csrf}})
-      .then(r=>{if(r.status===204){plans=plans.filter(p=>p.id!==id);render();closeModal();}})
-      .catch(()=>alert('Ошибка удаления'));
+  delBtn.addEventListener('click', async () => {
+    const id = idField.value;
+    const plan = plans.find(p => p.id === id);
+    const planName = plan ? plan.title : 'этот абонемент';
+    
+    if (!confirm(`Вы уверены, что хотите удалить ${planName}?`)) return;
+    
+    const csrf = document.cookie.split('; ').find(c => c.startsWith('XSRF-TOKEN='))?.split('=')[1];
+    
+    try {
+      const response = await fetch(`/api/admin/plans/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: { 'X-CSRF-Token': csrf }
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Ошибка удаления');
+      }
+      
+      plans = plans.filter(p => p.id !== id);
+      render();
+      closeModal();
+      showNotification('Абонемент успешно удален', 'success');
+      
+    } catch (error) {
+      console.error('Error deleting plan:', error);
+      alert(error.message);
+    }
   });
 
   load();

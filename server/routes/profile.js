@@ -58,9 +58,8 @@ router.get('/me', async (req, res, next) => {
                     AND c.class_date >= us.start_date 
                     AND c.class_date <= us.end_date
                ) as attended_classes,
-               us.remaining_classes,
                CASE
-                   WHEN us.end_date >= CURRENT_DATE AND us.is_active = TRUE THEN 'Активен'
+                   WHEN us.end_date >= CURRENT_DATE THEN 'Активен'
                    ELSE 'Неактивен'
                END AS subscription_status
         FROM users u
