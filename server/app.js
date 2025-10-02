@@ -9,6 +9,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import authRoutes from './routes/auth.js';
 import profileRoutes from './routes/profile.js';
+import adminRoutes from './routes/admin.js';
 import { auth } from './middleware/auth.js';
 
 dotenv.config();
@@ -35,6 +36,7 @@ app.use(express.json());
 // API routes
 app.use('/api', authRoutes);
 app.use('/api', profileRoutes);
+app.use('/api', adminRoutes);
 
 // Protected pages (HTML) - must be before static middleware
 ['dashboard.html','schedule.html','profile.html','dashboard','schedule','profile'].forEach(route=>{

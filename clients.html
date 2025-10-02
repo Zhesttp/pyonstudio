@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/admin.css">
 </head>
-<body class="admin-page">
+<body class="admin-page clients-page">
 
     <div class="dashboard-layout">
         <aside class="sidebar">
@@ -68,7 +68,7 @@
                         <div class="search-wrapper">
                              <input type="text" id="client-search" placeholder="Поиск по ФИО...">
                         </div>
-                        <button class="btn btn--primary">Добавить клиента</button>
+                        <!-- <button class="btn btn--primary">Добавить клиента</button> -->
                     </div>
                     <div class="table-responsive">
                         <table class="data-table" id="clients-table">
@@ -82,48 +82,8 @@
                                     <th>Действия</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr data-client-id="1">
-                                    <td>Иванов Иван Иванович</td>
-                                    <td>ivanov@email.com</td>
-                                    <td>+7 (999) 111-22-33</td>
-                                    <td>Тариф "Баланс"</td>
-                                    <td><span class="status-active">Активен</span></td>
-                                    <td><button class="btn btn--sm btn--danger">Удалить</button></td>
-                                </tr>
-                                <tr data-client-id="2">
-                                    <td>Петрова Анна Сергеевна</td>
-                                     <td>petrova@email.com</td>
-                                    <td>+7 (999) 444-55-66</td>
-                                    <td>Тариф "Интенсив"</td>
-                                    <td><span class="status-active">Активен</span></td>
-                                    <td><button class="btn btn--sm btn--danger">Удалить</button></td>
-                                </tr>
-                                <tr data-client-id="3">
-                                    <td>Сидоров Алексей Петрович</td>
-                                     <td>sidorov@email.com</td>
-                                    <td>+7 (999) 777-88-99</td>
-                                    <td>Тариф "Утро"</td>
-                                    <td><span class="status-inactive">Неактивен</span></td>
-                                    <td><button class="btn btn--sm btn--danger">Удалить</button></td>
-                                </tr>
-                                 <tr data-client-id="4">
-                                    <td>Мария Кузнецова</td>
-                                     <td>kuznetsova@email.com</td>
-                                    <td>+7 (999) 123-45-67</td>
-                                    <td>Тариф "Баланс"</td>
-                                    <td><span class="status-active">Активен</span></td>
-                                    <td><button class="btn btn--sm btn--danger">Удалить</button></td>
-                                </tr>
-                                 <tr data-client-id="5">
-                                    <td>Дмитрий Смирнов</td>
-                                     <td>smirnov@email.com</td>
-                                    <td>+7 (999) 987-65-43</td>
-                                    <td>Тариф "Профи"</td>
-                                    <td><span class="status-active">Активен</span></td>
-                                    <td><button class="btn btn--sm btn--danger">Удалить</button></td>
-                                </tr>
-
+                            <tbody id="clients-body">
+                                <tr><td colspan="6">Загрузка...</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -143,6 +103,6 @@
     </div>
 
 
-    <script src="js/admin.js"></script>
+    <script src="js/admin_clients.js"></script>
 </body>
 </html>
