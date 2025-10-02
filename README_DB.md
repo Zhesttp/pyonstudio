@@ -82,3 +82,57 @@ SELECT * FROM bookings LIMIT 20;
 docker exec -it pyon-db psql -U pyon -d pyon_db -c "\dt"   # список таблиц
 docker exec -it pyon-db psql -U pyon -d pyon_db -c "SELECT * FROM users LIMIT 10;"
 ```
+
+## Запуск проекта «с нуля»
+```bash
+# 1. установить зависимости backend
+cd server
+npm install          # модули Express, pg, bcrypt …
+
+# 2. создать роль и базу (один раз)
+psql -U $(whoami) -d postgres -c "CREATE ROLE pyon WITH LOGIN PASSWORD 'pyon123';"
+psql -U $(whoami) -d postgres -c "CREATE DATABASE pyon_db OWNER pyon;"
+
+# 3. накатить структуру
+cd ..   # корень проекта
+tail -n +5 db/schema.sql | psql -U pyon -d pyon_db   # без CREATE DATABASE
+
+# 4. скопировать переменные окружения и запустить сервер
+cd server
+cp .env.example .env     # при первом запуске, либо создайте руками
+npm run dev              # nodemon app.js (порт 3000)
+```
+
+## Полное пересоздание БД
+```bash
+# остановить backend, если запущен (Ctrl+C)
+
+psql -U $(whoami) -d postgres -c "DROP DATABASE IF EXISTS pyon_db;"
+psql -U $(whoami) -d postgres -c "CREATE DATABASE pyon_db OWNER pyon;"
+
+tail -n +5 db/schema.sql | psql -U pyon -d pyon_db
+
+# заново запустить сервер
+cd server
+npm run dev
+```
+
+> `$(whoami)` под macOS/Homebrew равен вашему системному пользователю, у которого есть права superuser в PostgreSQL.
+
+
+
+
+
+
+
+
+<!-- удалить  бд-->
+$ psql -U zhest -d postgres -c "DROP DATABASE IF EXISTS pyon_db;"
+
+
+% создать  бд 
+$ psql -U zhest -d postgres -c "CREATE DATABASE pyon_db OWNER pyon;"
+
+
+<!-- активировать схему  -->
+$ psql -U pyon -d pyon_db -f /Users/zhest/Documents/work/konstantin/db/schema.sql

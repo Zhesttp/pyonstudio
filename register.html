@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Регистрация - PYon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="assets/logo/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body class="register-page">
+    <div class="auth-container">
+        <div class="auth-box">
+            <a href="index.html" class="logo auth-logo">
+                <img src="assets/logo/logo.png" alt="PYon studio logo" class="logo__img">
+            </a>
+            <h1 class="auth-box__title">Создание аккаунта</h1>
+            <form id="register-form" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first_name">Имя</label>
+                        <input type="text" id="first_name" required pattern="^[A-Za-zА-Яа-яЁё\s]{2,30}$" name="first_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Фамилия</label>
+                        <input type="text" id="last_name" required pattern="^[A-Za-zА-Яа-яЁё\s]{2,30}$" name="last_name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="birth">Дата рождения</label>
+                    <input type="date" id="birth" required max="2007-01-01" name="birth">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" required pattern="^\+?[0-9]{10,15}$" placeholder="+375XXXXXXXXX" value="+375" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="reg_email">Email</label>
+                    <input type="email" id="reg_email" required name="email">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password_reg">Пароль</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password_reg" required minlength="6" maxlength="9" pattern="^(?=.*[A-Za-z])(?=(?:.*\d){5,8}).{6,9}$" name="password">
+                            <button type="button" class="toggle-pass" data-target="password_reg" aria-label="Показать пароль">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password_conf">Повторите пароль</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password_conf" required minlength="6" maxlength="9" name="password_conf">
+                            <button type="button" class="toggle-pass" data-target="password_conf" aria-label="Показать пароль">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="level">Уровень подготовки</label>
+                    <select id="level" required name="level">
+                        <option value="" disabled selected>Выберите</option>
+                        <option value="beginner">Начинающий</option>
+                        <option value="intermediate">Средний</option>
+                        <option value="advanced">Продвинутый</option>
+                    </select>
+                </div>
+                <div id="reg-error" class="form-error" style="display:none"></div>
+                <button type="submit" class="btn btn--primary btn--full">Создать аккаунт</button>
+                <p class="auth-box__switch">Есть аккаунт? <a href="login.html">Войти</a></p>
+            </form>
+        </div>
+    </div>
+<script src="js/auth.js"></script>
+<script src="js/register.js"></script>
+</body>
+</html>

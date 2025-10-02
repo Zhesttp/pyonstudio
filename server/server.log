@@ -1,0 +1,1397 @@
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+ForbiddenError: invalid csrf token
+    at csrf (/Users/zhest/Documents/work/konstantin/server/node_modules/csurf/index.js:112:19)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:280:10)
+    at cookieParser (/Users/zhest/Documents/work/konstantin/server/node_modules/cookie-parser/index.js:71:5)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+ForbiddenError: invalid csrf token
+    at csrf (/Users/zhest/Documents/work/konstantin/server/node_modules/csurf/index.js:112:19)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:280:10)
+    at cookieParser (/Users/zhest/Documents/work/konstantin/server/node_modules/cookie-parser/index.js:71:5)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+ForbiddenError: invalid csrf token
+    at csrf (/Users/zhest/Documents/work/konstantin/server/node_modules/csurf/index.js:112:19)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:280:10)
+    at cookieParser (/Users/zhest/Documents/work/konstantin/server/node_modules/cookie-parser/index.js:71:5)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+ForbiddenError: invalid csrf token
+    at csrf (/Users/zhest/Documents/work/konstantin/server/node_modules/csurf/index.js:112:19)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:280:10)
+    at cookieParser (/Users/zhest/Documents/work/konstantin/server/node_modules/cookie-parser/index.js:71:5)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+ForbiddenError: invalid csrf token
+    at csrf (/Users/zhest/Documents/work/konstantin/server/node_modules/csurf/index.js:112:19)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:280:10)
+    at cookieParser (/Users/zhest/Documents/work/konstantin/server/node_modules/cookie-parser/index.js:71:5)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Ошибка назначения абонемента: error: invalid input syntax for type uuid: "undefined"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:98:9 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $1 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'uuid.c',
+  line: '137',
+  routine: 'string_to_uuid'
+}
+Ошибка назначения абонемента: error: invalid input syntax for type uuid: "undefined"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:98:9 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $1 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'uuid.c',
+  line: '137',
+  routine: 'string_to_uuid'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:114
+        await client.query('ROLLBACK');
+        ^
+
+ReferenceError: client is not defined
+    at file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:114:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Node.js v22.15.1
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Ошибка назначения абонемента: error: invalid input syntax for type uuid: "undefined"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:103:9 {
+  length: 141,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: "unnamed portal parameter $1 = '...'",
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'uuid.c',
+  line: '137',
+  routine: 'string_to_uuid'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+me error error: column p.class_count does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/profile.js:57:64 {
+  length: 112,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '226',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+me error error: column p.class_count does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/profile.js:57:64 {
+  length: 112,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '226',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+me error error: column p.class_count does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/profile.js:57:64 {
+  length: 112,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '226',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+me error error: column p.class_count does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/profile.js:57:64 {
+  length: 112,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '226',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Registration error: error: new row for relation "users" violates check constraint "users_level_check"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/auth.js:56:25 {
+  length: 427,
+  severity: 'ERROR',
+  code: '23514',
+  detail: 'Failing row contains (f3b10875-488b-4365-9923-6d40ca9f6bee, Иван, Новиков, 2005-08-28, +375295738948, vanyanovikov17@gmail.com, $2b$12$XR4wrOHyKIcG86QL1OWs8e5k2RzV8iT4DFqwWbcq45xZIcRZa3rfG, beginner, null, 0, 0, 2025-10-02 05:02:29.401886, 1).',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'users',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'users_level_check',
+  file: 'execMain.c',
+  line: '1943',
+  routine: 'ExecConstraints'
+}
+Registration error: error: new row for relation "users" violates check constraint "users_level_check"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/auth.js:56:25 {
+  length: 427,
+  severity: 'ERROR',
+  code: '23514',
+  detail: 'Failing row contains (6c71f8a4-83f3-481b-ad5c-2a6745d7d202, Иван, Новиков, 2005-08-28, +375295738948, vanyanovikov17@gmail.com, $2b$12$FTFK4bZz7CCMBOF5wj9UUOw4SNbV0JFus7ZGaXWhE/0M4aq4flTmi, beginner, null, 0, 0, 2025-10-02 05:06:24.050614, 1).',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'users',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'users_level_check',
+  file: 'execMain.c',
+  line: '1943',
+  routine: 'ExecConstraints'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Error fetching clients list: error: column us.is_active does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:30:22 {
+  length: 111,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '220',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Error assigning subscription: error: duplicate key value violates unique constraint "user_subscriptions_user_id_plan_id_start_date_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:143:9 {
+  length: 382,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, plan_id, start_date)=(a1685138-c309-424d-9b49-556b7342124b, 0394afa0-49a3-4814-a2b1-66f3566b543e, 2025-10-02) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'user_subscriptions',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'user_subscriptions_user_id_plan_id_start_date_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Error assigning subscription: error: duplicate key value violates unique constraint "user_subscriptions_user_id_plan_id_start_date_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:143:9 {
+  length: 382,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, plan_id, start_date)=(a1685138-c309-424d-9b49-556b7342124b, 0394afa0-49a3-4814-a2b1-66f3566b543e, 2025-10-02) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'user_subscriptions',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'user_subscriptions_user_id_plan_id_start_date_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}
+Error assigning subscription: error: duplicate key value violates unique constraint "user_subscriptions_user_id_plan_id_start_date_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:143:9 {
+  length: 382,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, plan_id, start_date)=(a1685138-c309-424d-9b49-556b7342124b, 0394afa0-49a3-4814-a2b1-66f3566b543e, 2025-10-02) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'user_subscriptions',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'user_subscriptions_user_id_plan_id_start_date_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Error assigning subscription: error: duplicate key value violates unique constraint "user_subscriptions_user_id_plan_id_start_date_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:143:9 {
+  length: 382,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, plan_id, start_date)=(a1685138-c309-424d-9b49-556b7342124b, 0394afa0-49a3-4814-a2b1-66f3566b543e, 2025-10-02) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'user_subscriptions',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'user_subscriptions_user_id_plan_id_start_date_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}
+Error assigning subscription: error: duplicate key value violates unique constraint "user_subscriptions_user_id_plan_id_start_date_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:143:9 {
+  length: 382,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, plan_id, start_date)=(a1685138-c309-424d-9b49-556b7342124b, 0394afa0-49a3-4814-a2b1-66f3566b543e, 2025-10-02) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'user_subscriptions',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'user_subscriptions_user_id_plan_id_start_date_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Error assigning subscription: error: duplicate key value violates unique constraint "user_subscriptions_user_id_plan_id_start_date_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:153:9 {
+  length: 382,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, plan_id, start_date)=(a1685138-c309-424d-9b49-556b7342124b, 0394afa0-49a3-4814-a2b1-66f3566b543e, 2025-10-02) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'user_subscriptions',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'user_subscriptions_user_id_plan_id_start_date_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}
+Error assigning subscription: error: duplicate key value violates unique constraint "user_subscriptions_user_id_plan_id_start_date_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:153:9 {
+  length: 382,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, plan_id, start_date)=(a1685138-c309-424d-9b49-556b7342124b, 0394afa0-49a3-4814-a2b1-66f3566b543e, 2025-10-02) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'user_subscriptions',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'user_subscriptions_user_id_plan_id_start_date_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}
+Error assigning subscription: error: duplicate key value violates unique constraint "user_subscriptions_user_id_plan_id_start_date_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:153:9 {
+  length: 382,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, plan_id, start_date)=(a1685138-c309-424d-9b49-556b7342124b, 0394afa0-49a3-4814-a2b1-66f3566b543e, 2025-10-02) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'user_subscriptions',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'user_subscriptions_user_id_plan_id_start_date_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}
+Error assigning subscription: error: duplicate key value violates unique constraint "user_subscriptions_user_id_plan_id_start_date_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:153:9 {
+  length: 382,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, plan_id, start_date)=(a1685138-c309-424d-9b49-556b7342124b, 0394afa0-49a3-4814-a2b1-66f3566b543e, 2025-10-02) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'user_subscriptions',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'user_subscriptions_user_id_plan_id_start_date_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}
+Error assigning subscription: error: duplicate key value violates unique constraint "user_subscriptions_user_id_plan_id_start_date_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/admin.js:153:9 {
+  length: 382,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, plan_id, start_date)=(a1685138-c309-424d-9b49-556b7342124b, 0394afa0-49a3-4814-a2b1-66f3566b543e, 2025-10-02) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'user_subscriptions',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'user_subscriptions_user_id_plan_id_start_date_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/application.js:635:24)
+    at file:///Users/zhest/Documents/work/konstantin/server/app.js:85:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+
+Node.js v22.15.1
+
+> pyonserver@1.0.0 start
+> node app.js
+
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/application.js:635:24)
+    at file:///Users/zhest/Documents/work/konstantin/server/app.js:85:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+
+Node.js v22.15.1
+
+> pyonserver@1.0.0 start
+> node app.js
+
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/application.js:635:24)
+    at file:///Users/zhest/Documents/work/konstantin/server/app.js:85:5
+    at ModuleJob.run (node:internal/modules/esm/module_job:274:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1975:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -48,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+
+Node.js v22.15.1
