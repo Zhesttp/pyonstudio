@@ -44,7 +44,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     plans.forEach(p=>{
       const tr=document.createElement('tr');
       tr.dataset.planId=p.id;
-      tr.innerHTML=`<td>${p.title}</td><td>${p.price}</td><td>${p.duration_days}</td><td>${p.description||''}</td><td><button class="btn btn--sm btn--outline">Редактировать</button></td>`;
+      const price=Number(p.price).toFixed(2)+' BYN';
+      tr.innerHTML=`<td>${p.title}</td><td>${price}</td><td>${p.duration_days}</td><td>${p.description||''}</td><td><button class="btn btn--sm btn--outline">Редактировать</button></td>`;
       tbody.appendChild(tr);
     });
   };
@@ -70,7 +71,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     const body={title:titleField.value,price:parseFloat(priceField.value),duration_days:parseInt(durField.value,10),description:descField.value};
     const method=idField.value?'PUT':'POST';
     const url=idField.value?`/api/admin/plans/${idField.value}`:'/api/admin/plans';
-    fetch(url,{method,headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify(body)})
+    const csrf=document.cookie.split('; ').find(c=>c.startsWith('XSRF-TOKEN='))?.split('=')[1];
+    fetch(url,{method,headers:{'Content-Type':'application/json','X-CSRF-Token':csrf},credentials:'include',body:JSON.stringify(body)})
       .then(r=>{if(!r.ok) throw new Error();return (method==='POST'?r.json():null);})
       .then(data=>{if(data&&data.id) body.id=data.id; if(method==='POST') plans.push({...body}); else plans=plans.map(p=>p.id===idField.value?{...p,...body}:p); render(); closeModal();})
       .catch(()=>alert('Ошибка сохранения'));
@@ -79,7 +81,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   delBtn.addEventListener('click',()=>{
     const id=idField.value;
     if(!confirm('Удалить абонемент?')) return;
-    fetch(`/api/admin/plans/${id}`,{method:'DELETE',credentials:'include'})
+    const csrf=document.cookie.split('; ').find(c=>c.startsWith('XSRF-TOKEN='))?.split('=')[1];
+    fetch(`/api/admin/plans/${id}`,{method:'DELETE',credentials:'include',headers:{'X-CSRF-Token':csrf}})
       .then(r=>{if(r.status===204){plans=plans.filter(p=>p.id!==id);render();closeModal();}})
       .catch(()=>alert('Ошибка удаления'));
   });
