@@ -1461,3 +1461,41 @@ Server started on 3000
 > node app.js
 
 Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Photo uploaded successfully: /trainers/trainer-1759451053280-836665207.jpg
+Deleted old photo: /Users/zhest/Documents/work/konstantin/trainers/trainer-1759451053280-836665207.jpg
+Photo removed for trainer 7b70dde1-ae9c-475c-be62-970662642c45

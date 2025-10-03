@@ -1,6 +1,42 @@
 import { Router } from 'express';
 import { pool } from '../db.js';
 import { adminOnly } from '../middleware/admin.js';
+import multer from 'multer';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Настройка multer для загрузки фото тренеров
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const uploadPath = path.join(__dirname, '../../trainers');
+    if (!fs.existsSync(uploadPath)) {
+      fs.mkdirSync(uploadPath, { recursive: true });
+    }
+    cb(null, uploadPath);
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, `trainer-${uniqueSuffix}${path.extname(file.originalname)}`);
+  }
+});
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 5 * 1024 * 1024 // 5MB
+  },
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, true);
+    } else {
+      cb(new Error('Только изображения разрешены'), false);
+    }
+  }
+});
 
 const router = Router();
 
@@ -319,6 +355,15 @@ router.put('/admin/trainers/:id', adminOnly, async (req, res) => {
   let client;
   try {
     client = await pool.connect();
+    
+    // Get current photo_url before update
+    const currentResult = await client.query('SELECT photo_url FROM trainers WHERE id = $1', [id]);
+    if (currentResult.rows.length === 0) {
+      return res.status(404).json({ message: 'Тренер не найден' });
+    }
+    
+    const currentPhotoUrl = currentResult.rows[0].photo_url;
+    
     const result = await client.query(`
       UPDATE trainers 
       SET first_name = $1, last_name = $2, birth_date = $3, photo_url = $4, bio = $5
@@ -327,6 +372,24 @@ router.put('/admin/trainers/:id', adminOnly, async (req, res) => {
     
     if (result.rowCount === 0) {
       return res.status(404).json({ message: 'Тренер не найден' });
+    }
+    
+    // Delete old photo file if it exists and is different from new one
+    if (currentPhotoUrl && currentPhotoUrl !== photo_url && currentPhotoUrl.startsWith('/trainers/')) {
+      const oldPhotoPath = path.join(__dirname, '../../', currentPhotoUrl);
+      if (fs.existsSync(oldPhotoPath)) {
+        try {
+          fs.unlinkSync(oldPhotoPath);
+          console.log(`Deleted old photo: ${oldPhotoPath}`);
+        } catch (fileError) {
+          console.error('Error deleting old photo file:', fileError);
+        }
+      }
+    }
+    
+    // If photo_url is null and there was a photo before, log the deletion
+    if (!photo_url && currentPhotoUrl) {
+      console.log(`Photo removed for trainer ${id}`);
     }
     
     res.status(204).send();
@@ -361,10 +424,27 @@ router.delete('/admin/trainers/:id', adminOnly, async (req, res) => {
       });
     }
     
+    // Get trainer photo_url before deletion
+    const trainerResult = await client.query('SELECT photo_url FROM trainers WHERE id = $1', [id]);
+    if (trainerResult.rows.length === 0) {
+      return res.status(404).json({ message: 'Тренер не найден' });
+    }
+    
+    const photoUrl = trainerResult.rows[0].photo_url;
+    
+    // Delete trainer from database
     const result = await client.query('DELETE FROM trainers WHERE id = $1', [id]);
     
-    if (result.rowCount === 0) {
-      return res.status(404).json({ message: 'Тренер не найден' });
+    // Delete photo file if exists
+    if (photoUrl && photoUrl.startsWith('/trainers/')) {
+      const photoPath = path.join(__dirname, '../../', photoUrl);
+      if (fs.existsSync(photoPath)) {
+        try {
+          fs.unlinkSync(photoPath);
+        } catch (fileError) {
+          console.error('Error deleting photo file:', fileError);
+        }
+      }
     }
     
     res.status(204).send();
@@ -373,6 +453,42 @@ router.delete('/admin/trainers/:id', adminOnly, async (req, res) => {
     res.status(500).json({ message: 'Ошибка удаления тренера' });
   } finally {
     if (client) client.release();
+  }
+});
+
+// POST /api/admin/trainers/upload-photo - загрузить фото тренера
+router.post('/admin/trainers/upload-photo', adminOnly, upload.single('photo'), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: 'Файл не был загружен' });
+    }
+
+    // Verify file was actually saved
+    const filePath = path.join(__dirname, '../../trainers', req.file.filename);
+    if (!fs.existsSync(filePath)) {
+      console.error('Uploaded file not found:', filePath);
+      return res.status(500).json({ message: 'Ошибка сохранения файла' });
+    }
+
+    const photoUrl = `/trainers/${req.file.filename}`;
+    console.log(`Photo uploaded successfully: ${photoUrl}`);
+    res.json({ photo_url: photoUrl });
+  } catch (error) {
+    console.error('Error uploading photo:', error);
+    
+    // Clean up failed upload if file exists
+    if (req.file) {
+      const filePath = path.join(__dirname, '../../trainers', req.file.filename);
+      if (fs.existsSync(filePath)) {
+        try {
+          fs.unlinkSync(filePath);
+        } catch (cleanupError) {
+          console.error('Error cleaning up failed upload:', cleanupError);
+        }
+      }
+    }
+    
+    res.status(500).json({ message: 'Ошибка загрузки фото' });
   }
 });
 

@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&family=Playfair+Display:wght@400;700;800&family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="js/libs/cropper.min.css">
 </head>
 <body class="admin-page trainers-page">
 
@@ -93,8 +94,28 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="trainer-photo-url">URL фотографии</label>
-                            <input type="url" id="trainer-photo-url" name="photo_url" placeholder="https://example.com/photo.jpg">
+                            <label for="trainer-photo">Фотография</label>
+                            <div class="photo-upload-container">
+                                <input type="file" id="trainer-photo" name="photo" accept="image/*" style="display: none;">
+                                <div class="photo-upload-area" id="photo-upload-area">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                        <polyline points="21,15 16,10 5,21"></polyline>
+                                    </svg>
+                                    <p>Нажмите для загрузки фото</p>
+                                    <small>JPG, PNG до 5MB</small>
+                                </div>
+                                <div class="photo-preview" id="photo-preview" style="display: none;">
+                                    <img id="preview-image" src="" alt="Предпросмотр">
+                                    <button type="button" class="remove-photo" id="remove-photo">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         
                         <div class="form-group">
@@ -125,6 +146,40 @@
         </div>
     </div>
 
+    <!-- Photo Crop Modal -->
+    <div id="crop-modal" class="modal">
+        <div class="modal-wrapper">
+            <div class="modal-content crop-modal-content">
+                <div class="modal-header">
+                    <h2>Кадрирование фото</h2>
+                    <button class="modal-close" id="crop-modal-close" aria-label="Закрыть">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="modal-body crop-modal-body">
+                    <div class="crop-container">
+                        <img id="crop-image" src="" alt="Фото для кадрирования">
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" id="crop-cancel" class="btn btn--cancel">Отмена</button>
+                    <button type="button" id="crop-confirm" class="btn btn--primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 6L9 17l-5-5"></path>
+                        </svg>
+                        Применить
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/libs/cropper.min.js"></script>
     <script src="js/admin.js"></script>
     <script src="js/admin_trainers.js"></script>
 </body>
