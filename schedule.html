@@ -256,58 +256,240 @@
                 setActive(dayMap[new Date().getDay()]);
             };
 
-            const renderSchedule = (data) => {
-                Object.keys(data).forEach(dayKey => {
+            // Функция для получения CSRF токена
+            const getCsrfToken = () => {
+                return document.cookie.split('; ').find(c => c.startsWith('XSRF-TOKEN='))?.split('=')[1];
+            };
+
+            // Функция для обновления статистики
+            const updateStats = async () => {
+                try {
+                    const response = await fetch('/api/schedule/stats', {
+                        headers: {
+                            'X-XSRF-TOKEN': getCsrfToken()
+                        }
+                    });
+                    if (!response.ok) throw new Error('Ошибка загрузки статистики');
+                    
+                    const stats = await response.json();
+                    
+                    // Обновляем количество занятий
+                    const classesBadge = page.querySelector('.stat-badge:first-child span:last-child');
+                    if (classesBadge) {
+                        classesBadge.textContent = `${stats.classes_count} занятий`;
+                    }
+                    
+                    // Обновляем количество тренеров
+                    const trainersBadge = page.querySelector('.stat-badge:last-child span:last-child');
+                    if (trainersBadge) {
+                        trainersBadge.textContent = `${stats.trainers_count} тренеров`;
+                    }
+                } catch (error) {
+                    console.error('Error updating stats:', error);
+                }
+            };
+
+            // Функция для группировки занятий по дням недели
+            const groupClassesByDay = (classes) => {
+                const grouped = {};
+                
+                // Инициализируем все дни недели
+                dayMap.forEach(day => {
+                    grouped[day] = [];
+                });
+                
+                classes.forEach(cls => {
+                    const classDate = new Date(cls.class_date);
+                    const dayOfWeek = dayMap[classDate.getDay()];
+                    
+                    if (grouped[dayOfWeek]) {
+                        grouped[dayOfWeek].push(cls);
+                    }
+                });
+                
+                return grouped;
+            };
+
+            // Функция для форматирования времени
+            const formatTime = (timeString) => {
+                return timeString.substring(0, 5); // Берем только часы и минуты
+            };
+
+            // Функция для определения уровня сложности
+            const getClassLevel = (typeName) => {
+                if (!typeName) return 'Все уровни';
+                
+                const levelMap = {
+                    'Начинающий': 'Начинающий',
+                    'Средний': 'Средний', 
+                    'Продвинутый': 'Продвинутый',
+                    'Йога': 'Все уровни',
+                    'Пилатес': 'Все уровни',
+                    'Медитация': 'Все уровни'
+                };
+                
+                return levelMap[typeName] || 'Все уровни';
+            };
+
+            // Функция для определения CSS класса уровня
+            const getLevelClass = (level) => {
+                if (level === 'Начинающий') return 'level-beginner';
+                if (level === 'Продвинутый') return 'level-intermediate';
+                return '';
+            };
+
+            const renderSchedule = (classes) => {
+                const groupedClasses = groupClassesByDay(classes);
+                
+                Object.keys(groupedClasses).forEach(dayKey => {
                     const column = page.querySelector(`.day-column[data-day="${dayKey}"]`);
                     if (!column) return;
+                    
+                    // Удаляем все существующие занятия
                     column.querySelectorAll('.class-item').forEach(i=>i.remove());
-                    const classes = data[dayKey];
-                    if(!classes || classes.length===0){
+                    
+                    const dayClasses = groupedClasses[dayKey];
+                    
+                    if(!dayClasses || dayClasses.length === 0){
                         const empty = document.createElement('div');
                         empty.className = 'class-item class-item--empty';
                         empty.innerHTML = '<span>Нет занятий</span>';
                         column.appendChild(empty);
                         return;
                     }
-                    classes.forEach(cls=>{
-                        const item=document.createElement('div');
-                        item.className='class-item';
-                        const booked=localStorage.getItem(`booking_${cls.id}`)==='1';
-                        if(booked) item.classList.add('class-item--booked');
-                        const isPast=Date.now()>Date.parse(cls.start);
-                        if(isPast) item.classList.add('class-item--disabled');
-                        item.innerHTML=`<div class=\"class-time\">${cls.time}</div><div class=\"class-info\"><h4>${cls.title}</h4><p>${cls.trainer} • ${cls.place}</p><div class=\"class-level\">${cls.level||''}</div></div><button class=\"btn btn--outline btn--small book-btn\" ${isPast?'disabled':''}>${isPast?'Завершено':(booked?'Отписаться':'Записаться')}</button>`;
+                    
+                    dayClasses.forEach(cls => {
+                        const item = document.createElement('div');
+                        item.className = 'class-item';
+                        
+                        // Проверяем, записан ли пользователь
+                        if (cls.user_booked) {
+                            item.classList.add('class-item--booked');
+                        }
+                        
+                        // Проверяем, прошло ли занятие
+                        const classDateTime = new Date(`${cls.class_date}T${cls.start_time}`);
+                        const isPast = Date.now() > classDateTime.getTime();
+                        if (isPast) {
+                            item.classList.add('class-item--disabled');
+                        }
+                        
+                        const level = getClassLevel(cls.type_name);
+                        const levelClass = getLevelClass(level);
+                        const timeRange = `${formatTime(cls.start_time)} - ${formatTime(cls.end_time)}`;
+                        
+                        item.innerHTML = `
+                            <div class="class-time">${timeRange}</div>
+                            <div class="class-info">
+                                <h4>${cls.title}</h4>
+                                <p>${cls.trainer_name || 'Тренер не назначен'} • ${cls.place || 'Место не указано'}</p>
+                                <div class="class-level ${levelClass}">${level}</div>
+                            </div>
+                            <button class="btn btn--outline btn--small book-btn" ${isPast ? 'disabled' : ''}>
+                                ${isPast ? 'Завершено' : (cls.user_booked ? 'Отписаться' : 'Записаться')}
+                            </button>
+                        `;
+                        
                         column.appendChild(item);
 
-                        const btn=item.querySelector('.book-btn');
-                        btn.addEventListener('click',()=>{
-                            const isBooked=localStorage.getItem(`booking_${cls.id}`)==='1';
-                            if(isBooked){
-                                localStorage.removeItem(`booking_${cls.id}`);
-                                item.classList.remove('class-item--booked');
-                                btn.textContent='Записаться';
-                            }else{
-                                localStorage.setItem(`booking_${cls.id}`,'1');
-                                item.classList.add('class-item--booked');
-                                btn.textContent='Отписаться';
-                            }
-                        });
+                        // Добавляем обработчик для кнопки записи/отписки
+                        const btn = item.querySelector('.book-btn');
+                        if (btn && !isPast) {
+                            btn.addEventListener('click', async () => {
+                                try {
+                                    if (cls.user_booked) {
+                                        // Отписаться от занятия
+                                        const response = await fetch(`/api/classes/${cls.id}/book`, {
+                                            method: 'DELETE',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'X-XSRF-TOKEN': getCsrfToken()
+                                            }
+                                        });
+                                        
+                                        if (response.ok) {
+                                            item.classList.remove('class-item--booked');
+                                            btn.textContent = 'Записаться';
+                                            cls.user_booked = false;
+                                        } else {
+                                            const error = await response.json();
+                                            alert(error.message || 'Ошибка отписки от занятия');
+                                        }
+                                    } else {
+                                        // Записаться на занятие
+                                        const response = await fetch(`/api/classes/${cls.id}/book`, {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'X-XSRF-TOKEN': getCsrfToken()
+                                            }
+                                        });
+                                        
+                                        if (response.ok) {
+                                            item.classList.add('class-item--booked');
+                                            btn.textContent = 'Отписаться';
+                                            cls.user_booked = true;
+                                        } else {
+                                            const error = await response.json();
+                                            alert(error.message || 'Ошибка записи на занятие');
+                                        }
+                                    }
+                                } catch (error) {
+                                    console.error('Error booking/unbooking class:', error);
+                                    alert('Ошибка соединения с сервером');
+                                }
+                            });
+                        }
                     });
                 });
             };
 
+            // Загружаем данные
+            const loadScheduleData = async () => {
+                try {
+                    // Загружаем статистику
+                    await updateStats();
+                    
+                    // Загружаем расписание
+                    const response = await fetch('/api/schedule/week', {
+                        headers: {
+                            'X-XSRF-TOKEN': getCsrfToken()
+                        }
+                    });
+                    if (!response.ok) throw new Error('Ошибка загрузки расписания');
+                    
+                    const classes = await response.json();
+                    renderSchedule(classes);
+                } catch (error) {
+                    console.error('Error loading schedule data:', error);
+                    // Показываем сообщение об ошибке
+                    const scheduleGrid = page.querySelector('.schedule-grid');
+                    if (scheduleGrid) {
+                        scheduleGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted);">Ошибка загрузки расписания</div>';
+                    }
+                }
+            };
+
             updateWeekDates();
+            loadScheduleData();
 
-            fetch('data/client_schedule.json')
-                .then(r=>r.json())
-                .then(renderSchedule);
+            // Обновляем даты в полночь
+            const now = new Date();
+            const msUntilMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 5) - now;
+            setTimeout(() => {
+                updateWeekDates();
+                loadScheduleData(); // Перезагружаем данные при смене дня
+                setInterval(() => {
+                    updateWeekDates();
+                    loadScheduleData();
+                }, 24 * 60 * 60 * 1000);
+            }, msUntilMidnight);
 
-            const now=new Date();
-            const msUntilMidnight=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1,0,0,5)-now;
-            setTimeout(()=>{updateWeekDates();setInterval(updateWeekDates,24*60*60*1000);},msUntilMidnight);
-
-            page.querySelector('.day-switcher').addEventListener('click',e=>{
-                if(e.target.classList.contains('day-tab')) setActive(e.target.dataset.day);
+            // Обработчик переключения дней
+            page.querySelector('.day-switcher').addEventListener('click', e => {
+                if (e.target.classList.contains('day-tab')) {
+                    setActive(e.target.dataset.day);
+                }
             });
         });
     </script>

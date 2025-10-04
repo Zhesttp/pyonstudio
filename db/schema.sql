@@ -1,30 +1,5 @@
--- Reset schema
--- Idempotent reset: удаляем объекты, не трогая саму схему (чтобы не требовались права суперпользователя)
+-- Database schema for PYon Studio
 SET search_path TO public;
-
--- Удаляем таблицы, если они есть (правильный порядок каскадом)
-DROP TABLE IF EXISTS user_achievements CASCADE;
-DROP TABLE IF EXISTS achievements CASCADE;
-DROP TABLE IF EXISTS attendance CASCADE;
-DROP TABLE IF EXISTS waitlist_entries CASCADE;
-DROP TABLE IF EXISTS uploads CASCADE;
-DROP TABLE IF EXISTS payments CASCADE;
-DROP TABLE IF EXISTS audit_log CASCADE;
-DROP TABLE IF EXISTS role_permissions CASCADE;
-DROP TABLE IF EXISTS user_roles CASCADE;
-DROP TABLE IF EXISTS permissions CASCADE;
-DROP TABLE IF EXISTS roles CASCADE;
-DROP TABLE IF EXISTS bookings CASCADE;
-DROP TABLE IF EXISTS classes CASCADE;
-DROP TABLE IF EXISTS class_types CASCADE;
-DROP TABLE IF EXISTS user_subscriptions CASCADE;
-DROP TABLE IF EXISTS plans CASCADE;
-DROP TABLE IF EXISTS trainers CASCADE;
-DROP TABLE IF EXISTS admins CASCADE;
-DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS settings CASCADE;
-DROP TABLE IF EXISTS translations CASCADE;
-DROP TABLE IF EXISTS webhooks CASCADE;
 
 -- EXTENSIONS
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -257,3 +232,4 @@ CREATE TABLE user_achievements (
     unlocked_at TIMESTAMP DEFAULT NOW(),
     PRIMARY KEY (user_id, achievement_id)
 );
+
