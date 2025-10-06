@@ -132,6 +132,7 @@ router.get('/classes', auth, async (req, res) => {
     client = await pool.connect();
     const q = `
       SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place,
+             c.type_id,
              t.first_name || ' ' || t.last_name AS trainer_name,
              ct.name AS type_name,
              COUNT(b.id) AS bookings_count,
@@ -142,7 +143,7 @@ router.get('/classes', auth, async (req, res) => {
       LEFT JOIN bookings b ON c.id = b.class_id AND b.status != 'cancelled'
       LEFT JOIN bookings ub ON c.id = ub.class_id AND ub.user_id = $1 AND ub.status != 'cancelled'
       WHERE c.class_date >= CURRENT_DATE
-      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, t.first_name, t.last_name, ct.name, ub.id
+      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, c.type_id, t.first_name, t.last_name, ct.name, ub.id
       ORDER BY c.class_date, c.start_time
     `;
     const { rows } = await client.query(q, [req.user.id]);
@@ -155,8 +156,8 @@ router.get('/classes', auth, async (req, res) => {
   }
 });
 
-// GET /api/schedule/week - расписание на текущую неделю
-router.get('/schedule/week', auth, async (req, res) => {
+// GET /api/schedule/week - расписание на текущую неделю (публичное)
+router.get('/schedule/week', async (req, res) => {
   let client;
   try {
     client = await pool.connect();
@@ -168,22 +169,27 @@ router.get('/schedule/week', auth, async (req, res) => {
     const sunday = new Date(monday);
     sunday.setDate(monday.getDate() + 6); // Воскресенье
     
+    // Расширяем диапазон на 7 дней вперед, чтобы включить занятия на следующей неделе
+    const endDate = new Date(sunday);
+    endDate.setDate(sunday.getDate() + 7);
+    
+    
     const q = `
       SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place,
+             c.type_id,
              t.first_name || ' ' || t.last_name AS trainer_name,
              ct.name AS type_name,
              COUNT(b.id) AS bookings_count,
-             CASE WHEN ub.id IS NOT NULL THEN true ELSE false END AS user_booked
+             false AS user_booked
       FROM classes c
       LEFT JOIN trainers t ON c.trainer_id = t.id
       LEFT JOIN class_types ct ON c.type_id = ct.id
       LEFT JOIN bookings b ON c.id = b.class_id AND b.status != 'cancelled'
-      LEFT JOIN bookings ub ON c.id = ub.class_id AND ub.user_id = $1 AND ub.status != 'cancelled'
-      WHERE c.class_date >= $2 AND c.class_date <= $3
-      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, t.first_name, t.last_name, ct.name, ub.id
+      WHERE c.class_date >= $1 AND c.class_date <= $2
+      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, c.type_id, t.first_name, t.last_name, ct.name
       ORDER BY c.class_date, c.start_time
     `;
-    const { rows } = await client.query(q, [req.user.id, monday.toISOString().split('T')[0], sunday.toISOString().split('T')[0]]);
+    const { rows } = await client.query(q, [monday.toISOString().split('T')[0], endDate.toISOString().split('T')[0]]);
     res.json(rows);
   } catch (error) {
     console.error('Error fetching weekly schedule:', error);
@@ -227,6 +233,40 @@ router.get('/schedule/stats', auth, async (req, res) => {
   } catch (error) {
     console.error('Error fetching schedule stats:', error);
     res.status(500).json({ message: 'Ошибка загрузки статистики расписания' });
+  } finally {
+    if (client) client.release();
+  }
+});
+
+// GET /api/schedule/types - типы занятий для фильтрации (публичное)
+router.get('/schedule/types', async (req, res) => {
+  let client;
+  try {
+    client = await pool.connect();
+    
+    // Получаем типы занятий, которые есть в расписании на текущую неделю
+    const today = new Date();
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - ((today.getDay() + 6) % 7));
+    const sunday = new Date(monday);
+    sunday.setDate(monday.getDate() + 6);
+    
+    // Расширяем диапазон на 7 дней вперед, чтобы включить занятия на следующей неделе
+    const endDate = new Date(sunday);
+    endDate.setDate(sunday.getDate() + 7);
+    
+    const typesResult = await client.query(`
+      SELECT DISTINCT ct.id, ct.name, ct.description
+      FROM class_types ct
+      INNER JOIN classes c ON ct.id = c.type_id
+      WHERE c.class_date >= $1 AND c.class_date <= $2
+      ORDER BY ct.name
+    `, [monday.toISOString().split('T')[0], endDate.toISOString().split('T')[0]]);
+    
+    res.json(typesResult.rows);
+  } catch (error) {
+    console.error('Error fetching schedule types:', error);
+    res.status(500).json({ message: 'Ошибка загрузки типов занятий' });
   } finally {
     if (client) client.release();
   }

@@ -41,12 +41,18 @@
                     <h1>Расписание занятий</h1>
                     <p class="page-subtitle">Найдите идеальное время для вашей практики</p>
                 </div>
+                
+                <!-- Переключатель "Мои занятия" / "Все занятия" -->
+                <div class="schedule-toggle">
+                    <div class="toggle-buttons">
+                        <button class="toggle-btn active" data-view="all">Все занятия</button>
+                        <button class="toggle-btn" data-view="my">Мои занятия</button>
+                    </div>
+                </div>
+                
                 <div class="schedule-filters">
-                    <div class="filter-tabs">
-                        <button class="filter-tab active">Все занятия</button>
-                        <button class="filter-tab">Йога</button>
-                        <button class="filter-tab">Пилатес</button>
-                        <button class="filter-tab">Онлайн</button>
+                    <div class="filter-tabs" id="filter-tabs">
+                        <button class="filter-tab active" data-type="all">Все занятия</button>
                     </div>
                     <div class="schedule-stats">
                         <div class="stat-badge">
@@ -233,6 +239,11 @@
 
             const dayMap = ['sun','mon','tue','wed','thu','fri','sat'];
             const monthsRu=['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+            
+            // Переменные для фильтрации
+            let allClasses = [];
+            let currentFilter = 'all';
+            let currentView = 'all'; // 'all' или 'my'
 
             const setActive=(key)=>{
                 page.querySelectorAll('.day-tab').forEach(t=>t.classList.toggle('active',t.dataset.day===key));
@@ -261,13 +272,110 @@
                 return document.cookie.split('; ').find(c => c.startsWith('XSRF-TOKEN='))?.split('=')[1];
             };
 
+            // Функция для загрузки типов занятий
+            const loadClassTypes = async () => {
+                try {
+                    const response = await fetch('/api/schedule/types', { credentials: 'same-origin' });
+                    if (!response.ok) throw new Error('Ошибка загрузки типов занятий');
+                    
+                    const types = await response.json();
+                    renderFilterTabs(types);
+                } catch (error) {
+                    console.error('Error loading class types:', error);
+                }
+            };
+
+            // Функция для отображения фильтров
+            const renderFilterTabs = (types) => {
+                const filterTabs = page.querySelector('#filter-tabs');
+                if (!filterTabs) return;
+                
+                // Очищаем существующие вкладки (кроме "Все занятия")
+                const allTab = filterTabs.querySelector('[data-type="all"]');
+                filterTabs.innerHTML = '';
+                filterTabs.appendChild(allTab);
+                
+                // Добавляем вкладки для каждого типа
+                types.forEach(type => {
+                    const tab = document.createElement('button');
+                    tab.className = 'filter-tab';
+                    tab.dataset.type = type.id;
+                    tab.textContent = type.name;
+                    filterTabs.appendChild(tab);
+                });
+                
+                // Добавляем обработчики событий
+                filterTabs.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('filter-tab')) {
+                        // Убираем активный класс со всех вкладок
+                        filterTabs.querySelectorAll('.filter-tab').forEach(tab => {
+                            tab.classList.remove('active');
+                        });
+                        
+                        // Добавляем активный класс к выбранной вкладке
+                        e.target.classList.add('active');
+                        
+                        // Устанавливаем текущий фильтр
+                        currentFilter = e.target.dataset.type;
+                        
+                        // Применяем фильтр
+                        applyFilter();
+                    }
+                });
+            };
+
+            // Функция для применения фильтра
+            const applyFilter = () => {
+                let filteredClasses = allClasses;
+                
+                // Сначала применяем фильтр по типу занятия
+                if (currentFilter !== 'all') {
+                    const typeId = Number(currentFilter);
+                    if (!Number.isNaN(typeId)) {
+                        filteredClasses = filteredClasses.filter(cls => cls.type_id === typeId);
+                    }
+                }
+                
+                // Затем применяем фильтр по "мои занятия"
+                if (currentView === 'my') {
+                    filteredClasses = filteredClasses.filter(cls => cls.user_booked === true);
+                }
+                
+                renderSchedule(filteredClasses);
+            };
+
+            // Функция для инициализации переключателя
+            const initToggleButtons = () => {
+                const toggleButtons = page.querySelector('.toggle-buttons');
+                if (!toggleButtons) return;
+                
+                toggleButtons.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('toggle-btn')) {
+                        // Убираем активный класс со всех кнопок
+                        toggleButtons.querySelectorAll('.toggle-btn').forEach(btn => {
+                            btn.classList.remove('active');
+                        });
+                        
+                        // Добавляем активный класс к выбранной кнопке
+                        e.target.classList.add('active');
+                        
+                        // Устанавливаем текущий вид
+                        currentView = e.target.dataset.view;
+                        
+                        // Применяем фильтр
+                        applyFilter();
+                    }
+                });
+            };
+
             // Функция для обновления статистики
             const updateStats = async () => {
                 try {
                     const response = await fetch('/api/schedule/stats', {
                         headers: {
                             'X-XSRF-TOKEN': getCsrfToken()
-                        }
+                        },
+                        credentials: 'same-origin'
                     });
                     if (!response.ok) throw new Error('Ошибка загрузки статистики');
                     
@@ -341,16 +449,17 @@
             const renderSchedule = (classes) => {
                 const groupedClasses = groupClassesByDay(classes);
                 
-                Object.keys(groupedClasses).forEach(dayKey => {
+                // Проходим по всем дням недели
+                dayMap.forEach(dayKey => {
                     const column = page.querySelector(`.day-column[data-day="${dayKey}"]`);
                     if (!column) return;
                     
                     // Удаляем все существующие занятия
                     column.querySelectorAll('.class-item').forEach(i=>i.remove());
                     
-                    const dayClasses = groupedClasses[dayKey];
+                    const dayClasses = groupedClasses[dayKey] || [];
                     
-                    if(!dayClasses || dayClasses.length === 0){
+                    if(dayClasses.length === 0){
                         const empty = document.createElement('div');
                         empty.className = 'class-item class-item--empty';
                         empty.innerHTML = '<span>Нет занятий</span>';
@@ -383,7 +492,10 @@
                             <div class="class-info">
                                 <h4>${cls.title}</h4>
                                 <p>${cls.trainer_name || 'Тренер не назначен'} • ${cls.place || 'Место не указано'}</p>
-                                <div class="class-level ${levelClass}">${level}</div>
+                                <div class="class-meta">
+                                    <div class="class-level ${levelClass}">${level}</div>
+                                    ${cls.type_name ? `<div class="class-type">${cls.type_name}</div>` : ''}
+                                </div>
                             </div>
                             <button class="btn btn--outline btn--small book-btn" ${isPast ? 'disabled' : ''}>
                                 ${isPast ? 'Завершено' : (cls.user_booked ? 'Отписаться' : 'Записаться')}
@@ -404,13 +516,15 @@
                                             headers: {
                                                 'Content-Type': 'application/json',
                                                 'X-XSRF-TOKEN': getCsrfToken()
-                                            }
+                                            },
+                                            credentials: 'same-origin'
                                         });
                                         
                                         if (response.ok) {
-                                            item.classList.remove('class-item--booked');
+                                item.classList.remove('class-item--booked');
                                             btn.textContent = 'Записаться';
                                             cls.user_booked = false;
+                                            if (currentView === 'my') applyFilter();
                                         } else {
                                             const error = await response.json();
                                             alert(error.message || 'Ошибка отписки от занятия');
@@ -422,13 +536,21 @@
                                             headers: {
                                                 'Content-Type': 'application/json',
                                                 'X-XSRF-TOKEN': getCsrfToken()
-                                            }
+                                            },
+                                            credentials: 'same-origin'
                                         });
                                         
                                         if (response.ok) {
+                                item.classList.add('class-item--booked');
+                                            btn.textContent = 'Отписаться';
+                                            cls.user_booked = true;
+                                            if (currentView === 'my') applyFilter();
+                                        } else if (response.status === 409) {
+                                            // Уже записан: синхронизируем UI
                                             item.classList.add('class-item--booked');
                                             btn.textContent = 'Отписаться';
                                             cls.user_booked = true;
+                                            if (currentView === 'my') applyFilter();
                                         } else {
                                             const error = await response.json();
                                             alert(error.message || 'Ошибка записи на занятие');
@@ -447,18 +569,23 @@
             // Загружаем данные
             const loadScheduleData = async () => {
                 try {
+                    // Инициализируем переключатель
+                    initToggleButtons();
+                    
                     // Загружаем статистику
                     await updateStats();
                     
-                    // Загружаем расписание
-                    const response = await fetch('/api/schedule/week', {
-                        headers: {
-                            'X-XSRF-TOKEN': getCsrfToken()
-                        }
-                    });
-                    if (!response.ok) throw new Error('Ошибка загрузки расписания');
+                    // Загружаем типы занятий
+                    await loadClassTypes();
                     
-                    const classes = await response.json();
+                    // Загружаем расписание (с учётом авторизации)
+                    let classesResponse = await fetch('/api/classes', { credentials: 'same-origin' });
+                    if (classesResponse.status === 401) {
+                        classesResponse = await fetch('/api/schedule/week', { credentials: 'same-origin' });
+                    }
+                    if (!classesResponse.ok) throw new Error('Ошибка загрузки расписания');
+                    const classes = await classesResponse.json();
+                    allClasses = classes; // Сохраняем все занятия для фильтрации
                     renderSchedule(classes);
                 } catch (error) {
                     console.error('Error loading schedule data:', error);
