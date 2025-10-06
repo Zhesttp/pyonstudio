@@ -26,13 +26,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     const errBox=document.getElementById('login-error');
                     errBox.style.display='none';
                     
+                    console.log('Login response status:', r.status);
+                    console.log('Login response headers:', r.headers);
+                    
                     if (r.status === 200){
                        const resp=await r.json();
+                       console.log('Login response data:', resp);
+                       console.log('Current cookies after login:', document.cookie);
+                       
                        if(resp.role==='admin'){
+                         console.log('Redirecting to admin page...');
                          window.location.href='/admin';
                        } else if(resp.role==='trainer'){
+                         console.log('Redirecting to trainer page...');
                          window.location.href='/trainer_schedule.html';
                        } else {
+                         console.log('Redirecting to profile page...');
                          window.location.href='/profile';
                        }
                        return;

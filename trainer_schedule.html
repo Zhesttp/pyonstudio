@@ -40,7 +40,7 @@
                     <p class="page-subtitle">Просматривайте и управляйте своими классами</p>
                     <div class="trainer-info" id="trainer-info">
                         <span class="trainer-name" id="trainer-name">—</span>
-                        <span class="trainer-email" id="trainer-email">—</span>
+                        <span class="trainer-role" id="trainer-role">Тренер</span>
                     </div>
                 </div>
             </header>
@@ -110,46 +110,77 @@
             let currentYear = currentDate.getFullYear();
             let selectedDate = new Date(); // For mobile single day view
 
+            // Update trainer display
+            const updateTrainerDisplay = (data) => {
+                console.log('🔍 updateTrainerDisplay called with:', data);
+                
+                const trainerName = document.getElementById('trainer-name');
+                const trainerRole = document.getElementById('trainer-role');
+                
+                console.log('🔍 Elements found:', { trainerName: !!trainerName, trainerRole: !!trainerRole });
+                
+                if (trainerName && data && data.first_name && data.last_name) {
+                    const fullName = `${data.first_name} ${data.last_name}`;
+                    trainerName.textContent = fullName;
+                    console.log('✅ Set trainer name to:', fullName);
+                } else {
+                    console.log('❌ Cannot set name. Data:', data);
+                    if (trainerName) {
+                        trainerName.textContent = 'Тренер';
+                        console.log('Set fallback name');
+                    }
+                }
+                
+                if (trainerRole) {
+                    trainerRole.textContent = 'Тренер';
+                    console.log('Set trainer role');
+                }
+            };
+
             // Load trainer info
             const loadTrainerInfo = async () => {
                 try {
-                    console.log('Loading trainer info...');
-                    const response = await fetch('/api/me', { credentials: 'same-origin' });
-                    console.log('Response status:', response.status);
+                    console.log('🔍 Loading trainer info...');
+                    
+                    // Try to get trainer info from localStorage first
+                    const storedTrainerInfo = localStorage.getItem('trainerInfo');
+                    console.log('🔍 localStorage data:', storedTrainerInfo);
+                    
+                    if (storedTrainerInfo) {
+                        try {
+                            const data = JSON.parse(storedTrainerInfo);
+                            console.log('🔍 Using cached data:', data);
+                            updateTrainerDisplay(data);
+                            return;
+                        } catch (e) {
+                            console.error('🔍 Error parsing cached data:', e);
+                            localStorage.removeItem('trainerInfo');
+                        }
+                    }
+                    
+                    console.log('🔍 Fetching from API...');
+                    const response = await fetch('/api/me', { credentials: 'include' });
+                    console.log('🔍 API response status:', response.status);
                     
                     if (response.ok) {
                         const data = await response.json();
-                        console.log('Trainer info loaded:', data);
-                        console.log('Data keys:', Object.keys(data));
-                        console.log('First name:', data.first_name, 'Last name:', data.last_name, 'Email:', data.email);
+                        console.log('🔍 API data received:', data);
                         
-                        const trainerName = document.getElementById('trainer-name');
-                        const trainerEmail = document.getElementById('trainer-email');
+                        // Save trainer info to localStorage
+                        localStorage.setItem('trainerInfo', JSON.stringify(data));
+                        console.log('🔍 Data saved to localStorage');
                         
-                        console.log('Trainer name element:', trainerName);
-                        console.log('Trainer email element:', trainerEmail);
-                        
-                        if (trainerName && data.first_name && data.last_name) {
-                            trainerName.textContent = `${data.first_name} ${data.last_name}`;
-                            console.log('Set trainer name to:', trainerName.textContent);
-                        } else if (trainerName) {
-                            trainerName.textContent = 'Тренер';
-                            console.log('Set fallback trainer name');
-                        }
-                        
-                        if (trainerEmail && data.email) {
-                            trainerEmail.textContent = data.email;
-                            console.log('Set trainer email to:', trainerEmail.textContent);
-                        } else if (trainerEmail) {
-                            trainerEmail.textContent = '—';
-                            console.log('Set fallback trainer email');
-                        }
+                        updateTrainerDisplay(data);
                     } else {
-                        const errorText = await response.text();
-                        console.error('Failed to load trainer info:', response.status, errorText);
+                        console.error('🔍 API error:', response.status);
+                        // Set fallback values
+                        updateTrainerDisplay({ first_name: null, last_name: null });
                     }
                 } catch (error) {
-                    console.error('Error loading trainer info:', error);
+                    console.error('🔍 Error loading trainer info:', error);
+                    
+                    // Set fallback values on error
+                    updateTrainerDisplay({ first_name: null, last_name: null });
                 }
             };
 
@@ -244,7 +275,7 @@
                     const endDate = new Date(currentYear, currentMonth + 1, 0).toISOString().split('T')[0];
                     
                     const response = await fetch(`/api/trainer/classes?start_date=${startDate}&end_date=${endDate}`, {
-                        credentials: 'same-origin'
+                        credentials: 'include'
                     });
                     
                     if (response.ok) {
@@ -300,7 +331,7 @@
                 try {
                     const dateString = selectedDate.toISOString().split('T')[0];
                     const response = await fetch(`/api/trainer/classes?start_date=${dateString}&end_date=${dateString}`, {
-                        credentials: 'same-origin'
+                        credentials: 'include'
                     });
                     
                     if (response.ok) {
@@ -436,7 +467,7 @@
             const showClassDetails = async (classId) => {
                 try {
                     const response = await fetch(`/api/trainer/classes/${classId}/attendees`, {
-                        credentials: 'same-origin'
+                        credentials: 'include'
                     });
                     
                     if (response.ok) {
@@ -519,7 +550,7 @@
                                             'X-XSRF-TOKEN': csrfToken || '',
                                             'X-Requested-With': 'XMLHttpRequest'
                                         },
-                                        credentials: 'same-origin',
+                                        credentials: 'include',
                                         body: JSON.stringify({ status })
                                     });
                                     
@@ -728,8 +759,14 @@
                 });
             }
 
-            // Initialize
+            // Clear localStorage for testing
+            localStorage.removeItem('trainerInfo');
+            console.log('🔍 Cleared localStorage for testing');
+            
+            // Initialize - load trainer info first for immediate display
             loadTrainerInfo();
+            
+            // Initialize other components
             updateMonthDisplay();
             updateCalendar();
             loadTrainerClasses();

@@ -1883,3 +1883,80 @@ Server started on 3000
 Deleted orphaned photo: trainer-1759764910980-614827643.jpg
 Deleted orphaned photo: trainer-1759772721367-832149367.jpg
 Cleaned up 2 orphaned photos
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Photo uploaded successfully: /trainers/trainer-1759779725382-495600078.jpg
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Photo uploaded successfully: /trainers/trainer-1759780781347-652737038.jpg

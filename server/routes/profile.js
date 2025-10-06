@@ -6,22 +6,7 @@ import jwt from 'jsonwebtoken';
 const router = Router();
 
 router.get('/me', async (req, res, next) => {
-  // Check user/trainer token first (for trainer pages)
-  if(req.cookies?.token) {
-    try{
-      const data=jwt.verify(req.cookies.token,process.env.JWT_SECRET);
-      if(data.role === 'user' || data.role === 'trainer' || !data.role) { // backwards compatibility
-        // Continue to user/trainer data fetching
-        req.user = data;
-        next();
-        return;
-      }
-    }catch(error){
-      console.error('User/trainer token verification failed:', error.message);
-    }
-  }
-  
-  // Check admin token if no user/trainer token
+  // Check admin token first
   if(req.cookies?.admin_token){
     try{
       const data=jwt.verify(req.cookies.admin_token,process.env.JWT_SECRET);
@@ -58,9 +43,27 @@ router.get('/me', async (req, res, next) => {
     }
   }
   
+  // Check user/trainer token if no admin token
+  if(req.cookies?.token) {
+    try{
+      const data=jwt.verify(req.cookies.token,process.env.JWT_SECRET);
+      if(data.role === 'user' || data.role === 'trainer' || !data.role) { // backwards compatibility
+        // Continue to user/trainer data fetching
+        req.user = data;
+        next();
+        return;
+      }
+    }catch(error){
+      console.error('User/trainer token verification failed:', error.message);
+    }
+  }
+  
   // No valid tokens found
   return res.status(401).json({ message: 'Требуется авторизация' });
-},async (req,res)=>{
+});
+
+// This route handler is called after the first middleware
+router.get('/me', async (req,res)=>{
   try {
     const client = await pool.connect();
     
