@@ -6,7 +6,22 @@ import jwt from 'jsonwebtoken';
 const router = Router();
 
 router.get('/me', async (req, res, next) => {
-  // Check admin token first
+  // Check user/trainer token first (for trainer pages)
+  if(req.cookies?.token) {
+    try{
+      const data=jwt.verify(req.cookies.token,process.env.JWT_SECRET);
+      if(data.role === 'user' || data.role === 'trainer' || !data.role) { // backwards compatibility
+        // Continue to user/trainer data fetching
+        req.user = data;
+        next();
+        return;
+      }
+    }catch(error){
+      console.error('User/trainer token verification failed:', error.message);
+    }
+  }
+  
+  // Check admin token if no user/trainer token
   if(req.cookies?.admin_token){
     try{
       const data=jwt.verify(req.cookies.admin_token,process.env.JWT_SECRET);
@@ -40,21 +55,6 @@ router.get('/me', async (req, res, next) => {
       }
     }catch(error){
       console.error('Admin token verification failed:', error.message);
-    }
-  }
-  
-  // Check user/trainer token
-  if(req.cookies?.token) {
-    try{
-      const data=jwt.verify(req.cookies.token,process.env.JWT_SECRET);
-      if(data.role === 'user' || data.role === 'trainer' || !data.role) { // backwards compatibility
-        // Continue to user/trainer data fetching
-        req.user = data;
-        next();
-        return;
-      }
-    }catch(error){
-      console.error('User/trainer token verification failed:', error.message);
     }
   }
   

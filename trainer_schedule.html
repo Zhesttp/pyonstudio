@@ -113,11 +113,40 @@
             // Load trainer info
             const loadTrainerInfo = async () => {
                 try {
+                    console.log('Loading trainer info...');
                     const response = await fetch('/api/me', { credentials: 'same-origin' });
+                    console.log('Response status:', response.status);
+                    
                     if (response.ok) {
                         const data = await response.json();
-                        document.getElementById('trainer-name').textContent = `${data.first_name} ${data.last_name}`;
-                        document.getElementById('trainer-email').textContent = data.email;
+                        console.log('Trainer info loaded:', data);
+                        console.log('Data keys:', Object.keys(data));
+                        console.log('First name:', data.first_name, 'Last name:', data.last_name, 'Email:', data.email);
+                        
+                        const trainerName = document.getElementById('trainer-name');
+                        const trainerEmail = document.getElementById('trainer-email');
+                        
+                        console.log('Trainer name element:', trainerName);
+                        console.log('Trainer email element:', trainerEmail);
+                        
+                        if (trainerName && data.first_name && data.last_name) {
+                            trainerName.textContent = `${data.first_name} ${data.last_name}`;
+                            console.log('Set trainer name to:', trainerName.textContent);
+                        } else if (trainerName) {
+                            trainerName.textContent = 'Тренер';
+                            console.log('Set fallback trainer name');
+                        }
+                        
+                        if (trainerEmail && data.email) {
+                            trainerEmail.textContent = data.email;
+                            console.log('Set trainer email to:', trainerEmail.textContent);
+                        } else if (trainerEmail) {
+                            trainerEmail.textContent = '—';
+                            console.log('Set fallback trainer email');
+                        }
+                    } else {
+                        const errorText = await response.text();
+                        console.error('Failed to load trainer info:', response.status, errorText);
                     }
                 } catch (error) {
                     console.error('Error loading trainer info:', error);
