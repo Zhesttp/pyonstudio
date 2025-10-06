@@ -46,24 +46,43 @@
             </header>
 
             <section class="schedule-content">
-                <div class="month-navigation">
-                    <button class="month-nav-btn" id="prev-month">‹</button>
-                    <h2 class="current-month" id="current-month">Сентябрь 2024</h2>
-                    <button class="month-nav-btn" id="next-month">›</button>
+                <!-- Desktop calendar view -->
+                <div class="desktop-calendar">
+                    <div class="month-navigation">
+                        <button class="month-nav-btn" id="prev-month">‹</button>
+                        <h2 class="current-month" id="current-month">Сентябрь 2024</h2>
+                        <button class="month-nav-btn" id="next-month">›</button>
+                    </div>
+
+                    <div class="calendar-grid">
+                        <div class="calendar-header">
+                            <div class="day-name">Пн</div>
+                            <div class="day-name">Вт</div>
+                            <div class="day-name">Ср</div>
+                            <div class="day-name">Чт</div>
+                            <div class="day-name">Пт</div>
+                            <div class="day-name">Сб</div>
+                            <div class="day-name">Вс</div>
+                        </div>
+                        <div class="calendar-body" id="calendar-body">
+                            <!-- Calendar days will be generated here -->
+                        </div>
+                    </div>
                 </div>
 
-                <div class="calendar-grid">
-                    <div class="calendar-header">
-                        <div class="day-name">Пн</div>
-                        <div class="day-name">Вт</div>
-                        <div class="day-name">Ср</div>
-                        <div class="day-name">Чт</div>
-                        <div class="day-name">Пт</div>
-                        <div class="day-name">Сб</div>
-                        <div class="day-name">Вс</div>
+                <!-- Mobile single day view -->
+                <div class="mobile-day-view">
+                    <div class="mobile-date-selector">
+                        <button class="date-nav-btn" id="prev-day">‹</button>
+                        <div class="selected-date-info">
+                            <input type="date" id="date-picker" class="date-picker">
+                            <div class="date-display" id="date-display">Сегодня</div>
+                        </div>
+                        <button class="date-nav-btn" id="next-day">›</button>
                     </div>
-                    <div class="calendar-body" id="calendar-body">
-                        <!-- Calendar days will be generated here -->
+                    
+                    <div class="mobile-day-classes" id="mobile-day-classes">
+                        <!-- Classes for selected day will be shown here -->
                     </div>
                 </div>
             </section>
@@ -89,6 +108,7 @@
             let currentDate = new Date();
             let currentMonth = currentDate.getMonth();
             let currentYear = currentDate.getFullYear();
+            let selectedDate = new Date(); // For mobile single day view
 
             // Load trainer info
             const loadTrainerInfo = async () => {
@@ -211,6 +231,106 @@
                 } catch (error) {
                     console.error('Error loading classes:', error);
                 }
+            };
+
+            // Mobile single day functions
+            const formatDateForDisplay = (date) => {
+                const today = new Date();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(today.getDate() + 1);
+                const yesterday = new Date(today);
+                yesterday.setDate(today.getDate() - 1);
+                
+                if (date.toDateString() === today.toDateString()) {
+                    return 'Сегодня';
+                } else if (date.toDateString() === tomorrow.toDateString()) {
+                    return 'Завтра';
+                } else if (date.toDateString() === yesterday.toDateString()) {
+                    return 'Вчера';
+                } else {
+                    const days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+                    const dayName = days[date.getDay()];
+                    const day = date.getDate();
+                    const month = monthsRu[date.getMonth()];
+                    return `${dayName}, ${day} ${month}`;
+                }
+            };
+
+            const updateMobileDateDisplay = () => {
+                const datePicker = document.getElementById('date-picker');
+                const dateDisplay = document.getElementById('date-display');
+                
+                if (datePicker && dateDisplay) {
+                    const dateString = selectedDate.toISOString().split('T')[0];
+                    datePicker.value = dateString;
+                    dateDisplay.textContent = formatDateForDisplay(selectedDate);
+                }
+            };
+
+            const loadMobileDayClasses = async () => {
+                try {
+                    const dateString = selectedDate.toISOString().split('T')[0];
+                    const response = await fetch(`/api/trainer/classes?start_date=${dateString}&end_date=${dateString}`, {
+                        credentials: 'same-origin'
+                    });
+                    
+                    if (response.ok) {
+                        const classes = await response.json();
+                        renderMobileDayClasses(classes);
+                    } else {
+                        console.error('API Error:', response.status, response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error loading mobile day classes:', error);
+                }
+            };
+
+            const renderMobileDayClasses = (classes) => {
+                const container = document.getElementById('mobile-day-classes');
+                if (!container) return;
+
+                if (!classes || classes.length === 0) {
+                    container.innerHTML = `
+                        <div class="no-classes-message">
+                            <p>На этот день занятий не запланировано</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = '';
+                classes.forEach(cls => {
+                    const classItem = document.createElement('div');
+                    classItem.className = 'mobile-class-item';
+                    classItem.dataset.classId = cls.id;
+                    
+                    const timeRange = `${cls.start_time.slice(0,5)} - ${cls.end_time.slice(0,5)}`;
+                    let cleanTitle = cls.title;
+                    if (cls.type_name && cls.title.includes(cls.type_name)) {
+                        cleanTitle = cls.title.replace(cls.type_name, '').trim();
+                    }
+                    
+                    classItem.innerHTML = `
+                        <div class="mobile-class-time">${timeRange}</div>
+                        <div class="mobile-class-title">${cleanTitle}</div>
+                        <div class="mobile-class-info">
+                            <div class="mobile-class-type">${cls.type_name || 'Общее'}</div>
+                            <div class="mobile-class-count">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H17c-.8 0-1.54.37-2.01.99L14 10.5l-1-1.5c-.47-.62-1.21-.99-2.01-.99H9.46c-.8 0-1.54.37-2.01.99L5 10.5l-1-1.5C3.53 8.38 2.79 8 2 8H.5L3 15.5V22h2v-6h2.5l2.5-7.5h2l2.5 7.5H15v6h2v-6h2.5l2.5-7.5h2L24 15.5V22h-4z"/>
+                                </svg>
+                                ${cls.attendees_count || 0}
+                            </div>
+                        </div>
+                    `;
+                    
+                    classItem.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        showClassDetails(cls.id);
+                    });
+                    
+                    container.appendChild(classItem);
+                });
             };
 
             const renderSchedule = (classes) => {
@@ -346,6 +466,10 @@
                         `;
                         
                         modal.style.display = 'block';
+                        // Add animation class for mobile
+                        setTimeout(() => {
+                            modal.classList.add('show');
+                        }, 10);
                         
                         // Add event listeners for attendance buttons
                         modal.querySelectorAll('.attendance-btn').forEach(btn => {
@@ -391,8 +515,8 @@
                 }
             };
 
-            // Event listeners
-            document.getElementById('prev-month').addEventListener('click', () => {
+            // Navigation functions
+            const goToPreviousMonth = () => {
                 currentMonth--;
                 if (currentMonth < 0) {
                     currentMonth = 11;
@@ -401,9 +525,9 @@
                 updateMonthDisplay();
                 updateCalendar();
                 loadTrainerClasses();
-            });
+            };
 
-            document.getElementById('next-month').addEventListener('click', () => {
+            const goToNextMonth = () => {
                 currentMonth++;
                 if (currentMonth > 11) {
                     currentMonth = 0;
@@ -412,19 +536,178 @@
                 updateMonthDisplay();
                 updateCalendar();
                 loadTrainerClasses();
+            };
+
+            // Desktop event listeners
+            document.getElementById('prev-month').addEventListener('click', goToPreviousMonth);
+            document.getElementById('next-month').addEventListener('click', goToNextMonth);
+
+            // Mobile event listeners
+            const prevDayBtn = document.getElementById('prev-day');
+            const nextDayBtn = document.getElementById('next-day');
+            const datePicker = document.getElementById('date-picker');
+
+            if (prevDayBtn) {
+                prevDayBtn.addEventListener('click', () => {
+                    selectedDate.setDate(selectedDate.getDate() - 1);
+                    updateMobileDateDisplay();
+                    loadMobileDayClasses();
+                });
+            }
+
+            if (nextDayBtn) {
+                nextDayBtn.addEventListener('click', () => {
+                    selectedDate.setDate(selectedDate.getDate() + 1);
+                    updateMobileDateDisplay();
+                    loadMobileDayClasses();
+                });
+            }
+
+            if (datePicker) {
+                datePicker.addEventListener('change', (e) => {
+                    selectedDate = new Date(e.target.value);
+                    updateMobileDateDisplay();
+                    loadMobileDayClasses();
+                });
+            }
+
+            // Touch/swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const minSwipeDistance = 50;
+
+            const calendarGrid = document.querySelector('.calendar-grid');
+            if (calendarGrid) {
+                calendarGrid.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+
+                calendarGrid.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                });
+            }
+
+            const handleSwipe = () => {
+                const swipeDistance = touchEndX - touchStartX;
+                
+                if (Math.abs(swipeDistance) > minSwipeDistance) {
+                    // Check if we're on mobile (mobile day view is visible)
+                    const mobileDayView = document.querySelector('.mobile-day-view');
+                    if (mobileDayView && window.getComputedStyle(mobileDayView).display !== 'none') {
+                        // Mobile swipe - navigate days
+                        if (swipeDistance > 0) {
+                            // Swipe right - go to previous day
+                            selectedDate.setDate(selectedDate.getDate() - 1);
+                            updateMobileDateDisplay();
+                            loadMobileDayClasses();
+                        } else {
+                            // Swipe left - go to next day
+                            selectedDate.setDate(selectedDate.getDate() + 1);
+                            updateMobileDateDisplay();
+                            loadMobileDayClasses();
+                        }
+                    } else {
+                        // Desktop swipe - navigate months
+                        if (swipeDistance > 0) {
+                            goToPreviousMonth();
+                        } else {
+                            goToNextMonth();
+                        }
+                    }
+                }
+            };
+
+            // Keyboard navigation support
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    goToPreviousMonth();
+                } else if (e.key === 'ArrowRight') {
+                    goToNextMonth();
+                }
             });
 
             const modal = document.getElementById('class-modal');
-            modal.querySelector('.modal-close').addEventListener('click', () => modal.style.display = 'none');
+            
+            const closeModal = () => {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            };
+            
+            modal.querySelector('.modal-close').addEventListener('click', closeModal);
             modal.addEventListener('click', e => {
-                if (e.target === modal) modal.style.display = 'none';
+                if (e.target === modal) closeModal();
             });
+
+            // Mobile modal improvements
+            let modalTouchStartY = 0;
+            let modalTouchEndY = 0;
+            const modalSwipeThreshold = 100;
+
+            modal.addEventListener('touchstart', (e) => {
+                modalTouchStartY = e.changedTouches[0].screenY;
+            });
+
+            modal.addEventListener('touchend', (e) => {
+                modalTouchEndY = e.changedTouches[0].screenY;
+                const swipeDistance = modalTouchEndY - modalTouchStartY;
+                
+                // Swipe down to close modal
+                if (swipeDistance > modalSwipeThreshold) {
+                    closeModal();
+                }
+            });
+
+            // Prevent body scroll when modal is open
+            const originalBodyOverflow = document.body.style.overflow;
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                        const modal = document.getElementById('class-modal');
+                        if (modal.style.display === 'block') {
+                            document.body.style.overflow = 'hidden';
+                        } else {
+                            document.body.style.overflow = originalBodyOverflow;
+                        }
+                    }
+                });
+            });
+            
+            observer.observe(document.getElementById('class-modal'), {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+
+            // Mobile sidebar toggle
+            const burgerMenu = document.querySelector('.burger-menu-dashboard');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (burgerMenu && sidebar) {
+                burgerMenu.addEventListener('click', () => {
+                    sidebar.classList.toggle('open');
+                    burgerMenu.classList.toggle('is-active');
+                });
+                
+                // Close sidebar when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!sidebar.contains(e.target) && !burgerMenu.contains(e.target)) {
+                        sidebar.classList.remove('open');
+                        burgerMenu.classList.remove('is-active');
+                    }
+                });
+            }
 
             // Initialize
             loadTrainerInfo();
             updateMonthDisplay();
             updateCalendar();
             loadTrainerClasses();
+            
+            // Initialize mobile view
+            updateMobileDateDisplay();
+            loadMobileDayClasses();
         });
     </script>
 </body>

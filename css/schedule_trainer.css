@@ -363,9 +363,59 @@
 
 /* Mobile Responsive */
 @media (max-width: 768px) {
+    /* Header adjustments */
+    .main-header {
+        padding: 16px 20px;
+    }
+    
+    .page-header h1 {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    
+    .page-subtitle {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+    
+    .trainer-info {
+        padding: 8px 12px;
+        margin-top: 8px;
+    }
+    
+    .trainer-name {
+        font-size: 14px;
+    }
+    
+    .trainer-email {
+        font-size: 12px;
+    }
+    
+    /* Month navigation */
+    .month-navigation {
+        margin-bottom: 16px;
+        padding: 0 8px;
+    }
+    
+    .month-nav-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    
+    .current-month {
+        font-size: 18px;
+    }
+    
+    /* Calendar grid */
+    .calendar-grid {
+        margin-top: 16px;
+        border-radius: 12px;
+    }
+    
     .calendar-day {
-        min-height: 80px;
-        padding: 8px 4px;
+        min-height: 70px;
+        padding: 6px 4px;
     }
     
     .day-number {
@@ -376,15 +426,21 @@
     .calendar-class {
         padding: 4px 6px;
         font-size: 10px;
+        margin-bottom: 2px;
     }
     
     .class-time {
+        font-size: 9px;
+    }
+    
+    .class-title {
         font-size: 10px;
+        line-height: 1.1;
     }
     
     .day-name {
-        padding: 12px 4px;
-        font-size: 12px;
+        padding: 10px 4px;
+        font-size: 11px;
     }
     
     .class-info-row {
@@ -394,15 +450,285 @@
     
     .class-type,
     .class-count {
-        font-size: 9px;
-        padding: 1px 4px;
+        font-size: 8px;
+        padding: 1px 3px;
     }
     
     .people-icon {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
+    }
+    
+    /* Modal adjustments */
+    .modal-content {
+        margin: 5% auto;
+        padding: 20px;
+        max-width: 95%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .modal-content h2 {
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+    
+    .class-details {
+        margin: 12px 0;
+        padding: 12px;
+    }
+    
+    .class-details p {
+        margin: 6px 0;
+        font-size: 14px;
+    }
+    
+    /* Attendees list */
+    .attendees-list {
+        margin-top: 12px;
+    }
+    
+    .attendee-item {
+        padding: 10px 12px;
+        margin-bottom: 6px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .attendee-info {
+        width: 100%;
+    }
+    
+    .attendee-name {
+        font-size: 14px;
+        font-weight: 600;
+    }
+    
+    .attendee-email {
+        font-size: 12px;
+    }
+    
+    .attendance-controls {
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .attendance-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+    }
+    
+    .attendance-btn svg {
+        width: 18px;
+        height: 18px;
     }
 }
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .main-header {
+        padding: 12px 16px;
+    }
+    
+    .page-header h1 {
+        font-size: 20px;
+    }
+    
+    .page-subtitle {
+        font-size: 13px;
+    }
+    
+    .trainer-info {
+        padding: 6px 10px;
+    }
+    
+    .trainer-name {
+        font-size: 13px;
+    }
+    
+    .trainer-email {
+        font-size: 11px;
+    }
+    
+    .month-navigation {
+        margin-bottom: 12px;
+        padding: 0 4px;
+    }
+    
+    .month-nav-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+    
+    .current-month {
+        font-size: 16px;
+    }
+    
+    .calendar-day {
+        min-height: 60px;
+        padding: 4px 2px;
+    }
+    
+    .day-number {
+        font-size: 11px;
+        margin-bottom: 2px;
+    }
+    
+    .calendar-class {
+        padding: 3px 4px;
+        font-size: 9px;
+        margin-bottom: 1px;
+    }
+    
+    .class-time {
+        font-size: 8px;
+    }
+    
+    .class-title {
+        font-size: 9px;
+    }
+    
+    .day-name {
+        padding: 8px 2px;
+        font-size: 10px;
+    }
+    
+    .class-type,
+    .class-count {
+        font-size: 7px;
+        padding: 1px 2px;
+    }
+    
+    .people-icon {
+        width: 7px;
+        height: 7px;
+    }
+    
+    .modal-content {
+        margin: 2% auto;
+        padding: 16px;
+        max-width: 98%;
+    }
+    
+    .modal-content h2 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+    
+    .class-details {
+        margin: 8px 0;
+        padding: 10px;
+    }
+    
+    .class-details p {
+        margin: 4px 0;
+        font-size: 13px;
+    }
+    
+    .attendee-item {
+        padding: 8px 10px;
+        margin-bottom: 4px;
+    }
+    
+    .attendee-name {
+        font-size: 13px;
+    }
+    
+    .attendee-email {
+        font-size: 11px;
+    }
+    
+    .attendance-controls {
+        gap: 8px;
+    }
+    
+    .attendance-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+    }
+    
+    .attendance-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+/* Touch interactions */
+@media (max-width: 768px) {
+    .calendar-class {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .attendance-btn {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .month-nav-btn {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Improve touch targets */
+    .calendar-class {
+        min-height: 44px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .attendance-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .month-nav-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+    .modal-content {
+        margin: 1% auto;
+        max-height: 95vh;
+    }
+    
+    .calendar-day {
+        min-height: 50px;
+    }
+    
+    .calendar-class {
+        padding: 2px 4px;
+        font-size: 8px;
+    }
+    
+    .class-time {
+        font-size: 7px;
+    }
+    
+    .class-title {
+        font-size: 8px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .calendar-class {
+        border-width: 0.5px;
+    }
+    
+    .attendance-btn {
+        border-width: 1px;
+    }
+}
+
 @viewport {
     user-zoom: fixed;
     max-zoom: 1;
@@ -416,17 +742,461 @@
 .modal-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:28px;color:#333;cursor:pointer;z-index:5}
 .modal-close:hover{color:#000}
 
-@media (max-width: 768px){
-  body{overflow-x:hidden}
-  .trainer-schedule-page .schedule-content{overflow-x:hidden}
-  .trainer-schedule-page .schedule-grid{display:flex;flex-direction:column;gap:24px}
-  .trainer-schedule-page .day-column{display:none;width:100%}
-  .trainer-schedule-page .day-column.active{display:block}
-  .trainer-schedule-page .day-switcher{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;overflow-x:visible;padding-bottom:0}
-  .trainer-schedule-page .day-tab{flex:1 1 auto;padding:10px 16px;font-size:14px;font-weight:600;color:var(--text-light);background-color:var(--card-bg);border:1px solid var(--border-color);border-radius:12px;cursor:pointer}
-  .trainer-schedule-page .day-tab.active{background-color:var(--sidebar-light);color:#fff;border-color:var(--sidebar-light)}
-  .trainer-schedule-page .day-tab.active{color:#fff!important;}
-  .trainer-schedule-page .day-column{width:100%!important;max-width:100%;padding:20px 16px;box-sizing:border-box}
-  .trainer-schedule-page .class-item{flex-wrap:wrap}
-  .trainer-schedule-page .class-time{min-width:90px}
+/* Mobile layout improvements */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .trainer-schedule-page .schedule-content {
+        overflow-x: hidden;
+        padding: 0 8px;
+    }
+    
+    /* Hide desktop calendar on mobile */
+    .desktop-calendar {
+        display: none;
+    }
+    
+    /* Show mobile day view */
+    .mobile-day-view {
+        display: block;
+    }
+    
+    /* Sidebar adjustments for mobile */
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    /* Burger menu improvements - matching dashboard style */
+    .burger-menu-dashboard {
+        display: flex;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+        background-color: var(--card-bg);
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        padding: 18px 16px;
+        box-sizing: border-box;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        z-index: 1500;
+        flex-direction: column;
+        justify-content: space-between;
+        border: none;
+        cursor: pointer;
+    }
+
+    .burger-menu-dashboard:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+
+    .burger-menu-dashboard span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background: var(--text-dark);
+        border-radius: 3px;
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .burger-menu-dashboard.is-active span:nth-child(1) {
+        transform: translateY(10px) rotate(45deg);
+    }
+
+    .burger-menu-dashboard.is-active span:nth-child(2) {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+
+    .burger-menu-dashboard.is-active span:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg);
+    }
+    
+    /* Mobile date selector */
+    .mobile-date-selector {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding: 0 8px;
+    }
+    
+    .date-nav-btn {
+        width: 44px;
+        height: 44px;
+        border: 2px solid var(--border-color);
+        border-radius: 12px;
+        background: var(--card-bg);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-primary);
+        transition: all 0.2s ease;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .date-nav-btn:hover {
+        background: var(--sidebar-light);
+        color: white;
+        border-color: var(--sidebar-light);
+    }
+    
+    .selected-date-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .date-picker {
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 14px;
+        background: var(--card-bg);
+        color: var(--text-primary);
+        cursor: pointer;
+        min-width: 140px;
+    }
+    
+    .date-picker:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+    
+    .date-display {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+        text-align: center;
+    }
+    
+    /* Mobile day classes */
+    .mobile-day-classes {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    
+    .mobile-class-item {
+        padding: 16px;
+        border-bottom: 1px solid var(--border-color);
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+    
+    .mobile-class-item:last-child {
+        border-bottom: none;
+    }
+    
+    .mobile-class-item:hover {
+        background: rgba(181, 168, 176, 0.05);
+    }
+    
+    .mobile-class-time {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: 4px;
+    }
+    
+    .mobile-class-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+    }
+    
+    .mobile-class-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        color: var(--text-light);
+    }
+    
+    .mobile-class-type {
+        background: rgba(181, 168, 176, 0.1);
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .mobile-class-count {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+    
+    .mobile-class-count svg {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .no-classes-message {
+        padding: 40px 20px;
+        text-align: center;
+        color: var(--text-light);
+        font-size: 16px;
+    }
+    
+    /* Modal improvements */
+    .modal-content {
+        border-radius: 16px 16px 0 0;
+        margin: 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+        max-height: 80vh;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .modal.show .modal-content {
+        transform: translateY(0);
+    }
+    
+    /* Add swipe indicator */
+    .modal-content::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 4px;
+        background: #ccc;
+        border-radius: 2px;
+    }
+}
+
+/* Desktop view - hide mobile elements */
+@media (min-width: 769px) {
+    .mobile-day-view {
+        display: none;
+    }
+    
+    .desktop-calendar {
+        display: block;
+    }
+    
+    /* Hide burger menu on desktop */
+    .burger-menu-dashboard {
+        display: none;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .main-header {
+        padding: 8px 12px;
+    }
+    
+    .page-header h1 {
+        font-size: 18px;
+    }
+    
+    .page-subtitle {
+        font-size: 12px;
+    }
+    
+    .trainer-info {
+        padding: 4px 8px;
+    }
+    
+    .trainer-name {
+        font-size: 12px;
+    }
+    
+    .trainer-email {
+        font-size: 10px;
+    }
+    
+    /* Mobile date selector for small screens */
+    .mobile-date-selector {
+        margin-bottom: 16px;
+        padding: 0 4px;
+    }
+    
+    .date-nav-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    
+    .date-picker {
+        min-width: 120px;
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+    
+    .date-display {
+        font-size: 14px;
+    }
+    
+    /* Mobile classes for small screens */
+    .mobile-class-item {
+        padding: 12px;
+    }
+    
+    .mobile-class-time {
+        font-size: 13px;
+    }
+    
+    .mobile-class-title {
+        font-size: 15px;
+    }
+    
+    .mobile-class-info {
+        font-size: 13px;
+    }
+    
+    .mobile-class-type {
+        font-size: 11px;
+        padding: 3px 6px;
+    }
+    
+    .mobile-class-count {
+        font-size: 11px;
+    }
+    
+    .mobile-class-count svg {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .no-classes-message {
+        padding: 30px 16px;
+        font-size: 14px;
+    }
+    
+    /* Burger menu for very small screens */
+    .burger-menu-dashboard {
+        width: 48px;
+        height: 48px;
+        padding: 14px 12px;
+        top: 16px;
+        right: 16px;
+    }
+    
+    .burger-menu-dashboard span {
+        height: 2px;
+    }
+    
+    /* Desktop calendar (hidden on mobile) */
+    .month-navigation {
+        padding: 0 2px;
+    }
+    
+    .month-nav-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+    
+    .current-month {
+        font-size: 14px;
+    }
+    
+    .calendar-day {
+        min-height: 50px;
+        padding: 2px 1px;
+    }
+    
+    .day-number {
+        font-size: 10px;
+    }
+    
+    .calendar-class {
+        padding: 2px 3px;
+        font-size: 8px;
+    }
+    
+    .class-time {
+        font-size: 7px;
+    }
+    
+    .class-title {
+        font-size: 8px;
+    }
+    
+    .day-name {
+        padding: 6px 1px;
+        font-size: 9px;
+    }
+    
+    .class-type,
+    .class-count {
+        font-size: 6px;
+        padding: 1px 2px;
+    }
+    
+    .people-icon {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .modal-content {
+        padding: 12px;
+    }
+    
+    .modal-content h2 {
+        font-size: 16px;
+    }
+    
+    .class-details {
+        padding: 8px;
+    }
+    
+    .class-details p {
+        font-size: 12px;
+    }
+    
+    .attendee-item {
+        padding: 6px 8px;
+    }
+    
+    .attendee-name {
+        font-size: 12px;
+    }
+    
+    .attendee-email {
+        font-size: 10px;
+    }
+    
+    .attendance-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .attendance-btn svg {
+        width: 14px;
+        height: 14px;
+    }
 }
