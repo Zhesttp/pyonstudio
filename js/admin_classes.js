@@ -464,12 +464,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         e.preventDefault();
         
         const formData = new FormData(classForm);
+        const classDate = document.getElementById('class-date').value;
+        const startTime = document.getElementById('class-time').value;
+        const duration = parseInt(document.getElementById('class-duration').value);
+        
+        // Вычисляем время окончания
+        const [hours, minutes] = startTime.split(':').map(Number);
+        const startDateTime = new Date();
+        startDateTime.setHours(hours, minutes, 0, 0);
+        const endDateTime = new Date(startDateTime.getTime() + duration * 60000);
+        const endTime = endDateTime.toTimeString().slice(0, 5);
+        
         const classData = {
             title: document.getElementById('class-title').value,
-            class_date: document.getElementById('class-date').value,
-            start_time: document.getElementById('class-time').value,
-            end_time: document.getElementById('class-time').value, // Пока используем то же время
-            duration_minutes: parseInt(document.getElementById('class-duration').value),
+            class_date: classDate, // Используем дату как есть, без преобразований
+            start_time: startTime,
+            end_time: endTime,
+            duration_minutes: duration,
             trainer_id: document.getElementById('class-trainer').value,
             type_id: document.getElementById('class-type').value,
             description: document.getElementById('class-description').value,
@@ -481,6 +492,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             showError('Пожалуйста, заполните все обязательные поля');
             return;
         }
+
+        // Отладочная информация
+        console.log('Отправляемые данные занятия:', classData);
+        console.log('Дата занятия:', classData.class_date);
+        console.log('Время начала:', classData.start_time);
+        console.log('Время окончания:', classData.end_time);
 
         await saveClass(classData);
     }

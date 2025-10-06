@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
                        const resp=await r.json();
                        if(resp.role==='admin'){
                          window.location.href='/admin';
+                       } else if(resp.role==='trainer'){
+                         window.location.href='/trainer_schedule.html';
                        } else {
                          window.location.href='/profile';
                        }

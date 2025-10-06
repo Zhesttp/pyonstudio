@@ -12,6 +12,7 @@ import profileRoutes from './routes/profile.js';
 import adminRoutes from './routes/admin.js';
 import plansRoutes from './routes/plans.js';
 import classesRoutes from './routes/classes.js';
+import trainerRoutes from './routes/trainer.js';
 import { auth } from './middleware/auth.js';
 import { pool } from './db.js';
 import fs from 'fs';
@@ -101,6 +102,7 @@ app.use('/api', profileRoutes);
 app.use('/api', adminRoutes);
 app.use('/api', plansRoutes);
 app.use('/api', classesRoutes);
+app.use('/api/trainer', trainerRoutes);
 
 // Protected pages (HTML) - must be before static middleware
 ['dashboard.html','schedule.html','profile.html','dashboard','schedule','profile'].forEach(route=>{
@@ -111,7 +113,12 @@ app.use('/api', classesRoutes);
 });
 
 // admin pages
-import { adminOnly } from './middleware/admin.js';
+import { adminOnly, trainerOnly } from './middleware/admin.js';
+
+// Trainer schedule page - protected for trainers only
+app.get('/trainer_schedule.html', trainerOnly, (req, res) => {
+  res.sendFile(path.join(__dirname, '../trainer_schedule.html'));
+});
 ['/admin.html','/clients.html','/trainers.html','/subscriptions.html','/admin_classes.html','/admin','/clients','/trainers','/subscriptions','/admin_classes'].forEach(route=>{
   app.get(route, adminOnly, (req,res)=>{
     const file=route.replace('/','');

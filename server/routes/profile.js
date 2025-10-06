@@ -11,6 +11,27 @@ router.get('/me', async (req, res, next) => {
     try{
       const data=jwt.verify(req.cookies.admin_token,process.env.JWT_SECRET);
       if(data.role === 'admin') {
+        // Get admin details from database
+        const client = await pool.connect();
+        try {
+          const adminResult = await client.query('SELECT name, email FROM admins WHERE id = $1', [data.id]);
+          if (adminResult.rowCount > 0) {
+            const admin = adminResult.rows[0];
+            // Split name into first and last name
+            const nameParts = admin.name.split(' ');
+            const firstName = nameParts[0] || '';
+            const lastName = nameParts.slice(1).join(' ') || '';
+            return res.json({
+              role: 'admin',
+              first_name: firstName,
+              last_name: lastName,
+              email: admin.email,
+              id: data.id
+            });
+          }
+        } finally {
+          client.release();
+        }
         return res.json({
           role: 'admin',
           email: data.email || 'admin',
@@ -22,18 +43,18 @@ router.get('/me', async (req, res, next) => {
     }
   }
   
-  // Check user token
+  // Check user/trainer token
   if(req.cookies?.token) {
     try{
       const data=jwt.verify(req.cookies.token,process.env.JWT_SECRET);
-      if(data.role === 'user' || !data.role) { // backwards compatibility
-        // Continue to user data fetching
+      if(data.role === 'user' || data.role === 'trainer' || !data.role) { // backwards compatibility
+        // Continue to user/trainer data fetching
         req.user = data;
         next();
         return;
       }
     }catch(error){
-      console.error('User token verification failed:', error.message);
+      console.error('User/trainer token verification failed:', error.message);
     }
   }
   
@@ -42,6 +63,23 @@ router.get('/me', async (req, res, next) => {
 },async (req,res)=>{
   try {
     const client = await pool.connect();
+    
+    // Handle trainer profile
+    if (req.user.role === 'trainer') {
+      const q = `
+        SELECT first_name, last_name, email, birth_date, photo_url, bio
+        FROM trainers
+        WHERE id = $1;
+      `;
+      const result = await client.query(q, [req.user.id]);
+      client.release();
+      
+      if (!result.rowCount) return res.sendStatus(404);
+      
+      return res.json(result.rows[0]);
+    }
+    
+    // Handle user profile (existing logic)
     const q = `
         SELECT u.first_name, u.last_name, u.email, u.phone, u.birth_date, u.level,
                u.visits_count, u.minutes_practice,
@@ -54,8 +92,9 @@ router.get('/me', async (req, res, next) => {
                   SELECT COUNT(*) 
                   FROM bookings b
                   JOIN classes c ON b.class_id = c.id
+                  JOIN attendance a ON b.id = a.booking_id
                   WHERE b.user_id = u.id 
-                    AND b.status = 'attended' 
+                    AND a.status = 'attended' 
                     AND c.class_date >= us.start_date 
                     AND c.class_date <= us.end_date
                ) as attended_classes,

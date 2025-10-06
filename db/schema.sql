@@ -39,6 +39,9 @@ CREATE TABLE trainers (
     birth_date DATE,
     photo_url TEXT,
     bio TEXT,
+    user_id UUID UNIQUE REFERENCES users(id) ON DELETE SET NULL,
+    email CITEXT UNIQUE,
+    password_hash TEXT,
     created_at TIMESTAMP DEFAULT NOW()
 );
 

@@ -175,6 +175,8 @@ document.addEventListener('DOMContentLoaded', () => {
             form.querySelector('#trainer-last-name').value = trainer.last_name || '';
             form.querySelector('#trainer-birth-date').value = trainer.birth_date ? trainer.birth_date.split('T')[0] : '';
             form.querySelector('#trainer-bio').value = trainer.bio || '';
+            form.querySelector('#trainer-email').value = trainer.email || '';
+            form.querySelector('#trainer-password').value = '';
             deleteBtn.style.display = 'inline-flex';
             
             // Показать существующее фото если есть
@@ -185,6 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
             form.reset();
             deleteBtn.style.display = 'none';
             hidePhotoPreview();
+            form.querySelector('#trainer-email').value = '';
+            form.querySelector('#trainer-password').value = '';
         }
         
         // Показать модальное окно с анимацией
@@ -454,12 +458,18 @@ document.addEventListener('DOMContentLoaded', () => {
             first_name: formData.get('first_name').trim(),
             last_name: formData.get('last_name').trim(),
             birth_date: formData.get('birth_date') || null,
-            bio: formData.get('bio').trim() || null
+            bio: formData.get('bio').trim() || null,
+            email: (formData.get('email')||'').trim() || null,
+            password: (formData.get('password')||'').trim() || null
         };
 
         // Валидация
         if (!trainerData.first_name || !trainerData.last_name) {
             showNotification('Имя и фамилия обязательны', 'error');
+            return;
+        }
+        if (trainerData.password && trainerData.password.length < 6) {
+            showNotification('Пароль должен быть не менее 6 символов', 'error');
             return;
         }
 

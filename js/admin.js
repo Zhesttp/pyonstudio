@@ -43,6 +43,26 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
+    // --- Load admin info ---
+    const loadAdminInfo = async () => {
+        try {
+            const response = await fetch('/api/me', { credentials: 'include' });
+            if (response.ok) {
+                const data = await response.json();
+                if (data.first_name && data.last_name) {
+                    document.getElementById('admin-name').textContent = `${data.first_name} ${data.last_name}`;
+                }
+                if (data.email) {
+                    document.getElementById('admin-email').textContent = data.email;
+                }
+            }
+        } catch (error) {
+            console.error('Error loading admin info:', error);
+        }
+    };
+
+    loadAdminInfo();
+
     // --- Logout functionality ---
     const logoutLink = document.querySelector('.sidebar__footer .nav-item');
     if (logoutLink) {

@@ -120,8 +120,27 @@ router.post('/login', loginValidation, async (req, res) => {
         const userResult = await client.query('SELECT id, email, password_hash FROM users WHERE email = $1', [email]);
         
         if (userResult.rowCount === 0) {
+            // Try trainer table next
+            const trainerResult = await client.query('SELECT id, email, password_hash FROM trainers WHERE email = $1', [email]);
+            if (trainerResult.rowCount === 0) {
+                client.release();
+                return res.status(404).json({ message: 'Пользователь не найден' });
+            }
+            const trainer = trainerResult.rows[0];
+            const isTrainerMatch = await bcrypt.compare(password, trainer.password_hash || '');
+            if (!isTrainerMatch) {
+                client.release();
+                return res.status(401).json({ message: 'Неверные учетные данные' });
+            }
+            const tkn = jwt.sign({ id: trainer.id, email: trainer.email, role: 'trainer' }, process.env.JWT_SECRET, { expiresIn: '7d' });
+            res.cookie('token', tkn, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'lax',
+                maxAge: 7 * 24 * 60 * 60 * 1000
+            });
             client.release();
-            return res.status(404).json({ message: 'Пользователь не найден' });
+            return res.json({ role: 'trainer', message: 'Вход выполнен успешно' });
         }
 
         const user = userResult.rows[0];
