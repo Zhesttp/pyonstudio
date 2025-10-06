@@ -44,6 +44,7 @@ router.get('/me', async (req, res, next) => {
     const client = await pool.connect();
     const q = `
         SELECT u.first_name, u.last_name, u.email, u.phone, u.birth_date, u.level,
+               u.visits_count, u.minutes_practice,
                p.title AS plan_title,
                p.description AS plan_description,
                p.price AS plan_price,
@@ -128,3 +129,35 @@ router.put('/me', auth, async (req, res) => {
 });
 
 export default router;
+
+// === DASHBOARD: Upcoming booked classes for current user ===
+router.get('/me/upcoming-classes', auth, async (req, res) => {
+  let client;
+  try {
+    client = await pool.connect();
+    const q = `
+      SELECT c.id,
+             c.title,
+             c.class_date,
+             c.start_time,
+             c.end_time,
+             c.place,
+             t.first_name || ' ' || t.last_name AS trainer_name
+      FROM bookings b
+      JOIN classes c ON c.id = b.class_id
+      LEFT JOIN trainers t ON c.trainer_id = t.id
+      WHERE b.user_id = $1
+        AND b.status = 'booked'
+        AND (c.class_date > CURRENT_DATE OR (c.class_date = CURRENT_DATE AND c.start_time >= CURRENT_TIME))
+      ORDER BY c.class_date ASC, c.start_time ASC
+      LIMIT 5
+    `;
+    const { rows } = await client.query(q, [req.user.id]);
+    res.json(rows);
+  } catch (e) {
+    console.error('Error fetching upcoming classes:', e);
+    res.status(500).json({ message: 'Ошибка загрузки ближайших занятий' });
+  } finally {
+    if (client) client.release();
+  }
+});

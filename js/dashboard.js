@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // load user stats for dashboard - only for non-admin pages
-    if((document.querySelector('.dashboard-page')||document.querySelector('.dashboard-layout')) 
+    if((document.querySelector('.dashboard-layout')) 
        && !document.body.classList.contains('admin-page')){
       
       const loadUserData = async () => {
@@ -37,18 +37,47 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await r.json();
         
         const nameEl=document.querySelector('.user-name');
-        if(nameEl) nameEl.textContent=data.first_name;
-        const visitEl=document.querySelector('#stat-visits');
-        if(visitEl) visitEl.textContent=data.visits_count||0;
-        const minEl=document.querySelector('#stat-minutes');
-        if(minEl) minEl.textContent=data.minutes_practice||0;
-        const progTxt=document.getElementById('progress-text');
+        if(nameEl) nameEl.textContent=data.first_name||'';
+        
+        // Compute progress based on plan's total classes if present; otherwise use visits modulo 8
+        const total = Number(data.total_classes)||8;
+        const visits = Number(data.attended_classes)||0;
+        const pct = Math.max(0, Math.min(100, Math.round((visits/total)*100)));
+        
+        const ring=document.getElementById('ring-progress');
+        const pctText=document.getElementById('progress-percent');
         const progFill=document.getElementById('progress-fill');
-        if(progTxt&&progFill){
-          const pct=Math.min(100,((data.visits_count||0)%8)/8*100);
-          progTxt.textContent=`${data.visits_count%8}/8`;
-          progFill.style.width=pct+'%';
+        const progSummary=document.getElementById('progress-summary');
+        
+        if(ring){
+          // Stroke dasharray expects value like "X 100" where X is percent
+          ring.setAttribute('stroke-dasharray', `${pct} ${100-pct}`);
         }
+        if(pctText){
+          pctText.textContent = `${pct}%`;
+        }
+        if(progFill){
+          progFill.style.width = pct + '%';
+        }
+        if(progSummary){
+          progSummary.innerHTML = `Вы посетили <strong>${visits} из ${total}</strong> занятий в этом месяце`;
+        }
+        
+        // Optional: next class subtitle based on upcoming classes endpoint
+        const nextSub = document.getElementById('next-class-subtitle');
+        try{
+          const up = await fetch('/api/me/upcoming-classes');
+          if(up.ok){
+            const list = await up.json();
+            if(Array.isArray(list) && list.length > 0){
+              const it = list[0];
+              const time = (it.start_time||'').slice(0,5);
+              nextSub.textContent = `Ваша ближайшая тренировка: ${it.title} в ${time}`;
+            } else {
+              nextSub.textContent = 'У вас нету занятий в ближайшее время';
+            }
+          }
+        }catch(_e){}
       };
       
       loadUserData().catch(() => {

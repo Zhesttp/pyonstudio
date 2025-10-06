@@ -1668,3 +1668,8 @@ Server started on 3000
 > node app.js
 
 Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
