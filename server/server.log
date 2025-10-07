@@ -2023,3 +2023,94 @@ Error booking class: error: duplicate key value violates unique constraint "book
   line: '670',
   routine: '_bt_check_unique'
 }
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Error booking class: error: duplicate key value violates unique constraint "bookings_user_id_class_id_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/classes.js:326:24 {
+  length: 309,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, class_id)=(adb7368f-d00e-4df2-a190-f7cb654c500a, ad869347-6b20-4bb5-921c-52556e99243e) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'bookings',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'bookings_user_id_class_id_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Error booking class: error: could not determine data type of parameter $1
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/classes.js:352:5 {
+  length: 133,
+  severity: 'ERROR',
+  code: '42P08',
+  detail: undefined,
+  hint: undefined,
+  position: '173',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_param.c',
+  line: '315',
+  routine: 'check_parameter_resolution_walker'
+}
+Error booking class: error: could not determine data type of parameter $1
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/classes.js:352:5 {
+  length: 133,
+  severity: 'ERROR',
+  code: '42P08',
+  detail: undefined,
+  hint: undefined,
+  position: '173',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_param.c',
+  line: '315',
+  routine: 'check_parameter_resolution_walker'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000

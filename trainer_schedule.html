@@ -492,6 +492,7 @@
                                 <p><strong>Тип:</strong> ${data.class.type_name || 'Не указан'}</p>
                                 <p><strong>Описание:</strong> ${data.class.description || 'Нет описания'}</p>
                             </div>
+                            <div id="attendance-warning" style="display:none;padding:10px 12px;margin:8px 0;border-radius:8px;background:#fff3cd;color:#664d03;border:1px solid #ffecb5;">Отмечать посещаемость можно после начала занятия</div>
                             <h3>Записанные участники (${data.attendees.length}):</h3>
                             <div class="attendees-list">
                                 ${data.attendees.map(attendee => `
@@ -531,10 +532,33 @@
                             modal.classList.add('show');
                         }, 10);
                         
+                        // Helper: check if class started (local time)
+                        const isClassStarted = () => {
+                            try {
+                                const d = data.class.class_date.includes('T') ? new Date(data.class.class_date) : new Date(data.class.class_date + 'T00:00:00');
+                                const [hh, mm] = data.class.start_time.split(':').map(Number);
+                                d.setHours(hh, mm || 0, 0, 0);
+                                return Date.now() >= d.getTime();
+                            } catch (_) { return false; }
+                        };
+
+                        const started = isClassStarted();
+                        const warningEl = document.getElementById('attendance-warning');
+                        if (!started && warningEl) warningEl.style.display = 'block';
+
+                        // Disable buttons until class starts
+                        if (!started) {
+                            modal.querySelectorAll('.attendance-btn').forEach(b => b.setAttribute('disabled', 'disabled'));
+                        }
+
                         // Add event listeners for attendance buttons
                         modal.querySelectorAll('.attendance-btn').forEach(btn => {
                             btn.addEventListener('click', async (e) => {
                                 e.preventDefault();
+                                if (!isClassStarted()) {
+                                    alert('Отмечать посещаемость можно после начала занятия');
+                                    return;
+                                }
                                 const status = btn.dataset.status;
                                 const attendeeItem = btn.closest('.attendee-item');
                                 const bookingId = attendeeItem.dataset.bookingId;
@@ -543,6 +567,13 @@
                                     // Get CSRF token from cookies
                                     const csrfToken = document.cookie.split('; ').find(c => c.startsWith('XSRF-TOKEN='))?.split('=')[1];
                                     
+                                    // Confirmation if changing с attended на другой статус
+                                    const wasAttended = attendeeItem.querySelector('.attendance-btn.attended')?.classList.contains('active');
+                                    if (wasAttended && status !== 'attended') {
+                                        const ok = confirm('Поменять статус с "присутствовал"? Прогресс пользователя будет скорректирован.');
+                                        if (!ok) return;
+                                    }
+
                                     const response = await fetch(`/api/trainer/classes/${classId}/attendance/${bookingId}`, {
                                         method: 'POST',
                                         headers: {
@@ -562,10 +593,14 @@
                                         
                                         console.log('Attendance marked successfully');
                                     } else {
+                                        let msg = 'Ошибка отметки посещаемости';
+                                        try { const j = await response.json(); if (j?.message) msg = j.message; } catch(_) {}
+                                        alert(msg);
                                         console.error('Error marking attendance:', response.status);
                                     }
                                 } catch (error) {
                                     console.error('Error marking attendance:', error);
+                                    alert('Ошибка сети при отметке посещаемости');
                                 }
                             });
                         });

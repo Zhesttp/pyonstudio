@@ -299,14 +299,26 @@ router.post('/classes/:id/book', auth, async (req, res) => {
       return res.status(404).json({ message: 'Занятие не найдено или уже прошло' });
     }
 
-    // Check if user already booked this class
-    const existingBooking = await client.query(`
-      SELECT id FROM bookings WHERE user_id = $1 AND class_id = $2 AND status != 'cancelled'
+    // Check for existing booking (any status)
+    const existingAny = await client.query(`
+      SELECT b.id, b.status,
+             EXISTS (SELECT 1 FROM attendance a WHERE a.booking_id = b.id) AS has_attendance
+      FROM bookings b
+      WHERE b.user_id = $1 AND b.class_id = $2
+      FOR UPDATE
     `, [user_id, class_id]);
     
-    if (existingBooking.rowCount > 0) {
-      await client.query('ROLLBACK');
-      return res.status(409).json({ message: 'Вы уже записаны на это занятие' });
+    if (existingAny.rowCount > 0) {
+      const existing = existingAny.rows[0];
+      if (existing.status !== 'cancelled') {
+        await client.query('ROLLBACK');
+        return res.status(409).json({ message: 'Вы уже записаны на это занятие' });
+      }
+      // If attendance exists for this booking, disallow re-booking
+      if (existing.has_attendance) {
+        await client.query('ROLLBACK');
+        return res.status(409).json({ message: 'Нельзя повторно записаться: по этой брони уже отмечена посещаемость' });
+      }
     }
 
     // Check if user has active subscription
@@ -322,10 +334,25 @@ router.post('/classes/:id/book', auth, async (req, res) => {
       return res.status(403).json({ message: 'У вас нет активного абонемента' });
     }
 
-    // Create booking
+    // Create or revive booking
+    let bookingId;
+    if (existingAny.rowCount === 0) {
+      const bookingIns = await client.query(`
+        INSERT INTO bookings (user_id, class_id, status) VALUES ($1, $2, 'booked') RETURNING id
+      `, [user_id, class_id]);
+      bookingId = bookingIns.rows[0].id;
+    } else {
+      const revive = await client.query(`
+        UPDATE bookings SET status = 'booked', booked_at = NOW() WHERE id = $1 RETURNING id
+      `, [existingAny.rows[0].id]);
+      bookingId = revive.rows[0].id;
+    }
+
+    // Audit log: booking created
     await client.query(`
-      INSERT INTO bookings (user_id, class_id, status) VALUES ($1, $2, 'booked')
-    `, [user_id, class_id]);
+      INSERT INTO audit_log (actor_id, actor_type, action, table_name, row_id, new_data, ip)
+      VALUES ($1::uuid, 'user', 'book', 'bookings', $2::uuid, json_build_object('user_id',$1::uuid,'class_id',$3::uuid,'status','booked'), COALESCE($4::text,'0.0.0.0')::inet)
+    `, [user_id, bookingId, class_id, req.ip || null]);
 
     await client.query('COMMIT');
     res.status(201).json({ message: 'Запись на занятие прошла успешно' });
@@ -350,10 +377,16 @@ router.delete('/classes/:id/cancel', auth, async (req, res) => {
     
     await client.query('BEGIN');
 
-    // Find the booking
+    // Find the booking and class timing; check attendance existence
     const bookingResult = await client.query(`
-      SELECT b.id
+      SELECT b.id,
+             c.class_date,
+             c.start_time,
+             EXISTS (
+               SELECT 1 FROM attendance a WHERE a.booking_id = b.id
+             ) AS has_attendance
       FROM bookings b
+      JOIN classes c ON c.id = b.class_id
       WHERE b.user_id = $1 AND b.class_id = $2 AND b.status = 'booked'
     `, [user_id, class_id]);
 
@@ -362,10 +395,38 @@ router.delete('/classes/:id/cancel', auth, async (req, res) => {
       return res.status(404).json({ message: 'Запись на занятие не найдена' });
     }
 
+    const booking = bookingResult.rows[0];
+
+    // Block cancellation if attendance already recorded
+    if (booking.has_attendance) {
+      await client.query('ROLLBACK');
+      return res.status(409).json({ message: 'Нельзя отменить: посещаемость уже отмечена тренером' });
+    }
+
+    // Block cancellation if class in past, or within 2 hours before start (including after start)
+    const lockedResult = await client.query(
+      `SELECT CASE 
+         WHEN $1::date < CURRENT_DATE THEN true
+         WHEN $1::date = CURRENT_DATE AND $2::time <= (CURRENT_TIME + INTERVAL '2 hours') THEN true
+         ELSE false
+       END AS locked`,
+      [booking.class_date, booking.start_time]
+    );
+    if (lockedResult.rows[0].locked) {
+      await client.query('ROLLBACK');
+      return res.status(409).json({ message: 'Нельзя отменить запись за 2 часа до начала или после старта' });
+    }
+
     // Cancel the booking
     await client.query(`
       UPDATE bookings SET status = 'cancelled' WHERE id = $1
     `, [bookingResult.rows[0].id]);
+
+    // Audit log: cancellation
+    await client.query(`
+      INSERT INTO audit_log (actor_id, actor_type, action, table_name, row_id, old_data, new_data, ip)
+      VALUES ($1::uuid, 'user', 'cancel', 'bookings', $2::uuid, json_build_object('status','booked'), json_build_object('status','cancelled'), COALESCE($3::text,'0.0.0.0')::inet)
+    `, [user_id, bookingResult.rows[0].id, req.ip || null]);
 
     await client.query('COMMIT');
     res.status(200).json({ message: 'Запись на занятие отменена' });
@@ -395,15 +456,42 @@ router.delete('/classes/:id/book', auth, async (req, res) => {
     
     await client.query('BEGIN');
 
-    // Check if booking exists
+    // Check if booking exists and load class timing and attendance
     const bookingCheck = await client.query(`
-      SELECT id FROM bookings 
-      WHERE user_id = $1 AND class_id = $2 AND status != 'cancelled'
+      SELECT b.id,
+             c.class_date,
+             c.start_time,
+             EXISTS (
+               SELECT 1 FROM attendance a WHERE a.booking_id = b.id
+             ) AS has_attendance
+      FROM bookings b
+      JOIN classes c ON c.id = b.class_id
+      WHERE b.user_id = $1 AND b.class_id = $2 AND b.status != 'cancelled'
     `, [user_id, class_id]);
     
     if (bookingCheck.rowCount === 0) {
       await client.query('ROLLBACK');
       return res.status(404).json({ message: 'Вы не записаны на это занятие' });
+    }
+
+    // Block cancellation if attendance already recorded
+    if (bookingCheck.rows[0].has_attendance) {
+      await client.query('ROLLBACK');
+      return res.status(409).json({ message: 'Нельзя отменить: посещаемость уже отмечена тренером' });
+    }
+
+    // Block cancellation if class within 2 hours or started
+    const lockedResult2 = await client.query(
+      `SELECT CASE 
+         WHEN $1::date < CURRENT_DATE THEN true
+         WHEN $1::date = CURRENT_DATE AND $2::time <= (CURRENT_TIME + INTERVAL '2 hours') THEN true
+         ELSE false
+       END AS locked`,
+      [bookingCheck.rows[0].class_date, bookingCheck.rows[0].start_time]
+    );
+    if (lockedResult2.rows[0].locked) {
+      await client.query('ROLLBACK');
+      return res.status(409).json({ message: 'Нельзя отменить запись за 2 часа до начала или после старта' });
     }
 
     // Cancel booking
@@ -412,6 +500,12 @@ router.delete('/classes/:id/book', auth, async (req, res) => {
       SET status = 'cancelled' 
       WHERE user_id = $1 AND class_id = $2 AND status != 'cancelled'
     `, [user_id, class_id]);
+
+    // Audit log: cancellation
+    await client.query(`
+      INSERT INTO audit_log (actor_id, actor_type, action, table_name, row_id, old_data, new_data, ip)
+      VALUES ($1::uuid, 'user', 'cancel', 'bookings', $2::uuid, json_build_object('status','booked'), json_build_object('status','cancelled'), COALESCE($3::text,'0.0.0.0')::inet)
+    `, [user_id, bookingCheck.rows[0].id, req.ip || null]);
 
     await client.query('COMMIT');
     res.status(200).json({ message: 'Вы успешно отписались от занятия' });
