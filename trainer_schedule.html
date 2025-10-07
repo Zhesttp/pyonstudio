@@ -502,23 +502,19 @@
                                             <span class="attendee-email">${attendee.email}</span>
                                         </div>
                                         <div class="attendance-controls">
-                                            <button class="attendance-btn attended ${attendee.attendance_status === 'attended' ? 'active' : ''}" 
+                                            <button class="attendance-btn attended ${attendee.attendance_status === 'attended' ? 'active' : ''}"
                                                     data-status="attended" title="Присутствовал">
-                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                                                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                                                 </svg>
+                                                <span class="label">Присутствал</span>
                                             </button>
-                                            <button class="attendance-btn absent ${attendee.attendance_status === 'absent' ? 'active' : ''}" 
+                                            <button class="attendance-btn absent ${attendee.attendance_status === 'absent' ? 'active' : ''}"
                                                     data-status="absent" title="Отсутствовал">
-                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                                                     <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                                                 </svg>
-                                            </button>
-                                            <button class="attendance-btn late ${attendee.attendance_status === 'late' ? 'active' : ''}" 
-                                                    data-status="late" title="Опоздал">
-                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/>
-                                                </svg>
+                                                <span class="label">Отсутствовал</span>
                                             </button>
                                         </div>
                                     </div>

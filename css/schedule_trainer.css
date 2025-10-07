@@ -113,17 +113,18 @@
 }
 
 .attendance-btn {
-    width: 32px;
-    height: 32px;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    background: white;
-    cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
     transition: all 0.2s ease;
-    color: var(--text-light);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 13px;
 }
 
 .attendance-btn:hover {
@@ -517,20 +518,13 @@
     
     .attendance-controls {
         width: 100%;
-        justify-content: center;
+        justify-content: space-between;
         gap: 12px;
     }
     
-    .attendance-btn {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-    }
-    
-    .attendance-btn svg {
-        width: 18px;
-        height: 18px;
-    }
+    .attendance-btn { padding: 12px; font-size: 14px; }
+    .attendance-btn .label { display: inline; }
+    .attendance-btn svg { width: 18px; height: 18px; }
 }
 
 /* Extra small screens */
@@ -648,20 +642,9 @@
         font-size: 11px;
     }
     
-    .attendance-controls {
-        gap: 8px;
-    }
-    
-    .attendance-btn {
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
-    }
-    
-    .attendance-btn svg {
-        width: 16px;
-        height: 16px;
-    }
+    .attendance-controls { gap: 10px; }
+    .attendance-btn { padding: 10px; font-size: 13px; }
+    .attendance-btn svg { width: 16px; height: 16px; }
 }
 /* Touch interactions */
 @media (max-width: 768px) {
