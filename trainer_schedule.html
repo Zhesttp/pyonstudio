@@ -38,104 +38,57 @@
                 <div class="page-header">
                     <h1>Мои занятия</h1>
                     <p class="page-subtitle">Просматривайте и управляйте своими классами</p>
+                    <div class="trainer-info" id="trainer-info">
+                        <span class="trainer-name" id="trainer-name">—</span>
+                        <span class="trainer-role" id="trainer-role">Тренер</span>
+                    </div>
                 </div>
             </header>
 
             <section class="schedule-content">
-                <div class="day-switcher">
-                    <button class="day-tab" data-day="mon">Пн</button>
-                    <button class="day-tab" data-day="tue">Вт</button>
-                    <button class="day-tab" data-day="wed">Ср</button>
-                    <button class="day-tab" data-day="thu">Чт</button>
-                    <button class="day-tab" data-day="fri">Пт</button>
-                    <button class="day-tab" data-day="sat">Сб</button>
-                    <button class="day-tab" data-day="sun">Вс</button>
+                <!-- Desktop calendar view -->
+                <div class="desktop-calendar">
+                    <div class="month-navigation">
+                        <button class="month-nav-btn" id="prev-month">‹</button>
+                        <h2 class="current-month" id="current-month">Сентябрь 2024</h2>
+                        <button class="month-nav-btn" id="next-month">›</button>
+                    </div>
+
+                    <div class="calendar-grid">
+                        <div class="calendar-header">
+                            <div class="day-name">Пн</div>
+                            <div class="day-name">Вт</div>
+                            <div class="day-name">Ср</div>
+                            <div class="day-name">Чт</div>
+                            <div class="day-name">Пт</div>
+                            <div class="day-name">Сб</div>
+                            <div class="day-name">Вс</div>
+                        </div>
+                        <div class="calendar-body" id="calendar-body">
+                            <!-- Calendar days will be generated here -->
+                        </div>
+                    </div>
                 </div>
 
-                <div class="schedule-grid">
-                    <div class="day-column" data-day="mon">
-                        <div class="day-header">
-                            <h3>Понедельник</h3>
-                            <span class="day-date">23 сент</span>
+                <!-- Mobile single day view -->
+                <div class="mobile-day-view">
+                    <div class="mobile-date-selector">
+                        <button class="date-nav-btn" id="prev-day">‹</button>
+                        <div class="selected-date-info">
+                            <input type="date" id="date-picker" class="date-picker">
+                            <div class="date-display" id="date-display">Сегодня</div>
                         </div>
-                        <div class="class-item">
-                            <div class="class-time">09:00 - 10:30</div>
-                            <div class="class-info">
-                                <h4>Утренняя Виньяса</h4>
-                                <p>Студия A</p>
-                                <div class="class-level">Средний</div>
-                            </div>
-                            <button class="btn btn--outline btn--small">Изменить</button>
-                        </div>
-                        <div class="class-item">
-                            <div class="class-time">18:00 - 19:30</div>
-                            <div class="class-info">
-                                <h4>Расслабляющая йога</h4>
-                                <p>Студия B</p>
-                                <div class="class-level level-beginner">Начинающий</div>
-                            </div>
-                            <button class="btn btn--outline btn--small">Изменить</button>
-                        </div>
+                        <button class="date-nav-btn" id="next-day">›</button>
                     </div>
-
-                    <div class="day-column" data-day="tue">
-                        <div class="day-header">
-                            <h3>Вторник</h3>
-                            <span class="day-date">24 сент</span>
-                        </div>
-                        <div class="class-item">
-                            <div class="class-time">10:00 - 11:30</div>
-                            <div class="class-info">
-                                <h4>Пилатес</h4>
-                                <p>Студия A</p>
-                                <div class="class-level">Средний</div>
-                            </div>
-                            <button class="btn btn--outline btn--small">Изменить</button>
-                        </div>
+                    
+                    <div class="mobile-day-classes" id="mobile-day-classes">
+                        <!-- Classes for selected day will be shown here -->
                     </div>
-                    <div class="day-column" data-day="wed">
-                        <div class="day-header">
-                            <h3>Среда</h3>
-                            <span class="day-date">25 сент</span>
-                        </div>
-                        <div class="class-item class-item--empty"><span>Нет занятий</span></div>
-                    </div>
-                    <div class="day-column" data-day="thu">
-                        <div class="day-header">
-                            <h3>Четверг</h3>
-                            <span class="day-date">26 сент</span>
-                        </div>
-                        <div class="class-item class-item--empty"><span>Нет занятий</span></div>
-                    </div>
-                    <div class="day-column" data-day="fri">
-                        <div class="day-header">
-                            <h3>Пятница</h3>
-                            <span class="day-date">27 сент</span>
-                        </div>
-                        <div class="class-item class-item--empty"><span>Нет занятий</span></div>
-                    </div>
-                    <div class="day-column" data-day="sat">
-                        <div class="day-header">
-                            <h3>Суббота</h3>
-                            <span class="day-date">28 сент</span>
-                        </div>
-                        <div class="class-item class-item--empty"><span>Нет занятий</span></div>
-                    </div>
-                    <div class="day-column" data-day="sun">
-                        <div class="day-header">
-                            <h3>Воскресенье</h3>
-                            <span class="day-date">29 сент</span>
-                        </div>
-                        <div class="class-item class-item--empty"><span>Нет занятий</span></div>
-                    </div>
-
-                    <!-- Дни без занятий оставлены пустыми для примера -->
-
                 </div>
             </section>
         </main>
-        <div id="client-modal" class="modal">
-            <div class="modal-content" id="client-modal-body">
+        <div id="class-modal" class="modal">
+            <div class="modal-content" id="class-modal-body">
                 <button class="modal-close" aria-label="Close">&times;</button>
             </div>
         </div>
@@ -149,115 +102,678 @@
             if (!page) return;
 
             const dayMap = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-            const todayKey = dayMap[new Date().getDay()];
-
-            const tabs = page.querySelectorAll('.day-tab');
-            const columns = page.querySelectorAll('.day-column');
-
-            let activeTab = null;
-            let activeColumn = null;
-
-            const setActive = (key) => {
-                if (activeTab) activeTab.classList.remove('active');
-                if (activeColumn) activeColumn.classList.remove('active', 'today');
-
-                activeTab = page.querySelector(`.day-tab[data-day="${key}"]`);
-                activeColumn = page.querySelector(`.day-column[data-day="${key}"]`);
-
-                if (activeTab) activeTab.classList.add('active');
-                if (activeColumn) activeColumn.classList.add('active', 'today');
-            };
-
             const monthsRu = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+            const monthsFull = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 
-            const updateWeekDates = () => {
-                const today = new Date();
-                const monday = new Date(today);
-                const shift = (today.getDay() + 6) % 7; // days since Monday
-                monday.setDate(today.getDate() - shift);
+            let currentDate = new Date();
+            let currentMonth = currentDate.getMonth();
+            let currentYear = currentDate.getFullYear();
+            let selectedDate = new Date(); // For mobile single day view
 
-                const order = dayMap.slice(1).concat(['sun']); // mon..sun
-                order.forEach((key, idx) => {
-                    const d = new Date(monday);
-                    d.setDate(monday.getDate() + idx);
-                    const span = page.querySelector(`.day-column[data-day="${key}"] .day-date`);
-                    if (span) span.textContent = `${d.getDate()} ${monthsRu[d.getMonth()]}`;
-                });
-
-                // refresh active highlight in case week changed
-                const newTodayKey = dayMap[new Date().getDay()];
-                setActive(newTodayKey);
-            };
-
-            const renderSchedule = (data) => {
-                Object.keys(data).forEach(dayKey => {
-                    const column = page.querySelector(`.day-column[data-day="${dayKey}"]`);
-                    if (!column) return;
-                    // remove old class items except header
-                    column.querySelectorAll('.class-item').forEach(i=>i.remove());
-                    const classes = data[dayKey];
-                    if(!classes || classes.length===0){
-                        const empty = document.createElement('div');
-                        empty.className = 'class-item class-item--empty';
-                        empty.innerHTML = '<span>Нет занятий</span>';
-                        column.appendChild(empty);
-                        return;
+            // Update trainer display
+            const updateTrainerDisplay = (data) => {
+                console.log('🔍 updateTrainerDisplay called with:', data);
+                
+                const trainerName = document.getElementById('trainer-name');
+                const trainerRole = document.getElementById('trainer-role');
+                
+                console.log('🔍 Elements found:', { trainerName: !!trainerName, trainerRole: !!trainerRole });
+                
+                if (trainerName && data && data.first_name && data.last_name) {
+                    const fullName = `${data.first_name} ${data.last_name}`;
+                    trainerName.textContent = fullName;
+                    console.log('✅ Set trainer name to:', fullName);
+                } else {
+                    console.log('❌ Cannot set name. Data:', data);
+                    if (trainerName) {
+                        trainerName.textContent = 'Тренер';
+                        console.log('Set fallback name');
                     }
-                    classes.forEach(cls=>{
-                        const item=document.createElement('div');
-                        item.className='class-item';
-                        item.innerHTML=`<div class=\"class-time\">${cls.time}</div><div class=\"class-info\"><h4>${cls.title}</h4><p>${cls.place}</p><div class=\"class-level\">${cls.level||''}</div></div><button class=\"btn btn--outline btn--small details-btn\" data-id=\"${cls.id}\">Подробнее</button>`;
-                        column.appendChild(item);
+                }
+                
+                if (trainerRole) {
+                    trainerRole.textContent = 'Тренер';
+                    console.log('Set trainer role');
+                }
+            };
 
-                        item.querySelector('.details-btn').addEventListener('click',()=>showClients(cls));
+            // Load trainer info
+            const loadTrainerInfo = async () => {
+                try {
+                    console.log('🔍 Loading trainer info...');
+                    
+                    // Try to get trainer info from localStorage first
+                    const storedTrainerInfo = localStorage.getItem('trainerInfo');
+                    console.log('🔍 localStorage data:', storedTrainerInfo);
+                    
+                    if (storedTrainerInfo) {
+                        try {
+                            const data = JSON.parse(storedTrainerInfo);
+                            console.log('🔍 Using cached data:', data);
+                            updateTrainerDisplay(data);
+                            return;
+                        } catch (e) {
+                            console.error('🔍 Error parsing cached data:', e);
+                            localStorage.removeItem('trainerInfo');
+                        }
+                    }
+                    
+                    console.log('🔍 Fetching from API...');
+                    const response = await fetch('/api/me', { credentials: 'include' });
+                    console.log('🔍 API response status:', response.status);
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log('🔍 API data received:', data);
+                        
+                        // Save trainer info to localStorage
+                        localStorage.setItem('trainerInfo', JSON.stringify(data));
+                        console.log('🔍 Data saved to localStorage');
+                        
+                        updateTrainerDisplay(data);
+                    } else {
+                        console.error('🔍 API error:', response.status);
+                        // Set fallback values
+                        updateTrainerDisplay({ first_name: null, last_name: null });
+                    }
+                } catch (error) {
+                    console.error('🔍 Error loading trainer info:', error);
+                    
+                    // Set fallback values on error
+                    updateTrainerDisplay({ first_name: null, last_name: null });
+                }
+            };
+
+            const updateMonthDisplay = () => {
+                document.getElementById('current-month').textContent = `${monthsFull[currentMonth]} ${currentYear}`;
+            };
+
+            const getDaysInMonth = (year, month) => {
+                return new Date(year, month + 1, 0).getDate();
+            };
+
+            const getFirstDayOfMonth = (year, month) => {
+                return new Date(year, month, 1).getDay();
+            };
+
+            const updateCalendar = () => {
+                const firstDay = getFirstDayOfMonth(currentYear, currentMonth);
+                const daysInMonth = getDaysInMonth(currentYear, currentMonth);
+                const today = new Date();
+                
+                // Calculate days from previous month to show
+                const prevMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+                const prevYear = currentMonth === 0 ? currentYear - 1 : currentYear;
+                const daysInPrevMonth = getDaysInMonth(prevYear, prevMonth);
+                
+                // Calculate days from next month to show
+                const nextMonth = currentMonth === 11 ? 0 : currentMonth + 1;
+                const nextYear = currentMonth === 11 ? currentYear + 1 : currentYear;
+                
+                const calendarBody = document.getElementById('calendar-body');
+                calendarBody.innerHTML = '';
+                
+                // Create calendar grid (6 weeks x 7 days = 42 cells)
+                for (let week = 0; week < 6; week++) {
+                    const weekRow = document.createElement('div');
+                    weekRow.className = 'calendar-week';
+                    
+                    for (let day = 0; day < 7; day++) {
+                        const cellIndex = week * 7 + day;
+                        const dayCell = document.createElement('div');
+                        dayCell.className = 'calendar-day';
+                        
+                        let dayNumber, isCurrentMonth, cellDate;
+                        
+                        if (cellIndex < firstDay) {
+                            // Previous month days
+                            dayNumber = daysInPrevMonth - firstDay + cellIndex + 1;
+                            isCurrentMonth = false;
+                            cellDate = new Date(prevYear, prevMonth, dayNumber);
+                        } else if (cellIndex < firstDay + daysInMonth) {
+                            // Current month days
+                            dayNumber = cellIndex - firstDay + 1;
+                            isCurrentMonth = true;
+                            cellDate = new Date(currentYear, currentMonth, dayNumber);
+                        } else {
+                            // Next month days
+                            dayNumber = cellIndex - firstDay - daysInMonth + 1;
+                            isCurrentMonth = false;
+                            cellDate = new Date(nextYear, nextMonth, dayNumber);
+                        }
+                        
+                        dayCell.innerHTML = `
+                            <div class="day-number ${!isCurrentMonth ? 'other-month' : ''}">${dayNumber}</div>
+                            <div class="day-classes"></div>
+                        `;
+                        
+                        // Highlight today
+                        if (isCurrentMonth && 
+                            cellDate.getDate() === today.getDate() && 
+                            cellDate.getMonth() === today.getMonth() && 
+                            cellDate.getFullYear() === today.getFullYear()) {
+                            dayCell.classList.add('today');
+                        }
+                        
+                        // Store date info for class rendering - use local date format to avoid timezone issues
+                        const year = cellDate.getFullYear();
+                        const month = String(cellDate.getMonth() + 1).padStart(2, '0');
+                        const dayStr = String(cellDate.getDate()).padStart(2, '0');
+                        dayCell.dataset.date = `${year}-${month}-${dayStr}`;
+                        dayCell.dataset.isCurrentMonth = isCurrentMonth;
+                        
+                        weekRow.appendChild(dayCell);
+                    }
+                    
+                    calendarBody.appendChild(weekRow);
+                }
+            };
+
+            const loadTrainerClasses = async () => {
+                try {
+                    const startDate = new Date(currentYear, currentMonth, 1).toISOString().split('T')[0];
+                    const endDate = new Date(currentYear, currentMonth + 1, 0).toISOString().split('T')[0];
+                    
+                    const response = await fetch(`/api/trainer/classes?start_date=${startDate}&end_date=${endDate}`, {
+                        credentials: 'include'
                     });
+                    
+                    if (response.ok) {
+                        const classes = await response.json();
+                        console.log('API Response:', classes);
+                        console.log('Start date:', startDate, 'End date:', endDate);
+                        renderSchedule(classes);
+                    } else {
+                        console.error('API Error:', response.status, response.statusText);
+                        const errorText = await response.text();
+                        console.error('Error details:', errorText);
+                    }
+                } catch (error) {
+                    console.error('Error loading classes:', error);
+                }
+            };
+
+            // Mobile single day functions
+            const formatDateForDisplay = (date) => {
+                const today = new Date();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(today.getDate() + 1);
+                const yesterday = new Date(today);
+                yesterday.setDate(today.getDate() - 1);
+                
+                if (date.toDateString() === today.toDateString()) {
+                    return 'Сегодня';
+                } else if (date.toDateString() === tomorrow.toDateString()) {
+                    return 'Завтра';
+                } else if (date.toDateString() === yesterday.toDateString()) {
+                    return 'Вчера';
+                } else {
+                    const days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+                    const dayName = days[date.getDay()];
+                    const day = date.getDate();
+                    const month = monthsRu[date.getMonth()];
+                    return `${dayName}, ${day} ${month}`;
+                }
+            };
+
+            const updateMobileDateDisplay = () => {
+                const datePicker = document.getElementById('date-picker');
+                const dateDisplay = document.getElementById('date-display');
+                
+                if (datePicker && dateDisplay) {
+                    const dateString = selectedDate.toISOString().split('T')[0];
+                    datePicker.value = dateString;
+                    dateDisplay.textContent = formatDateForDisplay(selectedDate);
+                }
+            };
+
+            const loadMobileDayClasses = async () => {
+                try {
+                    const dateString = selectedDate.toISOString().split('T')[0];
+                    const response = await fetch(`/api/trainer/classes?start_date=${dateString}&end_date=${dateString}`, {
+                        credentials: 'include'
+                    });
+                    
+                    if (response.ok) {
+                        const classes = await response.json();
+                        renderMobileDayClasses(classes);
+                    } else {
+                        console.error('API Error:', response.status, response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error loading mobile day classes:', error);
+                }
+            };
+
+            const renderMobileDayClasses = (classes) => {
+                const container = document.getElementById('mobile-day-classes');
+                if (!container) return;
+
+                if (!classes || classes.length === 0) {
+                    container.innerHTML = `
+                        <div class="no-classes-message">
+                            <p>На этот день занятий не запланировано</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = '';
+                classes.forEach(cls => {
+                    const classItem = document.createElement('div');
+                    classItem.className = 'mobile-class-item';
+                    classItem.dataset.classId = cls.id;
+                    
+                    const timeRange = `${cls.start_time.slice(0,5)} - ${cls.end_time.slice(0,5)}`;
+                    let cleanTitle = cls.title;
+                    if (cls.type_name && cls.title.includes(cls.type_name)) {
+                        cleanTitle = cls.title.replace(cls.type_name, '').trim();
+                    }
+                    
+                    classItem.innerHTML = `
+                        <div class="mobile-class-time">${timeRange}</div>
+                        <div class="mobile-class-title">${cleanTitle}</div>
+                        <div class="mobile-class-info">
+                            <div class="mobile-class-type">${cls.type_name || 'Общее'}</div>
+                            <div class="mobile-class-count">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H17c-.8 0-1.54.37-2.01.99L14 10.5l-1-1.5c-.47-.62-1.21-.99-2.01-.99H9.46c-.8 0-1.54.37-2.01.99L5 10.5l-1-1.5C3.53 8.38 2.79 8 2 8H.5L3 15.5V22h2v-6h2.5l2.5-7.5h2l2.5 7.5H15v6h2v-6h2.5l2.5-7.5h2L24 15.5V22h-4z"/>
+                                </svg>
+                                ${cls.attendees_count || 0}
+                            </div>
+                        </div>
+                    `;
+                    
+                    classItem.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        showClassDetails(cls.id);
+                    });
+                    
+                    container.appendChild(classItem);
                 });
             };
 
-            const modal = document.getElementById('client-modal');
-            const modalBody = document.getElementById('client-modal-body');
-            modal.querySelector('.modal-close').addEventListener('click',()=>modal.style.display='none');
-            modal.addEventListener('click',e=>{if(e.target===modal) modal.style.display='none';});
-
-            const showClients = (cls) => {
-                modalBody.innerHTML = `<h2>${cls.title}</h2>`;
-                const bookings=localStorage.getItem(`booking_${cls.id}`)==='1'?[{id:'me',name:'Вы (записан)',photo:'https://i.pravatar.cc/100?u=you',total:'—'}]:[];
-                const clientList=[...cls.clients,...bookings];
-                const list=document.createElement('div');
-                list.style.display='flex';list.style.flexDirection='column';list.style.gap='16px';
-                clientList.forEach(c=>{
-                    const row=document.createElement('div');
-                    row.style.display='flex';row.style.alignItems='center';row.style.cursor='pointer';
-                    row.innerHTML=`<img src=\"${c.photo}\" alt=\"${c.name}\" style=\"width:40px;height:40px;border-radius:50%;margin-right:12px;\"><span>${c.name}</span>`;
-                    row.addEventListener('click',()=>{
-                        modalBody.innerHTML=`<h2>${c.name}</h2><p>Всего занятий: ${c.total}</p><button class=\"btn btn--outline modal-back\">Назад</button>`;
-                        modalBody.querySelector('.modal-back').addEventListener('click',()=>showClients(cls));
-                    });
-                    list.appendChild(row);
+            const renderSchedule = (classes) => {
+                console.log('renderSchedule called with:', classes);
+                // Group classes by date
+                const classesByDate = {};
+                classes.forEach(cls => {
+                    // Convert ISO date string to YYYY-MM-DD format
+                    let dateKey;
+                    if (cls.class_date.includes('T')) {
+                        // If it's an ISO string, extract just the date part
+                        dateKey = cls.class_date.split('T')[0];
+                    } else {
+                        // If it's already in YYYY-MM-DD format
+                        dateKey = cls.class_date;
+                    }
+                    console.log(`Grouping class "${cls.title}" for date: ${dateKey} (original: ${cls.class_date})`);
+                    if (!classesByDate[dateKey]) {
+                        classesByDate[dateKey] = [];
+                    }
+                    classesByDate[dateKey].push(cls);
                 });
-                modalBody.appendChild(list);
-                modal.style.display='block';
+                console.log('Classes grouped by date:', classesByDate);
+
+                // Update calendar days
+                page.querySelectorAll('.calendar-day').forEach(dayCell => {
+                    const dayClasses = dayCell.querySelector('.day-classes');
+                    const dateKey = dayCell.dataset.date;
+                    
+                    console.log(`Checking calendar date: ${dateKey}, has classes: ${!!classesByDate[dateKey]}`);
+                    if (classesByDate[dateKey]) {
+                        console.log(`Found classes for ${dateKey}:`, classesByDate[dateKey]);
+                    }
+                    
+                    if (classesByDate[dateKey]) {
+                        const classes = classesByDate[dateKey];
+                        dayClasses.innerHTML = '';
+                        
+                        classes.forEach(cls => {
+                            const classItem = document.createElement('div');
+                            classItem.className = 'calendar-class';
+                            classItem.dataset.classId = cls.id;
+                            const timeRange = `${cls.start_time.slice(0,5)} - ${cls.end_time.slice(0,5)}`;
+                            // Убираем тип занятия из заголовка, если он там есть
+                            let cleanTitle = cls.title;
+                            if (cls.type_name && cls.title.includes(cls.type_name)) {
+                                cleanTitle = cls.title.replace(cls.type_name, '').trim();
+                            }
+                            
+                            classItem.innerHTML = `
+                                <div class="class-time">${timeRange}</div>
+                                <div class="class-title">${cleanTitle}</div>
+                                <div class="class-info-row">
+                                    <div class="class-type">${cls.type_name || 'Общее'}</div>
+                                    <div class="class-count">
+                                        <svg class="people-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H17c-.8 0-1.54.37-2.01.99L14 10.5l-1-1.5c-.47-.62-1.21-.99-2.01-.99H9.46c-.8 0-1.54.37-2.01.99L5 10.5l-1-1.5C3.53 8.38 2.79 8 2 8H.5L3 15.5V22h2v-6h2.5l2.5-7.5h2l2.5 7.5H15v6h2v-6h2.5l2.5-7.5h2L24 15.5V22h-4z"/>
+                                        </svg>
+                                        ${cls.attendees_count || 0}
+                                    </div>
+                                </div>
+                            `;
+                            dayClasses.appendChild(classItem);
+
+                            classItem.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                showClassDetails(cls.id);
+                            });
+                        });
+                    }
+                });
             };
 
-            updateWeekDates();
+            const showClassDetails = async (classId) => {
+                try {
+                    const response = await fetch(`/api/trainer/classes/${classId}/attendees`, {
+                        credentials: 'include'
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        const modal = document.getElementById('class-modal');
+                        const modalBody = document.getElementById('class-modal-body');
+                        
+                        // Format date properly
+                        let formattedDate;
+                        if (data.class.class_date.includes('T')) {
+                            formattedDate = new Date(data.class.class_date).toLocaleDateString('ru-RU');
+                        } else {
+                            formattedDate = new Date(data.class.class_date + 'T00:00:00').toLocaleDateString('ru-RU');
+                        }
+                        
+                        modalBody.innerHTML = `
+                            <h2>${data.class.title}</h2>
+                            <div class="class-details">
+                                <p><strong>Дата:</strong> ${formattedDate}</p>
+                                <p><strong>Время:</strong> ${data.class.start_time.slice(0,5)} - ${data.class.end_time.slice(0,5)}</p>
+                                <p><strong>Место:</strong> ${data.class.place || 'Не указано'}</p>
+                                <p><strong>Тип:</strong> ${data.class.type_name || 'Не указан'}</p>
+                                <p><strong>Описание:</strong> ${data.class.description || 'Нет описания'}</p>
+                            </div>
+                            <h3>Записанные участники (${data.attendees.length}):</h3>
+                            <div class="attendees-list">
+                                ${data.attendees.map(attendee => `
+                                    <div class="attendee-item" data-booking-id="${attendee.booking_id}">
+                                        <div class="attendee-info">
+                                            <span class="attendee-name">${attendee.first_name} ${attendee.last_name}</span>
+                                            <span class="attendee-email">${attendee.email}</span>
+                                        </div>
+                                        <div class="attendance-controls">
+                                            <button class="attendance-btn attended ${attendee.attendance_status === 'attended' ? 'active' : ''}" 
+                                                    data-status="attended" title="Присутствовал">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                                </svg>
+                                            </button>
+                                            <button class="attendance-btn absent ${attendee.attendance_status === 'absent' ? 'active' : ''}" 
+                                                    data-status="absent" title="Отсутствовал">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                                                </svg>
+                                            </button>
+                                            <button class="attendance-btn late ${attendee.attendance_status === 'late' ? 'active' : ''}" 
+                                                    data-status="late" title="Опоздал">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                        
+                        modal.style.display = 'block';
+                        // Add animation class for mobile
+                        setTimeout(() => {
+                            modal.classList.add('show');
+                        }, 10);
+                        
+                        // Add event listeners for attendance buttons
+                        modal.querySelectorAll('.attendance-btn').forEach(btn => {
+                            btn.addEventListener('click', async (e) => {
+                                e.preventDefault();
+                                const status = btn.dataset.status;
+                                const attendeeItem = btn.closest('.attendee-item');
+                                const bookingId = attendeeItem.dataset.bookingId;
+                                
+                                try {
+                                    // Get CSRF token from cookies
+                                    const csrfToken = document.cookie.split('; ').find(c => c.startsWith('XSRF-TOKEN='))?.split('=')[1];
+                                    
+                                    const response = await fetch(`/api/trainer/classes/${classId}/attendance/${bookingId}`, {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-XSRF-TOKEN': csrfToken || '',
+                                            'X-Requested-With': 'XMLHttpRequest'
+                                        },
+                                        credentials: 'include',
+                                        body: JSON.stringify({ status })
+                                    });
+                                    
+                                    if (response.ok) {
+                                        // Update UI - remove active class from all buttons in this attendee item
+                                        attendeeItem.querySelectorAll('.attendance-btn').forEach(b => b.classList.remove('active'));
+                                        // Add active class to clicked button
+                                        btn.classList.add('active');
+                                        
+                                        console.log('Attendance marked successfully');
+                                    } else {
+                                        console.error('Error marking attendance:', response.status);
+                                    }
+                                } catch (error) {
+                                    console.error('Error marking attendance:', error);
+                                }
+                            });
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error loading class details:', error);
+                }
+            };
 
-            // set timer to update just after midnight
-            const now = new Date();
-            const msUntilMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 5) - now;
-            setTimeout(() => {
-                updateWeekDates();
-                setInterval(updateWeekDates, 24 * 60 * 60 * 1000); // every 24h
-            }, msUntilMidnight);
+            // Navigation functions
+            const goToPreviousMonth = () => {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                updateMonthDisplay();
+                updateCalendar();
+                loadTrainerClasses();
+            };
 
-            page.querySelector('.day-switcher').addEventListener('click', (e) => {
-                if (e.target.classList.contains('day-tab')) {
-                    setActive(e.target.dataset.day);
+            const goToNextMonth = () => {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                updateMonthDisplay();
+                updateCalendar();
+                loadTrainerClasses();
+            };
+
+            // Desktop event listeners
+            document.getElementById('prev-month').addEventListener('click', goToPreviousMonth);
+            document.getElementById('next-month').addEventListener('click', goToNextMonth);
+
+            // Mobile event listeners
+            const prevDayBtn = document.getElementById('prev-day');
+            const nextDayBtn = document.getElementById('next-day');
+            const datePicker = document.getElementById('date-picker');
+
+            if (prevDayBtn) {
+                prevDayBtn.addEventListener('click', () => {
+                    selectedDate.setDate(selectedDate.getDate() - 1);
+                    updateMobileDateDisplay();
+                    loadMobileDayClasses();
+                });
+            }
+
+            if (nextDayBtn) {
+                nextDayBtn.addEventListener('click', () => {
+                    selectedDate.setDate(selectedDate.getDate() + 1);
+                    updateMobileDateDisplay();
+                    loadMobileDayClasses();
+                });
+            }
+
+            if (datePicker) {
+                datePicker.addEventListener('change', (e) => {
+                    selectedDate = new Date(e.target.value);
+                    updateMobileDateDisplay();
+                    loadMobileDayClasses();
+                });
+            }
+
+            // Touch/swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const minSwipeDistance = 50;
+
+            const calendarGrid = document.querySelector('.calendar-grid');
+            if (calendarGrid) {
+                calendarGrid.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+
+                calendarGrid.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                });
+            }
+
+            const handleSwipe = () => {
+                const swipeDistance = touchEndX - touchStartX;
+                
+                if (Math.abs(swipeDistance) > minSwipeDistance) {
+                    // Check if we're on mobile (mobile day view is visible)
+                    const mobileDayView = document.querySelector('.mobile-day-view');
+                    if (mobileDayView && window.getComputedStyle(mobileDayView).display !== 'none') {
+                        // Mobile swipe - navigate days
+                        if (swipeDistance > 0) {
+                            // Swipe right - go to previous day
+                            selectedDate.setDate(selectedDate.getDate() - 1);
+                            updateMobileDateDisplay();
+                            loadMobileDayClasses();
+                        } else {
+                            // Swipe left - go to next day
+                            selectedDate.setDate(selectedDate.getDate() + 1);
+                            updateMobileDateDisplay();
+                            loadMobileDayClasses();
+                        }
+                    } else {
+                        // Desktop swipe - navigate months
+                        if (swipeDistance > 0) {
+                            goToPreviousMonth();
+                        } else {
+                            goToNextMonth();
+                        }
+                    }
+                }
+            };
+
+            // Keyboard navigation support
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    goToPreviousMonth();
+                } else if (e.key === 'ArrowRight') {
+                    goToNextMonth();
                 }
             });
 
-            fetch('data/trainer_schedule.json')
-                .then(r=>r.json())
-                .then(renderSchedule);
+            const modal = document.getElementById('class-modal');
+            
+            const closeModal = () => {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            };
+            
+            modal.querySelector('.modal-close').addEventListener('click', closeModal);
+            modal.addEventListener('click', e => {
+                if (e.target === modal) closeModal();
+            });
+
+            // Mobile modal improvements
+            let modalTouchStartY = 0;
+            let modalTouchEndY = 0;
+            const modalSwipeThreshold = 100;
+
+            modal.addEventListener('touchstart', (e) => {
+                modalTouchStartY = e.changedTouches[0].screenY;
+            });
+
+            modal.addEventListener('touchend', (e) => {
+                modalTouchEndY = e.changedTouches[0].screenY;
+                const swipeDistance = modalTouchEndY - modalTouchStartY;
+                
+                // Swipe down to close modal
+                if (swipeDistance > modalSwipeThreshold) {
+                    closeModal();
+                }
+            });
+
+            // Prevent body scroll when modal is open
+            const originalBodyOverflow = document.body.style.overflow;
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                        const modal = document.getElementById('class-modal');
+                        if (modal.style.display === 'block') {
+                            document.body.style.overflow = 'hidden';
+                        } else {
+                            document.body.style.overflow = originalBodyOverflow;
+                        }
+                    }
+                });
+            });
+            
+            observer.observe(document.getElementById('class-modal'), {
+                attributes: true,
+                attributeFilter: ['style']
+            });
+
+            // Mobile sidebar toggle
+            const burgerMenu = document.querySelector('.burger-menu-dashboard');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (burgerMenu && sidebar) {
+                burgerMenu.addEventListener('click', () => {
+                    sidebar.classList.toggle('open');
+                    burgerMenu.classList.toggle('is-active');
+                });
+                
+                // Close sidebar when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!sidebar.contains(e.target) && !burgerMenu.contains(e.target)) {
+                        sidebar.classList.remove('open');
+                        burgerMenu.classList.remove('is-active');
+                    }
+                });
+            }
+
+            // Clear localStorage for testing
+            localStorage.removeItem('trainerInfo');
+            console.log('🔍 Cleared localStorage for testing');
+            
+            // Initialize - load trainer info first for immediate display
+            loadTrainerInfo();
+            
+            // Initialize other components
+            updateMonthDisplay();
+            updateCalendar();
+            loadTrainerClasses();
+            
+            // Initialize mobile view
+            updateMobileDateDisplay();
+            loadMobileDayClasses();
         });
     </script>
 </body>

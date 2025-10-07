@@ -31,3 +31,35 @@ export const adminOnly = (req, res, next) => {
     return handleUnauthorized();
   }
 };
+
+export const trainerOnly = (req, res, next) => {
+  const token = req.cookies.token;
+  
+  const handleUnauthorized = () => {
+    // For API requests - always JSON error
+    if (req.originalUrl.startsWith('/api/')) {
+      return res.status(401).json({ message: 'Требуется авторизация тренера' });
+    }
+    // For pages - redirect to login
+    return res.redirect('/login');
+  };
+
+  if (!token) {
+    return handleUnauthorized();
+  }
+  
+  try {
+    const data = jwt.verify(token, process.env.JWT_SECRET);
+    if (data.role !== 'trainer') {
+      if (req.originalUrl.startsWith('/api/')) {
+        return res.status(403).json({ message: 'Доступ запрещен' });
+      }
+      return res.redirect('/login');
+    }
+    req.user = data;
+    next();
+  } catch (error) {
+    console.error('Trainer token verification failed:', error.message);
+    return handleUnauthorized();
+  }
+};

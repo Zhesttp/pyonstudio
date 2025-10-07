@@ -11,6 +11,27 @@ router.get('/me', async (req, res, next) => {
     try{
       const data=jwt.verify(req.cookies.admin_token,process.env.JWT_SECRET);
       if(data.role === 'admin') {
+        // Get admin details from database
+        const client = await pool.connect();
+        try {
+          const adminResult = await client.query('SELECT name, email FROM admins WHERE id = $1', [data.id]);
+          if (adminResult.rowCount > 0) {
+            const admin = adminResult.rows[0];
+            // Split name into first and last name
+            const nameParts = admin.name.split(' ');
+            const firstName = nameParts[0] || '';
+            const lastName = nameParts.slice(1).join(' ') || '';
+            return res.json({
+              role: 'admin',
+              first_name: firstName,
+              last_name: lastName,
+              email: admin.email,
+              id: data.id
+            });
+          }
+        } finally {
+          client.release();
+        }
         return res.json({
           role: 'admin',
           email: data.email || 'admin',
@@ -22,28 +43,49 @@ router.get('/me', async (req, res, next) => {
     }
   }
   
-  // Check user token
+  // Check user/trainer token if no admin token
   if(req.cookies?.token) {
     try{
       const data=jwt.verify(req.cookies.token,process.env.JWT_SECRET);
-      if(data.role === 'user' || !data.role) { // backwards compatibility
-        // Continue to user data fetching
+      if(data.role === 'user' || data.role === 'trainer' || !data.role) { // backwards compatibility
+        // Continue to user/trainer data fetching
         req.user = data;
         next();
         return;
       }
     }catch(error){
-      console.error('User token verification failed:', error.message);
+      console.error('User/trainer token verification failed:', error.message);
     }
   }
   
   // No valid tokens found
   return res.status(401).json({ message: 'Требуется авторизация' });
-},async (req,res)=>{
+});
+
+// This route handler is called after the first middleware
+router.get('/me', async (req,res)=>{
   try {
     const client = await pool.connect();
+    
+    // Handle trainer profile
+    if (req.user.role === 'trainer') {
+      const q = `
+        SELECT first_name, last_name, email, birth_date, photo_url, bio
+        FROM trainers
+        WHERE id = $1;
+      `;
+      const result = await client.query(q, [req.user.id]);
+      client.release();
+      
+      if (!result.rowCount) return res.sendStatus(404);
+      
+      return res.json(result.rows[0]);
+    }
+    
+    // Handle user profile (existing logic)
     const q = `
         SELECT u.first_name, u.last_name, u.email, u.phone, u.birth_date, u.level,
+               u.visits_count, u.minutes_practice,
                p.title AS plan_title,
                p.description AS plan_description,
                p.price AS plan_price,
@@ -53,8 +95,9 @@ router.get('/me', async (req, res, next) => {
                   SELECT COUNT(*) 
                   FROM bookings b
                   JOIN classes c ON b.class_id = c.id
+                  JOIN attendance a ON b.id = a.booking_id
                   WHERE b.user_id = u.id 
-                    AND b.status = 'attended' 
+                    AND a.status = 'attended' 
                     AND c.class_date >= us.start_date 
                     AND c.class_date <= us.end_date
                ) as attended_classes,
@@ -128,3 +171,35 @@ router.put('/me', auth, async (req, res) => {
 });
 
 export default router;
+
+// === DASHBOARD: Upcoming booked classes for current user ===
+router.get('/me/upcoming-classes', auth, async (req, res) => {
+  let client;
+  try {
+    client = await pool.connect();
+    const q = `
+      SELECT c.id,
+             c.title,
+             c.class_date,
+             c.start_time,
+             c.end_time,
+             c.place,
+             t.first_name || ' ' || t.last_name AS trainer_name
+      FROM bookings b
+      JOIN classes c ON c.id = b.class_id
+      LEFT JOIN trainers t ON c.trainer_id = t.id
+      WHERE b.user_id = $1
+        AND b.status = 'booked'
+        AND (c.class_date > CURRENT_DATE OR (c.class_date = CURRENT_DATE AND c.start_time >= CURRENT_TIME))
+      ORDER BY c.class_date ASC, c.start_time ASC
+      LIMIT 5
+    `;
+    const { rows } = await client.query(q, [req.user.id]);
+    res.json(rows);
+  } catch (e) {
+    console.error('Error fetching upcoming classes:', e);
+    res.status(500).json({ message: 'Ошибка загрузки ближайших занятий' });
+  } finally {
+    if (client) client.release();
+  }
+});

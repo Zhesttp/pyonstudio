@@ -132,6 +132,7 @@ router.get('/classes', auth, async (req, res) => {
     client = await pool.connect();
     const q = `
       SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place,
+             c.type_id,
              t.first_name || ' ' || t.last_name AS trainer_name,
              ct.name AS type_name,
              COUNT(b.id) AS bookings_count,
@@ -142,7 +143,7 @@ router.get('/classes', auth, async (req, res) => {
       LEFT JOIN bookings b ON c.id = b.class_id AND b.status != 'cancelled'
       LEFT JOIN bookings ub ON c.id = ub.class_id AND ub.user_id = $1 AND ub.status != 'cancelled'
       WHERE c.class_date >= CURRENT_DATE
-      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, t.first_name, t.last_name, ct.name, ub.id
+      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, c.type_id, t.first_name, t.last_name, ct.name, ub.id
       ORDER BY c.class_date, c.start_time
     `;
     const { rows } = await client.query(q, [req.user.id]);
@@ -150,6 +151,122 @@ router.get('/classes', auth, async (req, res) => {
   } catch (error) {
     console.error('Error fetching classes for user:', error);
     res.status(500).json({ message: 'Ошибка загрузки расписания' });
+  } finally {
+    if (client) client.release();
+  }
+});
+
+// GET /api/schedule/week - расписание на текущую неделю (публичное)
+router.get('/schedule/week', async (req, res) => {
+  let client;
+  try {
+    client = await pool.connect();
+    
+    // Получаем начало и конец текущей недели (понедельник - воскресенье)
+    const today = new Date();
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - ((today.getDay() + 6) % 7)); // Понедельник
+    const sunday = new Date(monday);
+    sunday.setDate(monday.getDate() + 6); // Воскресенье
+    
+    // Расширяем диапазон на 7 дней вперед, чтобы включить занятия на следующей неделе
+    const endDate = new Date(sunday);
+    endDate.setDate(sunday.getDate() + 7);
+    
+    
+    const q = `
+      SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place,
+             c.type_id,
+             t.first_name || ' ' || t.last_name AS trainer_name,
+             ct.name AS type_name,
+             COUNT(b.id) AS bookings_count,
+             false AS user_booked
+      FROM classes c
+      LEFT JOIN trainers t ON c.trainer_id = t.id
+      LEFT JOIN class_types ct ON c.type_id = ct.id
+      LEFT JOIN bookings b ON c.id = b.class_id AND b.status != 'cancelled'
+      WHERE c.class_date >= $1 AND c.class_date <= $2
+      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, c.type_id, t.first_name, t.last_name, ct.name
+      ORDER BY c.class_date, c.start_time
+    `;
+    const { rows } = await client.query(q, [monday.toISOString().split('T')[0], endDate.toISOString().split('T')[0]]);
+    res.json(rows);
+  } catch (error) {
+    console.error('Error fetching weekly schedule:', error);
+    res.status(500).json({ message: 'Ошибка загрузки расписания на неделю' });
+  } finally {
+    if (client) client.release();
+  }
+});
+
+// GET /api/schedule/stats - статистика для расписания
+router.get('/schedule/stats', auth, async (req, res) => {
+  let client;
+  try {
+    client = await pool.connect();
+    
+    // Получаем начало и конец текущей недели
+    const today = new Date();
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - ((today.getDay() + 6) % 7));
+    const sunday = new Date(monday);
+    sunday.setDate(monday.getDate() + 6);
+    
+    // Подсчитываем количество занятий на неделе
+    const classesCount = await client.query(`
+      SELECT COUNT(*) as count
+      FROM classes c
+      WHERE c.class_date >= $1 AND c.class_date <= $2
+    `, [monday.toISOString().split('T')[0], sunday.toISOString().split('T')[0]]);
+    
+    // Подсчитываем количество уникальных тренеров на неделе
+    const trainersCount = await client.query(`
+      SELECT COUNT(DISTINCT c.trainer_id) as count
+      FROM classes c
+      WHERE c.class_date >= $1 AND c.class_date <= $2 AND c.trainer_id IS NOT NULL
+    `, [monday.toISOString().split('T')[0], sunday.toISOString().split('T')[0]]);
+    
+    res.json({
+      classes_count: parseInt(classesCount.rows[0].count),
+      trainers_count: parseInt(trainersCount.rows[0].count)
+    });
+  } catch (error) {
+    console.error('Error fetching schedule stats:', error);
+    res.status(500).json({ message: 'Ошибка загрузки статистики расписания' });
+  } finally {
+    if (client) client.release();
+  }
+});
+
+// GET /api/schedule/types - типы занятий для фильтрации (публичное)
+router.get('/schedule/types', async (req, res) => {
+  let client;
+  try {
+    client = await pool.connect();
+    
+    // Получаем типы занятий, которые есть в расписании на текущую неделю
+    const today = new Date();
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - ((today.getDay() + 6) % 7));
+    const sunday = new Date(monday);
+    sunday.setDate(monday.getDate() + 6);
+    
+    // Расширяем диапазон на 7 дней вперед, чтобы включить занятия на следующей неделе
+    const endDate = new Date(sunday);
+    endDate.setDate(sunday.getDate() + 7);
+    
+    const typesResult = await client.query(`
+      SELECT DISTINCT ct.id, ct.name, ct.description
+      FROM class_types ct
+      INNER JOIN classes c ON ct.id = c.type_id
+      WHERE c.class_date >= $1 AND c.class_date <= $2
+      ORDER BY ct.name
+    `, [monday.toISOString().split('T')[0], endDate.toISOString().split('T')[0]]);
+    
+    res.json(typesResult.rows);
+  } catch (error) {
+    console.error('Error fetching schedule types:', error);
+    res.status(500).json({ message: 'Ошибка загрузки типов занятий' });
   } finally {
     if (client) client.release();
   }
@@ -257,6 +374,57 @@ router.delete('/classes/:id/cancel', auth, async (req, res) => {
     if (client) await client.query('ROLLBACK');
     console.error('Error cancelling booking:', error);
     res.status(500).json({ message: 'Ошибка отмены записи' });
+  } finally {
+    if (client) client.release();
+  }
+});
+
+// DELETE /api/classes/:id/book - отписаться от занятия (альтернативный путь)
+router.delete('/classes/:id/book', auth, async (req, res) => {
+  const { id: class_id } = req.params;
+  const user_id = req.user.id;
+
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  if (!uuidRegex.test(class_id)) {
+    return res.status(400).json({ message: 'Некорректный ID занятия' });
+  }
+
+  let client;
+  try {
+    client = await pool.connect();
+    
+    await client.query('BEGIN');
+
+    // Check if booking exists
+    const bookingCheck = await client.query(`
+      SELECT id FROM bookings 
+      WHERE user_id = $1 AND class_id = $2 AND status != 'cancelled'
+    `, [user_id, class_id]);
+    
+    if (bookingCheck.rowCount === 0) {
+      await client.query('ROLLBACK');
+      return res.status(404).json({ message: 'Вы не записаны на это занятие' });
+    }
+
+    // Cancel booking
+    await client.query(`
+      UPDATE bookings 
+      SET status = 'cancelled' 
+      WHERE user_id = $1 AND class_id = $2 AND status != 'cancelled'
+    `, [user_id, class_id]);
+
+    await client.query('COMMIT');
+    res.status(200).json({ message: 'Вы успешно отписались от занятия' });
+  } catch (error) {
+    console.error('Error cancelling booking:', error);
+    if (client) {
+      try {
+        await client.query('ROLLBACK');
+      } catch (rollbackError) {
+        console.error('Error during rollback:', rollbackError);
+      }
+    }
+    res.status(500).json({ message: 'Ошибка отписки от занятия' });
   } finally {
     if (client) client.release();
   }

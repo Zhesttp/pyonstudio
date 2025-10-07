@@ -1499,3 +1499,527 @@ Server started on 3000
 Photo uploaded successfully: /trainers/trainer-1759451053280-836665207.jpg
 Deleted old photo: /Users/zhest/Documents/work/konstantin/trainers/trainer-1759451053280-836665207.jpg
 Photo removed for trainer 7b70dde1-ae9c-475c-be62-970662642c45
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Error during photo cleanup: error: permission denied for table trainers
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async cleanupOrphanedPhotos (file:///Users/zhest/Documents/work/konstantin/server/app.js:34:22)
+    at async Server.<anonymous> (file:///Users/zhest/Documents/work/konstantin/server/app.js:148:3) {
+  length: 96,
+  severity: 'ERROR',
+  code: '42501',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'aclchk.c',
+  line: '3454',
+  routine: 'aclcheck_error'
+}
+me error error: permission denied for table users
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/profile.js:82:64 {
+  length: 93,
+  severity: 'ERROR',
+  code: '42501',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'aclchk.c',
+  line: '3454',
+  routine: 'aclcheck_error'
+}
+Login error: error: permission denied for table admins
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/auth.js:97:29 {
+  length: 94,
+  severity: 'ERROR',
+  code: '42501',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'aclchk.c',
+  line: '3454',
+  routine: 'aclcheck_error'
+}
+Login error: error: permission denied for table admins
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/auth.js:97:29 {
+  length: 94,
+  severity: 'ERROR',
+  code: '42501',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'aclchk.c',
+  line: '3454',
+  routine: 'aclcheck_error'
+}
+Login error: error: permission denied for table admins
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/auth.js:97:29 {
+  length: 94,
+  severity: 'ERROR',
+  code: '42501',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'aclchk.c',
+  line: '3454',
+  routine: 'aclcheck_error'
+}
+Login error: error: permission denied for table admins
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/auth.js:97:29 {
+  length: 94,
+  severity: 'ERROR',
+  code: '42501',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'aclchk.c',
+  line: '3454',
+  routine: 'aclcheck_error'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Deleted orphaned photo: trainer-1759760915198-851581764.jpg
+Cleaned up 1 orphaned photos
+Photo uploaded successfully: /trainers/trainer-1759764910980-614827643.jpg
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+file:///Users/zhest/Documents/work/konstantin/server/routes/trainer.js:3
+import { db } from '../db.js';
+         ^^
+SyntaxError: The requested module '../db.js' does not provide an export named 'db'
+    at ModuleJob._instantiate (node:internal/modules/esm/module_job:182:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:266:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5)
+
+Node.js v22.15.1
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Admin token verification failed: column "first_name" does not exist
+me error error: column "phone" does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/profile.js:70:22 {
+  length: 105,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '47',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Admin token verification failed: column "first_name" does not exist
+me error error: column "phone" does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/profile.js:70:22 {
+  length: 105,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '47',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Admin token verification failed: column "first_name" does not exist
+me error error: column "phone" does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/profile.js:70:22 {
+  length: 105,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '47',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+Admin token verification failed: column "first_name" does not exist
+me error error: column "phone" does not exist
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/profile.js:70:22 {
+  length: 105,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '47',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3657',
+  routine: 'errorMissingColumn'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Photo uploaded successfully: /trainers/trainer-1759772721367-832149367.jpg
+ForbiddenError: invalid csrf token
+    at csrf (/Users/zhest/Documents/work/konstantin/server/node_modules/csurf/index.js:112:19)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:280:10)
+    at cookieParser (/Users/zhest/Documents/work/konstantin/server/node_modules/cookie-parser/index.js:71:5)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+ForbiddenError: invalid csrf token
+    at csrf (/Users/zhest/Documents/work/konstantin/server/node_modules/csurf/index.js:112:19)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:280:10)
+    at cookieParser (/Users/zhest/Documents/work/konstantin/server/node_modules/cookie-parser/index.js:71:5)
+    at Layer.handle [as handle_request] (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:328:13)
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/express/lib/router/index.js:286:9
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Deleted orphaned photo: trainer-1759764910980-614827643.jpg
+Deleted orphaned photo: trainer-1759772721367-832149367.jpg
+Cleaned up 2 orphaned photos
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Photo uploaded successfully: /trainers/trainer-1759779725382-495600078.jpg
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Photo uploaded successfully: /trainers/trainer-1759780781347-652737038.jpg
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Deleted orphaned photo: trainer-1759780781347-652737038.jpg
+Cleaned up 1 orphaned photos
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Photo uploaded successfully: /trainers/trainer-1759783539369-241290949.jpg
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Photo uploaded successfully: /trainers/trainer-1759839565843-118352036.jpg
+Error booking class: error: duplicate key value violates unique constraint "bookings_user_id_class_id_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/classes.js:326:5 {
+  length: 309,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, class_id)=(adb7368f-d00e-4df2-a190-f7cb654c500a, 586c9385-f083-44e3-ac59-d95027747d1f) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'bookings',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'bookings_user_id_class_id_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}
+Error booking class: error: duplicate key value violates unique constraint "bookings_user_id_class_id_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/classes.js:326:5 {
+  length: 309,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, class_id)=(adb7368f-d00e-4df2-a190-f7cb654c500a, 586c9385-f083-44e3-ac59-d95027747d1f) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'bookings',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'bookings_user_id_class_id_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}

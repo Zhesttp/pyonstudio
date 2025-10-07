@@ -258,6 +258,7 @@ router.get('/admin/trainers', adminOnly, async (req, res) => {
     client = await pool.connect();
     const q = `
       SELECT t.id, t.first_name, t.last_name, t.birth_date, t.photo_url, t.bio, t.created_at,
+             t.email,
              COUNT(c.id) as classes_count
       FROM trainers t
       LEFT JOIN classes c ON t.id = c.trainer_id
@@ -276,7 +277,7 @@ router.get('/admin/trainers', adminOnly, async (req, res) => {
 
 // POST /api/admin/trainers - создать нового тренера
 router.post('/admin/trainers', adminOnly, async (req, res) => {
-  const { first_name, last_name, birth_date, photo_url, bio } = req.body;
+  const { first_name, last_name, birth_date, photo_url, bio, email, password } = req.body;
   
   if (!first_name || !last_name) {
     return res.status(400).json({ message: 'Имя и фамилия обязательны' });
@@ -285,12 +286,17 @@ router.post('/admin/trainers', adminOnly, async (req, res) => {
   let client;
   try {
     client = await pool.connect();
+    let passwordHash = null;
+    if (password) {
+      const bcrypt = (await import('bcrypt')).default;
+      passwordHash = await bcrypt.hash(password, 12);
+    }
     const q = `
-      INSERT INTO trainers (first_name, last_name, birth_date, photo_url, bio)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO trainers (first_name, last_name, birth_date, photo_url, bio, email, password_hash)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING id
     `;
-    const { rows } = await client.query(q, [first_name, last_name, birth_date || null, photo_url || null, bio || null]);
+    const { rows } = await client.query(q, [first_name, last_name, birth_date || null, photo_url || null, bio || null, email || null, passwordHash]);
     res.status(201).json({ 
       id: rows[0].id, 
       message: 'Тренер успешно добавлен'
@@ -317,6 +323,7 @@ router.get('/admin/trainers/:id', adminOnly, async (req, res) => {
     client = await pool.connect();
     const q = `
       SELECT t.id, t.first_name, t.last_name, t.birth_date, t.photo_url, t.bio, t.created_at,
+             t.email,
              COUNT(c.id) as classes_count
       FROM trainers t
       LEFT JOIN classes c ON t.id = c.trainer_id
@@ -341,7 +348,7 @@ router.get('/admin/trainers/:id', adminOnly, async (req, res) => {
 // PUT /api/admin/trainers/:id - обновить данные тренера
 router.put('/admin/trainers/:id', adminOnly, async (req, res) => {
   const { id } = req.params;
-  const { first_name, last_name, birth_date, photo_url, bio } = req.body;
+  const { first_name, last_name, birth_date, photo_url, bio, email, password } = req.body;
 
   const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   if (!uuidRegex.test(id)) {
@@ -364,11 +371,24 @@ router.put('/admin/trainers/:id', adminOnly, async (req, res) => {
     
     const currentPhotoUrl = currentResult.rows[0].photo_url;
     
-    const result = await client.query(`
-      UPDATE trainers 
-      SET first_name = $1, last_name = $2, birth_date = $3, photo_url = $4, bio = $5
-      WHERE id = $6
-    `, [first_name, last_name, birth_date || null, photo_url || null, bio || null, id]);
+    let passwordHashSet = '';
+    const params = [first_name, last_name, birth_date || null, photo_url || null, bio || null, email || null];
+    if (password) {
+      const bcrypt = (await import('bcrypt')).default;
+      const ph = await bcrypt.hash(password, 12);
+      passwordHashSet = ', password_hash = $8';
+      params.push(id); // placeholder will adjust below
+      // We'll push password hash before id to match placeholders
+    }
+    let q = `UPDATE trainers 
+             SET first_name = $1, last_name = $2, birth_date = $3, photo_url = $4, bio = $5, email = $6`;
+    if (password) {
+      q += `, password_hash = $7 WHERE id = $8`;
+    } else {
+      q += ` WHERE id = $7`;
+    }
+    const finalParams = password ? [first_name, last_name, birth_date || null, photo_url || null, bio || null, email || null, ph, id] : [first_name, last_name, birth_date || null, photo_url || null, bio || null, email || null, id];
+    const result = await client.query(q, finalParams);
     
     if (result.rowCount === 0) {
       return res.status(404).json({ message: 'Тренер не найден' });

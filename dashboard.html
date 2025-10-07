@@ -38,22 +38,8 @@
                 </button>
                 <div class="user-welcome">
                     <div class="welcome-text">
-                        <h1>Намасте, <span class="user-name">Алексей</span>!</h1>
-                        <p class="welcome-subtitle">Ваша следующая тренировка: <strong>Пилатес для начинающих</strong> в 18:00</p>
-                    </div>
-                    <div class="user-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">5</span>
-                            <span class="stat-label">Посещений</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">12</span>
-                            <span class="stat-label">Минут практики</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Уровень</span>
-                        </div>
+                        <h1>Намасте, <span class="user-name">—</span>!</h1>
+                        <p class="welcome-subtitle" id="next-class-subtitle"></p>
                     </div>
                 </div>
             </header>
@@ -65,14 +51,14 @@
                         <div class="progress-ring">
                             <svg width="80" height="80" viewBox="0 0 42 42">
                                 <circle class="progress-ring__track" cx="21" cy="21" r="15.915" fill="transparent" stroke-width="2"/>
-                                <circle class="progress-ring__progress" cx="21" cy="21" r="15.915" fill="transparent" stroke-width="2" stroke-dasharray="75 25" stroke-dashoffset="25" transform="rotate(-90 21 21)"/>
+                                <circle class="progress-ring__progress" id="ring-progress" cx="21" cy="21" r="15.915" fill="transparent" stroke-width="2" stroke-dasharray="0 100" stroke-dashoffset="25" transform="rotate(-90 21 21)"/>
                             </svg>
-                            <span class="progress-text">75%</span>
+                            <span class="progress-text" id="progress-percent">0%</span>
                         </div>
                     </div>
-                    <p>Вы посетили <strong>6 из 8</strong> занятий в этом месяце</p>
+                    <p id="progress-summary"></p>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 75%"></div>
+                        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
                     </div>
                 </div>
 
@@ -88,15 +74,7 @@
                                 <span class="action-subtitle">на занятие</span>
                             </div>
                         </a>
-                        <a href="workouts.html" class="action-btn">
-                            <div class="action-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-                            </div>
-                            <div class="action-text">
-                                <span class="action-title">Тренировка</span>
-                                <span class="action-subtitle">онлайн</span>
-                            </div>
-                        </a>
+                        
                     </div>
                 </div>
 
@@ -105,37 +83,55 @@
                         <h2>Ближайшие занятия</h2>
                         <a href="schedule.html" class="view-all">Посмотреть все</a>
                     </div>
-                    <div class="schedule-list">
-                        <div class="schedule-item">
-                            <div class="schedule-time">Сегодня, 18:00</div>
-                            <div class="schedule-info">
-                                <h4>Пилатес для начинающих</h4>
-                                <p>Анна Смирнова • Студия A</p>
-                            </div>
-                            <div class="schedule-status status-upcoming">Предстоит</div>
-                        </div>
-                        <div class="schedule-item">
-                            <div class="schedule-time">Завтра, 09:00</div>
-                            <div class="schedule-info">
-                                <h4>Утренняя виньяса-йога</h4>
-                                <p>Анна Смирнова • Онлайн</p>
-                            </div>
-                            <div class="schedule-status status-available">Доступно</div>
-                        </div>
-                        <div class="schedule-item">
-                            <div class="schedule-time">Чт, 26.09</div>
-                            <div class="schedule-info">
-                                <h4>Силовая йога</h4>
-                                <p>Михаил Иванов • Студия B</p>
-                            </div>
-                            <div class="schedule-status status-available">Доступно</div>
-                        </div>
-                    </div>
+                    <div class="schedule-list" id="upcoming-list"></div>
                 </div>
             </section>
         </main>
     </div>
 
     <script src="js/dashboard.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const list = document.getElementById('upcoming-list');
+      if (!list) return;
+      const fmtTime = (t) => t?.slice(0,5);
+      const fmtDate = (d) => {
+        const date = new Date(d);
+        const now = new Date();
+        const isToday = date.toDateString() === now.toDateString();
+        const tomorrow = new Date(now); tomorrow.setDate(now.getDate()+1);
+        const isTomorrow = date.toDateString() === tomorrow.toDateString();
+        const days = ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
+        if (isToday) return 'Сегодня';
+        if (isTomorrow) return 'Завтра';
+        return days[date.getDay()] + ', ' + date.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit' });
+      };
+      fetch('/api/me/upcoming-classes', { credentials: 'same-origin', headers: { 'X-XSRF-TOKEN': (document.cookie.split('; ').find(c=>c.startsWith('XSRF-TOKEN='))||'').split('=')[1] }})
+        .then(r => r.status===401?[]:r.json())
+        .then(items => {
+          if (!items || items.length === 0) {
+            list.innerHTML = '<div style="padding:12px;color:var(--text-muted)">У вас нету занятий в ближайшее время</div>';
+            return;
+          }
+          list.innerHTML = '';
+          items.forEach(it => {
+            const el = document.createElement('div');
+            el.className = 'schedule-item';
+            el.innerHTML = `
+              <div class="schedule-time">${fmtDate(it.class_date)}, ${fmtTime(it.start_time)}</div>
+              <div class="schedule-info">
+                <h4>${it.title}</h4>
+                <p>${it.trainer_name || ''} • ${it.place || ''}</p>
+              </div>
+              <div class="schedule-status status-upcoming">Предстоит</div>
+            `;
+            list.appendChild(el);
+          });
+        })
+        .catch(()=>{
+          list.innerHTML = '<div style="padding:12px;color:var(--text-muted)">У вас нету занятий в ближайшее время</div>';
+        });
+    });
+    </script>
 </body>
 </html>
