@@ -1960,3 +1960,66 @@ Server started on 3000
 
 Server started on 3000
 Photo uploaded successfully: /trainers/trainer-1759780781347-652737038.jpg
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Deleted orphaned photo: trainer-1759780781347-652737038.jpg
+Cleaned up 1 orphaned photos
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Photo uploaded successfully: /trainers/trainer-1759783539369-241290949.jpg
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Photo uploaded successfully: /trainers/trainer-1759839565843-118352036.jpg
+Error booking class: error: duplicate key value violates unique constraint "bookings_user_id_class_id_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/classes.js:326:5 {
+  length: 309,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, class_id)=(adb7368f-d00e-4df2-a190-f7cb654c500a, 586c9385-f083-44e3-ac59-d95027747d1f) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'bookings',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'bookings_user_id_class_id_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}
+Error booking class: error: duplicate key value violates unique constraint "bookings_user_id_class_id_key"
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/classes.js:326:5 {
+  length: 309,
+  severity: 'ERROR',
+  code: '23505',
+  detail: 'Key (user_id, class_id)=(adb7368f-d00e-4df2-a190-f7cb654c500a, 586c9385-f083-44e3-ac59-d95027747d1f) already exists.',
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: 'public',
+  table: 'bookings',
+  column: undefined,
+  dataType: undefined,
+  constraint: 'bookings_user_id_class_id_key',
+  file: 'nbtinsert.c',
+  line: '670',
+  routine: '_bt_check_unique'
+}
