@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
+import { pool } from '../db.js';
 
-export const adminOnly = (req, res, next) => {
+export const adminOnly = async (req, res, next) => {
   const token = req.cookies.admin_token;
   
   const handleUnauthorized = () => {
@@ -24,15 +25,22 @@ export const adminOnly = (req, res, next) => {
       }
       return res.redirect('/login');
     }
+    // verify admin exists in DB
+    const result = await pool.query('SELECT 1 FROM admins WHERE id = $1', [data.id]);
+    if (result.rowCount === 0) {
+      res.clearCookie('admin_token');
+      return handleUnauthorized();
+    }
     req.admin = data;
     next();
   } catch (error) {
     console.error('Admin token verification failed:', error.message);
+    res.clearCookie('admin_token');
     return handleUnauthorized();
   }
 };
 
-export const trainerOnly = (req, res, next) => {
+export const trainerOnly = async (req, res, next) => {
   const token = req.cookies.token;
   
   const handleUnauthorized = () => {
@@ -56,10 +64,17 @@ export const trainerOnly = (req, res, next) => {
       }
       return res.redirect('/login');
     }
+    // verify trainer exists in DB
+    const result = await pool.query('SELECT 1 FROM trainers WHERE id = $1', [data.id]);
+    if (result.rowCount === 0) {
+      res.clearCookie('token');
+      return handleUnauthorized();
+    }
     req.user = data;
     next();
   } catch (error) {
     console.error('Trainer token verification failed:', error.message);
+    res.clearCookie('token');
     return handleUnauthorized();
   }
 };

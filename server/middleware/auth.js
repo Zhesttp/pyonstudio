@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
+import { pool } from '../db.js';
 
-export const auth = (req, res, next) => {
+export const auth = async (req, res, next) => {
   const token = req.cookies.token;
 
   const handleUnauthorized = () => {
@@ -18,9 +19,17 @@ export const auth = (req, res, next) => {
   
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // verify user exists in DB (users or trainers)
+    const userRes = await pool.query('SELECT 1 FROM users WHERE id = $1', [decoded.id]);
+    const trainerRes = await pool.query('SELECT 1 FROM trainers WHERE id = $1', [decoded.id]);
+    if (userRes.rowCount === 0 && trainerRes.rowCount === 0) {
+      res.clearCookie('token');
+      return handleUnauthorized();
+    }
     req.user = decoded;
     next();
   } catch (e) {
+    res.clearCookie('token');
     return handleUnauthorized();
   }
 };

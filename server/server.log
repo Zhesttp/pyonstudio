@@ -2114,3 +2114,16 @@ Server started on 3000
 > node app.js
 
 Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Deleted orphaned photo: trainer-1759783539369-241290949.jpg
+Deleted orphaned photo: trainer-1759839565843-118352036.jpg
+Cleaned up 2 orphaned photos
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
