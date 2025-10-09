@@ -2127,3 +2127,174 @@ Cleaned up 2 orphaned photos
 > node app.js
 
 Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Photo uploaded successfully: /trainers/trainer-1760013390547-94574841.jpg
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Deleted orphaned photo: trainer-1760013390547-94574841.jpg
+Cleaned up 1 orphaned photos
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Validation errors: [
+  {
+    value: 'test123',
+    msg: 'Пароль не соответствует требованиям',
+    param: 'password',
+    location: 'body'
+  }
+]
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Registration data: {
+  first_name: 'Степан',
+  last_name: 'Желянин',
+  phone: '+375295314144',
+  email: 'gelianin@mail.ru',
+  birth: '2004-08-11',
+  level: 'medium'
+}
+Mapped level: Средний
+Photo uploaded successfully: /trainers/trainer-1760031226911-753860628.jpg
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Error booking class: error: FOR UPDATE is not allowed with GROUP BY clause
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/classes.js:327:24 {
+  length: 111,
+  severity: 'ERROR',
+  code: '0A000',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'analyze.c',
+  line: '3170',
+  routine: 'CheckSelectLocking'
+}
+Error booking class: error: FOR UPDATE is not allowed with GROUP BY clause
+    at /Users/zhest/Documents/work/konstantin/server/node_modules/pg/lib/client.js:545:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/zhest/Documents/work/konstantin/server/routes/classes.js:327:24 {
+  length: 111,
+  severity: 'ERROR',
+  code: '0A000',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'analyze.c',
+  line: '3170',
+  routine: 'CheckSelectLocking'
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Validation errors: [
+  {
+    value: '+3753433532',
+    msg: 'Телефон должен быть в формате +375XXXXXXXXX',
+    param: 'phone',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат даты рождения',
+    param: 'birth',
+    location: 'body'
+  }
+]
+Registration data: {
+  first_name: 'АЫВА',
+  last_name: 'ываАВ',
+  phone: '+375295314144',
+  email: 'gelianin@gmail.com',
+  birth: '2004-12-05',
+  level: 'medium'
+}
+Mapped level: Средний
+Registration data: {
+  first_name: 'АЫВА',
+  last_name: 'ываАВ',
+  phone: '+375295314145',
+  email: 'gelianin@gmail.com',
+  birth: '2004-12-05',
+  level: 'medium'
+}
+Mapped level: Средний
+Registration data: {
+  first_name: 'мвамы',
+  last_name: 'аыуау',
+  phone: '+375295314133',
+  email: 'dfsdfsdf@gmail.com',
+  birth: '2004-08-11',
+  level: 'advanced'
+}
+Mapped level: Продвинутый

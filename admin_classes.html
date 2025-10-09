@@ -76,7 +76,7 @@
                                     <th>Тренер</th>
                                     <th>Название</th>
                                     <th>Место</th>
-                                    <th>Забронировано</th>
+                                    <th>Участники</th>
                                     <th>Статус</th>
                                     <th>Действия</th>
                                 </tr>
@@ -120,6 +120,12 @@
                 <label for="class-duration">Длительность (минуты)</label>
                 <input type="number" id="class-duration" min="15" max="180" step="15" value="60" required placeholder="60">
               </div>
+              <div class="form-group">
+                <label for="class-max-participants">Максимум участников</label>
+                <input type="number" id="class-max-participants" min="1" max="50" value="10" required placeholder="10">
+              </div>
+            </div>
+            <div class="form-row">
               <div class="form-group">
                 <label for="class-place">Место проведения</label>
                 <input type="text" id="class-place">
@@ -169,10 +175,10 @@
             </svg>
             Сохранить
           </button>
-          </div>
-        </div>
         </div>
       </div>
+    </div>
+  </div>
 
       <!-- Type Modal -->
       <div id="type-modal" class="modal">

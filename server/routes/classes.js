@@ -14,16 +14,17 @@ router.get('/admin/classes', adminOnly, async (req, res) => {
     client = await pool.connect();
     const q = `
       SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.duration_minutes, c.place,
-             c.trainer_id,
+             c.trainer_id, c.max_participants,
              t.first_name || ' ' || t.last_name AS trainer_name,
              c.type_id,
              ct.name AS type_name,
-             COUNT(b.id) AS bookings_count
+             COUNT(b.id) AS bookings_count,
+             (c.max_participants - COUNT(b.id)) AS available_spots
       FROM classes c
       LEFT JOIN trainers t ON c.trainer_id = t.id
       LEFT JOIN class_types ct ON c.type_id = ct.id
       LEFT JOIN bookings b ON c.id = b.class_id AND b.status != 'cancelled'
-      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.duration_minutes, c.place, c.trainer_id, t.first_name, t.last_name, c.type_id, ct.name
+      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.duration_minutes, c.place, c.trainer_id, c.max_participants, t.first_name, t.last_name, c.type_id, ct.name
       ORDER BY c.class_date DESC, c.start_time
     `;
     const { rows } = await client.query(q);
@@ -38,21 +39,36 @@ router.get('/admin/classes', adminOnly, async (req, res) => {
 
 // POST /api/admin/classes - создать новое занятие
 router.post('/admin/classes', adminOnly, async (req, res) => {
-  const { title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id, type_id } = req.body;
+  const { title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id, type_id, max_participants } = req.body;
   
-  if (!title || !class_date || !start_time || !end_time || !duration_minutes) {
-    return res.status(400).json({ message: 'Обязательные поля: название, дата, время начала, время конца и длительность' });
+  if (!title || !class_date || !start_time || !end_time || !duration_minutes || !max_participants) {
+    return res.status(400).json({ message: 'Обязательные поля: название, дата, время начала, время конца, длительность и максимум участников' });
+  }
+
+  // Валидация данных
+  if (max_participants < 1 || max_participants > 100) {
+    return res.status(400).json({ message: 'Максимальное количество участников должно быть от 1 до 100' });
+  }
+
+  if (duration_minutes < 15 || duration_minutes > 300) {
+    return res.status(400).json({ message: 'Длительность занятия должна быть от 15 до 300 минут' });
+  }
+
+  // Проверка даты (не в прошлом)
+  const classDateTime = new Date(`${class_date}T${start_time}`);
+  if (classDateTime < new Date()) {
+    return res.status(400).json({ message: 'Нельзя создавать занятия в прошлом' });
   }
 
   let client;
   try {
     client = await pool.connect();
     const q = `
-      INSERT INTO classes (title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id, type_id)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+      INSERT INTO classes (title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id, type_id, max_participants)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
       RETURNING id
     `;
-    const { rows } = await client.query(q, [title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id || null, type_id || null]);
+    const { rows } = await client.query(q, [title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id || null, type_id || null, max_participants]);
     res.status(201).json({ id: rows[0].id, message: 'Занятие успешно создано' });
   } catch (error) {
     console.error('Error creating class:', error);
@@ -65,11 +81,28 @@ router.post('/admin/classes', adminOnly, async (req, res) => {
 // PUT /api/admin/classes/:id - обновить занятие
 router.put('/admin/classes/:id', adminOnly, async (req, res) => {
   const { id } = req.params;
-  const { title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id, type_id } = req.body;
+  const { title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id, type_id, max_participants } = req.body;
 
   const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   if (!uuidRegex.test(id)) {
     return res.status(400).json({ message: 'Некорректный ID занятия' });
+  }
+
+  // Валидация данных
+  if (max_participants && (max_participants < 1 || max_participants > 100)) {
+    return res.status(400).json({ message: 'Максимальное количество участников должно быть от 1 до 100' });
+  }
+
+  if (duration_minutes && (duration_minutes < 15 || duration_minutes > 300)) {
+    return res.status(400).json({ message: 'Длительность занятия должна быть от 15 до 300 минут' });
+  }
+
+  // Проверка даты (не в прошлом) если дата или время изменяются
+  if (class_date && start_time) {
+    const classDateTime = new Date(`${class_date}T${start_time}`);
+    if (classDateTime < new Date()) {
+      return res.status(400).json({ message: 'Нельзя переносить занятия в прошлое' });
+    }
   }
 
   let client;
@@ -78,10 +111,10 @@ router.put('/admin/classes/:id', adminOnly, async (req, res) => {
     const q = `
       UPDATE classes 
       SET title = $1, description = $2, class_date = $3, start_time = $4, end_time = $5, 
-          duration_minutes = $6, place = $7, trainer_id = $8, type_id = $9
-      WHERE id = $10
+          duration_minutes = $6, place = $7, trainer_id = $8, type_id = $9, max_participants = $10
+      WHERE id = $11
     `;
-    const result = await client.query(q, [title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id || null, type_id || null, id]);
+    const result = await client.query(q, [title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id || null, type_id || null, max_participants, id]);
     
     if (result.rowCount === 0) {
       return res.status(404).json({ message: 'Занятие не найдено' });
@@ -132,10 +165,11 @@ router.get('/classes', auth, async (req, res) => {
     client = await pool.connect();
     const q = `
       SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place,
-             c.type_id,
+             c.type_id, c.max_participants,
              t.first_name || ' ' || t.last_name AS trainer_name,
              ct.name AS type_name,
              COUNT(b.id) AS bookings_count,
+             (c.max_participants - COUNT(b.id)) AS available_spots,
              CASE WHEN ub.id IS NOT NULL THEN true ELSE false END AS user_booked
       FROM classes c
       LEFT JOIN trainers t ON c.trainer_id = t.id
@@ -143,7 +177,7 @@ router.get('/classes', auth, async (req, res) => {
       LEFT JOIN bookings b ON c.id = b.class_id AND b.status != 'cancelled'
       LEFT JOIN bookings ub ON c.id = ub.class_id AND ub.user_id = $1 AND ub.status != 'cancelled'
       WHERE c.class_date >= CURRENT_DATE
-      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, c.type_id, t.first_name, t.last_name, ct.name, ub.id
+      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, c.type_id, c.max_participants, t.first_name, t.last_name, ct.name, ub.id
       ORDER BY c.class_date, c.start_time
     `;
     const { rows } = await client.query(q, [req.user.id]);
@@ -176,17 +210,18 @@ router.get('/schedule/week', async (req, res) => {
     
     const q = `
       SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place,
-             c.type_id,
+             c.type_id, c.max_participants,
              t.first_name || ' ' || t.last_name AS trainer_name,
              ct.name AS type_name,
              COUNT(b.id) AS bookings_count,
+             (c.max_participants - COUNT(b.id)) AS available_spots,
              false AS user_booked
       FROM classes c
       LEFT JOIN trainers t ON c.trainer_id = t.id
       LEFT JOIN class_types ct ON c.type_id = ct.id
       LEFT JOIN bookings b ON c.id = b.class_id AND b.status != 'cancelled'
       WHERE c.class_date >= $1 AND c.class_date <= $2
-      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, c.type_id, t.first_name, t.last_name, ct.name
+      GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, c.type_id, c.max_participants, t.first_name, t.last_name, ct.name
       ORDER BY c.class_date, c.start_time
     `;
     const { rows } = await client.query(q, [monday.toISOString().split('T')[0], endDate.toISOString().split('T')[0]]);
@@ -288,15 +323,32 @@ router.post('/classes/:id/book', auth, async (req, res) => {
     
     await client.query('BEGIN');
 
-    // Check if class exists and is in the future
+    // Check if class exists and is in the future (with row locking)
     const classCheck = await client.query(`
-      SELECT id FROM classes 
-      WHERE id = $1 AND (class_date > CURRENT_DATE OR (class_date = CURRENT_DATE AND start_time > CURRENT_TIME))
+      SELECT c.id, c.max_participants
+      FROM classes c
+      WHERE c.id = $1 AND (c.class_date > CURRENT_DATE OR (c.class_date = CURRENT_DATE AND c.start_time > CURRENT_TIME))
+      FOR UPDATE
     `, [class_id]);
     
     if (classCheck.rowCount === 0) {
       await client.query('ROLLBACK');
       return res.status(404).json({ message: 'Занятие не найдено или уже прошло' });
+    }
+
+    const classInfo = classCheck.rows[0];
+    
+    // Check current bookings count
+    const bookingsCheck = await client.query(`
+      SELECT COUNT(b.id) as current_bookings
+      FROM bookings b
+      WHERE b.class_id = $1 AND b.status != 'cancelled'
+    `, [class_id]);
+    
+    const currentBookings = parseInt(bookingsCheck.rows[0].current_bookings);
+    if (currentBookings >= classInfo.max_participants) {
+      await client.query('ROLLBACK');
+      return res.status(409).json({ message: 'На занятие уже записано максимальное количество участников' });
     }
 
     // Check for existing booking (any status)

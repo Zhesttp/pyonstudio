@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <td>${trainerName}</td>
                     <td>${classItem.title || 'Не указано'}</td>
                     <td>${classItem.place || 'Не указано'}</td>
-                    <td>${classItem.bookings_count || 0}</td>
+                    <td>${classItem.bookings_count || 0}/${classItem.max_participants || 10}</td>
                     <td>${statusBadge}</td>
                     <td>
                         <div class="action-buttons">
@@ -410,6 +410,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('class-date').value = classItem.class_date;
         document.getElementById('class-time').value = classItem.start_time;
         document.getElementById('class-duration').value = classItem.duration_minutes || 60;
+        document.getElementById('class-max-participants').value = classItem.max_participants || 10;
         // Найдем trainer_id по имени тренера
         const trainer = trainers.find(t => `${t.first_name} ${t.last_name}` === classItem.trainer_name);
         document.getElementById('class-trainer').value = trainer ? trainer.id : '';
@@ -484,12 +485,31 @@ document.addEventListener('DOMContentLoaded', async () => {
             trainer_id: document.getElementById('class-trainer').value,
             type_id: document.getElementById('class-type').value,
             description: document.getElementById('class-description').value,
-            place: document.getElementById('class-place').value
+            place: document.getElementById('class-place').value,
+            max_participants: parseInt(document.getElementById('class-max-participants').value)
         };
 
         // Validation
-        if (!classData.title || !classData.class_date || !classData.start_time || !classData.trainer_id || !classData.place || !classData.duration_minutes || !classData.type_id) {
+        if (!classData.title || !classData.class_date || !classData.start_time || !classData.trainer_id || !classData.place || !classData.duration_minutes || !classData.type_id || !classData.max_participants) {
             showError('Пожалуйста, заполните все обязательные поля');
+            return;
+        }
+
+        // Дополнительная валидация
+        if (classData.max_participants < 1 || classData.max_participants > 100) {
+            showError('Максимальное количество участников должно быть от 1 до 100');
+            return;
+        }
+
+        if (classData.duration_minutes < 15 || classData.duration_minutes > 300) {
+            showError('Длительность занятия должна быть от 15 до 300 минут');
+            return;
+        }
+
+        // Проверка даты (не в прошлом)
+        const classDateTime = new Date(`${classData.class_date}T${classData.start_time}`);
+        if (classDateTime < new Date()) {
+            showError('Нельзя создавать занятия в прошлом');
             return;
         }
 

@@ -77,6 +77,7 @@ CREATE TABLE classes (
     duration_minutes INT NOT NULL DEFAULT 60 CHECK (duration_minutes > 0),
     place TEXT,
     trainer_id UUID REFERENCES trainers(id) ON DELETE SET NULL,
+    max_participants INT NOT NULL DEFAULT 10 CHECK (max_participants > 0),
     created_at TIMESTAMP DEFAULT NOW()
 );
 

@@ -32,11 +32,11 @@
                 </div>
                 <div class="form-group">
                     <label for="birth">Дата рождения</label>
-                    <input type="date" id="birth" required max="2007-01-01" name="birth">
+                    <input type="date" id="birth" required max="2008-01-01" min="1924-01-01" name="birth">
                 </div>
                 <div class="form-group">
                     <label for="phone">Телефон</label>
-                    <input type="tel" id="phone" required pattern="^\+?[0-9]{10,15}$" placeholder="+375XXXXXXXXX" value="+375" name="phone">
+                    <input type="tel" id="phone" required pattern="^\+375\d{9}$" placeholder="+375XXXXXXXXX" value="+375" name="phone" title="Телефон должен быть в формате +375XXXXXXXXX">
                 </div>
                 <div class="form-group">
                     <label for="reg_email">Email</label>
@@ -46,16 +46,23 @@
                     <div class="form-group">
                         <label for="password_reg">Пароль</label>
                         <div class="password-wrapper">
-                            <input type="password" id="password_reg" required minlength="6" maxlength="9" pattern="^(?=.*[A-Za-z])(?=(?:.*\d){5,8}).{6,9}$" name="password">
+                            <input type="password" id="password_reg" required minlength="8" pattern="^(?=.*[A-Za-z])(?=.*\d).{8,}$" name="password" title="Пароль должен содержать минимум 8 символов, включая буквы и цифры">
                             <button type="button" class="toggle-pass" data-target="password_reg" aria-label="Показать пароль">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                             </button>
+                        </div>
+                        <small class="form-hint">Минимум 8 символов, включая буквы и цифры</small>
+                        <div class="password-strength" id="password-strength">
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strength-fill"></div>
+                            </div>
+                            <span class="strength-text" id="strength-text">Введите пароль</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password_conf">Повторите пароль</label>
                         <div class="password-wrapper">
-                            <input type="password" id="password_conf" required minlength="6" maxlength="9" name="password_conf">
+                            <input type="password" id="password_conf" required minlength="8" name="password_conf">
                             <button type="button" class="toggle-pass" data-target="password_conf" aria-label="Показать пароль">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                             </button>
@@ -67,7 +74,7 @@
                     <select id="level" required name="level">
                         <option value="" disabled selected>Выберите</option>
                         <option value="beginner">Начинающий</option>
-                        <option value="intermediate">Средний</option>
+                        <option value="medium">Средний</option>
                         <option value="advanced">Продвинутый</option>
                     </select>
                 </div>

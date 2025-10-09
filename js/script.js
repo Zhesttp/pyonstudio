@@ -67,3 +67,57 @@ if (burgerMenu && mobileNav) {
         }
     });
 }
+
+// Trainer cards functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const trainerBtns = document.querySelectorAll('.trainer-card__btn');
+    const trainerModals = document.querySelectorAll('.trainer-modal');
+    const modalCloseBtns = document.querySelectorAll('.trainer-modal__close');
+    
+    // Open modal
+    trainerBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const modalId = this.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            
+            if (modal) {
+                modal.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+    
+    // Close modal
+    modalCloseBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const modal = this.closest('.trainer-modal');
+            if (modal) {
+                modal.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // Close on overlay click
+    trainerModals.forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this || e.target.classList.contains('trainer-modal__overlay')) {
+                this.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const openModal = document.querySelector('.trainer-modal.is-open');
+            if (openModal) {
+                openModal.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+        }
+    });
+});

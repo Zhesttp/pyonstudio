@@ -8,17 +8,26 @@ const router = Router();
 
 // Validation rules
 const phoneRegex = /^\+375\d{9}$/;
-const pwdRegex = /^(?=.*[A-Za-z])(?=(?:.*\d){5,8}).{6,9}$/;
+const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 
 const registerValidation = [
-  body('first_name').isAlpha('ru-RU', {ignore: ' '}).withMessage('Имя должно содержать только буквы').isLength({ min: 2, max: 30 }),
-  body('last_name').isAlpha('ru-RU', {ignore: ' '}).withMessage('Фамилия должна содержать только буквы').isLength({ min: 2, max: 30 }),
-  body('phone').matches(phoneRegex).withMessage('Неверный формат телефона'),
+  body('first_name').isAlpha('ru-RU', {ignore: ' '}).withMessage('Имя должно содержать только буквы').isLength({ min: 2, max: 30 }).withMessage('Имя должно быть от 2 до 30 символов'),
+  body('last_name').isAlpha('ru-RU', {ignore: ' '}).withMessage('Фамилия должна содержать только буквы').isLength({ min: 2, max: 30 }).withMessage('Фамилия должна быть от 2 до 30 символов'),
+  body('phone').matches(phoneRegex).withMessage('Телефон должен быть в формате +375XXXXXXXXX'),
   body('email').isEmail().withMessage('Неверный формат email'),
-  body('password').matches(pwdRegex).withMessage('Пароль не соответствует требованиям'),
+  body('password').matches(pwdRegex).withMessage('Пароль должен содержать минимум 8 символов, включая буквы и цифры'),
   body('password_conf').custom((value, { req }) => {
     if (value !== req.body.password) {
       throw new Error('Пароли не совпадают');
+    }
+    return true;
+  }),
+  body('birth').isISO8601().withMessage('Неверный формат даты рождения').custom((value) => {
+    const birthDate = new Date(value);
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    if (age < 16 || age > 100) {
+      throw new Error('Возраст должен быть от 16 до 100 лет');
     }
     return true;
   })
@@ -34,10 +43,16 @@ const loginValidation = [
 router.post('/register', registerValidation, async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        console.log('Validation errors:', errors.array());
+        return res.status(400).json({ 
+            message: 'Ошибка валидации данных',
+            errors: errors.array() 
+        });
     }
 
     const { first_name, last_name, phone, email, password, birth, level } = req.body;
+
+    console.log('Registration data:', { first_name, last_name, phone, email, birth, level });
 
     const levelMap = {
         beginner: 'Начинающий',
@@ -45,6 +60,8 @@ router.post('/register', registerValidation, async (req, res) => {
         advanced: 'Продвинутый'
     };
     const russianLevel = levelMap[level] || 'Начинающий'; // По умолчанию 'Начинающий'
+    
+    console.log('Mapped level:', russianLevel);
 
     try {
         const client = await pool.connect();
