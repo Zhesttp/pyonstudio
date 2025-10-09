@@ -6,10 +6,13 @@ import jwt from 'jsonwebtoken';
 const router = Router();
 
 router.get('/me', async (req, res, next) => {
+  console.log('Profile request - cookies:', req.cookies);
+  
   // Check admin token first
   if(req.cookies?.admin_token){
     try{
       const data=jwt.verify(req.cookies.admin_token,process.env.JWT_SECRET);
+      console.log('Admin token verified:', data);
       if(data.role === 'admin') {
         // Get admin details from database
         const client = await pool.connect();
@@ -40,6 +43,7 @@ router.get('/me', async (req, res, next) => {
       }
     }catch(error){
       console.error('Admin token verification failed:', error.message);
+      res.clearCookie('admin_token');
     }
   }
   
@@ -47,6 +51,7 @@ router.get('/me', async (req, res, next) => {
   if(req.cookies?.token) {
     try{
       const data=jwt.verify(req.cookies.token,process.env.JWT_SECRET);
+      console.log('User/trainer token verified:', data);
       if(data.role === 'user' || data.role === 'trainer' || !data.role) { // backwards compatibility
         // Continue to user/trainer data fetching
         req.user = data;
@@ -55,16 +60,19 @@ router.get('/me', async (req, res, next) => {
       }
     }catch(error){
       console.error('User/trainer token verification failed:', error.message);
+      res.clearCookie('token');
     }
   }
   
   // No valid tokens found
+  console.log('No valid tokens found');
   return res.status(401).json({ message: 'Требуется авторизация' });
 });
 
 // This route handler is called after the first middleware
 router.get('/me', async (req,res)=>{
   try {
+    console.log('Fetching profile for user:', req.user);
     const client = await pool.connect();
     
     // Handle trainer profile
@@ -136,10 +144,14 @@ router.get('/me', async (req,res)=>{
     userProfile.all_achievements = allAchievementsRes.rows;
     userProfile.unlocked_achievement_ids = userAchievementsRes.rows.map(r => r.achievement_id);
 
+    console.log('Profile data fetched successfully:', userProfile);
     res.json(userProfile);
   } catch (e) {
-    console.error('me error', e);
-    res.sendStatus(500);
+    console.error('Profile fetch error:', e);
+    res.status(500).json({ 
+      message: 'Ошибка загрузки профиля',
+      error: process.env.NODE_ENV === 'development' ? e.message : undefined
+    });
   }
 });
 

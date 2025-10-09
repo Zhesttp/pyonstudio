@@ -1,10 +1,29 @@
 async function loadProfile() {
-    const r = await fetch('/api/me');
-    if (r.status !== 200) {
-        location.href = '/login';
-        return;
-    }
-    const data = await r.json();
+    try {
+        const r = await fetch('/api/me', {
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (r.status === 401) {
+            console.log('Unauthorized - redirecting to login');
+            location.href = '/login';
+            return;
+        }
+        
+        if (r.status !== 200) {
+            console.error('Profile load error:', r.status, r.statusText);
+            const errorData = await r.json().catch(() => ({}));
+            console.error('Error details:', errorData);
+            alert('Ошибка загрузки профиля. Попробуйте перезайти в систему.');
+            location.href = '/login';
+            return;
+        }
+        
+        const data = await r.json();
+        console.log('Profile data loaded:', data);
     document.getElementById('first_name').value = data.first_name;
     document.getElementById('last_name').value = data.last_name;
     document.getElementById('email').value = data.email;
@@ -62,6 +81,11 @@ async function loadProfile() {
     if (data.all_achievements) {
         renderAchievements(data.all_achievements, data.unlocked_achievement_ids);
     }
+    } catch (error) {
+        console.error('Profile loading error:', error);
+        alert('Ошибка загрузки профиля. Проверьте подключение к интернету.');
+        location.href = '/login';
+    }
 }
 
 function renderAchievements(all, unlockedIds) {
@@ -80,6 +104,48 @@ function renderAchievements(all, unlockedIds) {
     `).join('');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadProfile();
+// Функция для очистки всех cookies и перезагрузки сессии
+function clearAllCookies() {
+    // Очищаем все cookies
+    document.cookie.split(";").forEach(function(c) { 
+        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+    });
+    
+    // Очищаем localStorage и sessionStorage
+    localStorage.clear();
+    sessionStorage.clear();
+    
+    console.log('All cookies and storage cleared');
+}
+
+// Функция для проверки и исправления проблем с сессией
+async function checkSessionHealth() {
+    try {
+        const response = await fetch('/api/me', {
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (response.status === 401) {
+            console.log('Session expired, clearing cookies');
+            clearAllCookies();
+            location.href = '/login';
+            return false;
+        }
+        
+        return true;
+    } catch (error) {
+        console.error('Session check failed:', error);
+        return false;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    // Проверяем здоровье сессии перед загрузкой профиля
+    const sessionOk = await checkSessionHealth();
+    if (sessionOk) {
+        loadProfile();
+    }
 });
