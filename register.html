@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
     <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/terms.css">
 </head>
 <body class="register-page">
     <div class="auth-container">
@@ -78,6 +79,13 @@
                         <option value="advanced">Продвинутый</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="terms-checkbox" required>
+                        <span class="checkbox-custom"></span>
+                        Я согласен с <a href="javascript:void(0)" id="terms-link" class="terms-link-inline">пользовательским соглашением</a> и <a href="javascript:void(0)" id="privacy-link" class="terms-link-inline">политикой конфиденциальности</a>
+                    </label>
+                </div>
                 <div id="reg-error" class="form-error" style="display:none"></div>
                 <button type="submit" class="btn btn--primary btn--full">Создать аккаунт</button>
                 <p class="auth-box__switch">Есть аккаунт? <a href="login.html">Войти</a></p>
@@ -86,5 +94,6 @@
     </div>
 <script src="js/auth.js"></script>
 <script src="js/register.js"></script>
+<script src="js/terms.js"></script>
 </body>
 </html>

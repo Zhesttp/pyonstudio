@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&family=Playfair+Display:wght@400;700;800&family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/terms.css">
 </head>
 <body>
 
@@ -163,7 +164,7 @@
                             <li>Доступ в общие группы</li>
                             <li>Заморозка на 7 дней</li>
                         </ul>
-                        <a href="#" class="btn btn--primary">Выбрать</a>
+                        <a href="javascript:void(0)" class="btn btn--primary">Выбрать</a>
                     </div>
                     <div class="price-card price-card--featured">
                         <h3 class="price-card__title">Баланс</h3>
@@ -174,7 +175,7 @@
                             <li>Заморозка на 14 дней</li>
                             <li>Скидка 10% на массаж</li>
                         </ul>
-                        <a href="#" class="btn btn--primary">Выбрать</a>
+                        <a href="javascript:void(0)" class="btn btn--primary">Выбрать</a>
                     </div>
                     <div class="price-card">
                         <h3 class="price-card__title">Профи</h3>
@@ -185,7 +186,7 @@
                             <li>Заморозка на 30 дней</li>
                             <li>2 гостевых визита</li>
                         </ul>
-                        <a href="#" class="btn btn--primary">Выбрать</a>
+                        <a href="javascript:void(0)" class="btn btn--primary">Выбрать</a>
                     </div>
                 </div>
             </div>
@@ -280,6 +281,311 @@
         </div>
     </div>
 
+    <!-- Terms of Service Modal -->
+    <div id="terms-modal" class="terms-modal">
+        <div class="terms-modal__overlay">
+            <div class="terms-modal__content">
+                <div class="terms-modal__header">
+                    <h2 class="terms-modal__title">Пользовательское соглашение</h2>
+                    <button class="terms-modal__close" aria-label="Закрыть">&times;</button>
+                </div>
+                <div class="terms-modal__body">
+                    <div class="terms-content">
+                        <p class="terms-intro">Добро пожаловать в PYon Studio! Пожалуйста, внимательно ознакомьтесь с нашими условиями использования.</p>
+                        
+                        <section class="terms-section">
+                            <h3>1. Общие положения</h3>
+                            <p>Настоящее Пользовательское соглашение (далее — «Соглашение») регулирует отношения между PYon Studio (далее — «Студия», «мы») и пользователями нашего веб-сайта и услуг (далее — «Пользователь», «вы»).</p>
+                            <p>Используя наш сайт и услуги, вы соглашаетесь с условиями данного Соглашения. Если вы не согласны с какими-либо условиями, пожалуйста, не используйте наши услуги.</p>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>2. Описание услуг</h3>
+                            <p>PYon Studio предоставляет следующие услуги:</p>
+                            <ul>
+                                <li>Занятия йогой и пилатесом</li>
+                                <li>Персональные тренировки</li>
+                                <li>Групповые занятия</li>
+                                <li>Онлайн-запись на занятия</li>
+                                <li>Управление абонементами</li>
+                            </ul>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>3. Регистрация и учетная запись</h3>
+                            <p>Для использования наших услуг вам необходимо создать учетную запись. Вы обязуетесь:</p>
+                            <ul>
+                                <li>Предоставлять точную и актуальную информацию</li>
+                                <li>Поддерживать конфиденциальность вашего пароля</li>
+                                <li>Немедленно уведомлять нас о любом несанкционированном использовании вашей учетной записи</li>
+                                <li>Нести ответственность за все действия, совершенные под вашей учетной записью</li>
+                            </ul>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>4. Бронирование и отмена занятий</h3>
+                            <p>При бронировании занятий вы соглашаетесь с следующими правилами:</p>
+                            <ul>
+                                <li>Бронирование возможно только при наличии действующего абонемента</li>
+                                <li>Отмена занятия возможна не позднее чем за 2 часа до начала</li>
+                                <li>При неявке на занятие без предварительной отмены занятие считается использованным</li>
+                                <li>Студия оставляет за собой право отменить занятие с уведомлением участников</li>
+                            </ul>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>5. Абонементы и оплата</h3>
+                            <p>Условия использования абонементов:</p>
+                            <ul>
+                                <li>Абонементы действуют в течение указанного срока</li>
+                                <li>Возможность заморозки абонемента зависит от выбранного тарифа</li>
+                                <li>Возврат средств за неиспользованные занятия не производится</li>
+                                <li>Цены на услуги могут изменяться с предварительным уведомлением</li>
+                            </ul>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>6. Медицинские противопоказания</h3>
+                            <p>Перед началом занятий обязательно проконсультируйтесь с врачом. Вы подтверждаете, что:</p>
+                            <ul>
+                                <li>Не имеете медицинских противопоказаний к занятиям йогой и пилатесом</li>
+                                <li>Сообщите тренеру о любых травмах или ограничениях</li>
+                                <li>Занимаетесь на свой страх и риск</li>
+                            </ul>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>7. Конфиденциальность и защита данных</h3>
+                            <p>Мы серьезно относимся к защите ваших персональных данных:</p>
+                            <ul>
+                                <li>Собираем только необходимую информацию для предоставления услуг</li>
+                                <li>Не передаем ваши данные третьим лицам без согласия</li>
+                                <li>Используем современные методы защиты информации</li>
+                                <li>Соблюдаем требования законодательства о защите персональных данных</li>
+                            </ul>
+                            <p>Подробная информация о том, как мы обрабатываем ваши персональные данные, изложена в нашей <a href="javascript:void(0)" id="privacy-policy-link">Политике обработки персональных данных</a>.</p>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>8. Ограничение ответственности</h3>
+                            <p>Студия не несет ответственности за:</p>
+                            <ul>
+                                <li>Травмы, полученные во время занятий</li>
+                                <li>Потерю или повреждение личных вещей</li>
+                                <li>Технические сбои в работе сайта</li>
+                                <li>Действия третьих лиц</li>
+                            </ul>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>9. Изменения в соглашении</h3>
+                            <p>Мы оставляем за собой право изменять условия данного Соглашения. О существенных изменениях мы уведомим пользователей через сайт или по электронной почте.</p>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>10. Контактная информация</h3>
+                            <p>По всем вопросам, связанным с данным Соглашением, обращайтесь:</p>
+                            <ul>
+                                <li>Email: info@pyon-studio.com</li>
+                                <li>Телефон: +375 (XX) XXX-XX-XX</li>
+                                <li>Адрес: г. Минск, ул. Примерная, д. 1</li>
+                            </ul>
+                        </section>
+
+                        <div class="terms-footer">
+                            <p><strong>Дата последнего обновления:</strong> 1 января 2024 года</p>
+                            <p>Настоящее Соглашение вступает в силу с момента его принятия пользователем.</p>
+                            <div class="terms-links">
+                                <p><strong>Дополнительные документы:</strong></p>
+                                <ul>
+                                    <li><a href="javascript:void(0)" id="privacy-policy-full-link">Политика обработки персональных данных</a></li>
+                                    <li><a href="javascript:void(0)" id="cookies-policy-link">Политика использования cookies</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="terms-modal__footer">
+                    <button class="btn btn--outline" id="decline-terms">Отклонить</button>
+                    <button class="btn btn--primary" id="accept-terms">Принять все условия</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="terms-modal">
+        <div class="terms-modal__overlay">
+            <div class="terms-modal__content">
+                <div class="terms-modal__header">
+                    <h2 class="terms-modal__title">Политика обработки персональных данных</h2>
+                    <button class="terms-modal__close" aria-label="Закрыть">&times;</button>
+                </div>
+                <div class="terms-modal__body">
+                    <div class="terms-content">
+                        <p class="terms-intro">Настоящая Политика обработки персональных данных определяет порядок обработки персональных данных пользователей сайта PYon Studio.</p>
+                        
+                        <section class="terms-section">
+                            <h3>1. Общие положения</h3>
+                            <p>Настоящая Политика обработки персональных данных (далее — «Политика») разработана в соответствии с требованиями законодательства Республики Беларусь о защите персональных данных.</p>
+                            <p>Обработка персональных данных осуществляется в целях предоставления услуг студии йоги и пилатеса PYon Studio.</p>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>2. Категории персональных данных</h3>
+                            <p>Мы обрабатываем следующие категории персональных данных:</p>
+                            <ul>
+                                <li>Имя и фамилия</li>
+                                <li>Дата рождения</li>
+                                <li>Номер телефона</li>
+                                <li>Адрес электронной почты</li>
+                                <li>Уровень физической подготовки</li>
+                                <li>Данные о посещениях занятий</li>
+                            </ul>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>3. Цели обработки</h3>
+                            <p>Персональные данные обрабатываются в следующих целях:</p>
+                            <ul>
+                                <li>Предоставление услуг студии</li>
+                                <li>Запись на занятия</li>
+                                <li>Управление абонементами</li>
+                                <li>Связь с клиентами</li>
+                                <li>Улучшение качества услуг</li>
+                            </ul>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>4. Правовые основания</h3>
+                            <p>Обработка персональных данных осуществляется на основании:</p>
+                            <ul>
+                                <li>Согласия субъекта персональных данных</li>
+                                <li>Исполнения договора на оказание услуг</li>
+                                <li>Соблюдения правовых обязательств</li>
+                            </ul>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>5. Сроки хранения</h3>
+                            <p>Персональные данные хранятся в течение срока, необходимого для достижения целей обработки, но не более 5 лет с момента последнего взаимодействия с клиентом.</p>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>6. Права субъектов персональных данных</h3>
+                            <p>Вы имеете право:</p>
+                            <ul>
+                                <li>Получать информацию об обработке ваших данных</li>
+                                <li>Требовать исправления неточных данных</li>
+                                <li>Требовать удаления данных</li>
+                                <li>Ограничить обработку данных</li>
+                                <li>Отозвать согласие на обработку</li>
+                            </ul>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>7. Меры защиты</h3>
+                            <p>Мы применяем технические и организационные меры для защиты персональных данных от несанкционированного доступа, изменения, раскрытия или уничтожения.</p>
+                        </section>
+
+                        <div class="terms-footer">
+                            <p><strong>Дата последнего обновления:</strong> 1 января 2024 года</p>
+                            <p>По вопросам обработки персональных данных обращайтесь: <a href="mailto:privacy@pyon-studio.com">privacy@pyon-studio.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="terms-modal__footer">
+                    <button class="btn btn--primary" id="close-privacy">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookies Policy Modal -->
+    <div id="cookies-modal" class="terms-modal">
+        <div class="terms-modal__overlay">
+            <div class="terms-modal__content">
+                <div class="terms-modal__header">
+                    <h2 class="terms-modal__title">Политика использования cookies</h2>
+                    <button class="terms-modal__close" aria-label="Закрыть">&times;</button>
+                </div>
+                <div class="terms-modal__body">
+                    <div class="terms-content">
+                        <p class="terms-intro">Настоящая Политика использования cookies объясняет, как PYon Studio использует файлы cookies на своем веб-сайте.</p>
+                        
+                        <section class="terms-section">
+                            <h3>1. Что такое cookies</h3>
+                            <p>Cookies — это небольшие текстовые файлы, которые сохраняются на вашем устройстве при посещении веб-сайта. Они помогают сайту запомнить информацию о вашем посещении.</p>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>2. Типы cookies, которые мы используем</h3>
+                            <p><strong>Необходимые cookies:</strong> Обеспечивают базовую функциональность сайта (аутентификация, безопасность).</p>
+                            <p><strong>Функциональные cookies:</strong> Запоминают ваши предпочтения и настройки.</p>
+                            <p><strong>Аналитические cookies:</strong> Помогают нам понять, как пользователи взаимодействуют с сайтом.</p>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>3. Цели использования</h3>
+                            <p>Мы используем cookies для:</p>
+                            <ul>
+                                <li>Обеспечения безопасности сайта</li>
+                                <li>Запоминания ваших предпочтений</li>
+                                <li>Улучшения пользовательского опыта</li>
+                                <li>Анализа использования сайта</li>
+                                <li>Персонализации контента</li>
+                            </ul>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>4. Управление cookies</h3>
+                            <p>Вы можете управлять cookies через настройки вашего браузера:</p>
+                            <ul>
+                                <li>Блокировать все cookies</li>
+                                <li>Разрешать только необходимые cookies</li>
+                                <li>Удалять существующие cookies</li>
+                                <li>Получать уведомления о новых cookies</li>
+                            </ul>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>5. Сторонние cookies</h3>
+                            <p>Мы можем использовать сервисы третьих сторон (Google Analytics, социальные сети), которые устанавливают свои cookies. Эти сервисы имеют собственные политики конфиденциальности.</p>
+                        </section>
+
+                        <section class="terms-section">
+                            <h3>6. Сроки хранения</h3>
+                            <p>Сроки хранения cookies варьируются от сессии до 2 лет в зависимости от их типа и назначения.</p>
+                        </section>
+
+                        <div class="terms-footer">
+                            <p><strong>Дата последнего обновления:</strong> 1 января 2024 года</p>
+                            <p>По вопросам использования cookies обращайтесь: <a href="mailto:cookies@pyon-studio.com">cookies@pyon-studio.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="terms-modal__footer">
+                    <button class="btn btn--primary" id="close-cookies">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Banner -->
+    <div id="terms-banner" class="terms-banner" style="display: none;">
+        <div class="terms-banner__content">
+            <div class="terms-banner__text">
+                <span>Мы используем файлы cookie и обрабатываем персональные данные для улучшения работы сайта. </span>
+                <a href="javascript:void(0)" id="read-terms-link" class="terms-banner__link">Подробнее</a>
+            </div>
+            <div class="terms-banner__actions">
+                <button class="btn btn--outline btn--small" id="decline-banner">Отклонить</button>
+                <button class="btn btn--primary btn--small" id="accept-banner">Принять все</button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/script.js"></script>
+    <script src="js/terms.js"></script>
 </body>
 </html>

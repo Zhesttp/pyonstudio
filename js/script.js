@@ -2,10 +2,17 @@
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        
+        const href = this.getAttribute('href');
+        // Проверяем, что href не равен просто "#" и не является javascript:void(0)
+        if (href && href !== '#' && href !== 'javascript:void(0)' && href.length > 1) {
+            const targetElement = document.querySelector(href);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }
     });
 });
 
