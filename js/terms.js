@@ -8,12 +8,15 @@ class TermsManager {
         this.cookieName = 'pyon_terms_accepted';
         this.cookieExpiry = 365; // days
         
-        this.init();
+        // Инициализируем только если есть необходимые элементы
+        if (this.termsModal || this.termsBanner) {
+            this.init();
+        }
     }
 
     init() {
         // Check if user has already accepted terms
-        if (!this.hasAcceptedTerms()) {
+        if (!this.hasAcceptedTerms() && this.termsBanner) {
             this.showTermsBanner();
         }
         
@@ -38,6 +41,11 @@ class TermsManager {
     }
 
     showTermsBanner() {
+        if (!this.termsBanner) {
+            console.warn('Terms banner not found, cannot show banner');
+            return;
+        }
+        
         setTimeout(() => {
             this.termsBanner.style.display = 'block';
             // Force reflow
@@ -47,6 +55,10 @@ class TermsManager {
     }
 
     hideTermsBanner() {
+        if (!this.termsBanner) {
+            return;
+        }
+        
         this.termsBanner.classList.remove('is-visible');
         setTimeout(() => {
             this.termsBanner.style.display = 'none';
@@ -54,6 +66,10 @@ class TermsManager {
     }
 
     showTermsModal() {
+        if (!this.termsModal) {
+            return;
+        }
+        
         this.termsModal.classList.add('is-open');
         document.body.style.overflow = 'hidden';
         
@@ -65,11 +81,19 @@ class TermsManager {
     }
 
     hideTermsModal() {
+        if (!this.termsModal) {
+            return;
+        }
+        
         this.termsModal.classList.remove('is-open');
         document.body.style.overflow = '';
     }
 
     showPrivacyModal() {
+        if (!this.privacyModal) {
+            return;
+        }
+        
         this.privacyModal.classList.add('is-open');
         document.body.style.overflow = 'hidden';
         
@@ -81,11 +105,19 @@ class TermsManager {
     }
 
     hidePrivacyModal() {
+        if (!this.privacyModal) {
+            return;
+        }
+        
         this.privacyModal.classList.remove('is-open');
         document.body.style.overflow = '';
     }
 
     showCookiesModal() {
+        if (!this.cookiesModal) {
+            return;
+        }
+        
         this.cookiesModal.classList.add('is-open');
         document.body.style.overflow = 'hidden';
         
@@ -97,6 +129,10 @@ class TermsManager {
     }
 
     hideCookiesModal() {
+        if (!this.cookiesModal) {
+            return;
+        }
+        
         this.cookiesModal.classList.remove('is-open');
         document.body.style.overflow = '';
     }
@@ -349,36 +385,40 @@ class TermsManager {
         }
 
         // Handle keyboard navigation for privacy modal
-        document.addEventListener('keydown', (e) => {
-            if (this.privacyModal?.classList.contains('is-open')) {
-                if (e.key === 'Escape') {
-                    this.hidePrivacyModal();
-                } else {
-                    const modalBody = this.privacyModal.querySelector('.terms-modal__body');
-                    if (modalBody && (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'PageDown' || e.key === 'PageUp')) {
-                        e.preventDefault();
-                        const scrollAmount = e.key === 'ArrowDown' ? 50 : e.key === 'ArrowUp' ? -50 : e.key === 'PageDown' ? 200 : -200;
-                        modalBody.scrollBy(0, scrollAmount);
+        if (this.privacyModal) {
+            document.addEventListener('keydown', (e) => {
+                if (this.privacyModal?.classList.contains('is-open')) {
+                    if (e.key === 'Escape') {
+                        this.hidePrivacyModal();
+                    } else {
+                        const modalBody = this.privacyModal.querySelector('.terms-modal__body');
+                        if (modalBody && (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'PageDown' || e.key === 'PageUp')) {
+                            e.preventDefault();
+                            const scrollAmount = e.key === 'ArrowDown' ? 50 : e.key === 'ArrowUp' ? -50 : e.key === 'PageDown' ? 200 : -200;
+                            modalBody.scrollBy(0, scrollAmount);
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
 
         // Handle keyboard navigation for cookies modal
-        document.addEventListener('keydown', (e) => {
-            if (this.cookiesModal?.classList.contains('is-open')) {
-                if (e.key === 'Escape') {
-                    this.hideCookiesModal();
-                } else {
-                    const modalBody = this.cookiesModal.querySelector('.terms-modal__body');
-                    if (modalBody && (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'PageDown' || e.key === 'PageUp')) {
-                        e.preventDefault();
-                        const scrollAmount = e.key === 'ArrowDown' ? 50 : e.key === 'ArrowUp' ? -50 : e.key === 'PageDown' ? 200 : -200;
-                        modalBody.scrollBy(0, scrollAmount);
+        if (this.cookiesModal) {
+            document.addEventListener('keydown', (e) => {
+                if (this.cookiesModal?.classList.contains('is-open')) {
+                    if (e.key === 'Escape') {
+                        this.hideCookiesModal();
+                    } else {
+                        const modalBody = this.cookiesModal.querySelector('.terms-modal__body');
+                        if (modalBody && (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'PageDown' || e.key === 'PageUp')) {
+                            e.preventDefault();
+                            const scrollAmount = e.key === 'ArrowDown' ? 50 : e.key === 'ArrowUp' ? -50 : e.key === 'PageDown' ? 200 : -200;
+                            modalBody.scrollBy(0, scrollAmount);
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
 
         // Close modals on overlay click
         if (this.privacyModal) {

@@ -203,11 +203,6 @@ router.get('/schedule/week', async (req, res) => {
     const sunday = new Date(monday);
     sunday.setDate(monday.getDate() + 6); // Воскресенье
     
-    // Расширяем диапазон на 7 дней вперед, чтобы включить занятия на следующей неделе
-    const endDate = new Date(sunday);
-    endDate.setDate(sunday.getDate() + 7);
-    
-    
     const q = `
       SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place,
              c.type_id, c.max_participants,
@@ -224,7 +219,7 @@ router.get('/schedule/week', async (req, res) => {
       GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, c.type_id, c.max_participants, t.first_name, t.last_name, ct.name
       ORDER BY c.class_date, c.start_time
     `;
-    const { rows } = await client.query(q, [monday.toISOString().split('T')[0], endDate.toISOString().split('T')[0]]);
+    const { rows } = await client.query(q, [monday.toISOString().split('T')[0], sunday.toISOString().split('T')[0]]);
     res.json(rows);
   } catch (error) {
     console.error('Error fetching weekly schedule:', error);
@@ -235,7 +230,7 @@ router.get('/schedule/week', async (req, res) => {
 });
 
 // GET /api/schedule/stats - статистика для расписания
-router.get('/schedule/stats', auth, async (req, res) => {
+router.get('/schedule/stats', async (req, res) => {
   let client;
   try {
     client = await pool.connect();
@@ -286,17 +281,13 @@ router.get('/schedule/types', async (req, res) => {
     const sunday = new Date(monday);
     sunday.setDate(monday.getDate() + 6);
     
-    // Расширяем диапазон на 7 дней вперед, чтобы включить занятия на следующей неделе
-    const endDate = new Date(sunday);
-    endDate.setDate(sunday.getDate() + 7);
-    
     const typesResult = await client.query(`
       SELECT DISTINCT ct.id, ct.name, ct.description
       FROM class_types ct
       INNER JOIN classes c ON ct.id = c.type_id
       WHERE c.class_date >= $1 AND c.class_date <= $2
       ORDER BY ct.name
-    `, [monday.toISOString().split('T')[0], endDate.toISOString().split('T')[0]]);
+    `, [monday.toISOString().split('T')[0], sunday.toISOString().split('T')[0]]);
     
     res.json(typesResult.rows);
   } catch (error) {

@@ -372,9 +372,6 @@
             const updateStats = async () => {
                 try {
                     const response = await fetch('/api/schedule/stats', {
-                        headers: {
-                            'X-XSRF-TOKEN': getCsrfToken()
-                        },
                         credentials: 'same-origin'
                     });
                     if (!response.ok) throw new Error('Ошибка загрузки статистики');
@@ -624,11 +621,8 @@
                     // Загружаем типы занятий
                     await loadClassTypes();
                     
-                    // Загружаем расписание (с учётом авторизации)
-                    let classesResponse = await fetch('/api/classes', { credentials: 'same-origin' });
-                    if (classesResponse.status === 401) {
-                        classesResponse = await fetch('/api/schedule/week', { credentials: 'same-origin' });
-                    }
+                    // Загружаем расписание на текущую неделю
+                    const classesResponse = await fetch('/api/schedule/week', { credentials: 'same-origin' });
                     if (!classesResponse.ok) throw new Error('Ошибка загрузки расписания');
                     const classes = await classesResponse.json();
                     allClasses = classes; // Сохраняем все занятия для фильтрации
@@ -654,7 +648,7 @@
                 loadScheduleData(); // Перезагружаем данные при смене дня
                 setInterval(() => {
                     updateWeekDates();
-                    loadScheduleData();
+                    loadScheduleData(); // Перезагружаем данные для новой недели
                 }, 24 * 60 * 60 * 1000);
             }, msUntilMidnight);
 

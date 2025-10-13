@@ -39,13 +39,19 @@
 /* Terms checkbox styles */
 .checkbox-label {
     display: flex;
-    align-items: flex-start;
+    align-items: baseline;
     gap: 12px;
     cursor: pointer;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.4;
     color: var(--text-dark);
     margin-bottom: 0;
+    user-select: none;
+}
+
+.checkbox-label span {
+    display: inline-block;
+    line-height: 1.4;
 }
 
 .checkbox-label input[type="checkbox"] {
@@ -60,9 +66,13 @@
     background: var(--white);
     position: relative;
     flex-shrink: 0;
-    margin-top: 2px;
     transition: all 0.2s ease;
     box-shadow: var(--shadow-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+    align-self: center;
 }
 
 .checkbox-label input[type="checkbox"]:checked + .checkbox-custom {
@@ -72,14 +82,16 @@
 }
 
 .checkbox-label input[type="checkbox"]:checked + .checkbox-custom::after {
-    content: '✓';
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--white);
-    font-size: 12px;
-    font-weight: bold;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 5px;
+    height: 8px;
+    border: solid var(--white);
+    border-width: 0 2px 2px 0;
+    border-radius: 1px;
 }
 
 .checkbox-label input[type="checkbox"]:focus + .checkbox-custom {
@@ -88,20 +100,55 @@
     box-shadow: var(--shadow-medium);
 }
 
+.checkbox-label:hover .checkbox-custom {
+    border-color: var(--primary-dark);
+    box-shadow: var(--shadow-medium);
+}
+
+.checkbox-label:hover input[type="checkbox"]:checked + .checkbox-custom {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
 .terms-link-inline {
     color: var(--primary-color);
     text-decoration: none;
     font-weight: 600;
     border-bottom: 1px solid transparent;
     transition: all 0.2s ease;
-    padding: 1px 2px;
-    border-radius: 2px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
 }
 
 .terms-link-inline:hover {
     border-bottom-color: var(--primary-color);
     background: rgba(181, 168, 176, 0.1);
     color: var(--primary-dark);
+}
+
+.terms-link-inline:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.terms-link-inline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: all 0.2s ease;
+    transform: translateX(-50%);
+}
+
+.terms-link-inline:hover::after {
+    width: 100%;
 }
 
 /* Password strength indicator */

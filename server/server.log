@@ -3386,3 +3386,2454 @@ Server started on 3000
 > node app.js
 
 Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Validation errors: [
+  {
+    value: '',
+    msg: 'Имя должно содержать только буквы',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Имя должно быть от 2 до 30 символов',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна содержать только буквы',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна быть от 2 до 30 символов',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '+375',
+    msg: 'Телефон должен быть в формате +375XXXXXXXXX',
+    param: 'phone',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат email',
+    param: 'email',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Пароль должен содержать минимум 8 символов, включая буквы и цифры',
+    param: 'password',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат даты рождения',
+    param: 'birth',
+    location: 'body'
+  }
+]
+Validation errors: [
+  {
+    value: '',
+    msg: 'Имя должно содержать только буквы',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Имя должно быть от 2 до 30 символов',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна содержать только буквы',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна быть от 2 до 30 символов',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '+375',
+    msg: 'Телефон должен быть в формате +375XXXXXXXXX',
+    param: 'phone',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат email',
+    param: 'email',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Пароль должен содержать минимум 8 символов, включая буквы и цифры',
+    param: 'password',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат даты рождения',
+    param: 'birth',
+    location: 'body'
+  }
+]
+Validation errors: [
+  {
+    value: '',
+    msg: 'Имя должно содержать только буквы',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Имя должно быть от 2 до 30 символов',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна содержать только буквы',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна быть от 2 до 30 символов',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '+375',
+    msg: 'Телефон должен быть в формате +375XXXXXXXXX',
+    param: 'phone',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат email',
+    param: 'email',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Пароль должен содержать минимум 8 символов, включая буквы и цифры',
+    param: 'password',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат даты рождения',
+    param: 'birth',
+    location: 'body'
+  }
+]
+Validation errors: [
+  {
+    value: '',
+    msg: 'Имя должно содержать только буквы',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Имя должно быть от 2 до 30 символов',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна содержать только буквы',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна быть от 2 до 30 символов',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '+375',
+    msg: 'Телефон должен быть в формате +375XXXXXXXXX',
+    param: 'phone',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат email',
+    param: 'email',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Пароль должен содержать минимум 8 символов, включая буквы и цифры',
+    param: 'password',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат даты рождения',
+    param: 'birth',
+    location: 'body'
+  }
+]
+Validation errors: [
+  {
+    value: '',
+    msg: 'Имя должно содержать только буквы',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Имя должно быть от 2 до 30 символов',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна содержать только буквы',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна быть от 2 до 30 символов',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '+375',
+    msg: 'Телефон должен быть в формате +375XXXXXXXXX',
+    param: 'phone',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат email',
+    param: 'email',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Пароль должен содержать минимум 8 символов, включая буквы и цифры',
+    param: 'password',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат даты рождения',
+    param: 'birth',
+    location: 'body'
+  }
+]
+Validation errors: [
+  {
+    value: '',
+    msg: 'Имя должно содержать только буквы',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Имя должно быть от 2 до 30 символов',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна содержать только буквы',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна быть от 2 до 30 символов',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '+375',
+    msg: 'Телефон должен быть в формате +375XXXXXXXXX',
+    param: 'phone',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат email',
+    param: 'email',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Пароль должен содержать минимум 8 символов, включая буквы и цифры',
+    param: 'password',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат даты рождения',
+    param: 'birth',
+    location: 'body'
+  }
+]
+Validation errors: [
+  {
+    value: 'test123',
+    msg: 'Пароль должен содержать минимум 8 символов, включая буквы и цифры',
+    param: 'password',
+    location: 'body'
+  }
+]
+Registration data: {
+  first_name: 'Степан',
+  last_name: 'Желянин',
+  phone: '+375295314144',
+  email: 'gelianin@mail.ru',
+  birth: '2004-03-12',
+  level: undefined
+}
+Mapped level: Начинающий
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'KFR0eYBO-l6MAa31df1T0t-hLxT5KiSWjD5A'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'KFR0eYBO-l6MAa31df1T0t-hLxT5KiSWjD5A'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'z5UIxGdd-7G0cx2GouJV0NZo4xLdrl4EgppU'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'cIjY3Bx3-NF2RC5L8fbKtmC-lvuF6pgyXOu0'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  'XSRF-TOKEN': 'qo57kbHP-aVP-7cJDTM_6JW76c-ICladFdvY'
+}
+No valid tokens found
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  'XSRF-TOKEN': '6gxSZsZi-DsEBz3Tk6UnXFHnwg0HUpO9becI'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  'XSRF-TOKEN': 'acCbIl8l-umMQWgowkQSaVae2znU9F4RRMy4'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  'XSRF-TOKEN': '4ALDTFMA-cRqQ85vLPtFzQvCvnZ3cUQuWqXA'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  'XSRF-TOKEN': 'vv3wTKAG-Z3c47ev4533PYnc6Pk-LuS4NzaE'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  'XSRF-TOKEN': 'N6ag806y-bELvYPEto202315oIjO0JgC113E'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  'XSRF-TOKEN': 'qcAW0kU6-iLSf07Zy9uOyTn8xPPlWIEum9xo'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  'XSRF-TOKEN': '0NBiyLdt-GnByrXirlbrauCJKQx2xHw_XR8c'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  'XSRF-TOKEN': '0NBiyLdt-GnByrXirlbrauCJKQx2xHw_XR8c'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  'XSRF-TOKEN': 'ZOBp8sPl-l1aJ8I3XIJLYEK377TqExU0ATDA'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'R6tKe8Nv-VAts5WozVwaBejpgJOXwHJsUHyE'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  'XSRF-TOKEN': 'DdPV91es-i4QqveL3j3pmopnlfGe1fIBE1nA'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  'XSRF-TOKEN': 'UT2DvDSt-DmDfaDW2BOfUM9rferacBvC5fH0'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  'XSRF-TOKEN': 'VFxE5DO2-riTjf9T023e0ykbPr_Iotw-pCwg'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  'XSRF-TOKEN': 'VFxE5DO2-riTjf9T023e0ykbPr_Iotw-pCwg'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  'XSRF-TOKEN': 'mYTLLca2-BEGVc41CNmV1oZQbI-Rhho_ghG4'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'CddPTPmT-c0ko2IQVv0ZfO5aWFB61lwwt0wc'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'CddPTPmT-c0ko2IQVv0ZfO5aWFB61lwwt0wc'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'FRWyxiag-jaNxlOPpO19UPkgaaJt_qE3WC0s'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'LQ0xzsjY-AzBuxLMgJCo6yntut3Ow4iQyeCY'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'cdBTASOD-aeaN2dx25mt0RQYR-u0C64NmXAs'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'AG21l7dY-qKsKnIbPPDHV07UB2H6uNwKmznw'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'pbIPNT1f-8X6rGXcNWF3Tzofepcs6qzPe3BU'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'riwoosx6-zbubNEbeZNeM7W8Dp9ALu0onwAc'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'rK9uqgeE-3gbVHOG1C3Kw4ktA68qhGuZxKoQ'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'G29ZFTJt-19upSqqGP-qk-wE9UqbT3Q2SGcA'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'wv0650g9-VSMNlYghhcio9YAw6t9BCzsGmx8'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'lKOH3s8e--SCktlMvo7Ke_58gS-McpStWky4'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'v6UWHXNe-WIbA800rTWkFag9Zn9TbdsQNIXI'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'SU09kki5-IrJyE-tLnnUA8rTcXohb9k2Egus'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'f7wBLtbj-7B5pMuOlmnoPKluEAark_sByJoc'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'BAEiymKg-jJuALKsQgVwEZ9aDPi3aW6BhzvA'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'knLWMrpo-ETsW8b19OPClH2YCDB4q9ZJN9Bk'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': '6HYDYKtg-YZClvBC3Jq8X9QnI-S-P5AzTgPw'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': '6HYDYKtg-YZClvBC3Jq8X9QnI-S-P5AzTgPw'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'mHKBX2Vg-T42529BQhJRbzm44tDzWdqRTKK4'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'mHKBX2Vg-T42529BQhJRbzm44tDzWdqRTKK4'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': '14HB9qbX-Mk-kB_4Kjr2GnPQVpJA05P7GwnM'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': '14HB9qbX-Mk-kB_4Kjr2GnPQVpJA05P7GwnM'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'tnP4Qn4K-mUmLJU2Dr-TT7I8aIHP_2TJgY3c'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'JqiEUl9d-pyr_yOtTkK--DIM9iMvXSPdeREI'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'pRGQ2js0-5pjMTfsIIjEqi-ZTv-M4HFQRMgI'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': '5QCBkggi-QGovRv-4LNhnO20u6qggUZt18KE'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'N5XOyvGi-9_yVL9j6nPKJcMpUx2geMIc_3_E'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'fKfkZMKO-HdaQHBdJFDdknnN8WeTiMt3ctAw'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'H7JYoggC-Lzj0T48iSUcvmxqTHqaxGaO6R2k'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'DItaEn3J-JfO8j7em9dI9lTeJWKSPIrjc-4s'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'NEyBiITM-WwlCyU9YX19OXm195BhWXtaFg5k'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'UXi6V5G6-LYKoHZ1H3eGgWXvLpxD0uOstPQ8'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'eOVJMz6H-qrQ6PE6W6DEo-vE6pIDPz96Oplo'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'dEmCQQds-pXP0pI-y0m39qR3A2nGBMTugPlM'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'QuLhT9kV-viteLY-o2mCH65NLgoaB2J5RHHY'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'XHy5EdsG-HS27r_JyxEAGmsEPjGJzats7l4E'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'pdMlzVGw-oCEOKwPQynzVu2tKk9Vp1n18o6o'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'QaYcaGp8-eEsZmil9E0pEkKv3rrDD65yTl7E'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': '2SrokuCT-pJy87v8Fvs3ER1UI57kImANM7B0'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'YBgAz7XL-3LgQOtflsbxFlmwQEpCU9Mw9kHk'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'EzHHPTzc-SeYSXJtshRbA16cX22yF2Z2tz4I'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'Dp2dnnCB-gHxvMr9URiMKWz53qnqMpUS_Ag0'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': '55DAMHHL-QhOQScguJ3f0Xs30offuDhfr_OQ'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'rZeGaSLH-YorX3kje86JYDhIVA1Cwvk30yko'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'iSnDTSa7-8DpaFAdgNfqkvwdCFQEGLABDO8U'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'XjdsOwNK-5ek0BkwEf9DoGjkO-MnfQ0hQpsg'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'xzXjuPvS-u93TSi-UTEbk5-k0_otVuTI8EgA'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'shQcKWmX-GUQTShb1pTbosUvmTiGWFFurl34'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'qzD0HbQV-4oFoBuZ7xda89nb3iIrqrEc0sYA'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'uUmkXiYm-obYyv9ioYIoUOuto3F7RTnLEhGs'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'lgIZpbAg-Jm02iMbkPnB2QegBpiXXYCXkPMM'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'kvy4h5cW-03Gi2Kx8TZRFgs-wXOC4WrUXHqA'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'FBMpUGzM-aIXGJgHSwyKGJ3rhpU-O743y6mM'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'SaWMPqeM-P0zhiWw2dkYiZZFBvY_lsz08w58'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'CGQJ2Bnt-hdq1Nk3X1O__uJQ1Hp2K9Sst598'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'Y4NgLStg-aALdy9HUcQfjFgoh2YBTwgca1R8'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'fuKTXjLQ-e79_nb18iWTnCegJK6KeawW9b4U'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'ivv7sArH-gAy7JaQ428GBbgNrcMaqCsaoAAE'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'kRTNkTel-qk4OjIU_A6BIrqyh1bs_K3cW5is'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'U3X4Z2OF-maZh2q3VeAuBE9Wt33NjbxHsjrQ'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'aVaDySlM-Wd40mxUjeRh4IYtW1a8AyF6pywc'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'pogXyJMX-GNVFNJCCh00JZTyKXH238RzvKS4'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'BLcZeKXi-CAalXau3R_8BNI5CttgyHlBzTMQ'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'Ddl8ApcM-gNOuFKgKa9p8CFP3WE_mbfP5A9s'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'hTyrLTAx-B9-k82iFu-hlX7-R6M1-Dd-F2gI'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'UkY3FcYE-c9Zi5MIy2dV___UwYtBq4A0gXpQ'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'm5ftfo91-E79rOz_nmCXJt41p5_sTLM3Lz4I'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'Ez70RZsm-bppxL8Ry8jJ8VLHxgK5hqfM6x54'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': '4NZARSnF-dWBWhQLCOVmWEXHupBEhf9lNxz8'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'Wcvi45FD-eWzAzM9O35DUsyy_9MA-B7s-NNQ'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'ebeRsJ99-kf4yjXgPu82qhTT-_M7rTKOWy-Y'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'TMmAj0iJ-3zNXQAWIW-JFfyxvgsD4lQ0mZro'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'RmXTVy5b-uKJFq0cZkMG2qlacKIS05KsjJsU'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'szSH7MAK-DxZTBMcvfRJLKCu6Z5iO4J8O1FE'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'GnMV1Fch---ZBp8cdrw_1JlNSdgwnOPUSOhU'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': '1AZtFyUM-6vvWND-mkVXQNTjqs5ZYDXJZjTg'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'CzakkCYk-2XLlWg3ejAhZFSoHxbexuWG7iYY'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'c6fDJynP-2deQY_bksdWyX7zIKcw8d6DwtIM'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'KOFK7lXV-CAljxxMQ-M4qDLi0lay0AK_1GcE'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': '0SS1LWA1-xC4OvcXUgmnkN2gmI_YCWRaGCLI'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'tpElWBa8-g78ebpk5ft5B4F5RETazUOOg8Xk'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'fckRGURc-KRsKxPBtewD3BwCFEeCq_l8oQ5k'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'nftJPj2I-vPAs7434W0q-2hDE9MpXEqdNBRk'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'uBNeoq5Z-gYd8GRRCst4UHZRmDeMGDNaswiU'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'Zzyk7Cez-aRISVN3BXsEzxIeMOGTlOCN7OgI'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'O32g4xTr-5Lk7xzFR4lLUiYCvXLZgIPuHfyU'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'WMGhY98K-OnuxgUpT67Ba_3kRYJfuDGxnB7I'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'yN38vKMd-rU0gIDV19oP9dn3t0F6F3lrarPY'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'N7Y02zRJ-zdQ8q2KwFd-GBTVwHeVsh0kw-PE'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'u1KFzin8-XHFzlaF_Ztw0fNYjtBUmmlUE_mc'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'hfNHA0hT-ihBv-rscAinNaofmQWr4e6DmjWE'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'fPpZexAQ-AbDwEjPzjH78E8dqCaOwmK3tbQs'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'fPpZexAQ-AbDwEjPzjH78E8dqCaOwmK3tbQs'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'NXLOHNxi-fv_9k5scpf4MItSogktM6W4z-fU'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'lqsQArpZ-M-D3ht3IQ5_F0ajlHfmXaBcTVVM'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'yFW8kqMG-7bVeYK-TFrRa7vHacv71gP_UsGo'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'KHtLPGOd-Bj1gGHPtrP2JZhD3b1hZLDae1CA'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'j87JWmJH-zLD5F-B8Z7scAZU7B3kvWGiSXsI'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': '6KzuTSUg-C4lTfEwTUClrCLKNBlTEwNHYkSY'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'E17BbnfT-IAZdiR8EAy4fEYCTO2WgGF5zX_c'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'XdM8zG6w-OJN2d6kjX38c5M6AfHtElsN9buo'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'Es5jNRZt-QZcRVja-cS6NCxNpUkDCRLdIC7c'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'SSisLX9a-eSi04C5tgArchW6wRarTKbyBIHM'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': '8jfpNNPe-3YkhogBqBr4EwSANi9MVxeN74hc'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'IzSt9MmZ-Clca82Ayq3Y3fjWfXDWOumBQdD0'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'H07RBP9i-QPSPrlsb48BTk-T5xZymyyjce7I'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'cVaREqmn-ME3J4UWnCk39XHgIU-C-AhzEN6Q'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'CZDwJqM0-1hf0IBbzq-l9LJzJcVIStZqbsM0'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'CZDwJqM0-1hf0IBbzq-l9LJzJcVIStZqbsM0'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'msVzZcZX-R3BgsD_dUcJ87Q6GB8A9Y70psHg'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'bGMW0p8H--SDmw0D9jUyC9BDySk8xWNUBrd4'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'tMmLvVXg-5b_ir6-GiPtj2r42yKIun71w2aE'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'DGWSkKzU-8S89hyKrdpw0sS-i6uLHkKmYaFw'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': '1ME12F2A-CsMQFSdLzuJRMdH_1R-fGdX85Po'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'uE9E1qSZ-vI2efRDE7hKiHN7Cu9GpuI2fFio'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'XztK2IjN-blLSxq71cC_FKcQL1WoAZiT7e7o'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'QDsEW8Zb-ksQtruhaSvD7pDiRogRvg8aWTBM'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'xjRiAkod-3fMGITaJTqeujD7WZPqUzC1cZ2w'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'ZMiLzbXp-imLeNsPMFewJE5iKKTuz91MmO94'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'sNmjXF2X-N7fChqA3Aveh-2sofFruM1rqxgk'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': '1qR3wpqG-Eeg_CVaj7F_PXQk5ozdwobsV_Eg'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'RuFRzjTZ-zCXgyJorqlRSH3ZhIX8q1T0YnK4'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'RuFRzjTZ-zCXgyJorqlRSH3ZhIX8q1T0YnK4'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'DlZ5Gywo-0IlFoeKAJdGQEiTmzF1w0FZWcRg'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'fDiCN25Z-rN2ktWr3qyl1WfRCA-RbmyoMKsc'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': '8LwyyWHC-ikGRQ5Er7BkAuV0xRT86W_EgPqg'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': '6ftQTpXK-p_H8hhlGY8ptM8ONxPY7TezC8JA'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'uJwX0v_jM_RCpY5ekrpZ5H1L',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiMmQwOTFhLWQyMDUtNGExZC1iNmQ0LWJkOGJjZTM0MWFmMSIsImVtYWlsIjoiZ2VsaW5hbmluQGFkbWluLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MDAxMzMyOCwiZXhwIjoxNzYwNjE4MTI4fQ.qqy42Y4xahgcPVK7BTILe6vZe5gGMZ223ABD58czfPE',
+  pyon_terms_accepted: 'true',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA0OGNkZDQ1LTJkYzItNDkxMC05ZTIxLWEyNDA3OWY1OWMxZiIsImVtYWlsIjoiZ2VsaWFuaW5AbWFpbC5ydSIsImlhdCI6MTc2MDMxNTQ4MiwiZXhwIjoxNzYwOTIwMjgyfQ.RMwcajUd738tWCT3VNLV0wTEaRzYSGYEiPOaS4aCfFw',
+  'XSRF-TOKEN': 'aNXlTabV-UtAFJmuD_YzN6RDlK38ZkK8Srao'
+}
+Admin token verified: {
+  id: 'bb2d091a-d205-4a1d-b6d4-bd8bce341af1',
+  email: 'gelinanin@admin.com',
+  role: 'admin',
+  iat: 1760013328,
+  exp: 1760618128
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'UsB4S1uq-c-iipV61WsiU-QnMfIib_V4nNk8'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'UsB4S1uq-c-iipV61WsiU-QnMfIib_V4nNk8'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'elQWyOLj-u66lTnlbgTwcFJjFBIxWzyGm340'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'elQWyOLj-u66lTnlbgTwcFJjFBIxWzyGm340'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
