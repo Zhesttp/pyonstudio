@@ -5837,3 +5837,60 @@ Admin token verified: {
   iat: 1760315530,
   exp: 1760920330
 }
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'uZhIRMaI-KFbPIpuJCI8Oqp_hwP2HAO3aD-U'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'uZhIRMaI-KFbPIpuJCI8Oqp_hwP2HAO3aD-U'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'afjiCMA7-lI7h1gzem27H8Soin8gfybaNuEI'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}
+Profile request - cookies: {
+  _csrf: 'vZsEhAs5F3tGOOLwc5ASwoxN',
+  admin_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJiYWYzNjkxLWYxZGMtNGYyNC05YzE0LTFlNjFjZTMxZjUzNiIsImVtYWlsIjoiYXNkQGFzZC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjAzMTU1MzAsImV4cCI6MTc2MDkyMDMzMH0.DWhaJfxy40xjbX5iLa8aq1sBmv6oAPox-J1lmIMC8P0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMDhiMTk4LTZhZGEtNDY0Yy05MmMwLTUxNDNlMzk3ZjMzMiIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsInJvbGUiOiJ0cmFpbmVyIiwiaWF0IjoxNzYwMzE1NjU2LCJleHAiOjE3NjA5MjA0NTZ9.xoGqllb1niuKVqgwuptiCM0kw5khKxiCV3dUhccDVMI',
+  'XSRF-TOKEN': 'afjiCMA7-lI7h1gzem27H8Soin8gfybaNuEI'
+}
+Admin token verified: {
+  id: '2baf3691-f1dc-4f24-9c14-1e61ce31f536',
+  email: 'asd@asd.com',
+  role: 'admin',
+  iat: 1760315530,
+  exp: 1760920330
+}

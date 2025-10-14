@@ -636,3 +636,22 @@
 .terms-banner.slide-up {
     animation: slideUp 0.3s ease-out;
 }
+
+/* Document Links Styling - Simple */
+.terms-link-inline {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+    padding: 2px 4px;
+    border-radius: 4px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.terms-link-inline:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 4px;
+}

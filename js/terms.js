@@ -498,7 +498,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const termsLink = document.getElementById('terms-link');
     const privacyLink = document.getElementById('privacy-link');
     
-    if (termsLink) {
+    // Only bind events if document viewer is not available
+    if (termsLink && !window.documentViewer) {
         termsLink.addEventListener('click', (e) => {
             e.preventDefault();
             if (window.termsManager) {
@@ -507,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    if (privacyLink) {
+    if (privacyLink && !window.documentViewer) {
         privacyLink.addEventListener('click', (e) => {
             e.preventDefault();
             // For now, show the same terms modal
