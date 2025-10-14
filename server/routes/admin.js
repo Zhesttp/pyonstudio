@@ -87,7 +87,7 @@ router.get('/admin/clients/:id', adminOnly, async (req, res) => {
   try {
     client = await pool.connect();
     const q = `
-      SELECT u.id, u.first_name, u.last_name, u.email, u.phone, u.birth_date, u.level,
+      SELECT u.id, u.first_name, u.last_name, u.email, u.phone, u.birth_date,
              p.title AS plan_title, us.end_date,
              (CASE WHEN us.end_date >= CURRENT_DATE THEN 'Активен' ELSE 'Неактивен' END) AS sub_status
       FROM users u
@@ -114,7 +114,7 @@ router.get('/admin/clients/:id', adminOnly, async (req, res) => {
 // PUT /api/admin/clients/:id – обновить данные клиента
 router.put('/admin/clients/:id', adminOnly, async (req, res) => {
     const { id } = req.params;
-    const { first_name, last_name, email, phone, birth_date, level } = req.body;
+    const { first_name, last_name, email, phone, birth_date } = req.body;
 
     if (!first_name || !last_name || !email) {
         return res.status(400).json({ message: 'Имя, фамилия и email обязательны' });
@@ -123,9 +123,9 @@ router.put('/admin/clients/:id', adminOnly, async (req, res) => {
     try {
         const client = await pool.connect();
         await client.query(
-            `UPDATE users SET first_name=$1, last_name=$2, email=$3, phone=$4, birth_date=$5, level=$6
-             WHERE id=$7`,
-            [first_name, last_name, email, phone, birth_date, level, id]
+            `UPDATE users SET first_name=$1, last_name=$2, email=$3, phone=$4, birth_date=$5
+             WHERE id=$6`,
+            [first_name, last_name, email, phone, birth_date, id]
         );
         client.release();
         res.sendStatus(204); // Успех, нет контента

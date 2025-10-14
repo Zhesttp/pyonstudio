@@ -450,14 +450,14 @@ router.delete('/classes/:id/cancel', auth, async (req, res) => {
     const lockedResult = await client.query(
       `SELECT CASE 
          WHEN $1::date < CURRENT_DATE THEN true
-         WHEN $1::date = CURRENT_DATE AND $2::time <= (CURRENT_TIME + INTERVAL '2 hours') THEN true
+         WHEN $1::date = CURRENT_DATE AND $2::time <= (CURRENT_TIME + INTERVAL '8 hours') THEN true
          ELSE false
        END AS locked`,
       [booking.class_date, booking.start_time]
     );
     if (lockedResult.rows[0].locked) {
       await client.query('ROLLBACK');
-      return res.status(409).json({ message: 'Нельзя отменить запись за 2 часа до начала или после старта' });
+      return res.status(409).json({ message: 'Нельзя отменить запись за 8 часов до начала или после старта' });
     }
 
     // Cancel the booking
@@ -527,14 +527,14 @@ router.delete('/classes/:id/book', auth, async (req, res) => {
     const lockedResult2 = await client.query(
       `SELECT CASE 
          WHEN $1::date < CURRENT_DATE THEN true
-         WHEN $1::date = CURRENT_DATE AND $2::time <= (CURRENT_TIME + INTERVAL '2 hours') THEN true
+         WHEN $1::date = CURRENT_DATE AND $2::time <= (CURRENT_TIME + INTERVAL '8 hours') THEN true
          ELSE false
        END AS locked`,
       [bookingCheck.rows[0].class_date, bookingCheck.rows[0].start_time]
     );
     if (lockedResult2.rows[0].locked) {
       await client.query('ROLLBACK');
-      return res.status(409).json({ message: 'Нельзя отменить запись за 2 часа до начала или после старта' });
+      return res.status(409).json({ message: 'Нельзя отменить запись за 8 часов до начала или после старта' });
     }
 
     // Cancel booking

@@ -134,14 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <label for="birth_date">Дата рождения</label>
                     <input type="date" id="birth_date" value="${birthDate}">
                 </div>
-                <div class="form-group">
-                    <label for="level">Уровень подготовки</label>
-                    <select id="level">
-                        <option value="Начинающий" ${client.level === 'Начинающий' ? 'selected' : ''}>Начинающий</option>
-                        <option value="Средний" ${client.level === 'Средний' ? 'selected' : ''}>Средний</option>
-                        <option value="Продвинутый" ${client.level === 'Продвинутый' ? 'selected' : ''}>Продвинутый</option>
-                    </select>
-                </div>
                 <div class="form-error" style="display:none;"></div>
             </form>
             
@@ -191,7 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 email: form.querySelector('#email').value,
                 phone: form.querySelector('#phone').value,
                 birth_date: form.querySelector('#birth_date').value,
-                level: form.querySelector('#level').value,
             };
 
             try {
@@ -439,7 +430,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 email: editForm.querySelector('#email').value.trim(),
                 phone: editForm.querySelector('#phone').value.trim(),
                 birth_date: editForm.querySelector('#birth_date').value,
-                level: editForm.querySelector('#level').value
             };
 
             // Нормализуем оригинальные данные для сравнения
@@ -449,7 +439,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 email: (currentClient.email || '').trim(),
                 phone: (currentClient.phone || '').trim(),
                 birth_date: currentClient.birth_date ? currentClient.birth_date.split('T')[0] : '',
-                level: currentClient.level || ''
             };
             
             // Проверяем наличие изменений

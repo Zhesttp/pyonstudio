@@ -92,7 +92,7 @@ router.get('/me', async (req,res)=>{
     
     // Handle user profile (existing logic)
     const q = `
-        SELECT u.first_name, u.last_name, u.email, u.phone, u.birth_date, u.level,
+        SELECT u.first_name, u.last_name, u.email, u.phone, u.birth_date,
                u.visits_count, u.minutes_practice,
                p.title AS plan_title,
                p.description AS plan_description,
@@ -156,7 +156,7 @@ router.get('/me', async (req,res)=>{
 });
 
 router.put('/me', auth, async (req, res) => {
-    const { first_name, last_name, email, phone, birth_date, level } = req.body;
+    const { first_name, last_name, email, phone, birth_date } = req.body;
     const userId = req.user.id;
 
     if (!first_name || !last_name || !email) {
@@ -167,9 +167,9 @@ router.put('/me', auth, async (req, res) => {
         const client = await pool.connect();
         await client.query(
             `UPDATE users 
-             SET first_name=$1, last_name=$2, email=$3, phone=$4, birth_date=$5, level=$6
-             WHERE id=$7`,
-            [first_name, last_name, email, phone, birth_date, level, userId]
+             SET first_name=$1, last_name=$2, email=$3, phone=$4, birth_date=$5
+             WHERE id=$6`,
+            [first_name, last_name, email, phone, birth_date, userId]
         );
         client.release();
         res.sendStatus(204); // Успех, нет контента

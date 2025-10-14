@@ -24,7 +24,6 @@ CREATE TABLE users (
     phone TEXT UNIQUE,
     email CITEXT UNIQUE NOT NULL,
     password_hash TEXT NOT NULL,
-    level TEXT CHECK (level IN ('Начинающий', 'Средний', 'Продвинутый')),
     avatar_url TEXT,
     visits_count INT DEFAULT 0,
     minutes_practice INT DEFAULT 0,

@@ -31,7 +31,6 @@ async function loadProfile() {
     if (data.birth_date) {
         document.getElementById('birthdate').value = data.birth_date.slice(0, 10);
     }
-    document.getElementById('level').value = data.level || '';
 
     const subscriptionCard = document.getElementById('subscription-card');
     const noSubscriptionCard = document.getElementById('no-subscription');

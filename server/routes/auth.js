@@ -50,18 +50,9 @@ router.post('/register', registerValidation, async (req, res) => {
         });
     }
 
-    const { first_name, last_name, phone, email, password, birth, level } = req.body;
+    const { first_name, last_name, phone, email, password, birth } = req.body;
 
-    console.log('Registration data:', { first_name, last_name, phone, email, birth, level });
-
-    const levelMap = {
-        beginner: 'Начинающий',
-        medium: 'Средний',
-        advanced: 'Продвинутый'
-    };
-    const russianLevel = levelMap[level] || 'Начинающий'; // По умолчанию 'Начинающий'
-    
-    console.log('Mapped level:', russianLevel);
+    console.log('Registration data:', { first_name, last_name, phone, email, birth });
 
     try {
         const client = await pool.connect();
@@ -74,10 +65,10 @@ router.post('/register', registerValidation, async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 12);
         
         const newUserQuery = `
-            INSERT INTO users(first_name, last_name, birth_date, phone, email, password_hash, level)
-            VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id;
+            INSERT INTO users(first_name, last_name, birth_date, phone, email, password_hash)
+            VALUES($1, $2, $3, $4, $5, $6) RETURNING id;
         `;
-        const newUser = await client.query(newUserQuery, [first_name, last_name, birth, phone, email, hashedPassword, russianLevel]);
+        const newUser = await client.query(newUserQuery, [first_name, last_name, birth, phone, email, hashedPassword]);
         
         const userId = newUser.rows[0].id;
         client.release();

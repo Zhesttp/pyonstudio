@@ -89,7 +89,6 @@
                             <div class="class-info">
                                 <h4>Утренняя Виньяса</h4>
                                 <p>Анна Смирнова • Студия A</p>
-                                <div class="class-level">Средний</div>
                             </div>
                             <button class="btn btn--outline btn--small">Записаться</button>
                         </div>
@@ -98,7 +97,6 @@
                             <div class="class-info">
                                 <h4>Расслабляющая йога</h4>
                                 <p>Мария К. • Студия B</p>
-                                <div class="class-level level-beginner">Начинающий</div>
                             </div>
                             <button class="btn btn--outline btn--small">Записаться</button>
                         </div>
@@ -114,7 +112,6 @@
                             <div class="class-info">
                                 <h4>Утренняя Виньяса</h4>
                                 <p>Анна Смирнова • Онлайн</p>
-                                <div class="class-level">Средний</div>
                             </div>
                             <button class="btn btn--outline btn--small">Записаться</button>
                         </div>
@@ -123,7 +120,6 @@
                             <div class="class-info">
                                 <h4>Пилатес</h4>
                                 <p>Михаил Иванов • Студия A</p>
-                                <div class="class-level level-intermediate">Продвинутый</div>
                             </div>
                             <button class="btn btn--outline btn--small">Записаться</button>
                         </div>
@@ -132,7 +128,6 @@
                             <div class="class-info">
                                 <h4>Йога для спины</h4>
                                 <p>Елена Петрова • Студия B</p>
-                                <div class="class-level">Все уровни</div>
                             </div>
                             <button class="btn btn--outline btn--small">Записаться</button>
                         </div>
@@ -148,7 +143,6 @@
                             <div class="class-info">
                                 <h4>Хатха-йога</h4>
                                 <p>Анна Смирнова • Студия A</p>
-                                <div class="class-level">Начинающий</div>
                             </div>
                             <button class="btn btn--outline btn--small">Записаться</button>
                         </div>
@@ -157,7 +151,6 @@
                             <div class="class-info">
                                 <h4>Медитация + Йога</h4>
                                 <p>Сергей М. • Студия C</p>
-                                <div class="class-level">Все уровни</div>
                             </div>
                             <button class="btn btn--outline btn--small">Записаться</button>
                         </div>
@@ -173,7 +166,6 @@
                             <div class="class-info">
                                 <h4>Силовая йога</h4>
                                 <p>Михаил Иванов • Студия A</p>
-                                <div class="class-level level-intermediate">Продвинутый</div>
                             </div>
                             <button class="btn btn--outline btn--small">Записаться</button>
                         </div>
@@ -189,7 +181,6 @@
                             <div class="class-info">
                                 <h4>Йога для спины</h4>
                                 <p>Елена Петрова • Студия B</p>
-                                <div class="class-level">Все уровни</div>
                             </div>
                             <button class="btn btn--outline btn--small">Записаться</button>
                         </div>
@@ -205,7 +196,6 @@
                             <div class="class-info">
                                 <h4>Айенгар-йога</h4>
                                 <p>Елена Петрова • Студия A</p>
-                                <div class="class-level level-intermediate">Продвинутый</div>
                             </div>
                             <button class="btn btn--outline btn--small">Записаться</button>
                         </div>
@@ -214,7 +204,6 @@
                             <div class="class-info">
                                 <h4>Йога в гамаках</h4>
                                 <p>Анна Смирнова • Студия C</p>
-                                <div class="class-level">Средний</div>
                             </div>
                             <button class="btn btn--outline btn--small">Записаться</button>
                         </div>
@@ -420,28 +409,6 @@
                 return timeString.substring(0, 5); // Берем только часы и минуты
             };
 
-            // Функция для определения уровня сложности
-            const getClassLevel = (typeName) => {
-                if (!typeName) return 'Все уровни';
-                
-                const levelMap = {
-                    'Начинающий': 'Начинающий',
-                    'Средний': 'Средний', 
-                    'Продвинутый': 'Продвинутый',
-                    'Йога': 'Все уровни',
-                    'Пилатес': 'Все уровни',
-                    'Медитация': 'Все уровни'
-                };
-                
-                return levelMap[typeName] || 'Все уровни';
-            };
-
-            // Функция для определения CSS класса уровня
-            const getLevelClass = (level) => {
-                if (level === 'Начинающий') return 'level-beginner';
-                if (level === 'Продвинутый') return 'level-intermediate';
-                return '';
-            };
 
             // Функция для показа уведомлений
             const showNotification = (message, type = 'info') => {
@@ -512,8 +479,6 @@
                             item.classList.add('class-item--disabled');
                         }
                         
-                        const level = getClassLevel(cls.type_name);
-                        const levelClass = getLevelClass(level);
                         const timeRange = `${formatTime(cls.start_time)} - ${formatTime(cls.end_time)}`;
                         
                         const availableSpots = cls.available_spots || 0;
@@ -526,7 +491,6 @@
                                 <h4>${cls.title}</h4>
                                 <p>${cls.trainer_name || 'Тренер не назначен'} • ${cls.place || 'Место не указано'}</p>
                                 <div class="class-meta">
-                                    <div class="class-level ${levelClass}">${level}</div>
                                     ${cls.type_name ? `<div class="class-type">${cls.type_name}</div>` : ''}
                                     <div class="class-spots ${isFull ? 'spots-full' : 'spots-available'}">${spotsText}</div>
                                 </div>

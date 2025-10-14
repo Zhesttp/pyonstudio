@@ -785,27 +785,6 @@ ul {
     margin: 0;
 }
 
-.class-level {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-family: var(--modern-font);
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-top: 8px;
-}
-
-.level-beginner {
-    background: rgba(244, 185, 66, 0.2);
-    color: #d68910;
-}
-
-.level-intermediate {
-    background: rgba(224, 122, 95, 0.2);
-    color: #c44536;
-}
 
 .btn--small {
     padding: 8px 16px;
@@ -1060,10 +1039,6 @@ ul {
     background: transparent;
     padding: 0;
 }
-.workout-level.level-beginner { color: #28a745; }
-.workout-level.level-intermediate { color: #ffc107; }
-.workout-level.level-advanced { color: #dc3545; }
-.workout-level.level-all { color: var(--primary-color); }
 
 .workout-views {
     color: var(--text-muted);
