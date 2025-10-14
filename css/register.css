@@ -28,10 +28,77 @@
 .register-page .auth-container{height:auto;min-height:100vh;align-items:flex-start}
 @media(max-width:480px){.register-page .auth-container{padding:60px 20px}}
 
-.password-wrapper{position:relative}
-.password-wrapper input{padding-right:40px}
-.toggle-pass{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:18px;cursor:pointer;color:var(--text-color);}
-.input-error{border-color:#dc3545!important;}
+.password-wrapper{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input{
+    padding-right: 45px;
+    flex: 1;
+}
+
+.toggle-pass{
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.2s ease;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.toggle-pass:hover {
+    color: var(--primary-color);
+    background: rgba(181, 168, 176, 0.1);
+}
+
+.toggle-pass:focus {
+    outline: none;
+}
+
+.input-error{
+    border-color: #dc3545!important;
+}
+
+/* Ensure error message doesn't affect toggle button position */
+.field-error {
+    position: relative;
+    z-index: 1;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Ensure password wrapper maintains its structure */
+.form-group .password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Make sure toggle button stays in place */
+.form-group .password-wrapper .toggle-pass {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    pointer-events: auto;
+    outline: none;
+}
 
 .form-error{color:#c62828;font-size:14px;margin-bottom:10px;text-align:center}
 .form-hint{color:#666;font-size:12px;margin-top:5px;display:block}

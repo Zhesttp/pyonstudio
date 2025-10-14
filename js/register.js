@@ -121,19 +121,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     const el = form.querySelector(`[name=${err.param}]`);
                     if (el) {
                         el.classList.add('input-error');
-                        // Show specific error message
-                        const errorMsg = document.createElement('div');
-                        errorMsg.className = 'field-error';
-                        errorMsg.textContent = err.msg;
-                        errorMsg.style.color = '#c62828';
-                        errorMsg.style.fontSize = '12px';
-                        errorMsg.style.marginTop = '4px';
                         
-                        // Remove existing error message
-                        const existingError = el.parentNode.querySelector('.field-error');
-                        if (existingError) existingError.remove();
-                        
-                        el.parentNode.appendChild(errorMsg);
+                        // Find the form group container
+                        const formGroup = el.closest('.form-group');
+                        if (formGroup) {
+                            // Show specific error message
+                            const errorMsg = document.createElement('div');
+                            errorMsg.className = 'field-error';
+                            errorMsg.textContent = err.msg;
+                            errorMsg.style.cssText = `
+                                color: #c62828;
+                                font-size: 12px;
+                                margin-top: 4px;
+                                position: relative;
+                                z-index: 1;
+                            `;
+                            
+                            // Remove existing error message
+                            const existingError = formGroup.querySelector('.field-error');
+                            if (existingError) existingError.remove();
+                            
+                            // Insert error message after the input wrapper
+                            const inputWrapper = formGroup.querySelector('.password-wrapper') || el;
+                            inputWrapper.parentNode.insertBefore(errorMsg, inputWrapper.nextSibling);
+                        }
                     }
                 });
                 errBox.textContent = 'Проверьте корректность выделенных полей';

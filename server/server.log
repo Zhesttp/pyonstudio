@@ -5894,3 +5894,373 @@ Admin token verified: {
   iat: 1760315530,
   exp: 1760920330
 }
+Validation errors: [
+  {
+    value: '',
+    msg: 'Имя должно содержать только буквы',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Имя должно быть от 2 до 30 символов',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна содержать только буквы',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна быть от 2 до 30 символов',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '+375',
+    msg: 'Телефон должен быть в формате +375XXXXXXXXX',
+    param: 'phone',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат email',
+    param: 'email',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Пароль должен содержать минимум 8 символов, включая буквы и цифры',
+    param: 'password',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат даты рождения',
+    param: 'birth',
+    location: 'body'
+  }
+]
+Validation errors: [
+  {
+    value: '',
+    msg: 'Имя должно содержать только буквы',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Имя должно быть от 2 до 30 символов',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна содержать только буквы',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна быть от 2 до 30 символов',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '+375',
+    msg: 'Телефон должен быть в формате +375XXXXXXXXX',
+    param: 'phone',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат email',
+    param: 'email',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Пароль должен содержать минимум 8 символов, включая буквы и цифры',
+    param: 'password',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат даты рождения',
+    param: 'birth',
+    location: 'body'
+  }
+]
+Validation errors: [
+  {
+    value: '',
+    msg: 'Имя должно содержать только буквы',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Имя должно быть от 2 до 30 символов',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна содержать только буквы',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна быть от 2 до 30 символов',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '+375',
+    msg: 'Телефон должен быть в формате +375XXXXXXXXX',
+    param: 'phone',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат email',
+    param: 'email',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Пароль должен содержать минимум 8 символов, включая буквы и цифры',
+    param: 'password',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат даты рождения',
+    param: 'birth',
+    location: 'body'
+  }
+]
+Validation errors: [
+  {
+    value: '',
+    msg: 'Имя должно содержать только буквы',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Имя должно быть от 2 до 30 символов',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна содержать только буквы',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна быть от 2 до 30 символов',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '+375',
+    msg: 'Телефон должен быть в формате +375XXXXXXXXX',
+    param: 'phone',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат email',
+    param: 'email',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Пароль должен содержать минимум 8 символов, включая буквы и цифры',
+    param: 'password',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат даты рождения',
+    param: 'birth',
+    location: 'body'
+  }
+]
+Validation errors: [
+  {
+    value: '',
+    msg: 'Имя должно содержать только буквы',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Имя должно быть от 2 до 30 символов',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна содержать только буквы',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна быть от 2 до 30 символов',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '+375',
+    msg: 'Телефон должен быть в формате +375XXXXXXXXX',
+    param: 'phone',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат email',
+    param: 'email',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Пароль должен содержать минимум 8 символов, включая буквы и цифры',
+    param: 'password',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат даты рождения',
+    param: 'birth',
+    location: 'body'
+  }
+]
+Validation errors: [
+  {
+    value: '',
+    msg: 'Имя должно содержать только буквы',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Имя должно быть от 2 до 30 символов',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна содержать только буквы',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна быть от 2 до 30 символов',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '+375',
+    msg: 'Телефон должен быть в формате +375XXXXXXXXX',
+    param: 'phone',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат email',
+    param: 'email',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Пароль должен содержать минимум 8 символов, включая буквы и цифры',
+    param: 'password',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат даты рождения',
+    param: 'birth',
+    location: 'body'
+  }
+]
+Validation errors: [
+  {
+    value: '',
+    msg: 'Имя должно содержать только буквы',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Имя должно быть от 2 до 30 символов',
+    param: 'first_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна содержать только буквы',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Фамилия должна быть от 2 до 30 символов',
+    param: 'last_name',
+    location: 'body'
+  },
+  {
+    value: '+375',
+    msg: 'Телефон должен быть в формате +375XXXXXXXXX',
+    param: 'phone',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат email',
+    param: 'email',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Пароль должен содержать минимум 8 символов, включая буквы и цифры',
+    param: 'password',
+    location: 'body'
+  },
+  {
+    value: '',
+    msg: 'Неверный формат даты рождения',
+    param: 'birth',
+    location: 'body'
+  }
+]
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
