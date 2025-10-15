@@ -50,6 +50,8 @@ router.get('/admin/clients', adminOnly, async (req, res) => {
              concat(u.last_name,' ',u.first_name) AS full_name,
              u.email,
              u.phone,
+             u.is_quick_registration,
+             u.account_number,
              p.title AS plan_title,
              CASE WHEN us.end_date >= CURRENT_DATE THEN 'Активен' ELSE 'Неактивен' END AS status
       FROM users u
@@ -88,6 +90,7 @@ router.get('/admin/clients/:id', adminOnly, async (req, res) => {
     client = await pool.connect();
     const q = `
       SELECT u.id, u.first_name, u.last_name, u.email, u.phone, u.birth_date,
+             u.is_quick_registration, u.account_number,
              p.title AS plan_title, us.end_date,
              (CASE WHEN us.end_date >= CURRENT_DATE THEN 'Активен' ELSE 'Неактивен' END) AS sub_status
       FROM users u

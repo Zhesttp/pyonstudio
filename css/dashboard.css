@@ -1486,6 +1486,43 @@ ul {
     margin: 0;
 }
 
+.no-achievements {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-style: italic;
+    background: var(--sidebar-bg);
+    border-radius: 12px;
+    border: 2px dashed var(--border-color);
+}
+
+/* Account Number Styles */
+.account-number-display {
+    position: relative;
+}
+
+.account-number-display input {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #000000 !important; /* Черный текст для видимости */
+    background: #f8f9fa;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 12px 16px;
+    text-align: center;
+}
+
+.account-number-hint {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    text-align: center;
+    font-style: italic;
+}
+
 .btn {
     padding: 14px 28px;
     border-radius: 50px;

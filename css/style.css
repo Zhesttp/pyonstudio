@@ -246,6 +246,27 @@ img {
     box-shadow: 0 8px 25px rgba(104, 92, 100, 0.3);
 }
 
+.btn--quick {
+    background: var(--primary-color);
+    color: var(--white);
+    border: 2px solid var(--primary-color);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn--quick::before {
+    content: "⚡";
+    margin-right: 8px;
+}
+
+.btn--quick:hover {
+    background: var(--white);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
 .btn--secondary {
     background: var(--gradient-secondary);
     color: var(--white);
@@ -323,6 +344,23 @@ img {
     opacity: 0.9;
     font-style: italic;
     letter-spacing: 0.5px;
+}
+
+.hero__actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.hero__hint {
+    font-size: 14px;
+    color: var(--text-muted);
+    opacity: 0.8;
+    font-style: italic;
+    margin: 0;
 }
 
 /* Section Styles */

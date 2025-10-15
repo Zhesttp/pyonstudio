@@ -6264,3 +6264,2030 @@ Server started on 3000
 > node app.js
 
 Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'itezVv5M-FZdBIgzdl_6ct6YYfUqr4JgAXO0'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'fJbfSe5f-MI8LOGIlJHapxLqbOPTuuylumcE'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'X7E00k8S-KP4mYm8BIFVclKHMqjHhSl8aacI'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'X7E00k8S-KP4mYm8BIFVclKHMqjHhSl8aacI'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'qpexK9u7-5AFkBLS00DXalhG50AZVg3Y5a5c'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  'XSRF-TOKEN': 'S8xzTLUO-_X-mNvdevjDTPjPPj48dmOqjGyU',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA4YTI1NGM2LTM0ZjgtNGMwMC1hN2EwLTViZGRkMjgzMjkzZSIsImVtYWlsIjoidXNlcl8xNzYwNTcwNjg0MTQyQHRlbXAucHlvbi5sb2NhbCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYwNTcwNjk1LCJleHAiOjE3NjExNzU0OTV9.UyyEqYZohLj1hK5WuFLfi-kmUpn7MEeoaXedBKz99Ck',
+  _csrf: 'eWP74NOme0iz_1nfwWnp5u7f'
+}
+User/trainer token verified: {
+  id: '08a254c6-34f8-4c00-a7a0-5bddd283293e',
+  email: 'user_1760570684142@temp.pyon.local',
+  role: 'user',
+  iat: 1760570695,
+  exp: 1761175495
+}
+Fetching profile for user: {
+  id: '08a254c6-34f8-4c00-a7a0-5bddd283293e',
+  email: 'user_1760570684142@temp.pyon.local',
+  role: 'user',
+  iat: 1760570695,
+  exp: 1761175495
+}
+Profile data fetched successfully: {
+  first_name: 'Тест',
+  last_name: '',
+  email: 'user_1760570684142@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000001',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  'XSRF-TOKEN': 'S8xzTLUO-_X-mNvdevjDTPjPPj48dmOqjGyU',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA4YTI1NGM2LTM0ZjgtNGMwMC1hN2EwLTViZGRkMjgzMjkzZSIsImVtYWlsIjoidXNlcl8xNzYwNTcwNjg0MTQyQHRlbXAucHlvbi5sb2NhbCIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYwNTcwNjk1LCJleHAiOjE3NjExNzU0OTV9.UyyEqYZohLj1hK5WuFLfi-kmUpn7MEeoaXedBKz99Ck',
+  _csrf: 'eWP74NOme0iz_1nfwWnp5u7f'
+}
+User/trainer token verified: {
+  id: '08a254c6-34f8-4c00-a7a0-5bddd283293e',
+  email: 'user_1760570684142@temp.pyon.local',
+  role: 'user',
+  iat: 1760570695,
+  exp: 1761175495
+}
+Fetching profile for user: {
+  id: '08a254c6-34f8-4c00-a7a0-5bddd283293e',
+  email: 'user_1760570684142@temp.pyon.local',
+  role: 'user',
+  iat: 1760570695,
+  exp: 1761175495
+}
+Profile data fetched successfully: {
+  first_name: 'Тест',
+  last_name: '',
+  email: 'user_1760570684142@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000001',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  'XSRF-TOKEN': 'mhhh6UPv-e9wU3JzaOtNOt2tz53GwpsDz8Lc',
+  _csrf: 'IqDIH4xpXgGNg3FT6CS9EQt3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkMzg4NGM2LTk4OTYtNGU4Ny1hNjEyLTYyNDNjYjRmZTlkMCIsImVtYWlsIjoidXNlcl8xNzYwNTcxMzY0NjQ1QHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTM2NCwiZXhwIjoxNzYxMTc2MTY0fQ.1RWB19l5ztZiKiitH5qs6fwBR_zF0n1g9JUP6gIUFog'
+}
+User/trainer token verified: {
+  id: 'ad3884c6-9896-4e87-a612-6243cb4fe9d0',
+  email: 'user_1760571364645@temp.pyon.local',
+  iat: 1760571364,
+  exp: 1761176164
+}
+Fetching profile for user: {
+  id: 'ad3884c6-9896-4e87-a612-6243cb4fe9d0',
+  email: 'user_1760571364645@temp.pyon.local',
+  iat: 1760571364,
+  exp: 1761176164
+}
+Profile data fetched successfully: {
+  first_name: 'Иван',
+  last_name: '',
+  email: 'user_1760571364645@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000005',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'Y3DsnSP3-BJvqzmk4llLRPlLMFfflUPWZ3nc'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'Y3DsnSP3-BJvqzmk4llLRPlLMFfflUPWZ3nc'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'BSsRZS9N-34aXIOzFnM3T1dBt0HAKhfWyAtM'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'myHymEux-MZaBeftVkWYzJ8oSsbBt1qiHjsU'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'myHymEux-MZaBeftVkWYzJ8oSsbBt1qiHjsU'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'HKC9FjaI-moU7KF3prfMgx01V2CiGbdVlD8I'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'lVxfrtaT-iYJNFTtRMq4LRvuZOJh-ULKhuEg'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'lVxfrtaT-iYJNFTtRMq4LRvuZOJh-ULKhuEg'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'mfrXSxjt-ZxjI4V4e0WktKnp8Q5iRprMY4_s'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'ZJnmM9IO-HJvRBCc7BMFZlZnNR8KF6mdPCJU'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'ZJnmM9IO-HJvRBCc7BMFZlZnNR8KF6mdPCJU'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'Io42bLh7-sGMT_4r2YJley6Vg3QM6AWjKlVQ'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': '3EOZfRgB-piCtN8SvMHwFstcByVQj7m3pfvs'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': '3EOZfRgB-piCtN8SvMHwFstcByVQj7m3pfvs'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': '8TD4NQU5-evou8pyOwazxmZ4cDlXvggTYkbQ'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'kB4W7GAy-zwJaBzYcVhd2gnQxh9e9ZQb4ZLI'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'kB4W7GAy-zwJaBzYcVhd2gnQxh9e9ZQb4ZLI'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'EH27YiuW-Jcc0BTnIVAceNBQ98EY5m0LBZWw'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'HSF83vD2-yg5r-EEMz0wy2beLJ1Q-b06DuRU'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'HSF83vD2-yg5r-EEMz0wy2beLJ1Q-b06DuRU'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'MZhti8QL-NMni-Vx7vVQ63ilmSuDe_012mh0'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  'XSRF-TOKEN': 'mhhh6UPv-e9wU3JzaOtNOt2tz53GwpsDz8Lc',
+  _csrf: 'IqDIH4xpXgGNg3FT6CS9EQt3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkMzg4NGM2LTk4OTYtNGU4Ny1hNjEyLTYyNDNjYjRmZTlkMCIsImVtYWlsIjoidXNlcl8xNzYwNTcxMzY0NjQ1QHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTM2NCwiZXhwIjoxNzYxMTc2MTY0fQ.1RWB19l5ztZiKiitH5qs6fwBR_zF0n1g9JUP6gIUFog'
+}
+User/trainer token verified: {
+  id: 'ad3884c6-9896-4e87-a612-6243cb4fe9d0',
+  email: 'user_1760571364645@temp.pyon.local',
+  iat: 1760571364,
+  exp: 1761176164
+}
+Fetching profile for user: {
+  id: 'ad3884c6-9896-4e87-a612-6243cb4fe9d0',
+  email: 'user_1760571364645@temp.pyon.local',
+  iat: 1760571364,
+  exp: 1761176164
+}
+Profile data fetched successfully: {
+  first_name: 'Иван',
+  last_name: '',
+  email: 'user_1760571364645@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000005',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'xHOed6Bx-VVoQj55m7tevrs6-ug4WeWgow5o'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'xHOed6Bx-VVoQj55m7tevrs6-ug4WeWgow5o'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'dMhpXoPy-YvW-xLqROOSSJbJmnaEtB66VGrM'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'HhX5d2tl-MUd8tdQsGIPFI9yqOERN2Y9R3uQ'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'HhX5d2tl-MUd8tdQsGIPFI9yqOERN2Y9R3uQ'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'Qr9LeAKB-No-Jee9mztRC_2WO_TFEanUY1Ps'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Server started on 3000
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'kqpakzXD-yQYGnaF0YoUHu9nd90ZI_Y3cyCI'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'kqpakzXD-yQYGnaF0YoUHu9nd90ZI_Y3cyCI'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': '0kcVI6yN-8D1wLadTvuAM91vNo2hNyokCWpo'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'lfNYaxL9-tyn9MWEV0aqAKCTxCfifq16bj_g'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'lfNYaxL9-tyn9MWEV0aqAKCTxCfifq16bj_g'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'CTEsUNSL-VFgQergGXRZLOXozA7t8nos38ls'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'WG5iUV4N-12mfOHtQ779D_JWHotBDGaNzGks'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'WG5iUV4N-12mfOHtQ779D_JWHotBDGaNzGks'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'HqNZiVMN-vqW7HeY2_1JbOATX66-NLlZqAUU'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': '5kUR8uW9-LfNnlVn8ZhhZMclJuJccbGmbdpk'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': '5kUR8uW9-LfNnlVn8ZhhZMclJuJccbGmbdpk'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'hyL9Md2n-IfbgcGtSr1Z62NV3XQYmpXadH4M'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'DuhVvwro-p9nxVQatQbjJ14t2X_3APG11e_Q'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'DuhVvwro-p9nxVQatQbjJ14t2X_3APG11e_Q'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'bgSsDZaH-0rSEJJy5R7VDh1ggHJ5D05QrJTA'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'emNnp6II-e2Is08MN54xOsPRJcDc-POk48-w'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'emNnp6II-e2Is08MN54xOsPRJcDc-POk48-w'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}
+Profile request - cookies: {
+  _csrf: '_0jC_z3oa9vfKVgKsmblhPX3',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNmMmNjMzRkLTE5YTAtNGRjNy04MDhhLTQ2Y2QwNDljMzEwZSIsImVtYWlsIjoidXNlcl8xNzYwNTcxMjY1MzMzQHRlbXAucHlvbi5sb2NhbCIsImlhdCI6MTc2MDU3MTI2NSwiZXhwIjoxNzYxMTc2MDY1fQ.uKITIOM9AEXTwRPbB0LqrzFm1k5cofmXllHVvGSzSA0',
+  'XSRF-TOKEN': 'PK4pOtlE-5IK2mGCyfjqEabt2Bnd29Ifk-AY'
+}
+User/trainer token verified: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Fetching profile for user: {
+  id: 'cf2cc34d-19a0-4dc7-808a-46cd049c310e',
+  email: 'user_1760571265333@temp.pyon.local',
+  iat: 1760571265,
+  exp: 1761176065
+}
+Profile data fetched successfully: {
+  first_name: 'Степан',
+  last_name: '',
+  email: 'user_1760571265333@temp.pyon.local',
+  phone: null,
+  birth_date: 1989-12-31T21:00:00.000Z,
+  visits_count: 0,
+  minutes_practice: 0,
+  is_quick_registration: true,
+  account_number: 'PY-000004',
+  plan_title: null,
+  plan_description: null,
+  plan_price: null,
+  total_classes: null,
+  plan_end_date: null,
+  attended_classes: '0',
+  subscription_status: 'Неактивен',
+  all_achievements: [],
+  unlocked_achievement_ids: []
+}

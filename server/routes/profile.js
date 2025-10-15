@@ -93,7 +93,7 @@ router.get('/me', async (req,res)=>{
     // Handle user profile (existing logic)
     const q = `
         SELECT u.first_name, u.last_name, u.email, u.phone, u.birth_date,
-               u.visits_count, u.minutes_practice,
+               u.visits_count, u.minutes_practice, u.is_quick_registration, u.account_number,
                p.title AS plan_title,
                p.description AS plan_description,
                p.price AS plan_price,

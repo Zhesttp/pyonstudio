@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (filteredClients.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6">Клиенты не найдены</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="7">Клиенты не найдены</td></tr>';
             return;
         }
 
@@ -70,6 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${client.full_name}</td>
                 <td>${client.email || '—'}</td>
                 <td>${client.phone || '—'}</td>
+                <td>
+                    ${client.is_quick_registration ? 
+                        `<span class="quick-reg-badge" title="Номер аккаунта: ${client.account_number || 'Не назначен'}">⚡ Быстрая</span>` : 
+                        '<span class="normal-reg-badge">Обычная</span>'
+                    }
+                </td>
                 <td>${client.plan_title || '—'}</td>
                 <td><span class="${client.status === 'Активен' ? 'status-active' : 'status-inactive'}">${client.status}</span></td>
                 <td class="actions-cell">
@@ -134,6 +140,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     <label for="birth_date">Дата рождения</label>
                     <input type="date" id="birth_date" value="${birthDate}">
                 </div>
+                ${client.is_quick_registration ? `
+                <div class="form-group">
+                    <label for="account_number">Номер аккаунта</label>
+                    <input type="text" id="account_number" value="${client.account_number || ''}" readonly style="background-color: #f5f5f5;">
+                    <small class="form-hint">Номер аккаунта для пользователей быстрой регистрации</small>
+                </div>
+                ` : ''}
                 <div class="form-error" style="display:none;"></div>
             </form>
             

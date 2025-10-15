@@ -89,6 +89,74 @@ router.post('/register', registerValidation, async (req, res) => {
     }
 });
 
+// Quick registration endpoint
+router.post('/quick-register', [
+    body('first_name').isLength({ min: 2, max: 30 }).withMessage('Имя должно быть от 2 до 30 символов'),
+    body('password').isLength({ min: 8 }).withMessage('Пароль должен содержать минимум 8 символов'),
+    body('password_conf').custom((value, { req }) => {
+        if (value !== req.body.password) {
+            throw new Error('Пароли не совпадают');
+        }
+        return true;
+    })
+], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ 
+            message: 'Ошибка валидации данных',
+            errors: errors.array()
+        });
+    }
+
+    const { first_name, password } = req.body;
+
+    try {
+        const client = await pool.connect();
+        
+        // Generate temporary email
+        const timestamp = Date.now();
+        const tempEmail = `user_${timestamp}@temp.pyon.local`;
+        
+        // Check if temp email already exists (very unlikely)
+        const existingUser = await client.query('SELECT 1 FROM users WHERE email = $1', [tempEmail]);
+        if (existingUser.rowCount > 0) {
+            client.release();
+            return res.status(409).json({ message: 'Попробуйте еще раз' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 12);
+        
+        const newUserQuery = `
+            INSERT INTO users(first_name, last_name, email, password_hash, is_quick_registration, birth_date, account_number)
+            VALUES($1, '', $2, $3, true, '1990-01-01', generate_account_number()) RETURNING id, account_number;
+        `;
+        const newUser = await client.query(newUserQuery, [first_name, tempEmail, hashedPassword]);
+        
+        const userId = newUser.rows[0].id;
+        const accountNumber = newUser.rows[0].account_number;
+        client.release();
+
+        const token = jwt.sign({ id: userId, email: tempEmail }, process.env.JWT_SECRET, { expiresIn: '7d' });
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+        });
+        
+        return res.status(201).json({ 
+            message: 'Быстрая регистрация прошла успешно',
+            user_id: userId,
+            account_number: accountNumber
+        });
+
+    } catch (error) {
+        console.error('Quick registration error:', error);
+        console.error('Error details:', error.message, error.stack);
+        return res.status(500).json({ message: 'Внутренняя ошибка сервера', error: error.message });
+    }
+});
+
 
 router.post('/login', loginValidation, async (req, res) => {
     const errors = validationResult(req);

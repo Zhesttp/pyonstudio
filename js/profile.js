@@ -24,12 +24,51 @@ async function loadProfile() {
         
         const data = await r.json();
         console.log('Profile data loaded:', data);
-    document.getElementById('first_name').value = data.first_name;
-    document.getElementById('last_name').value = data.last_name;
-    document.getElementById('email').value = data.email;
-    document.getElementById('phone').value = data.phone;
-    if (data.birth_date) {
-        document.getElementById('birthdate').value = data.birth_date.slice(0, 10);
+    
+    // Проверяем, является ли пользователь быстрой регистрации
+    const isQuickRegistration = data.is_quick_registration || (data.email && data.email.includes('@temp.pyon.local'));
+    console.log('isQuickRegistration:', isQuickRegistration);
+    console.log('account_number:', data.account_number);
+    
+    // Показываем только имя для пользователей быстрой регистрации
+    document.getElementById('first_name').value = data.first_name || '';
+    
+    if (isQuickRegistration) {
+        // Скрываем поля, которые не заполнялись при быстрой регистрации
+        console.log('Скрываем поля для пользователя быстрой регистрации');
+        document.getElementById('last_name').closest('.form-group').style.display = 'none';
+        document.getElementById('email').closest('.form-group').style.display = 'none';
+        document.getElementById('phone').closest('.form-group').style.display = 'none';
+        document.getElementById('birthdate').closest('.form-group').style.display = 'none';
+        
+        // Показываем номер аккаунта для пользователей быстрой регистрации
+        const accountGroup = document.getElementById('account-number-group');
+        const accountInput = document.getElementById('account_number');
+        
+        if (accountGroup && accountInput) {
+            accountGroup.style.display = 'block';
+            accountInput.value = data.account_number || '';
+        }
+        
+    } else {
+        // Показываем все поля для обычных пользователей
+        document.getElementById('last_name').closest('.form-group').style.display = 'block';
+        document.getElementById('email').closest('.form-group').style.display = 'block';
+        document.getElementById('phone').closest('.form-group').style.display = 'block';
+        document.getElementById('birthdate').closest('.form-group').style.display = 'block';
+        
+        // Скрываем номер аккаунта для обычных пользователей
+        document.getElementById('account-number-group').style.display = 'none';
+        
+        // Заполняем поля
+        document.getElementById('last_name').value = data.last_name || '';
+        document.getElementById('email').value = data.email || '';
+        document.getElementById('phone').value = data.phone || '';
+        if (data.birth_date && data.birth_date !== '1990-01-01T00:00:00.000Z') {
+            document.getElementById('birthdate').value = data.birth_date.slice(0, 10);
+        } else {
+            document.getElementById('birthdate').value = '';
+        }
     }
 
     const subscriptionCard = document.getElementById('subscription-card');
@@ -90,6 +129,12 @@ async function loadProfile() {
 function renderAchievements(all, unlockedIds) {
     const grid = document.querySelector('.achievements-grid');
     if (!grid) return;
+    
+    if (!all || all.length === 0) {
+        grid.innerHTML = '<p class="no-achievements">Достижения пока не доступны. Начните заниматься, чтобы получить первые достижения!</p>';
+        return;
+    }
+    
     grid.innerHTML = all.map(ach => `
         <div class="achievement-item ${unlockedIds.includes(ach.id) ? 'unlocked' : ''}">
             <div class="achievement-icon">

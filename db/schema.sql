@@ -6,6 +6,31 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS citext;
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
+-- Function to generate unique account number
+CREATE OR REPLACE FUNCTION generate_account_number() RETURNS VARCHAR(10) AS $$
+DECLARE
+    new_number VARCHAR(10);
+    counter INT := 1;
+BEGIN
+    LOOP
+        -- Generate number in format: PY-XXXXXX (PY + 6 digits)
+        new_number := 'PY-' || LPAD(counter::TEXT, 6, '0');
+        
+        -- Check if number already exists
+        IF NOT EXISTS (SELECT 1 FROM users WHERE account_number = new_number) THEN
+            RETURN new_number;
+        END IF;
+        
+        counter := counter + 1;
+        
+        -- Safety check to prevent infinite loop
+        IF counter > 999999 THEN
+            RAISE EXCEPTION 'Unable to generate unique account number';
+        END IF;
+    END LOOP;
+END;
+$$ LANGUAGE plpgsql;
+
 -- ADMINS
 CREATE TABLE admins (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -27,6 +52,8 @@ CREATE TABLE users (
     avatar_url TEXT,
     visits_count INT DEFAULT 0,
     minutes_practice INT DEFAULT 0,
+    is_quick_registration BOOLEAN DEFAULT FALSE,
+    account_number VARCHAR(10) UNIQUE,
     created_at TIMESTAMP DEFAULT NOW()
 );
 

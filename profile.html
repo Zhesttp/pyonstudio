@@ -59,6 +59,13 @@
                                     <input type="text" id="last_name" required disabled>
                                 </div>
                             </div>
+                            <div class="form-group" id="account-number-group" style="display: none;">
+                                <label for="account_number">Номер аккаунта</label>
+                                <div class="account-number-display">
+                                    <input type="text" id="account_number" disabled>
+                                    <span class="account-number-hint">Сохраните этот номер для связи с администратором</span>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" required disabled>
@@ -118,42 +125,7 @@
                 <div class="card card--achievements">
                     <h2>Достижения</h2>
                     <div class="achievements-grid">
-                        <div class="achievement-item unlocked">
-                            <div class="achievement-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V2H8v6H5l7 7 7-7h-3zM5 18v2h14v-2H5z"/></svg>
-                            </div>
-                            <div class="achievement-info">
-                                <h4>Первое занятие</h4>
-                                <p>Проведено 5 занятий</p>
-                            </div>
-                        </div>
-                        <div class="achievement-item unlocked">
-                            <div class="achievement-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c0-2.8 1.8-5.2 4.2-6.2C13.5 3.1 8.6 4.9 6.4 8.8c-2.2 3.9-1.1 8.9 2.4 11.7 3.5 2.8 8.5 2.8 12 0 .1-.1.2-.2.3-.3-2.6-2.9-4.9-6.9-4.9-10.2z"/><path d="M15.8 2.2c1.7 1.4 2.8 3.5 3.1 5.8"/></svg>
-                            </div>
-                            <div class="achievement-info">
-                                <h4>Серия посещений</h4>
-                                <p>5 недель подряд</p>
-                            </div>
-                        </div>
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                            </div>
-                            <div class="achievement-info">
-                                <h4>Йога-мастер</h4>
-                                <p>Посетить 50 занятий</p>
-                            </div>
-                        </div>
-                        <div class="achievement-item">
-                            <div class="achievement-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-                            </div>
-                            <div class="achievement-info">
-                                <h4>Дисциплина</h4>
-                                <p>3 месяца практики</p>
-                            </div>
-                        </div>
+                        <!-- Достижения загружаются динамически через JavaScript -->
                     </div>
                 </div>
             </section>
