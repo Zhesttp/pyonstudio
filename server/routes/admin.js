@@ -119,22 +119,78 @@ router.put('/admin/clients/:id', adminOnly, async (req, res) => {
     const { id } = req.params;
     const { first_name, last_name, email, phone, birth_date } = req.body;
 
+    // Валидация обязательных полей
     if (!first_name || !last_name || !email) {
         return res.status(400).json({ message: 'Имя, фамилия и email обязательны' });
     }
 
+    // Валидация email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        return res.status(400).json({ message: 'Некорректный формат email' });
+    }
+
+    // Валидация телефона (если предоставлен)
+    if (phone && !/^[\+]?[0-9\s\-\(\)]{10,}$/.test(phone)) {
+        return res.status(400).json({ message: 'Некорректный формат телефона' });
+    }
+
+    // Валидация UUID
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(id)) {
+        return res.status(400).json({ message: 'Некорректный ID клиента' });
+    }
+
+    let client;
     try {
-        const client = await pool.connect();
+        client = await pool.connect();
+        
+        // Проверяем, существует ли клиент
+        const checkResult = await client.query('SELECT id, email FROM users WHERE id = $1', [id]);
+        if (checkResult.rowCount === 0) {
+            return res.status(404).json({ message: 'Клиент не найден' });
+        }
+
+        const existingUser = checkResult.rows[0];
+        
+        // Проверяем уникальность email (если изменился)
+        if (existingUser.email !== email) {
+            const emailCheckResult = await client.query(
+                'SELECT id, first_name, last_name FROM users WHERE email = $1 AND id != $2', 
+                [email, id]
+            );
+            if (emailCheckResult.rowCount > 0) {
+                const existingClient = emailCheckResult.rows[0];
+                return res.status(400).json({ 
+                    message: `Email уже используется клиентом: ${existingClient.first_name} ${existingClient.last_name}` 
+                });
+            }
+        }
+
+        // Обновляем данные клиента
         await client.query(
-            `UPDATE users SET first_name=$1, last_name=$2, email=$3, phone=$4, birth_date=$5
-             WHERE id=$6`,
+            `UPDATE users SET 
+                first_name = $1, 
+                last_name = $2, 
+                email = $3, 
+                phone = $4, 
+                birth_date = $5
+             WHERE id = $6`,
             [first_name, last_name, email, phone, birth_date, id]
         );
-        client.release();
+        
+        console.log(`Клиент ${id} обновлен админом:`, { first_name, last_name, email, phone, birth_date });
         res.sendStatus(204); // Успех, нет контента
+        
     } catch (e) {
         console.error('Ошибка обновления клиента:', e);
-        res.status(500).json({ message: 'Внутренняя ошибка сервера' });
+        if (e.code === '23505') { // Unique constraint violation
+            res.status(400).json({ message: 'Email уже используется' });
+        } else {
+            res.status(500).json({ message: 'Внутренняя ошибка сервера' });
+        }
+    } finally {
+        if (client) client.release();
     }
 });
 

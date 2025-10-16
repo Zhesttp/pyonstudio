@@ -54,7 +54,8 @@ CREATE TABLE users (
     minutes_practice INT DEFAULT 0,
     is_quick_registration BOOLEAN DEFAULT FALSE,
     account_number VARCHAR(10) UNIQUE,
-    created_at TIMESTAMP DEFAULT NOW()
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
 );
 
 -- TRAINERS

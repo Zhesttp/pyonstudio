@@ -214,15 +214,57 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('edit-client-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             const form = e.target;
+            
+            // Валидация данных
+            const firstName = form.querySelector('#first_name').value.trim();
+            const lastName = form.querySelector('#last_name').value.trim();
+            const email = form.querySelector('#email').value.trim();
+            const phone = form.querySelector('#phone').value.trim();
+            const birthDate = form.querySelector('#birth_date').value;
+            
+            // Проверка обязательных полей
+            if (!firstName || !lastName || !email) {
+                showNotification('Имя, фамилия и email обязательны для заполнения', 'error');
+                return;
+            }
+            
+            // Валидация email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('Введите корректный email адрес', 'error');
+                return;
+            }
+            
+            // Валидация телефона (если заполнен)
+            if (phone && !/^[\+]?[0-9\s\-\(\)]{10,}$/.test(phone)) {
+                showNotification('Введите корректный номер телефона', 'error');
+                return;
+            }
+            
             const updatedClient = {
-                first_name: form.querySelector('#first_name').value,
-                last_name: form.querySelector('#last_name').value,
-                email: form.querySelector('#email').value,
-                phone: form.querySelector('#phone').value,
-                birth_date: form.querySelector('#birth_date').value,
+                first_name: firstName,
+                last_name: lastName,
+                email: email,
+                phone: phone || null,
+                birth_date: birthDate || null,
             };
 
+            // Объявляем переменные вне try блока
+            const saveBtn = form.querySelector('button[type="submit"]');
+            const formError = form.querySelector('.form-error');
+            let originalText = '';
+            
+            if (saveBtn) {
+                originalText = saveBtn.textContent;
+            }
+
             try {
+                // Показываем индикатор загрузки
+                if (saveBtn) {
+                    saveBtn.textContent = 'Сохранение...';
+                    saveBtn.disabled = true;
+                }
+                
                 const res = await fetch(`/api/admin/clients/${client.id}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': getCsrfToken() },
@@ -236,14 +278,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 
                 // Показываем уведомление об успехе
-                showNotification('Данные клиента успешно обновлены', 'success');
+                showNotification('Данные клиента успешно обновлены! Личный кабинет пользователя будет обновлен.', 'success');
                 closeModal(editModal);
-                loadClients();
+                
+                // Обновляем данные в таблице
+                await loadClients();
                 
             } catch (err) {
-                form.querySelector('.form-error').textContent = err.message;
-                form.querySelector('.form-error').style.display = 'block';
+                console.error('Ошибка обновления клиента:', err);
+                
+                // Показываем ошибку в форме, если элемент существует
+                if (formError) {
+                    formError.textContent = err.message;
+                    formError.style.display = 'block';
+                }
+                
                 showNotification(err.message, 'error');
+            } finally {
+                // Восстанавливаем кнопку
+                if (saveBtn && originalText) {
+                    saveBtn.textContent = originalText;
+                    saveBtn.disabled = false;
+                }
             }
         });
     };
