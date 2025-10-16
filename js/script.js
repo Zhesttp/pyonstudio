@@ -125,6 +125,45 @@ document.addEventListener('DOMContentLoaded', function() {
                 openModal.classList.remove('is-open');
                 document.body.style.overflow = '';
             }
+            
+            const subscriptionModal = document.querySelector('.subscription-modal.active');
+            if (subscriptionModal) {
+                subscriptionModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+    });
+});
+
+// Subscription Modal
+document.addEventListener('DOMContentLoaded', function() {
+    const subscriptionModal = document.getElementById('subscription-modal');
+    const subscriptionModalClose = document.querySelector('.subscription-modal__close');
+    const subscriptionButtons = document.querySelectorAll('[data-plan]');
+    
+    // Open subscription modal
+    subscriptionButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            subscriptionModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    
+    // Close subscription modal
+    function closeSubscriptionModal() {
+        subscriptionModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    if (subscriptionModalClose) {
+        subscriptionModalClose.addEventListener('click', closeSubscriptionModal);
+    }
+    
+    // Close on overlay click
+    subscriptionModal.addEventListener('click', function(e) {
+        if (e.target === subscriptionModal || e.target.classList.contains('subscription-modal__overlay')) {
+            closeSubscriptionModal();
         }
     });
 });

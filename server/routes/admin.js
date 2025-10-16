@@ -174,7 +174,8 @@ router.put('/admin/clients/:id', adminOnly, async (req, res) => {
                 last_name = $2, 
                 email = $3, 
                 phone = $4, 
-                birth_date = $5
+                birth_date = $5,
+                updated_at = NOW()
              WHERE id = $6`,
             [first_name, last_name, email, phone, birth_date, id]
         );

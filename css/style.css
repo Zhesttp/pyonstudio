@@ -256,8 +256,8 @@ img {
 }
 
 .btn--quick::before {
-    content: "⚡";
-    margin-right: 8px;
+    content: "";
+    margin-right: 0;
 }
 
 .btn--quick:hover {
@@ -1409,5 +1409,423 @@ img {
         font-size: 28px;
         width: 35px;
         height: 35px;
+    }
+}
+
+/* Pricing Categories */
+.pricing-category {
+    margin-bottom: 4rem;
+}
+
+.pricing-category__title {
+    font-family: var(--heading-font);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.pricing-category__title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+}
+
+.pricing-subcategory__title {
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-light);
+    text-align: center;
+    margin: 2rem 0 1.5rem 0;
+}
+
+.pricing-category__note {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+/* Updated Price Cards */
+.price-card__description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0.5rem 0 1.5rem 0;
+    text-align: center;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Subscription Modal - Admin Style */
+.subscription-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(74, 65, 70, 0.85);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    overflow: hidden;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.subscription-modal.active {
+    display: block;
+}
+
+.subscription-modal__overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.subscription-modal__content {
+    background: var(--bg-color);
+    border-radius: 16px;
+    padding: 0;
+    width: 100%;
+    max-width: 560px;
+    max-height: calc(100vh - 40px);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 
+        0 20px 40px rgba(74, 65, 70, 0.3),
+        0 8px 16px rgba(74, 65, 70, 0.2);
+    border: 1px solid rgba(181, 168, 176, 0.2);
+}
+
+.subscription-modal__header {
+    background: var(--gradient-primary);
+    padding: 24px 28px;
+    border-radius: 16px 16px 0 0;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.subscription-modal__header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(244, 185, 66, 0.1) 70%);
+    pointer-events: none;
+}
+
+.subscription-modal__title {
+    margin: 0 0 0.5rem 0;
+    color: #ffffff;
+    font-family: var(--heading-font);
+    font-size: 24px;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.subscription-modal__subtitle {
+    color: #f0f0f0;
+    font-size: 1rem;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.subscription-modal__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 2;
+}
+
+.subscription-modal__close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.subscription-modal__body {
+    padding: 32px 28px;
+    overflow-y: auto;
+    max-height: calc(100vh - 180px);
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) transparent;
+}
+
+.subscription-modal__body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.subscription-modal__body::-webkit-scrollbar-track {
+    background: rgba(181, 168, 176, 0.1);
+    border-radius: 3px;
+}
+
+.subscription-modal__body::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.subscription-modal__body::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+.subscription-modal__phone {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.phone-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.phone-number svg {
+    color: var(--primary-color);
+}
+
+.phone-link {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.phone-link:hover {
+    color: var(--primary-dark);
+}
+
+.phone-description {
+    color: #ffffff;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.subscription-modal__divider {
+    text-align: center;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.subscription-modal__divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(181, 168, 176, 0.2);
+}
+
+.subscription-modal__divider span {
+    background: var(--bg-color);
+    padding: 0 1rem;
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+.subscription-modal__actions {
+    background: rgba(181, 168, 176, 0.05);
+    padding: 20px 28px;
+    border-top: 1px solid rgba(181, 168, 176, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    min-height: 80px;
+    position: relative;
+    z-index: 10;
+}
+
+.subscription-modal__actions h3 {
+    font-family: var(--heading-font);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 1rem 0;
+}
+
+.registration-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.btn--full {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 1.25rem 1.5rem;
+    min-height: 60px;
+    font-weight: 600;
+    font-family: var(--modern-font);
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease;
+    border-radius: 12px;
+}
+
+.btn--full:hover {
+    transform: translateY(-1px);
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+}
+
+.btn--full small {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    font-weight: 400;
+}
+
+/* Стили для кнопки "Полная регистрация" */
+.subscription-modal .btn--outline {
+    background: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+}
+
+.subscription-modal .btn--outline:hover {
+    background: #ffffff;
+    color: var(--bg-color);
+    transform: translateY(-1px);
+}
+
+/* Mobile adjustments for new elements */
+@media (max-width: 768px) {
+    .pricing-category__title {
+        font-size: 1.5rem;
+    }
+    
+    .pricing-subcategory__title {
+        font-size: 1.2rem;
+    }
+    
+    .subscription-modal__overlay {
+        padding: 10px;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+    
+    .subscription-modal__content {
+        max-height: calc(100vh - 40px);
+        border-radius: 12px;
+        width: 100%;
+    }
+    
+    .subscription-modal__header {
+        padding: 20px;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .subscription-modal__header h2 {
+        font-size: 20px;
+        padding-right: 40px;
+    }
+    
+    .subscription-modal__body {
+        padding: 24px 20px;
+        max-height: calc(100vh - 140px);
+    }
+    
+    .subscription-modal__actions {
+        padding: 16px 20px;
+        flex-direction: column;
+        gap: 12px;
+        min-height: 100px;
+    }
+    
+    .subscription-modal__actions .btn--full {
+        width: 100%;
+        justify-content: center;
+        min-width: auto;
+    }
+    
+    .phone-link {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pricing-category__title {
+        font-size: 1.3rem;
+    }
+    
+    .pricing-subcategory__title {
+        font-size: 1.1rem;
+    }
+    
+    .subscription-modal__overlay {
+        padding: 5px;
+        padding-top: 10px;
+    }
+    
+    .subscription-modal__content {
+        max-height: calc(100vh - 20px);
+        border-radius: 8px;
+    }
+    
+    .subscription-modal__header {
+        padding: 16px;
+        border-radius: 8px 8px 0 0;
+    }
+    
+    .subscription-modal__header h2 {
+        font-size: 18px;
+    }
+    
+    .subscription-modal__body {
+        padding: 20px 16px;
+        max-height: calc(100vh - 120px);
+    }
+    
+    .subscription-modal__actions {
+        padding: 12px 16px;
+        min-height: 90px;
     }
 }

@@ -53,10 +53,10 @@
             <div class="container">
                 <div class="hero__content">
                     <h1 class="hero__title">Найдите свой поток, постройте свою форму</h1>
-                    <p class="hero__subtitle">Присоединяйтесь к нашему сообществу, чтобы укрепить тело и успокоить разум через йогу и пилатес.</p>
+                    <p class="hero__subtitle">Присоединяся к нашей семье, чтобы укрепить тело и успокоить разум через йогу и пилатес.</p>
                     <div class="hero__actions">
-                        <a href="quick-register.html" class="btn btn--quick">⚡ Быстрый старт</a>
-                        <a href="register.html" class="btn btn--primary">Выбрать абонемент</a>
+                        <a href="quick-register.html" class="btn btn--quick">Быстрый старт</a>
+                        <a href="#pricing" class="btn btn--primary">Выбрать абонемент</a>
                     </div>
                     <p class="hero__hint">Начните заниматься за 30 секунд - только имя и пароль!</p>
                 </div>
@@ -77,7 +77,7 @@
                         <svg class="about__blob" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
                             <path fill="#6c9a8b" d="M393.5,394Q250,500,128.5,394Q7,288,128.5,145.5Q250,3,393.5,145.5Q537,288,393.5,394Z"></path>
                         </svg>
-                        <img src="assets/stud/studio.jpg" alt="Интерьер студии">
+                        <img src="assets/stud/IMG_5490.jpg" alt="Интерьер студии">
                     </div>
                 </div>
             </div>
@@ -207,39 +207,99 @@
         <section id="pricing" class="section">
             <div class="container">
                 <h2 class="section__title">Абонементы</h2>
-                <div class="pricing__grid">
-                    <div class="price-card">
-                        <h3 class="price-card__title">Старт</h3>
-                        <div class="price-card__price">3000₽<span>/месяц</span></div>
-                        <ul class="price-card__features">
-                            <li>8 занятий в месяц</li>
-                            <li>Доступ в общие группы</li>
-                            <li>Заморозка на 7 дней</li>
-                        </ul>
-                        <a href="javascript:void(0)" class="btn btn--primary">Выбрать</a>
+                
+                <!-- Детская йога и пилатес -->
+                <div class="pricing-category">
+                    <h3 class="pricing-category__title">Детская йога и пилатес для подростков</h3>
+                    <div class="pricing__grid">
+                        <div class="price-card">
+                            <h4 class="price-card__title">Пробное занятие</h4>
+                            <div class="price-card__price">25 <span>byn</span></div>
+                            <p class="price-card__description">Первое пробное занятие</p>
+                            <button class="btn btn--primary" data-plan="trial-kids">Выбрать</button>
+                        </div>
+                        <div class="price-card">
+                            <h4 class="price-card__title">Разовое занятие</h4>
+                            <div class="price-card__price">30 <span>byn</span></div>
+                            <p class="price-card__description">Одно занятие</p>
+                            <button class="btn btn--primary" data-plan="single-kids">Выбрать</button>
+                        </div>
+                        <div class="price-card price-card--featured">
+                            <h4 class="price-card__title">4 занятия</h4>
+                            <div class="price-card__price">100 <span>byn</span></div>
+                            <p class="price-card__description">Абонемент на 4 занятия</p>
+                            <button class="btn btn--primary" data-plan="4-kids">Выбрать</button>
+                        </div>
+                        <div class="price-card">
+                            <h4 class="price-card__title">8 занятий</h4>
+                            <div class="price-card__price">160 <span>byn</span></div>
+                            <p class="price-card__description">Абонемент на 8 занятий</p>
+                            <button class="btn btn--primary" data-plan="8-kids">Выбрать</button>
+                        </div>
                     </div>
-                    <div class="price-card price-card--featured">
-                        <h3 class="price-card__title">Баланс</h3>
-                        <div class="price-card__price">5000₽<span>/месяц</span></div>
-                        <ul class="price-card__features">
-                            <li>12 занятий в месяц</li>
-                            <li>Доступ в общие и мини-группы</li>
-                            <li>Заморозка на 14 дней</li>
-                            <li>Скидка 10% на массаж</li>
-                        </ul>
-                        <a href="javascript:void(0)" class="btn btn--primary">Выбрать</a>
+                    <p class="pricing-category__note">Индивидуальные занятия — стоимость уточняйте по телефону. Все абонементы действуют в течение одного месяца.</p>
+                </div>
+
+                <!-- Взрослые занятия -->
+                <div class="pricing-category">
+                    <h3 class="pricing-category__title">Йога, пилатес на мате, стретчинг</h3>
+                    
+                    <h4 class="pricing-subcategory__title">Групповые занятия:</h4>
+                    <div class="pricing__grid">
+                        <div class="price-card">
+                            <h4 class="price-card__title">Пробное занятие</h4>
+                            <div class="price-card__price">25 <span>byn</span></div>
+                            <p class="price-card__description">Первое пробное занятие</p>
+                            <button class="btn btn--primary" data-plan="trial-adult">Выбрать</button>
+                        </div>
+                        <div class="price-card">
+                            <h4 class="price-card__title">Разовое занятие</h4>
+                            <div class="price-card__price">30 <span>byn</span></div>
+                            <p class="price-card__description">Одно занятие</p>
+                            <button class="btn btn--primary" data-plan="single-adult">Выбрать</button>
+                        </div>
+                        <div class="price-card">
+                            <h4 class="price-card__title">4 занятия</h4>
+                            <div class="price-card__price">110 <span>byn</span></div>
+                            <p class="price-card__description">Абонемент на 4 занятия</p>
+                            <button class="btn btn--primary" data-plan="4-adult">Выбрать</button>
+                        </div>
+                        <div class="price-card price-card--featured">
+                            <h4 class="price-card__title">8 занятий</h4>
+                            <div class="price-card__price">200 <span>byn</span></div>
+                            <p class="price-card__description">Абонемент на 8 занятий</p>
+                            <button class="btn btn--primary" data-plan="8-adult">Выбрать</button>
+                        </div>
+                        <div class="price-card">
+                            <h4 class="price-card__title">12 занятий</h4>
+                            <div class="price-card__price">275 <span>byn</span></div>
+                            <p class="price-card__description">Абонемент на 12 занятий</p>
+                            <button class="btn btn--primary" data-plan="12-adult">Выбрать</button>
+                        </div>
                     </div>
-                    <div class="price-card">
-                        <h3 class="price-card__title">Профи</h3>
-                        <div class="price-card__price">7000₽<span>/месяц</span></div>
-                        <ul class="price-card__features">
-                            <li>Безлимитные занятия</li>
-                            <li>Доступ во все группы</li>
-                            <li>Заморозка на 30 дней</li>
-                            <li>2 гостевых визита</li>
-                        </ul>
-                        <a href="javascript:void(0)" class="btn btn--primary">Выбрать</a>
+
+                    <h4 class="pricing-subcategory__title">Индивидуальные занятия и мини-группы:</h4>
+                    <div class="pricing__grid">
+                        <div class="price-card">
+                            <h4 class="price-card__title">Индивидуальное</h4>
+                            <div class="price-card__price">70 <span>byn</span></div>
+                            <p class="price-card__description">1 человек</p>
+                            <button class="btn btn--primary" data-plan="individual">Выбрать</button>
+                        </div>
+                        <div class="price-card">
+                            <h4 class="price-card__title">Сплит</h4>
+                            <div class="price-card__price">100 <span>byn</span></div>
+                            <p class="price-card__description">2 человека</p>
+                            <button class="btn btn--primary" data-plan="split">Выбрать</button>
+                        </div>
+                        <div class="price-card">
+                            <h4 class="price-card__title">Мини-группа</h4>
+                            <div class="price-card__price">150 <span>byn</span></div>
+                            <p class="price-card__description">3 человека</p>
+                            <button class="btn btn--primary" data-plan="mini-group">Выбрать</button>
+                        </div>
                     </div>
+                    <p class="pricing-category__note">*При покупке абонемента от 4-х занятий действует скидка -10%. Все абонементы действуют в течение одного месяца.</p>
                 </div>
             </div>
         </section>
@@ -728,6 +788,48 @@
             <div class="terms-banner__actions">
                 <button class="btn btn--outline btn--small" id="decline-banner">Отклонить</button>
                 <button class="btn btn--primary btn--small" id="accept-banner">Принять все</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subscription Modal -->
+    <div id="subscription-modal" class="subscription-modal">
+        <div class="subscription-modal__overlay">
+            <div class="subscription-modal__content">
+                <button class="subscription-modal__close" aria-label="Закрыть">&times;</button>
+                <div class="subscription-modal__header">
+                    <h2 class="subscription-modal__title">Выберите способ регистрации</h2>
+                    <p class="subscription-modal__subtitle">Для покупки абонемента свяжитесь с нами по телефону</p>
+                </div>
+                <div class="subscription-modal__body">
+                    <div class="subscription-modal__phone">
+                        <div class="phone-number">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <a href="tel:+375291702626" class="phone-link">+375 (29) 170 26 26</a>
+                        </div>
+                        <p class="phone-description">Позвоните нам для уточнения деталей и бронирования абонемента</p>
+                    </div>
+                    
+                    <div class="subscription-modal__divider">
+                        <span>или</span>
+                    </div>
+                    
+                    <div class="subscription-modal__actions">
+                        <h3>Зарегистрируйтесь на сайте</h3>
+                        <div class="registration-options">
+                            <a href="quick-register.html" class="btn btn--quick btn--full">
+                                Быстрая регистрация
+                                <small>Только имя и пароль</small>
+                            </a>
+                            <a href="register.html" class="btn btn--outline btn--full">
+                                Полная регистрация
+                                <small>Все данные сразу</small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
