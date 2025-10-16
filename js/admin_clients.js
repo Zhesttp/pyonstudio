@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- DOM-элементы ---
     const tbody = document.getElementById('clients-body');
     const searchInput = document.getElementById('client-search');
+    const accountSearchInput = document.getElementById('account-search');
     const tariffFilter = document.getElementById('tariff-filter');
     const statusFilter = document.getElementById('status-filter');
     
@@ -50,6 +51,23 @@ document.addEventListener('DOMContentLoaded', () => {
             filteredClients = filteredClients.filter(c => c.full_name.toLowerCase().includes(searchTerm));
         }
         
+        const accountSearchTerm = accountSearchInput.value.toLowerCase();
+        if (accountSearchTerm) {
+            // Автоматически добавляем "PY-" если пользователь ввел только цифры
+            let searchPattern = accountSearchTerm;
+            if (/^\d+$/.test(accountSearchTerm)) {
+                searchPattern = `py-${accountSearchTerm}`;
+            } else if (accountSearchTerm.startsWith('py-')) {
+                searchPattern = accountSearchTerm;
+            } else if (accountSearchTerm.startsWith('py')) {
+                searchPattern = accountSearchTerm;
+            }
+            
+            filteredClients = filteredClients.filter(c => 
+                c.account_number && c.account_number.toLowerCase().includes(searchPattern)
+            );
+        }
+        
         const tariff = tariffFilter.value;
         if (tariff !== 'all') {
             filteredClients = filteredClients.filter(c => c.plan_title === tariff);
@@ -61,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (filteredClients.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="7">Клиенты не найдены</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="8">Клиенты не найдены</td></tr>';
             return;
         }
 
@@ -72,8 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${client.phone || '—'}</td>
                 <td>
                     ${client.is_quick_registration ? 
-                        `<span class="quick-reg-badge" title="Номер аккаунта: ${client.account_number || 'Не назначен'}">⚡ Быстрая</span>` : 
+                        `<span class="quick-reg-badge">⚡ Быстрая</span>` : 
                         '<span class="normal-reg-badge">Обычная</span>'
+                    }
+                </td>
+                <td>
+                    ${client.is_quick_registration && client.account_number ? 
+                        `<span class="account-number">${client.account_number}</span>` : 
+                        '—'
                     }
                 </td>
                 <td>${client.plan_title || '—'}</td>
@@ -474,6 +498,41 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Обработчики событий ---
     [searchInput, tariffFilter, statusFilter].forEach(el => el.addEventListener('input', renderTable));
+    
+    // Специальная обработка для поиска по номеру аккаунта
+    accountSearchInput.addEventListener('input', (e) => {
+        let value = e.target.value;
+        
+        // Если пользователь ввел только цифры, автоматически добавляем "PY-"
+        if (/^\d+$/.test(value)) {
+            e.target.value = `PY-${value}`;
+        }
+        // Если пользователь ввел "PY" без дефиса, добавляем дефис
+        else if (value.toLowerCase() === 'py') {
+            e.target.value = 'PY-';
+        }
+        // Если пользователь ввел "py" (строчными), заменяем на "PY-"
+        else if (value.toLowerCase() === 'py') {
+            e.target.value = 'PY-';
+        }
+        
+        renderTable();
+    });
+    
+    // Обработка фокуса - если поле пустое, показываем "PY-"
+    accountSearchInput.addEventListener('focus', (e) => {
+        if (!e.target.value) {
+            e.target.value = 'PY-';
+        }
+    });
+    
+    // Обработка клавиши Escape - очистка поля
+    accountSearchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            e.target.value = '';
+            renderTable();
+        }
+    });
 
     tbody.addEventListener('click', (e) => {
         const editButton = e.target.closest('.btn-edit');

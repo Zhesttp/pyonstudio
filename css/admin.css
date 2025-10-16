@@ -31,6 +31,96 @@
     box-shadow: 0 2px 4px rgba(116, 185, 255, 0.3);
 }
 
+.account-number {
+    display: inline-block;
+    padding: 4px 8px;
+    background: linear-gradient(135deg, #00b894, #00cec9);
+    color: white;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 4px rgba(0, 184, 148, 0.3);
+}
+
+/* Стили для поиска по номеру аккаунта */
+.account-search-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 16px;
+    border-radius: 20px;
+    border: 2px solid #e9ecef;
+    font-family: 'Courier New', monospace !important;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.account-search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(181, 168, 176, 0.15);
+}
+
+.search-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-wrapper input {
+    flex: 1;
+    min-width: 200px;
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 16px;
+    border-radius: 20px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.search-wrapper input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(181, 168, 176, 0.15);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .search-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-wrapper input {
+        min-width: auto;
+        max-width: none;
+        margin-bottom: 10px;
+    }
+    
+    .search-wrapper input:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-wrapper {
+        gap: 8px;
+    }
+    
+    .search-wrapper input {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+    
+    .account-search-input {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
+
 /* Admin info in header */
 .admin-info {
     display: flex;
@@ -508,7 +598,54 @@
 
 /* Removed old plan form styles - now using page-specific styles */
 
-.data-table td:last-child{display:flex;gap:4px;align-items:center;}
+.data-table td.actions-cell {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: flex-start;
+    vertical-align: middle;
+    height: auto;
+    min-height: 60px; /* Минимальная высота для выравнивания */
+}
+
+/* Обеспечиваем одинаковую высоту всех ячеек в строке */
+.data-table tbody tr {
+    display: table-row;
+    height: auto;
+}
+
+.data-table tbody td {
+    vertical-align: middle;
+    height: auto;
+    min-height: 60px;
+    display: table-cell;
+}
+
+/* Исключение для ячейки с действиями */
+.data-table tbody td.actions-cell {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Обеспечиваем правильные границы таблицы */
+.data-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.data-table tbody tr {
+    border-bottom: 1px solid #e9ecef;
+}
+
+.data-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.data-table tbody td {
+    border-right: none;
+    border-left: none;
+}
 
 body.modal-open{overflow:hidden;}
 

@@ -63,11 +63,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             const response = await fetch('/api/me', { credentials: 'include' });
             if (response.ok) {
                 const data = await response.json();
-                if (data.first_name && data.last_name) {
-                    document.getElementById('admin-name').textContent = `${data.first_name} ${data.last_name}`;
+                
+                // Проверяем существование элементов перед установкой textContent
+                const adminNameEl = document.getElementById('admin-name');
+                const adminEmailEl = document.getElementById('admin-email');
+                
+                if (adminNameEl && data.first_name && data.last_name) {
+                    adminNameEl.textContent = `${data.first_name} ${data.last_name}`;
                 }
-                if (data.email) {
-                    document.getElementById('admin-email').textContent = data.email;
+                if (adminEmailEl && data.email) {
+                    adminEmailEl.textContent = data.email;
                 }
             }
         } catch (error) {

@@ -5,7 +5,16 @@
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop pyon-studio",
+    "pm2:restart": "pm2 restart pyon-studio",
+    "pm2:reload": "pm2 reload pyon-studio",
+    "pm2:delete": "pm2 delete pyon-studio",
+    "pm2:logs": "pm2 logs pyon-studio",
+    "pm2:monit": "pm2 monit",
+    "pm2:status": "pm2 status",
+    "pm2:prod": "pm2 start ecosystem.config.js --env production"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -23,6 +32,7 @@
     "pg": "^8.11.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "pm2": "^6.0.13"
   }
 }
