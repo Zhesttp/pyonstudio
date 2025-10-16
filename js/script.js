@@ -167,3 +167,158 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Contact form handling
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Отправляем...';
+            submitButton.disabled = true;
+            
+            try {
+                const formData = new FormData(this);
+                const data = {
+                    name: formData.get('name'),
+                    phone: formData.get('phone'),
+                    message: formData.get('message')
+                };
+                
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-XSRF-TOKEN': getCookie('XSRF-TOKEN')
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show success message
+                    showNotification('Сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.', 'success');
+                    this.reset();
+                } else {
+                    // Show error message with validation details
+                    let errorMessage = result.message || 'Произошла ошибка при отправке сообщения';
+                    if (result.errors && result.errors.length > 0) {
+                        const firstError = result.errors[0];
+                        if (firstError.param === 'message') {
+                            errorMessage = 'Сообщение слишком короткое. Пожалуйста, напишите более подробно.';
+                        } else if (firstError.param === 'phone') {
+                            errorMessage = 'Пожалуйста, введите корректный номер телефона.';
+                        } else if (firstError.param === 'name') {
+                            errorMessage = 'Пожалуйста, введите корректное имя.';
+                        }
+                    }
+                    showNotification(errorMessage, 'error');
+                }
+                
+            } catch (error) {
+                console.error('Contact form error:', error);
+                showNotification('Произошла ошибка при отправке сообщения. Попробуйте позже.', 'error');
+            } finally {
+                // Reset button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
+        });
+    }
+});
+
+// Helper function to get cookie value
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return '';
+}
+
+// Notification system
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notification => notification.remove());
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification--${type}`;
+    notification.innerHTML = `
+        <div class="notification__content">
+            <span class="notification__message">${message}</span>
+            <button class="notification__close">&times;</button>
+        </div>
+    `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#4CAF50' : type === 'error' ? '#f44336' : '#2196F3'};
+        color: white;
+        padding: 16px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        max-width: 400px;
+        animation: slideIn 0.3s ease-out;
+    `;
+    
+    // Add animation styles
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .notification__content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .notification__close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .notification__close:hover {
+            opacity: 0.8;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Close button functionality
+    const closeBtn = notification.querySelector('.notification__close');
+    closeBtn.addEventListener('click', () => {
+        notification.remove();
+    });
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 5000);
+}

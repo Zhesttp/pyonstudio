@@ -380,10 +380,10 @@
             <div class="container">
                 <h2 class="section__title">Свяжитесь с нами</h2>
                 <p class="contact__text">Есть вопросы? Напишите нам, и мы с радостью ответим!</p>
-                <form class="contact-form">
-                    <input type="text" placeholder="Ваше имя" class="contact-form__input">
-                    <input type="email" placeholder="Ваш Email" class="contact-form__input">
-                    <textarea placeholder="Ваше сообщение" class="contact-form__textarea"></textarea>
+                <form class="contact-form" id="contactForm">
+                    <input type="text" name="name" placeholder="Ваше имя" class="contact-form__input" required>
+                    <input type="tel" name="phone" placeholder="Ваш телефон" class="contact-form__input" required>
+                    <textarea name="message" placeholder="Ваше сообщение" class="contact-form__textarea" required></textarea>
                     <button type="submit" class="btn btn--primary">Отправить</button>
                 </form>
             </div>

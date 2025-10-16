@@ -13,6 +13,7 @@ import adminRoutes from './routes/admin.js';
 import plansRoutes from './routes/plans.js';
 import classesRoutes from './routes/classes.js';
 import trainerRoutes from './routes/trainer.js';
+import contactRoutes from './routes/contact.js';
 import { auth } from './middleware/auth.js';
 import { pool } from './db.js';
 import fs from 'fs';
@@ -103,6 +104,7 @@ app.use('/api', adminRoutes);
 app.use('/api', plansRoutes);
 app.use('/api', classesRoutes);
 app.use('/api/trainer', trainerRoutes);
+app.use('/api', contactRoutes);
 
 // Protected pages (HTML) - must be before static middleware
 ['dashboard.html','schedule.html','profile.html','dashboard','schedule','profile'].forEach(route=>{
