@@ -9427,3 +9427,11 @@ Validation errors: [
 > node app.js
 
 Server started on 3000
+Validation errors: [
+  {
+    value: 'd',
+    msg: 'Сообщение должно содержать от 5 до 1000 символов',
+    param: 'message',
+    location: 'body'
+  }
+]
