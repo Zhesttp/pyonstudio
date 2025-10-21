@@ -19,7 +19,7 @@ router.get('/classes', trainerOnly, async (req, res) => {
         c.id,
         c.title,
         c.description,
-        c.class_date::text as class_date,
+        c.class_date as class_date,
         c.start_time,
         c.end_time,
         c.place,
@@ -28,15 +28,15 @@ router.get('/classes', trainerOnly, async (req, res) => {
       FROM classes c
       LEFT JOIN class_types ct ON c.type_id = ct.id
       LEFT JOIN bookings b ON c.id = b.class_id AND b.status = 'booked'
-      WHERE c.trainer_id = $1 
-        AND c.class_date >= $2 
-        AND c.class_date <= $3
+      WHERE c.trainer_id = ? 
+        AND c.class_date >= ? 
+        AND c.class_date <= ?
       GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, ct.name
       ORDER BY c.class_date, c.start_time
     `;
 
-    const result = await pool.query(query, [trainerId, start_date, end_date]);
-    res.json(result.rows);
+    const [result] = await pool.query(query, [trainerId, start_date, end_date]);
+    res.json(result);
   } catch (error) {
     console.error('Error fetching trainer classes:', error);
     res.status(500).json({ message: 'Ошибка загрузки занятий' });
@@ -55,19 +55,19 @@ router.get('/classes/:id/attendees', trainerOnly, async (req, res) => {
         c.id,
         c.title,
         c.description,
-        c.class_date::text as class_date,
+        c.class_date as class_date,
         c.start_time,
         c.end_time,
         c.place,
         ct.name as type_name
       FROM classes c
       LEFT JOIN class_types ct ON c.type_id = ct.id
-      WHERE c.id = $1 AND c.trainer_id = $2
+      WHERE c.id = ? AND c.trainer_id = ?
     `;
 
-    const classResult = await pool.query(classQuery, [classId, trainerId]);
+    const [classResult] = await pool.query(classQuery, [classId, trainerId]);
     
-    if (classResult.rows.length === 0) {
+    if (classResult.length === 0) {
       return res.status(404).json({ message: 'Занятие не найдено' });
     }
 
@@ -84,15 +84,15 @@ router.get('/classes/:id/attendees', trainerOnly, async (req, res) => {
       FROM bookings b
       JOIN users u ON b.user_id = u.id
       LEFT JOIN attendance a ON b.id = a.booking_id
-      WHERE b.class_id = $1 AND b.status != 'cancelled'
+      WHERE b.class_id = ? AND b.status != 'cancelled'
       ORDER BY u.last_name, u.first_name
     `;
 
-    const attendeesResult = await pool.query(attendeesQuery, [classId]);
+    const [attendeesResult] = await pool.query(attendeesQuery, [classId]);
 
     res.json({
-      class: classResult.rows[0],
-      attendees: attendeesResult.rows
+      class: classResult[0],
+      attendees: attendeesResult
     });
   } catch (error) {
     console.error('Error fetching class attendees:', error);
@@ -112,35 +112,35 @@ router.post('/classes/:classId/attendance/:bookingId', trainerOnly, async (req, 
     }
 
     // Begin transaction for consistent updates
-    const client = await pool.connect();
+    const client = await pool.getConnection();
     try {
-      await client.query('BEGIN');
+      await client.query('START TRANSACTION');
 
       // Verify the class belongs to this trainer and load timings
       const verifyQuery = `
         SELECT b.id, c.class_date, c.start_time
         FROM bookings b
         JOIN classes c ON b.class_id = c.id
-        WHERE b.id = $1 AND c.id = $2 AND c.trainer_id = $3
+        WHERE b.id = ? AND c.id = ? AND c.trainer_id = ?
       `;
-      const verifyResult = await client.query(verifyQuery, [bookingId, classId, trainerId]);
-      if (verifyResult.rows.length === 0) {
+      const [verifyResult] = await client.query(verifyQuery, [bookingId, classId, trainerId]);
+      if (verifyResult.length === 0) {
         await client.query('ROLLBACK');
         client.release();
         return res.status(404).json({ message: 'Бронирование не найдено' });
       }
 
       // Enforce that attendance can be marked only when class has started
-      const { class_date, start_time } = verifyResult.rows[0];
+      const { class_date, start_time } = verifyResult[0];
       const startedResult = await client.query(
         `SELECT CASE 
-           WHEN $1::date < CURRENT_DATE THEN true
-           WHEN $1::date = CURRENT_DATE AND $2::time <= CURRENT_TIME THEN true
+           WHEN ? < CURDATE() THEN true
+           WHEN ? = CURDATE() AND ? <= CURTIME() THEN true
            ELSE false
          END AS started`,
-        [class_date, start_time]
+        [class_date, class_date, start_time]
       );
-      if (!startedResult.rows[0].started) {
+      if (!startedResult[0][0].started) {
         await client.query('ROLLBACK');
         client.release();
         return res.status(409).json({ message: 'Отмечать посещаемость можно после начала занятия' });
@@ -151,64 +151,62 @@ router.post('/classes/:classId/attendance/:bookingId', trainerOnly, async (req, 
       SELECT c.duration_minutes, b.user_id
       FROM classes c
       JOIN bookings b ON c.id = b.class_id
-      WHERE b.id = $1
+      WHERE b.id = ?
     `;
     
-    const classResult = await client.query(classQuery, [bookingId]);
-    if (classResult.rows.length === 0) {
+    const [classResult] = await client.query(classQuery, [bookingId]);
+    if (classResult.length === 0) {
       await client.query('ROLLBACK');
       client.release();
       return res.status(404).json({ message: 'Класс не найден' });
     }
     
-    const { duration_minutes, user_id } = classResult.rows[0];
+    const { duration_minutes, user_id } = classResult[0];
 
     // Insert or update attendance record
     const attendanceQuery = `
       INSERT INTO attendance (booking_id, status, marked_at)
-      VALUES ($1, $2, NOW())
-      ON CONFLICT (booking_id) 
-      DO UPDATE SET 
-        status = EXCLUDED.status,
-        marked_at = EXCLUDED.marked_at
-      RETURNING id, status, marked_at
+      VALUES (?, ?, NOW())
+      ON DUPLICATE KEY UPDATE 
+        status = VALUES(status),
+        marked_at = VALUES(marked_at)
     `;
 
     // Previous attendance status (for progress adjustments) and current booking status
-    const prevAttendanceRes = await client.query('SELECT status FROM attendance WHERE booking_id = $1', [bookingId]);
-    const prevAttendance = prevAttendanceRes.rows[0]?.status || null;
-    const bookingStatusRes = await client.query('SELECT status FROM bookings WHERE id = $1 FOR UPDATE', [bookingId]);
-    const prevBookingStatus = bookingStatusRes.rows[0]?.status || 'booked';
+    const [prevAttendanceRes] = await client.query('SELECT status FROM attendance WHERE booking_id = ?', [bookingId]);
+    const prevAttendance = prevAttendanceRes[0]?.status || null;
+    const [bookingStatusRes] = await client.query('SELECT status FROM bookings WHERE id = ? FOR UPDATE', [bookingId]);
+    const prevBookingStatus = bookingStatusRes[0]?.status || 'booked';
 
-    const result = await client.query(attendanceQuery, [bookingId, status]);
+    const [result] = await client.query(attendanceQuery, [bookingId, status]);
     
     // Update user progress if marked as attended
     // Sync booking.status with attendance and adjust user progress on transitions
     // Map: attended -> bookings.status='attended'; absent/late -> 'absent'/'booked' kept? Use 'absent' for absent, keep 'booked' for late
     if (status === 'attended') {
-      await client.query('UPDATE bookings SET status = $1 WHERE id = $2', ['attended', bookingId]);
+      await client.query('UPDATE bookings SET status = ? WHERE id = ?', ['attended', bookingId]);
       if (prevAttendance !== 'attended') {
         await client.query(
-          `UPDATE users SET visits_count = visits_count + 1, minutes_practice = minutes_practice + $1 WHERE id = $2`,
+          `UPDATE users SET visits_count = visits_count + 1, minutes_practice = minutes_practice + ? WHERE id = ?`,
           [duration_minutes, user_id]
         );
       }
     } else if (status === 'absent') {
-      await client.query('UPDATE bookings SET status = $1 WHERE id = $2', ['absent', bookingId]);
+      await client.query('UPDATE bookings SET status = ? WHERE id = ?', ['absent', bookingId]);
       if (prevAttendance === 'attended') {
         // Revert progress if switching from attended to absent
         await client.query(
-          `UPDATE users SET visits_count = GREATEST(visits_count - 1, 0), minutes_practice = GREATEST(minutes_practice - $1, 0) WHERE id = $2`,
+          `UPDATE users SET visits_count = GREATEST(visits_count - 1, 0), minutes_practice = GREATEST(minutes_practice - ?, 0) WHERE id = ?`,
           [duration_minutes, user_id]
         );
       }
     } else if (status === 'late') {
       // Keep booking as booked but record lateness
-      await client.query('UPDATE bookings SET status = $1 WHERE id = $2', ['booked', bookingId]);
+      await client.query('UPDATE bookings SET status = ? WHERE id = ?', ['booked', bookingId]);
       if (prevAttendance === 'attended') {
         // If switching from attended to late, revert progress
         await client.query(
-          `UPDATE users SET visits_count = GREATEST(visits_count - 1, 0), minutes_practice = GREATEST(minutes_practice - $1, 0) WHERE id = $2`,
+          `UPDATE users SET visits_count = GREATEST(visits_count - 1, 0), minutes_practice = GREATEST(minutes_practice - ?, 0) WHERE id = ?`,
           [duration_minutes, user_id]
         );
       }
@@ -217,13 +215,13 @@ router.post('/classes/:classId/attendance/:bookingId', trainerOnly, async (req, 
     // Audit log for attendance change
     await client.query(
       `INSERT INTO audit_log (actor_id, actor_type, action, table_name, row_id, old_data, new_data, ip)
-       VALUES ($1::uuid, 'trainer', 'attendance', 'attendance', $2::uuid, json_build_object('status', $3::text), json_build_object('status', $4::text), COALESCE($5::text,'0.0.0.0')::inet)`,
+       VALUES (?, 'trainer', 'attendance', 'attendance', ?, JSON_OBJECT('status', ?), JSON_OBJECT('status', ?), IFNULL(?,'0.0.0.0'))`,
       [trainerId, bookingId, prevAttendance || null, status, req.ip || null]
     );
 
     await client.query('COMMIT');
     
-    res.json({ message: 'Посещаемость отмечена', attendance: result.rows[0] });
+    res.json({ message: 'Посещаемость отмечена', attendance: result[0] });
   } catch (error) {
     // Ensure rollback on unexpected errors inside inner try
     try { await client?.query('ROLLBACK'); } catch (_) {}

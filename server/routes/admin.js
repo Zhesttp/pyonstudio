@@ -44,7 +44,7 @@ const router = Router();
 router.get('/admin/clients', adminOnly, async (req, res) => {
   let client;
   try {
-    client = await pool.connect();
+    client = await pool.getConnection();
     const q = `
       SELECT u.id,
              concat(u.last_name,' ',u.first_name) AS full_name,
@@ -53,19 +53,16 @@ router.get('/admin/clients', adminOnly, async (req, res) => {
              u.is_quick_registration,
              u.account_number,
              p.title AS plan_title,
-             CASE WHEN us.end_date >= CURRENT_DATE THEN 'Активен' ELSE 'Неактивен' END AS status
+             CASE WHEN us.end_date >= CURDATE() THEN 'Активен' ELSE 'Неактивен' END AS status
       FROM users u
-      LEFT JOIN LATERAL (
-        SELECT *
+      LEFT JOIN (
+        SELECT us2.*, ROW_NUMBER() OVER(PARTITION BY us2.user_id ORDER BY us2.end_date DESC) as rn
         FROM user_subscriptions us2
-        WHERE us2.user_id = u.id
-        ORDER BY us2.end_date DESC
-        LIMIT 1
-      ) us ON true
+      ) us ON u.id = us.user_id AND us.rn = 1
       LEFT JOIN plans p ON p.id = us.plan_id
       ORDER BY full_name;
     `;
-    const { rows } = await client.query(q);
+    const [rows] = await client.query(q);
     res.json(rows);
   } catch (error) {
     console.error('Error fetching clients list:', error);
@@ -87,21 +84,21 @@ router.get('/admin/clients/:id', adminOnly, async (req, res) => {
 
   let client;
   try {
-    client = await pool.connect();
+    client = await pool.getConnection();
     const q = `
       SELECT u.id, u.first_name, u.last_name, u.email, u.phone, u.birth_date,
              u.is_quick_registration, u.account_number,
              p.title AS plan_title, us.end_date,
-             (CASE WHEN us.end_date >= CURRENT_DATE THEN 'Активен' ELSE 'Неактивен' END) AS sub_status
+             (CASE WHEN us.end_date >= CURDATE() THEN 'Активен' ELSE 'Неактивен' END) AS sub_status
       FROM users u
       LEFT JOIN user_subscriptions us ON us.user_id = u.id
       LEFT JOIN plans p ON p.id = us.plan_id
-      WHERE u.id = $1
+      WHERE u.id = ?
       ORDER BY us.end_date DESC NULLS LAST LIMIT 1
     `;
-    const { rows } = await client.query(q, [id]);
+    const [rows] = await client.query(q, [id]);
     
-    if (!rows.length) {
+    if (rows.length === 0) {
       return res.status(404).json({ message: 'Клиент не найден' });
     }
     
@@ -143,24 +140,24 @@ router.put('/admin/clients/:id', adminOnly, async (req, res) => {
 
     let client;
     try {
-        client = await pool.connect();
+        client = await pool.getConnection();
         
         // Проверяем, существует ли клиент
-        const checkResult = await client.query('SELECT id, email FROM users WHERE id = $1', [id]);
-        if (checkResult.rowCount === 0) {
+        const checkResult = await client.query('SELECT id, email FROM users WHERE id = ?', [id]);
+        if (checkResult[0].length === 0) {
             return res.status(404).json({ message: 'Клиент не найден' });
         }
 
-        const existingUser = checkResult.rows[0];
+        const existingUser = checkResult[0][0];
         
         // Проверяем уникальность email (если изменился)
         if (existingUser.email !== email) {
             const emailCheckResult = await client.query(
-                'SELECT id, first_name, last_name FROM users WHERE email = $1 AND id != $2', 
+                'SELECT id, first_name, last_name FROM users WHERE email = ? AND id != ?', 
                 [email, id]
             );
-            if (emailCheckResult.rowCount > 0) {
-                const existingClient = emailCheckResult.rows[0];
+            if (emailCheckResult[0].length > 0) {
+                const existingClient = emailCheckResult[0][0];
                 return res.status(400).json({ 
                     message: `Email уже используется клиентом: ${existingClient.first_name} ${existingClient.last_name}` 
                 });
@@ -170,13 +167,13 @@ router.put('/admin/clients/:id', adminOnly, async (req, res) => {
         // Обновляем данные клиента
         await client.query(
             `UPDATE users SET 
-                first_name = $1, 
-                last_name = $2, 
-                email = $3, 
-                phone = $4, 
-                birth_date = $5,
+                first_name = ?, 
+                last_name = ?, 
+                email = ?, 
+                phone = ?, 
+                birth_date = ?,
                 updated_at = NOW()
-             WHERE id = $6`,
+             WHERE id = ?`,
             [first_name, last_name, email, phone, birth_date, id]
         );
         
@@ -185,7 +182,7 @@ router.put('/admin/clients/:id', adminOnly, async (req, res) => {
         
     } catch (e) {
         console.error('Ошибка обновления клиента:', e);
-        if (e.code === '23505') { // Unique constraint violation
+        if (e.code === 'ER_DUP_ENTRY') { // MySQL duplicate entry
             res.status(400).json({ message: 'Email уже используется' });
         } else {
             res.status(500).json({ message: 'Внутренняя ошибка сервера' });
@@ -209,42 +206,45 @@ router.post('/admin/clients/:id/subscription', adminOnly, async (req, res) => {
 
     let client;
     try {
-        client = await pool.connect();
+        client = await pool.getConnection();
         
-        const userCheck = await client.query('SELECT id FROM users WHERE id = $1', [user_id]);
-        if (userCheck.rowCount === 0) {
+        const userCheck = await client.query('SELECT id FROM users WHERE id = ?', [user_id]);
+        if (userCheck[0].length === 0) {
             return res.status(404).json({ message: 'Клиент не найден' });
         }
 
-        const planRes = await client.query('SELECT duration_days, class_count, title FROM plans WHERE id = $1', [plan_id]);
-        if (planRes.rowCount === 0) {
+        const planRes = await client.query('SELECT duration_days, class_count, title FROM plans WHERE id = ?', [plan_id]);
+        if (planRes[0].length === 0) {
             return res.status(404).json({ message: 'Абонемент не найден' });
         }
         
-        const { duration_days, class_count, title } = planRes.rows[0];
+        const { duration_days, class_count, title } = planRes[0][0];
 
-        await client.query('BEGIN');
+        await client.query('START TRANSACTION');
         
         // Deactivate any currently active subscriptions for this user
         await client.query(`
             UPDATE user_subscriptions 
-            SET end_date = CURRENT_DATE - INTERVAL '1 day'
-            WHERE user_id = $1 AND end_date >= CURRENT_DATE
+            SET end_date = CURDATE() - INTERVAL 1 DAY
+            WHERE user_id = ? AND end_date >= CURDATE()
         `, [user_id]);
 
         // Use UPSERT (INSERT ... ON CONFLICT) to handle potential duplicates
         const insertResult = await client.query(`
             INSERT INTO user_subscriptions (user_id, plan_id, start_date, end_date)
-            VALUES ($1, $2, CURRENT_DATE, CURRENT_DATE + ($3 * INTERVAL '1 day'))
-            ON CONFLICT (user_id, plan_id, start_date) 
-            DO UPDATE SET 
-                end_date = CURRENT_DATE + ($3 * INTERVAL '1 day')
-            RETURNING id, start_date, end_date
-        `, [user_id, plan_id, duration_days]);
+            VALUES (?, ?, CURDATE(), DATE_ADD(CURDATE(), INTERVAL ? DAY))
+            ON DUPLICATE KEY UPDATE 
+                end_date = DATE_ADD(CURDATE(), INTERVAL ? DAY)
+        `, [user_id, plan_id, duration_days, duration_days]);
 
         await client.query('COMMIT');
         
-        const subscription = insertResult.rows[0];
+        // Get the inserted subscription data
+        const [subscriptionResult] = await client.query(`
+            SELECT id, start_date, end_date FROM user_subscriptions 
+            WHERE user_id = ? AND plan_id = ? AND start_date = CURDATE()
+        `, [user_id, plan_id]);
+        const subscription = subscriptionResult[0];
         
         res.status(201).json({ 
             message: 'Абонемент успешно назначен',
@@ -269,9 +269,9 @@ router.post('/admin/clients/:id/subscription', adminOnly, async (req, res) => {
         console.error('Error assigning subscription:', error);
         
         // More specific error handling
-        if (error.code === '23505' && error.constraint === 'user_subscriptions_user_id_plan_id_start_date_key') {
+        if (error.code === 'ER_DUP_ENTRY' && error.sqlMessage.includes('unique_subscription')) {
             res.status(409).json({ message: 'Этот абонемент уже назначен клиенту на сегодняшнюю дату' });
-        } else if (error.code === '23503') {
+        } else if (error.code === 'ER_NO_REFERENCED_ROW_2') {
             res.status(400).json({ message: 'Некорректные данные клиента или абонемента' });
         } else {
             res.status(500).json({ message: 'Ошибка назначения абонемента' });
@@ -293,10 +293,10 @@ router.delete('/admin/clients/:id', adminOnly, async (req, res) => {
 
   let client;
   try {
-    client = await pool.connect();
-    const result = await client.query('DELETE FROM users WHERE id = $1', [id]);
+    client = await pool.getConnection();
+    const result = await client.query('DELETE FROM users WHERE id = ?', [id]);
     
-    if (result.rowCount === 0) {
+    if (result[0].affectedRows === 0) {
       return res.status(404).json({ message: 'Клиент не найден' });
     }
     
@@ -315,7 +315,7 @@ router.delete('/admin/clients/:id', adminOnly, async (req, res) => {
 router.get('/admin/trainers', adminOnly, async (req, res) => {
   let client;
   try {
-    client = await pool.connect();
+    client = await pool.getConnection();
     const q = `
       SELECT t.id, t.first_name, t.last_name, t.birth_date, t.photo_url, t.bio, t.created_at,
              t.email,
@@ -325,7 +325,7 @@ router.get('/admin/trainers', adminOnly, async (req, res) => {
       GROUP BY t.id, t.first_name, t.last_name, t.birth_date, t.photo_url, t.bio, t.created_at
       ORDER BY t.created_at DESC
     `;
-    const { rows } = await client.query(q);
+    const [rows] = await client.query(q);
     res.json(rows);
   } catch (error) {
     console.error('Error fetching trainers:', error);
@@ -345,7 +345,7 @@ router.post('/admin/trainers', adminOnly, async (req, res) => {
 
   let client;
   try {
-    client = await pool.connect();
+    client = await pool.getConnection();
     let passwordHash = null;
     if (password) {
       const bcrypt = (await import('bcrypt')).default;
@@ -353,12 +353,12 @@ router.post('/admin/trainers', adminOnly, async (req, res) => {
     }
     const q = `
       INSERT INTO trainers (first_name, last_name, birth_date, photo_url, bio, email, password_hash)
-      VALUES ($1, $2, $3, $4, $5, $6, $7)
-      RETURNING id
+      VALUES (?, ?, ?, ?, ?, ?, ?)
     `;
-    const { rows } = await client.query(q, [first_name, last_name, birth_date || null, photo_url || null, bio || null, email || null, passwordHash]);
+    await client.query(q, [first_name, last_name, birth_date || null, photo_url || null, bio || null, email || null, passwordHash]);
+    const [idResult] = await client.query('SELECT LAST_INSERT_ID() as id');
     res.status(201).json({ 
-      id: rows[0].id, 
+      id: idResult[0].id, 
       message: 'Тренер успешно добавлен'
     });
   } catch (error) {
@@ -380,19 +380,19 @@ router.get('/admin/trainers/:id', adminOnly, async (req, res) => {
 
   let client;
   try {
-    client = await pool.connect();
+    client = await pool.getConnection();
     const q = `
       SELECT t.id, t.first_name, t.last_name, t.birth_date, t.photo_url, t.bio, t.created_at,
              t.email,
              COUNT(c.id) as classes_count
       FROM trainers t
       LEFT JOIN classes c ON t.id = c.trainer_id
-      WHERE t.id = $1
+      WHERE t.id = ?
       GROUP BY t.id, t.first_name, t.last_name, t.birth_date, t.photo_url, t.bio, t.created_at
     `;
-    const { rows } = await client.query(q, [id]);
+    const [rows] = await client.query(q, [id]);
     
-    if (!rows.length) {
+    if (rows.length === 0) {
       return res.status(404).json({ message: 'Тренер не найден' });
     }
     
@@ -421,36 +421,36 @@ router.put('/admin/trainers/:id', adminOnly, async (req, res) => {
 
   let client;
   try {
-    client = await pool.connect();
+    client = await pool.getConnection();
     
     // Get current photo_url before update
-    const currentResult = await client.query('SELECT photo_url FROM trainers WHERE id = $1', [id]);
-    if (currentResult.rows.length === 0) {
+    const currentResult = await client.query('SELECT photo_url FROM trainers WHERE id = ?', [id]);
+    if (currentResult[0].length === 0) {
       return res.status(404).json({ message: 'Тренер не найден' });
     }
     
-    const currentPhotoUrl = currentResult.rows[0].photo_url;
+    const currentPhotoUrl = currentResult[0][0].photo_url;
     
     let passwordHashSet = '';
     const params = [first_name, last_name, birth_date || null, photo_url || null, bio || null, email || null];
     if (password) {
       const bcrypt = (await import('bcrypt')).default;
       const ph = await bcrypt.hash(password, 12);
-      passwordHashSet = ', password_hash = $8';
+      passwordHashSet = ', password_hash = ?';
       params.push(id); // placeholder will adjust below
       // We'll push password hash before id to match placeholders
     }
     let q = `UPDATE trainers 
-             SET first_name = $1, last_name = $2, birth_date = $3, photo_url = $4, bio = $5, email = $6`;
+             SET first_name = ?, last_name = ?, birth_date = ?, photo_url = ?, bio = ?, email = ?`;
     if (password) {
-      q += `, password_hash = $7 WHERE id = $8`;
+      q += `, password_hash = ? WHERE id = ?`;
     } else {
-      q += ` WHERE id = $7`;
+      q += ` WHERE id = ?`;
     }
     const finalParams = password ? [first_name, last_name, birth_date || null, photo_url || null, bio || null, email || null, ph, id] : [first_name, last_name, birth_date || null, photo_url || null, bio || null, email || null, id];
     const result = await client.query(q, finalParams);
     
-    if (result.rowCount === 0) {
+    if (result[0].affectedRows === 0) {
       return res.status(404).json({ message: 'Тренер не найден' });
     }
     
@@ -492,11 +492,11 @@ router.delete('/admin/trainers/:id', adminOnly, async (req, res) => {
 
   let client;
   try {
-    client = await pool.connect();
+    client = await pool.getConnection();
     
     // Check if trainer has any classes assigned
-    const classCheck = await client.query('SELECT COUNT(*) as count FROM classes WHERE trainer_id = $1', [id]);
-    const classesCount = parseInt(classCheck.rows[0].count);
+    const classCheck = await client.query('SELECT COUNT(*) as count FROM classes WHERE trainer_id = ?', [id]);
+    const classesCount = parseInt(classCheck[0][0].count);
     
     if (classesCount > 0) {
       return res.status(409).json({ 
@@ -505,15 +505,15 @@ router.delete('/admin/trainers/:id', adminOnly, async (req, res) => {
     }
     
     // Get trainer photo_url before deletion
-    const trainerResult = await client.query('SELECT photo_url FROM trainers WHERE id = $1', [id]);
-    if (trainerResult.rows.length === 0) {
+    const trainerResult = await client.query('SELECT photo_url FROM trainers WHERE id = ?', [id]);
+    if (trainerResult[0].length === 0) {
       return res.status(404).json({ message: 'Тренер не найден' });
     }
     
-    const photoUrl = trainerResult.rows[0].photo_url;
+    const photoUrl = trainerResult[0][0].photo_url;
     
     // Delete trainer from database
-    const result = await client.query('DELETE FROM trainers WHERE id = $1', [id]);
+    const result = await client.query('DELETE FROM trainers WHERE id = ?', [id]);
     
     // Delete photo file if exists
     if (photoUrl && photoUrl.startsWith('/trainers/')) {
@@ -537,10 +537,16 @@ router.delete('/admin/trainers/:id', adminOnly, async (req, res) => {
 });
 
 // POST /api/admin/trainers/upload-photo - загрузить фото тренера
-router.post('/admin/trainers/upload-photo', adminOnly, upload.single('photo'), (req, res) => {
+router.post('/admin/trainers/upload-photo', adminOnly, upload.single('photo'), async (req, res) => {
+  let client;
   try {
     if (!req.file) {
       return res.status(400).json({ message: 'Файл не был загружен' });
+    }
+
+    const { trainer_id } = req.body;
+    if (!trainer_id) {
+      return res.status(400).json({ message: 'ID тренера обязателен' });
     }
 
     // Verify file was actually saved
@@ -551,10 +557,18 @@ router.post('/admin/trainers/upload-photo', adminOnly, upload.single('photo'), (
     }
 
     const photoUrl = `/trainers/${req.file.filename}`;
+    
+    // Update trainer with photo URL
+    client = await pool.getConnection();
+    await client.query('UPDATE trainers SET photo_url = ? WHERE id = ?', [photoUrl, trainer_id]);
+    client.release();
+    
     console.log(`Photo uploaded successfully: ${photoUrl}`);
     res.json({ photo_url: photoUrl });
   } catch (error) {
     console.error('Error uploading photo:', error);
+    
+    if (client) client.release();
     
     // Clean up failed upload if file exists
     if (req.file) {
@@ -584,35 +598,35 @@ router.delete('/admin/clients/:id/subscription', adminOnly, async (req, res) => 
 
   let client;
   try {
-    client = await pool.connect();
+    client = await pool.getConnection();
     
     // Check if user has active subscription
     const subscriptionCheck = await client.query(`
       SELECT id FROM user_subscriptions 
-      WHERE user_id = $1 AND end_date >= CURRENT_DATE
+      WHERE user_id = ? AND end_date >= CURDATE()
     `, [user_id]);
     
-    if (subscriptionCheck.rowCount === 0) {
+    if (subscriptionCheck[0].length === 0) {
       return res.status(404).json({ message: 'У клиента нет активного абонемента' });
     }
     
-    await client.query('BEGIN');
+    await client.query('START TRANSACTION');
     
     // Cancel all active subscriptions for this user
     await client.query(`
       UPDATE user_subscriptions 
-      SET end_date = CURRENT_DATE - INTERVAL '1 day'
-      WHERE user_id = $1 AND end_date >= CURRENT_DATE
+      SET end_date = CURDATE() - INTERVAL 1 DAY
+      WHERE user_id = ? AND end_date >= CURDATE()
     `, [user_id]);
     
     // Also cancel any future bookings for this user
     await client.query(`
       UPDATE bookings 
       SET status = 'cancelled'
-      WHERE user_id = $1 
+      WHERE user_id = ? 
         AND class_id IN (
           SELECT c.id FROM classes c 
-          WHERE c.class_date >= CURRENT_DATE
+          WHERE c.class_date >= CURDATE()
         )
         AND status = 'booked'
     `, [user_id]);
@@ -635,9 +649,9 @@ router.delete('/admin/clients/:id/subscription', adminOnly, async (req, res) => 
 router.get('/admin/class-types', adminOnly, async (req, res) => {
     let client;
     try {
-        client = await pool.connect();
+        client = await pool.getConnection();
         const q = 'SELECT id, name, description FROM class_types ORDER BY name';
-        const { rows } = await client.query(q);
+        const [rows] = await client.query(q);
         res.json(rows);
     } catch (error) {
         console.error('Error fetching class types:', error);
@@ -657,17 +671,17 @@ router.post('/admin/class-types', adminOnly, async (req, res) => {
 
     let client;
     try {
-        client = await pool.connect();
+        client = await pool.getConnection();
         const q = `
             INSERT INTO class_types (name, description)
-            VALUES ($1, $2)
-            RETURNING id
+            VALUES (?, ?)
         `;
-        const { rows } = await client.query(q, [name, description || null]);
-        res.status(201).json({ id: rows[0].id, message: 'Тип занятия создан' });
+        await client.query(q, [name, description || null]);
+        const [idResult] = await client.query('SELECT LAST_INSERT_ID() as id');
+        res.status(201).json({ id: idResult[0].id, message: 'Тип занятия создан' });
     } catch (error) {
         console.error('Error creating class type:', error);
-        if (error.code === '23505') { // Unique constraint violation
+        if (error.code === 'ER_DUP_ENTRY') { // MySQL duplicate entry
             res.status(400).json({ message: 'Тип занятия с таким названием уже существует' });
         } else {
             res.status(500).json({ message: 'Ошибка создания типа занятия' });

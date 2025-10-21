@@ -10,7 +10,7 @@
 ### 2. Программы на сервере
 Убедитесь, что на сервере установлены:
 - **Node.js** (версия 16 или выше)
-- **PostgreSQL** (база данных)
+- **MySQL** (база данных)
 - **Nginx** (веб-сервер)
 
 ---
@@ -21,8 +21,13 @@
 ```
 NODE_ENV=production
 PORT=3000
-DATABASE_URL=postgres://pyon:ваш_пароль@localhost:5432/pyon_db
+DATABASE_URL=mysql://pyon:ваш_пароль@localhost:3306/pyon_db
 JWT_SECRET=ваш_секретный_ключ_минимум_32_символа
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=pyon
+DB_PASSWORD=ваш_пароль
+DB_NAME=pyon_db
 ```
 
 ### Создайте файл `package.json` в папке `server/`
@@ -35,7 +40,7 @@ JWT_SECRET=ваш_секретный_ключ_минимум_32_символа
   },
   "dependencies": {
     "express": "^4.18.2",
-    "pg": "^8.11.3",
+    "mysql2": "^3.6.0",
     "bcrypt": "^5.1.1",
     "jsonwebtoken": "^9.0.2",
     "csurf": "^1.11.0",
@@ -77,24 +82,27 @@ cd pyon-studio
 
 ## 🗄️ Шаг 3: Настройка базы данных
 
-### Подключитесь к PostgreSQL
+### Подключитесь к MySQL
 ```bash
-sudo -u postgres psql
+sudo mysql -u root -p
 ```
 
 ### Создайте базу данных и пользователя
 ```sql
 -- Создать базу данных
-CREATE DATABASE pyon_db;
+CREATE DATABASE pyon_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- Создать пользователя
-CREATE USER pyon WITH PASSWORD 'ваш_пароль_для_базы';
+CREATE USER 'pyon'@'localhost' IDENTIFIED BY 'ваш_пароль_для_базы';
 
 -- Дать права пользователю
-GRANT ALL PRIVILEGES ON DATABASE pyon_db TO pyon;
+GRANT ALL PRIVILEGES ON pyon_db.* TO 'pyon'@'localhost';
+
+-- Применить изменения
+FLUSH PRIVILEGES;
 
 -- Выйти
-\q
+EXIT;
 ```
 
 ### Примените схему базы данных
@@ -103,7 +111,7 @@ GRANT ALL PRIVILEGES ON DATABASE pyon_db TO pyon;
 cd /home/ваш_логин/pyon-studio
 
 # Применить схему
-psql -U pyon -d pyon_db -f db/schema.sql
+mysql -u pyon -p pyon_db < db/schema.sql
 ```
 
 ---
@@ -255,8 +263,8 @@ npx pm2 stop pyon-studio     # Остановка
 3. Проверьте Nginx: `sudo systemctl status nginx`
 
 ### Если база данных не работает:
-1. Проверьте подключение: `psql -U pyon -d pyon_db`
-2. Проверьте права пользователя в PostgreSQL
+1. Проверьте подключение: `mysql -u pyon -p pyon_db`
+2. Проверьте права пользователя в MySQL
 
 ### Если порт занят:
 ```bash

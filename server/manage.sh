@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Интерактивное меню управления сервером и БД PYon
 
-DB_URL=${DATABASE_URL:-"postgres://pyon:pyon123@localhost:5432/pyon_db"}
+DB_URL=${DATABASE_URL:-"mysql://pyon:pyon123@localhost:3306/pyon_db"}
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
 LOG_FILE="$BASE_DIR/server.log"
 PID_FILE="$BASE_DIR/server.pid"
@@ -11,26 +11,26 @@ add_admin() {
   read -p "Имя: " NAME
   read -p "Email: " EMAIL
   read -s -p "Пароль: " PASS; echo
-  PSQL_CMD="INSERT INTO admins (id,name,email,password_hash) VALUES (gen_random_uuid(),'$NAME','$EMAIL', crypt('$PASS', gen_salt('bf'))) ON CONFLICT (email) DO UPDATE SET password_hash = EXCLUDED.password_hash,name = EXCLUDED.name;"
-  psql "$DB_URL" -v ON_ERROR_STOP=1 -c "$PSQL_CMD" && echo "Админ добавлен/обновлён"
+  MYSQL_CMD="INSERT INTO admins (id,name,email,password_hash) VALUES (UUID(),'$NAME','$EMAIL', '$PASS') ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash), name = VALUES(name);"
+  mysql -u pyon -ppyon123 pyon_db -e "$MYSQL_CMD" && echo "Админ добавлен/обновлён"
 }
 
 delete_admin() {
   read -p "Email админа для удаления: " EMAIL
-  psql "$DB_URL" -c "DELETE FROM admins WHERE email='$EMAIL';" && echo "Удалено"
+  mysql -u pyon -ppyon123 pyon_db -e "DELETE FROM admins WHERE email='$EMAIL';" && echo "Удалено"
 }
 
 list_admins() {
-  psql "$DB_URL" -c "SELECT id,name,email,created_at FROM admins ORDER BY created_at;"
+  mysql -u pyon -ppyon123 pyon_db -e "SELECT id,name,email,created_at FROM admins ORDER BY created_at;"
 }
 
 show_tables() {
-  psql "$DB_URL" -c "\dt"
+  mysql -u pyon -ppyon123 pyon_db -e "SHOW TABLES;"
 }
 
 show_table() {
   read -p "Имя таблицы: " TBL
-  psql "$DB_URL" -c "TABLE \"$TBL\" LIMIT 50;"
+  mysql -u pyon -ppyon123 pyon_db -e "SELECT * FROM \`$TBL\` LIMIT 50;"
 }
 
 start_server() {
@@ -174,27 +174,21 @@ recreate_database() {
   DB_USER=$(echo "$DB_URL" | sed 's/.*:\/\/\([^:]*\):.*/\1/')
   DB_PASS=$(echo "$DB_URL" | sed 's/.*:\/\/[^:]*:\([^@]*\)@.*/\1/')
   
-  # Подключаемся к postgres для удаления/создания БД
-  # Можно переопределить суперпользователя через переменную окружения DB_SUPERUSER_URL
-  POSTGRES_URL="postgres://$DB_USER:$DB_PASS@$DB_HOST:$DB_PORT/postgres"
-  MAINT_URL=${DB_SUPERUSER_URL:-$POSTGRES_URL}
-  
   # Удаляем базу если существует
   echo "Удаляю базу данных '$DB_NAME'..."
-  psql "$MAINT_URL" -c "DROP DATABASE IF EXISTS $DB_NAME;" 2>/dev/null || echo "База не существовала или ошибка при удалении"
+  mysql -u "$DB_USER" -p"$DB_PASS" -h "$DB_HOST" -P "$DB_PORT" -e "DROP DATABASE IF EXISTS $DB_NAME;" 2>/dev/null || echo "База не существовала или ошибка при удалении"
   
   # Создаем новую базу
   echo "Создаю новую базу данных '$DB_NAME'..."
-  psql "$MAINT_URL" -c "CREATE DATABASE $DB_NAME;" || {
+  mysql -u "$DB_USER" -p"$DB_PASS" -h "$DB_HOST" -P "$DB_PORT" -e "CREATE DATABASE $DB_NAME CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" || {
     echo "❌ Ошибка создания базы данных (недостаточно прав?)."
-    echo "Подсказка: установите переменную DB_SUPERUSER_URL с доступом суперпользователя, или дайте роли '$DB_USER' право CREATEDB:"
-    echo "  psql $MAINT_URL -c \"ALTER ROLE $DB_USER CREATEDB;\""
+    echo "Подсказка: убедитесь что пользователь '$DB_USER' имеет права на создание баз данных"
     return 1
   }
   
   # Применяем схему
   echo "Применяю схему базы данных..."
-  psql "$DB_URL" -f "$BASE_DIR/../db/schema.sql" || {
+  mysql -u "$DB_USER" -p"$DB_PASS" -h "$DB_HOST" -P "$DB_PORT" "$DB_NAME" < "$BASE_DIR/../db/schema.sql" || {
     echo "❌ Ошибка применения схемы"
     return 1
   }

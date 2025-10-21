@@ -15,11 +15,11 @@ router.get('/me', async (req, res, next) => {
       console.log('Admin token verified:', data);
       if(data.role === 'admin') {
         // Get admin details from database
-        const client = await pool.connect();
+        const client = await pool.getConnection();
         try {
-          const adminResult = await client.query('SELECT name, email FROM admins WHERE id = $1', [data.id]);
-          if (adminResult.rowCount > 0) {
-            const admin = adminResult.rows[0];
+          const adminResult = await client.query('SELECT name, email FROM admins WHERE id = ?', [data.id]);
+          if (adminResult[0].length > 0) {
+            const admin = adminResult[0][0];
             // Split name into first and last name
             const nameParts = admin.name.split(' ');
             const firstName = nameParts[0] || '';
@@ -73,21 +73,21 @@ router.get('/me', async (req, res, next) => {
 router.get('/me', async (req,res)=>{
   try {
     console.log('Fetching profile for user:', req.user);
-    const client = await pool.connect();
+    const client = await pool.getConnection();
     
     // Handle trainer profile
     if (req.user.role === 'trainer') {
       const q = `
         SELECT first_name, last_name, email, birth_date, photo_url, bio
         FROM trainers
-        WHERE id = $1;
+        WHERE id = ?;
       `;
-      const result = await client.query(q, [req.user.id]);
+      const [result] = await client.query(q, [req.user.id]);
       client.release();
       
-      if (!result.rowCount) return res.sendStatus(404);
+      if (result.length === 0) return res.sendStatus(404);
       
-      return res.json(result.rows[0]);
+      return res.json(result[0]);
     }
     
     // Handle user profile (existing logic)
@@ -110,7 +110,7 @@ router.get('/me', async (req,res)=>{
                     AND c.class_date <= us.end_date
                ) as attended_classes,
                CASE
-                   WHEN us.end_date >= CURRENT_DATE THEN 'Активен'
+                   WHEN us.end_date >= CURDATE() THEN 'Активен'
                    ELSE 'Неактивен'
                END AS subscription_status
         FROM users u
@@ -120,7 +120,7 @@ router.get('/me', async (req,res)=>{
             FROM user_subscriptions
         ) us ON u.id = us.user_id AND us.rn = 1
         LEFT JOIN plans p ON us.plan_id = p.id
-        WHERE u.id = $1;
+        WHERE u.id = ?;
     `;
     const userPromise = client.query(q, [req.user.id]);
 
@@ -128,7 +128,7 @@ router.get('/me', async (req,res)=>{
     const allAchievementsPromise = client.query('SELECT id, code, title, description, icon FROM achievements');
 
     // Запрос 3: Достижения текущего пользователя
-    const userAchievementsPromise = client.query('SELECT achievement_id FROM user_achievements WHERE user_id = $1', [req.user.id]);
+    const userAchievementsPromise = client.query('SELECT achievement_id FROM user_achievements WHERE user_id = ?', [req.user.id]);
     
     const [userRes, allAchievementsRes, userAchievementsRes] = await Promise.all([
         userPromise,
@@ -138,11 +138,11 @@ router.get('/me', async (req,res)=>{
 
     client.release();
 
-    if (!userRes.rowCount) return res.sendStatus(404);
+    if (userRes[0].length === 0) return res.sendStatus(404);
 
-    const userProfile = userRes.rows[0];
-    userProfile.all_achievements = allAchievementsRes.rows;
-    userProfile.unlocked_achievement_ids = userAchievementsRes.rows.map(r => r.achievement_id);
+    const userProfile = userRes[0][0];
+    userProfile.all_achievements = allAchievementsRes[0];
+    userProfile.unlocked_achievement_ids = userAchievementsRes[0].map(r => r.achievement_id);
 
     console.log('Profile data fetched successfully:', userProfile);
     res.json(userProfile);
@@ -164,18 +164,18 @@ router.put('/me', auth, async (req, res) => {
     }
 
     try {
-        const client = await pool.connect();
+        const client = await pool.getConnection();
         await client.query(
             `UPDATE users 
-             SET first_name=$1, last_name=$2, email=$3, phone=$4, birth_date=$5
-             WHERE id=$6`,
+             SET first_name=?, last_name=?, email=?, phone=?, birth_date=?
+             WHERE id=?`,
             [first_name, last_name, email, phone, birth_date, userId]
         );
         client.release();
         res.sendStatus(204); // Успех, нет контента
     } catch (e) {
         console.error('Ошибка обновления профиля:', e);
-        if (e.code === '23505') { // unique_violation
+        if (e.code === 'ER_DUP_ENTRY') { // MySQL duplicate entry
             return res.status(409).json({ message: 'Этот email уже используется' });
         }
         res.status(500).json({ message: 'Внутренняя ошибка сервера' });
@@ -188,7 +188,7 @@ export default router;
 router.get('/me/upcoming-classes', auth, async (req, res) => {
   let client;
   try {
-    client = await pool.connect();
+    client = await pool.getConnection();
     const q = `
       SELECT c.id,
              c.title,
@@ -200,13 +200,13 @@ router.get('/me/upcoming-classes', auth, async (req, res) => {
       FROM bookings b
       JOIN classes c ON c.id = b.class_id
       LEFT JOIN trainers t ON c.trainer_id = t.id
-      WHERE b.user_id = $1
+      WHERE b.user_id = ?
         AND b.status = 'booked'
-        AND (c.class_date > CURRENT_DATE OR (c.class_date = CURRENT_DATE AND c.start_time >= CURRENT_TIME))
+        AND (c.class_date > CURDATE() OR (c.class_date = CURDATE() AND c.start_time >= CURTIME()))
       ORDER BY c.class_date ASC, c.start_time ASC
       LIMIT 5
     `;
-    const { rows } = await client.query(q, [req.user.id]);
+    const [rows] = await client.query(q, [req.user.id]);
     res.json(rows);
   } catch (e) {
     console.error('Error fetching upcoming classes:', e);

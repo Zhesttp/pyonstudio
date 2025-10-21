@@ -55,9 +55,9 @@ router.post('/register', registerValidation, async (req, res) => {
     console.log('Registration data:', { first_name, last_name, phone, email, birth });
 
     try {
-        const client = await pool.connect();
-        const existingUser = await client.query('SELECT 1 FROM users WHERE email = $1 OR phone = $2', [email, phone]);
-        if (existingUser.rowCount > 0) {
+        const client = await pool.getConnection();
+        const existingUser = await client.query('SELECT 1 FROM users WHERE email = ? OR phone = ?', [email, phone]);
+        if (existingUser[0].length > 0) {
             client.release();
             return res.status(409).json({ message: 'Пользователь с таким email или телефоном уже существует' });
         }
@@ -66,11 +66,12 @@ router.post('/register', registerValidation, async (req, res) => {
         
         const newUserQuery = `
             INSERT INTO users(first_name, last_name, birth_date, phone, email, password_hash)
-            VALUES($1, $2, $3, $4, $5, $6) RETURNING id;
+            VALUES(?, ?, ?, ?, ?, ?);
         `;
-        const newUser = await client.query(newUserQuery, [first_name, last_name, birth, phone, email, hashedPassword]);
+        await client.query(newUserQuery, [first_name, last_name, birth, phone, email, hashedPassword]);
         
-        const userId = newUser.rows[0].id;
+        const userIdResult = await client.query('SELECT LAST_INSERT_ID() as id');
+        const userId = userIdResult[0][0].id;
         client.release();
 
         const token = jwt.sign({ id: userId, email: email }, process.env.JWT_SECRET, { expiresIn: '7d' });
@@ -111,15 +112,15 @@ router.post('/quick-register', [
     const { first_name, password } = req.body;
 
     try {
-        const client = await pool.connect();
+        const client = await pool.getConnection();
         
         // Generate temporary email
         const timestamp = Date.now();
         const tempEmail = `user_${timestamp}@temp.pyon.local`;
         
         // Check if temp email already exists (very unlikely)
-        const existingUser = await client.query('SELECT 1 FROM users WHERE email = $1', [tempEmail]);
-        if (existingUser.rowCount > 0) {
+        const existingUser = await client.query('SELECT 1 FROM users WHERE email = ?', [tempEmail]);
+        if (existingUser[0].length > 0) {
             client.release();
             return res.status(409).json({ message: 'Попробуйте еще раз' });
         }
@@ -128,12 +129,16 @@ router.post('/quick-register', [
         
         const newUserQuery = `
             INSERT INTO users(first_name, last_name, email, password_hash, is_quick_registration, birth_date, account_number)
-            VALUES($1, '', $2, $3, true, '1990-01-01', generate_account_number()) RETURNING id, account_number;
+            VALUES(?, '', ?, ?, true, '1990-01-01', generate_account_number());
         `;
-        const newUser = await client.query(newUserQuery, [first_name, tempEmail, hashedPassword]);
+        await client.query(newUserQuery, [first_name, tempEmail, hashedPassword]);
         
-        const userId = newUser.rows[0].id;
-        const accountNumber = newUser.rows[0].account_number;
+        const userIdResult = await client.query('SELECT LAST_INSERT_ID() as id');
+        const userId = userIdResult[0][0].id;
+        
+        // Get the generated account number
+        const accountResult = await client.query('SELECT account_number FROM users WHERE id = ?', [userId]);
+        const accountNumber = accountResult[0][0]?.account_number || null;
         client.release();
 
         const token = jwt.sign({ id: userId, email: tempEmail }, process.env.JWT_SECRET, { expiresIn: '7d' });
@@ -167,13 +172,13 @@ router.post('/login', loginValidation, async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const client = await pool.connect();
+        const client = await pool.getConnection();
         
         // Try admin table first
-        const adminResult = await client.query('SELECT id, email, password_hash FROM admins WHERE email = $1', [email]);
+        const adminResult = await client.query('SELECT id, email, password_hash FROM admins WHERE email = ?', [email]);
         
-        if (adminResult.rowCount > 0) {
-            const admin = adminResult.rows[0];
+        if (adminResult[0].length > 0) {
+            const admin = adminResult[0][0];
             const isMatch = await bcrypt.compare(password, admin.password_hash);
             
             if (!isMatch) {
@@ -193,16 +198,16 @@ router.post('/login', loginValidation, async (req, res) => {
         }
 
         // Try user table
-        const userResult = await client.query('SELECT id, email, password_hash FROM users WHERE email = $1', [email]);
+        const userResult = await client.query('SELECT id, email, password_hash FROM users WHERE email = ?', [email]);
         
-        if (userResult.rowCount === 0) {
+        if (userResult[0].length === 0) {
             // Try trainer table next
-            const trainerResult = await client.query('SELECT id, email, password_hash FROM trainers WHERE email = $1', [email]);
-            if (trainerResult.rowCount === 0) {
+            const trainerResult = await client.query('SELECT id, email, password_hash FROM trainers WHERE email = ?', [email]);
+            if (trainerResult[0].length === 0) {
                 client.release();
                 return res.status(404).json({ message: 'Пользователь не найден' });
             }
-            const trainer = trainerResult.rows[0];
+            const trainer = trainerResult[0][0];
             const isTrainerMatch = await bcrypt.compare(password, trainer.password_hash || '');
             if (!isTrainerMatch) {
                 client.release();
@@ -219,7 +224,7 @@ router.post('/login', loginValidation, async (req, res) => {
             return res.json({ role: 'trainer', message: 'Вход выполнен успешно' });
         }
 
-        const user = userResult.rows[0];
+        const user = userResult[0][0];
         const isMatch = await bcrypt.compare(password, user.password_hash);
 
         if (!isMatch) {
@@ -240,6 +245,21 @@ router.post('/login', loginValidation, async (req, res) => {
 
     } catch (error) {
         console.error('Login error:', error);
+        res.status(500).json({ message: 'Внутренняя ошибка сервера' });
+    }
+});
+
+// Logout endpoint
+router.post('/logout', (req, res) => {
+    try {
+        // Clear all authentication cookies
+        res.clearCookie('token');
+        res.clearCookie('admin_token');
+        res.clearCookie('trainer_token');
+        
+        res.status(200).json({ message: 'Выход выполнен успешно' });
+    } catch (error) {
+        console.error('Logout error:', error);
         res.status(500).json({ message: 'Внутренняя ошибка сервера' });
     }
 });

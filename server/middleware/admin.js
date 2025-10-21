@@ -26,8 +26,8 @@ export const adminOnly = async (req, res, next) => {
       return res.redirect('/login');
     }
     // verify admin exists in DB
-    const result = await pool.query('SELECT 1 FROM admins WHERE id = $1', [data.id]);
-    if (result.rowCount === 0) {
+    const [result] = await pool.query('SELECT 1 FROM admins WHERE id = ?', [data.id]);
+    if (result.length === 0) {
       res.clearCookie('admin_token');
       return handleUnauthorized();
     }
@@ -65,8 +65,8 @@ export const trainerOnly = async (req, res, next) => {
       return res.redirect('/login');
     }
     // verify trainer exists in DB
-    const result = await pool.query('SELECT 1 FROM trainers WHERE id = $1', [data.id]);
-    if (result.rowCount === 0) {
+    const [result] = await pool.query('SELECT 1 FROM trainers WHERE id = ?', [data.id]);
+    if (result.length === 0) {
       res.clearCookie('token');
       return handleUnauthorized();
     }

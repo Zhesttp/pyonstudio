@@ -1,15 +1,16 @@
 # Pyon Studio База данных
 
-Схема PostgreSQL 15 (`db/schema.sql`).
+Схема MySQL 8.0 (`db/schema.sql`).
 
 ## Быстрый старт
 ```bash
-psql -U postgres -c "CREATE USER pyon WITH PASSWORD 'pyon123';"
-psql -U postgres -f db/schema.sql
+mysql -u root -p -e "CREATE USER 'pyon'@'localhost' IDENTIFIED BY 'pyon123';"
+mysql -u root -p -e "GRANT ALL PRIVILEGES ON pyon_db.* TO 'pyon'@'localhost';"
+mysql -u pyon -ppyon123 < db/schema.sql
 ```
 Будет создана база `pyon_db`. Строка подключения:
 ```
-postgres://pyon:pyon123@localhost:5432/pyon_db
+mysql://pyon:pyon123@localhost:3306/pyon_db
 ```
 ## Основные сущности
 | Таблица | Назначение |
@@ -40,7 +41,12 @@ postgres://pyon:pyon123@localhost:5432/pyon_db
 
 ## Партиционирование (опционально)
 ```sql
-CREATE TABLE classes_2025 PARTITION OF classes FOR VALUES FROM ('2025-01-01') TO ('2026-01-01');
+-- MySQL поддерживает партиционирование по диапазону
+ALTER TABLE classes PARTITION BY RANGE (YEAR(class_date)) (
+    PARTITION p2024 VALUES LESS THAN (2025),
+    PARTITION p2025 VALUES LESS THAN (2026),
+    PARTITION p2026 VALUES LESS THAN (2027)
+);
 ```
 Автоматизация — ежегодно.
 
@@ -61,41 +67,42 @@ CREATE TABLE classes_2025 PARTITION OF classes FOR VALUES FROM ('2025-01-01') TO
 
 ```bash
 # Подключаемся под пользователем pyon
-psql "postgres://pyon:pyon123@localhost:5432/pyon_db"
+mysql -u pyon -ppyon123 pyon_db
 
 -- посмотреть список таблиц
-\dt
+SHOW TABLES;
 
 -- посмотреть структуру таблицы
-\d bookings
+DESCRIBE bookings;
 
 -- выборка первых 20 строк
 SELECT * FROM bookings LIMIT 20;
 ```
 
-Используйте `\h` внутри psql для справки по SQL-командам.
+Используйте `HELP` внутри mysql для справки по SQL-командам.
 
 ```bash
 # Если база запущена в контейнере Docker
 # Предположим контейнер называется pyon-db
 
-docker exec -it pyon-db psql -U pyon -d pyon_db -c "\dt"   # список таблиц
-docker exec -it pyon-db psql -U pyon -d pyon_db -c "SELECT * FROM users LIMIT 10;"
+docker exec -it pyon-db mysql -u pyon -ppyon123 pyon_db -e "SHOW TABLES;"   # список таблиц
+docker exec -it pyon-db mysql -u pyon -ppyon123 pyon_db -e "SELECT * FROM users LIMIT 10;"
 ```
 
 ## Запуск проекта «с нуля»
 ```bash
 # 1. установить зависимости backend
 cd server
-npm install          # модули Express, pg, bcrypt …
+npm install          # модули Express, mysql2, bcrypt …
 
-# 2. создать роль и базу (один раз)
-psql -U $(whoami) -d postgres -c "CREATE ROLE pyon WITH LOGIN PASSWORD 'pyon123';"
-psql -U $(whoami) -d postgres -c "CREATE DATABASE pyon_db OWNER pyon;"
+# 2. создать пользователя и базу (один раз)
+mysql -u root -p -e "CREATE USER 'pyon'@'localhost' IDENTIFIED BY 'pyon123';"
+mysql -u root -p -e "CREATE DATABASE pyon_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+mysql -u root -p -e "GRANT ALL PRIVILEGES ON pyon_db.* TO 'pyon'@'localhost';"
 
 # 3. накатить структуру
 cd ..   # корень проекта
-tail -n +5 db/schema.sql | psql -U pyon -d pyon_db   # без CREATE DATABASE
+mysql -u pyon -ppyon123 < db/schema.sql
 
 # 4. скопировать переменные окружения и запустить сервер
 cd server
@@ -107,17 +114,24 @@ npm run dev              # nodemon app.js (порт 3000)
 ```bash
 # остановить backend, если запущен (Ctrl+C)
 
-psql -U $(whoami) -d postgres -c "DROP DATABASE IF EXISTS pyon_db;"
-psql -U $(whoami) -d postgres -c "CREATE DATABASE pyon_db OWNER pyon;"
+mysql -u root -p -e "DROP DATABASE IF EXISTS pyon_db;"
+mysql -u root -p -e "CREATE DATABASE pyon_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+mysql -u root -p -e "GRANT ALL PRIVILEGES ON pyon_db.* TO 'pyon'@'localhost';"
 
-tail -n +5 db/schema.sql | psql -U pyon -d pyon_db
+mysql -u pyon -ppyon123 < db/schema.sql
 
 # заново запустить сервер
 cd server
 npm run dev
 ```
 
-> `$(whoami)` под macOS/Homebrew равен вашему системному пользователю, у которого есть права superuser в PostgreSQL.
+## Миграция данных с PostgreSQL на MySQL
+```bash
+# 1. Убедитесь, что обе базы данных запущены
+# 2. Настройте переменные окружения для обеих БД
+# 3. Запустите скрипт миграции
+node migrate_to_mysql.js
+```
 
 
 
@@ -127,12 +141,11 @@ npm run dev
 
 
 <!-- удалить  бд-->
-$ psql -U zhest -d postgres -c "DROP DATABASE IF EXISTS pyon_db;"
+$ mysql -u root -p -e "DROP DATABASE IF EXISTS pyon_db;"
 
-
-% создать  бд 
-$ psql -U zhest -d postgres -c "CREATE DATABASE pyon_db OWNER pyon;"
-
+<!-- создать  бд -->
+$ mysql -u root -p -e "CREATE DATABASE pyon_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+$ mysql -u root -p -e "GRANT ALL PRIVILEGES ON pyon_db.* TO 'pyon'@'localhost';"
 
 <!-- активировать схему  -->
-$ psql -U pyon -d pyon_db -f /Users/zhest/Documents/work/konstantin/db/schema.sql
+$ mysql -u pyon -ppyon123 < /Users/zhest/Documents/work/konstantin/db/schema.sql
