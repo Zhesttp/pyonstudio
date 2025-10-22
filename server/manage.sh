@@ -54,14 +54,43 @@ start_server_normal() {
   if [[ -f $PID_FILE && -e /proc/$(cat $PID_FILE) ]]; then
     echo "Сервер уже запущен (PID $(cat $PID_FILE))"; return; fi
   cd "$PROJECT_DIR"
+  
+  echo "🚀 Запуск сервера в обычном режиме..."
+  echo "📱 Проверка Telegram бота..."
+  
+  # Проверяем наличие переменных Telegram бота
+  if [[ -f .env ]]; then
+    if grep -q "TELEGRAM_BOT_TOKEN" .env && grep -q "TELEGRAM_CHAT_ID" .env; then
+      echo "✅ Telegram бот настроен в .env файле"
+    else
+      echo "⚠️  Telegram бот не настроен: отсутствуют TELEGRAM_BOT_TOKEN или TELEGRAM_CHAT_ID"
+    fi
+  else
+    echo "⚠️  Файл .env не найден. Telegram бот будет отключен"
+  fi
+  
   npm run start 2>&1 | tee -a "$LOG_FILE" &
   echo $! > "$PID_FILE"
-  echo "Сервер запущен в обычном режиме, PID $!"
+  echo "✅ Сервер запущен в обычном режиме, PID $!"
+  echo "📱 Telegram бот будет инициализирован автоматически при запуске"
 }
 
 start_server_pm2() {
   echo "🚀 Запуск сервера через PM2..."
   cd "$PROJECT_DIR"
+  
+  echo "📱 Проверка Telegram бота..."
+  
+  # Проверяем наличие переменных Telegram бота
+  if [[ -f .env ]]; then
+    if grep -q "TELEGRAM_BOT_TOKEN" .env && grep -q "TELEGRAM_CHAT_ID" .env; then
+      echo "✅ Telegram бот настроен в .env файле"
+    else
+      echo "⚠️  Telegram бот не настроен: отсутствуют TELEGRAM_BOT_TOKEN или TELEGRAM_CHAT_ID"
+    fi
+  else
+    echo "⚠️  Файл .env не найден. Telegram бот будет отключен"
+  fi
   
   # Проверяем, установлен ли PM2
   if ! npx pm2 --version >/dev/null 2>&1; then
@@ -72,6 +101,7 @@ start_server_pm2() {
   # Запускаем PM2 с кластеризацией
   npx pm2 start ./app.js --name pyon-studio --instances max
   echo "✅ Сервер запущен через PM2 с кластеризацией!"
+  echo "📱 Telegram бот будет инициализирован автоматически при запуске"
   npx pm2 status
 }
 
@@ -134,12 +164,30 @@ show_logs() {
   echo "1) Обычные логи сервера"
   echo "2) PM2 логи"
   echo "3) PM2 мониторинг"
-  read -p "Выбор (1-3): " choice
+  echo "4) Поиск логов Telegram бота"
+  read -p "Выбор (1-4): " choice
   
   case "$choice" in
-    1) tail -n 100 "$LOG_FILE";;
-    2) cd "$PROJECT_DIR" && npx pm2 logs pyon-studio;;
-    3) cd "$PROJECT_DIR" && npx pm2 monit;;
+    1) 
+      echo "📋 Последние 100 строк логов сервера:"
+      tail -n 100 "$LOG_FILE"
+      ;;
+    2) 
+      echo "📋 PM2 логи (нажмите Ctrl+C для выхода):"
+      cd "$PROJECT_DIR" && npx pm2 logs pyon-studio
+      ;;
+    3) 
+      echo "📊 PM2 мониторинг (нажмите Ctrl+C для выхода):"
+      cd "$PROJECT_DIR" && npx pm2 monit
+      ;;
+    4)
+      echo "📱 Поиск логов Telegram бота:"
+      echo "=== Обычные логи ==="
+      grep -i "telegram\|bot" "$LOG_FILE" | tail -20
+      echo ""
+      echo "=== PM2 логи ==="
+      cd "$PROJECT_DIR" && npx pm2 logs pyon-studio --lines 50 | grep -i "telegram\|bot" || echo "Нет логов Telegram бота в PM2"
+      ;;
     *) echo "Неверный выбор";;
   esac
 }
@@ -155,7 +203,49 @@ pm2_restart() {
   cd "$PROJECT_DIR"
   npx pm2 restart pyon-studio
   echo "✅ PM2 сервер перезапущен!"
+  echo "📱 Telegram бот будет переинициализирован автоматически"
   npx pm2 status
+}
+
+check_telegram_bot() {
+  echo "📱 Проверка настроек Telegram бота..."
+  cd "$PROJECT_DIR"
+  
+  if [[ -f .env ]]; then
+    echo "✅ Файл .env найден"
+    
+    if grep -q "TELEGRAM_BOT_TOKEN" .env; then
+      TOKEN_LINE=$(grep "TELEGRAM_BOT_TOKEN" .env)
+      if [[ "$TOKEN_LINE" == *"your_telegram_bot_token_here"* ]] || [[ "$TOKEN_LINE" == *"="* && "${TOLEGRAM_BOT_TOKEN#*=}" == "" ]]; then
+        echo "⚠️  TELEGRAM_BOT_TOKEN не настроен (используется значение по умолчанию)"
+      else
+        echo "✅ TELEGRAM_BOT_TOKEN настроен"
+      fi
+    else
+      echo "❌ TELEGRAM_BOT_TOKEN не найден в .env"
+    fi
+    
+    if grep -q "TELEGRAM_CHAT_ID" .env; then
+      CHAT_LINE=$(grep "TELEGRAM_CHAT_ID" .env)
+      if [[ "$CHAT_LINE" == *"your_telegram_chat_id_here"* ]] || [[ "$CHAT_LINE" == *"="* && "${TELEGRAM_CHAT_ID#*=}" == "" ]]; then
+        echo "⚠️  TELEGRAM_CHAT_ID не настроен (используется значение по умолчанию)"
+      else
+        echo "✅ TELEGRAM_CHAT_ID настроен"
+      fi
+    else
+      echo "❌ TELEGRAM_CHAT_ID не найден в .env"
+    fi
+    
+    echo ""
+    echo "📋 Инструкция по настройке:"
+    echo "1. Создайте бота через @BotFather в Telegram"
+    echo "2. Получите токен бота"
+    echo "3. Отправьте боту сообщение и получите Chat ID через API"
+    echo "4. Обновите .env файл с реальными значениями"
+  else
+    echo "❌ Файл .env не найден"
+    echo "📋 Создайте файл .env на основе env.example"
+  fi
 }
 
 recreate_database() {
@@ -214,15 +304,18 @@ while true; do
   echo "6) Статус PM2"
   echo "7) Перезапуск PM2"
   echo ""
+  echo "📱 TELEGRAM БОТ:"
+  echo "8) Проверить настройки Telegram бота"
+  echo ""
   echo "👨‍💼 АДМИНЫ:"
-  echo "8) Добавить/обновить админа"
-  echo "9) Удалить админа"
-  echo "10) Список админов"
+  echo "9) Добавить/обновить админа"
+  echo "10) Удалить админа"
+  echo "11) Список админов"
   echo ""
   echo "🗄️  БАЗА ДАННЫХ:"
-  echo "11) Показать все таблицы БД"
-  echo "12) Показать содержимое таблицы"
-  echo "13) 🔥 ПЕРЕСОЗДАТЬ БАЗУ ДАННЫХ (ОСТОРОЖНО!)"
+  echo "12) Показать все таблицы БД"
+  echo "13) Показать содержимое таблицы"
+  echo "14) 🔥 ПЕРЕСОЗДАТЬ БАЗУ ДАННЫХ (ОСТОРОЖНО!)"
   echo ""
   echo "0) Выход"
   read -p "Выбор: " choice
@@ -234,12 +327,13 @@ while true; do
     5) show_logs;;
     6) pm2_status;;
     7) pm2_restart;;
-    8) add_admin;;
-    9) delete_admin;;
-    10) list_admins;;
-    11) show_tables;;
-    12) show_table;;
-    13) recreate_database;;
+    8) check_telegram_bot;;
+    9) add_admin;;
+    10) delete_admin;;
+    11) list_admins;;
+    12) show_tables;;
+    13) show_table;;
+    14) recreate_database;;
     0) exit 0;;
     *) echo "Неверный выбор";;
   esac

@@ -107,6 +107,13 @@ NODE_ENV=production
 
 # Порт сервера
 PORT=3000
+
+# Домен сайта (для уведомлений)
+DOMAIN=https://your-domain.com
+
+# Telegram Bot настройки
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token_here
+TELEGRAM_CHAT_ID=your_telegram_chat_id_here
 ```
 
 ### **7. ПРИМЕНЕНИЕ СХЕМЫ БД**

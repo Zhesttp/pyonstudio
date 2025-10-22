@@ -9435,3 +9435,13 @@ Validation errors: [
     location: 'body'
   }
 ]
+
+> pyonserver@1.0.0 start
+> node app.js
+
+Ignoring invalid configuration option passed to Connection: acquireTimeout. This is currently a warning, but in future versions of MySQL2, an error will be thrown if you pass an invalid configuration option to a Connection
+Server started on 3000
+🤖 Initializing Telegram bot...
+✅ Telegram бот инициализирован: @pyonp_bot
+📱 Уведомление о запуске отправлено в Telegram
+✅ Telegram bot is ready!

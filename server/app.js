@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import TelegramBot from 'node-telegram-bot-api';
 import authRoutes from './routes/auth.js';
 import profileRoutes from './routes/profile.js';
 import adminRoutes from './routes/admin.js';
@@ -63,6 +64,56 @@ async function cleanupOrphanedPhotos() {
     }
   } catch (error) {
     console.error('Error during photo cleanup:', error);
+  }
+}
+
+// Initialize Telegram bot
+async function initializeTelegramBot() {
+  try {
+    if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_CHAT_ID) {
+      console.log('⚠️  Telegram bot не настроен: отсутствуют TELEGRAM_BOT_TOKEN или TELEGRAM_CHAT_ID');
+      return null;
+    }
+
+    const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: false });
+    
+    // Проверяем работоспособность бота
+    const botInfo = await bot.getMe();
+    console.log(`✅ Telegram бот инициализирован: @${botInfo.username}`);
+    
+    // Отправляем уведомление о запуске сервера
+    const isProduction = process.env.NODE_ENV === 'production';
+    const domain = process.env.DOMAIN || process.env.SERVER_URL;
+    
+    const startupMessage = `🚀 *PYon Studio Server Started*
+
+⏰ *Время запуска:* ${new Date().toLocaleString('ru-RU', {
+      timeZone: 'Europe/Minsk',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit'
+    })}
+
+🌐 *Режим:* ${process.env.NODE_ENV || 'development'}
+📊 *Порт:* ${process.env.PORT || 3000}
+🖥️ *Сервер:* ${isProduction ? 'Production Server' : 'Development'}
+${domain ? `🌍 *Домен:* ${domain}` : ''}
+
+✅ Сервер готов к работе!
+📱 Telegram бот активен и готов принимать уведомления
+${isProduction ? '🎯 Сайт доступен для пользователей!' : '🔧 Режим разработки'}`;
+
+    await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, startupMessage, {
+      parse_mode: 'Markdown'
+    });
+    
+    console.log('📱 Уведомление о запуске отправлено в Telegram');
+    return bot;
+  } catch (error) {
+    console.error('❌ Ошибка инициализации Telegram бота:', error.message);
+    return null;
   }
 }
 
@@ -154,6 +205,16 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {
   console.log('Server started on ' + PORT);
+  
   // Clean up orphaned photos on startup
   await cleanupOrphanedPhotos();
+  
+  // Initialize Telegram bot
+  console.log('🤖 Initializing Telegram bot...');
+  const telegramBot = await initializeTelegramBot();
+  if (telegramBot) {
+    console.log('✅ Telegram bot is ready!');
+  } else {
+    console.log('⚠️  Telegram bot is disabled or not configured');
+  }
 });
