@@ -36,7 +36,16 @@ router.get('/classes', trainerOnly, async (req, res) => {
     `;
 
     const [result] = await pool.query(query, [trainerId, start_date, end_date]);
-    res.json(result);
+    
+    // Форматируем даты для избежания проблем с часовыми поясами
+    const formattedResult = result.map(row => ({
+      ...row,
+      class_date: row.class_date ? 
+        `${row.class_date.getFullYear()}-${String(row.class_date.getMonth() + 1).padStart(2, '0')}-${String(row.class_date.getDate()).padStart(2, '0')}` : 
+        null
+    }));
+    
+    res.json(formattedResult);
   } catch (error) {
     console.error('Error fetching trainer classes:', error);
     res.status(500).json({ message: 'Ошибка загрузки занятий' });

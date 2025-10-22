@@ -335,7 +335,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 const result = await res.json();
+                console.log('Server response for trainer creation:', result);
                 trainerId = result.id;
+
+                // Проверяем, что ID получен корректно
+                if (!trainerId || trainerId === 0 || trainerId === '0') {
+                    console.error('No valid trainer ID received from server:', result);
+                    throw new Error('Сервер не вернул корректный ID тренера');
+                }
+                
+                console.log('Trainer created with ID:', trainerId);
 
                 // Теперь загружаем фото если есть
                 if (selectedPhotoFile) {

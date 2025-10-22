@@ -119,7 +119,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function isClassPast(classItem) {
         const now = new Date();
-        const classDateTime = new Date(`${classItem.class_date}T${classItem.start_time}`);
+        // Используем локальное время для сравнения, избегая проблем с часовыми поясами
+        let classDateStr = classItem.class_date;
+        if (classDateStr && classDateStr.includes('T')) {
+            classDateStr = classDateStr.split('T')[0]; // Получаем только дату YYYY-MM-DD
+        }
+        const classDateTime = new Date(`${classDateStr}T${classItem.start_time}`);
         return classDateTime < now;
     }
 
@@ -263,7 +268,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         classesBody.innerHTML = classesToRender.map(classItem => {
-            const classDate = new Date(classItem.class_date);
+            // Используем дату как есть, без создания Date объекта для избежания проблем с часовыми поясами
+            const classDateStr = classItem.class_date;
             const time = classItem.start_time;
             const trainerName = classItem.trainer_name || 'Не назначен';
             const status = getClassStatus(classItem);
@@ -271,9 +277,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             const isPast = isClassPast(classItem);
             const rowClass = isPast ? 'class-row--past' : '';
 
+            // Форматируем дату вручную для избежания проблем с часовыми поясами
+            // Извлекаем дату в формате YYYY-MM-DD из любого формата
+            let dateToFormat = classDateStr;
+            if (typeof dateToFormat === 'string' && dateToFormat.includes('T')) {
+                dateToFormat = dateToFormat.split('T')[0];
+            }
+            // Конвертируем YYYY-MM-DD в DD.MM.YYYY
+            const formattedDate = dateToFormat ? dateToFormat.split('-').reverse().join('.') : '';
+
             return `
                 <tr class="${rowClass}">
-                    <td>${classDate.toLocaleDateString('ru-RU')}</td>
+                    <td>${formattedDate}</td>
                     <td>${time}</td>
                     <td>${classItem.duration_minutes || 60} мин</td>
                     <td>${classItem.type_name || 'Не указано'}</td>
@@ -383,8 +398,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         classForm.reset();
         classDeleteBtn.style.display = 'none';
         
-        // Set default date to today
-        const today = new Date().toISOString().split('T')[0];
+        // Set default date to today (используем локальную дату)
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const today = `${year}-${month}-${day}`;
         document.getElementById('class-date').value = today;
         
         classModal.style.display = 'block';
@@ -407,7 +426,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Fill form with class data
         document.getElementById('class-id').value = classItem.id;
         document.getElementById('class-title').value = classItem.title || '';
-        document.getElementById('class-date').value = classItem.class_date;
+        
+        // Форматируем дату для поля ввода
+        let classDate = classItem.class_date;
+        if (classDate && classDate.includes('T')) {
+            classDate = classDate.split('T')[0];
+        }
+        document.getElementById('class-date').value = classDate;
         document.getElementById('class-time').value = classItem.start_time;
         document.getElementById('class-duration').value = classItem.duration_minutes || 60;
         document.getElementById('class-max-participants').value = classItem.max_participants || 10;
@@ -488,6 +513,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             place: document.getElementById('class-place').value,
             max_participants: parseInt(document.getElementById('class-max-participants').value)
         };
+
+        // Отладочная информация для проверки даты
+        console.log('Отправляемые данные занятия:', classData);
+        console.log('Дата занятия (raw):', classDate);
+        console.log('Тип даты:', typeof classDate);
 
         // Validation
         if (!classData.title || !classData.class_date || !classData.start_time || !classData.trainer_id || !classData.place || !classData.duration_minutes || !classData.type_id || !classData.max_participants) {

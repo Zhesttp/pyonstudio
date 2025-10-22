@@ -393,7 +393,9 @@
                 });
                 
                 classes.forEach(cls => {
-                    const classDate = new Date(cls.class_date);
+                    // Используем локальную дату без создания Date объекта для избежания проблем с часовыми поясами
+                    const classDateStr = cls.class_date.split('T')[0]; // Получаем только дату YYYY-MM-DD
+                    const classDate = new Date(classDateStr + 'T12:00:00'); // Добавляем полдень для избежания проблем с часовыми поясами
                     const dayOfWeek = dayMap[classDate.getDay()];
                     
                     if (grouped[dayOfWeek]) {
@@ -473,7 +475,8 @@
                         }
                         
                         // Проверяем, прошло ли занятие
-                        const classDateTime = new Date(`${cls.class_date}T${cls.start_time}`);
+                        const classDateStr = cls.class_date.split('T')[0]; // Получаем только дату YYYY-MM-DD
+                        const classDateTime = new Date(`${classDateStr}T${cls.start_time}`);
                         const isPast = Date.now() > classDateTime.getTime();
                         if (isPast) {
                             item.classList.add('class-item--disabled');

@@ -28,7 +28,24 @@ router.get('/admin/classes', adminOnly, async (req, res) => {
       ORDER BY c.class_date DESC, c.start_time
     `;
     const [rows] = await client.query(q);
-    res.json(rows);
+    
+    // Форматируем даты для избежания проблем с часовыми поясами
+    const formattedRows = rows.map(row => ({
+      ...row,
+      class_date: row.class_date ? 
+        `${row.class_date.getFullYear()}-${String(row.class_date.getMonth() + 1).padStart(2, '0')}-${String(row.class_date.getDate()).padStart(2, '0')}` : 
+        null
+    }));
+    
+    console.log('Admin classes API - raw dates:', rows.map(r => ({ 
+      title: r.title, 
+      raw_date: r.class_date, 
+      formatted_date: r.class_date ? 
+        `${r.class_date.getFullYear()}-${String(r.class_date.getMonth() + 1).padStart(2, '0')}-${String(r.class_date.getDate()).padStart(2, '0')}` : 
+        null 
+    })));
+    
+    res.json(formattedRows);
   } catch (error) {
     console.error('Error fetching classes:', error);
     res.status(500).json({ message: 'Ошибка загрузки списка занятий' });
@@ -60,11 +77,16 @@ router.post('/admin/classes', adminOnly, async (req, res) => {
     return res.status(400).json({ message: 'Некорректный ID тренера' });
   }
 
-  // Проверка даты (не в прошлом)
+  // Проверка даты (не в прошлом) - используем локальное время
   const classDateTime = new Date(`${class_date}T${start_time}`);
-  if (classDateTime < new Date()) {
+  const now = new Date();
+  if (classDateTime < now) {
     return res.status(400).json({ message: 'Нельзя создавать занятия в прошлом' });
   }
+  
+  console.log('Creating class with date:', class_date, 'time:', start_time);
+  console.log('Date type:', typeof class_date);
+  console.log('Date value:', class_date);
 
   let client;
   try {
@@ -75,6 +97,12 @@ router.post('/admin/classes', adminOnly, async (req, res) => {
     `;
     await client.query(q, [title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id, type_id || null, max_participants]);
     const [idResult] = await client.query('SELECT LAST_INSERT_ID() as id');
+    
+    console.log('Class created successfully with ID:', idResult[0].id, 'date:', class_date);
+    
+    // Проверяем, что сохранилось в базе данных
+    const [savedClass] = await client.query('SELECT class_date FROM classes WHERE id = ?', [idResult[0].id]);
+    console.log('Saved in DB - class_date:', savedClass[0].class_date);
     res.status(201).json({ id: idResult[0].id, message: 'Занятие успешно создано' });
   } catch (error) {
     console.error('Error creating class:', error);
@@ -209,6 +237,17 @@ router.get('/schedule/week', async (req, res) => {
     const sunday = new Date(monday);
     sunday.setDate(monday.getDate() + 6); // Воскресенье
     
+    // Форматируем даты вручную для избежания проблем с часовыми поясами
+    const formatDate = (date) => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    };
+    
+    const mondayStr = formatDate(monday);
+    const sundayStr = formatDate(sunday);
+    
     const q = `
       SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place,
              c.type_id, c.max_participants,
@@ -225,8 +264,17 @@ router.get('/schedule/week', async (req, res) => {
       GROUP BY c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place, c.type_id, c.max_participants, t.first_name, t.last_name, ct.name
       ORDER BY c.class_date, c.start_time
     `;
-    const [rows] = await client.query(q, [monday.toISOString().split('T')[0], sunday.toISOString().split('T')[0]]);
-    res.json(rows);
+    const [rows] = await client.query(q, [mondayStr, sundayStr]);
+    
+    // Форматируем даты для избежания проблем с часовыми поясами
+    const formattedRows = rows.map(row => ({
+      ...row,
+      class_date: row.class_date ? 
+        `${row.class_date.getFullYear()}-${String(row.class_date.getMonth() + 1).padStart(2, '0')}-${String(row.class_date.getDate()).padStart(2, '0')}` : 
+        null
+    }));
+    
+    res.json(formattedRows);
   } catch (error) {
     console.error('Error fetching weekly schedule:', error);
     res.status(500).json({ message: 'Ошибка загрузки расписания на неделю' });
@@ -248,19 +296,30 @@ router.get('/schedule/stats', async (req, res) => {
     const sunday = new Date(monday);
     sunday.setDate(monday.getDate() + 6);
     
+    // Форматируем даты вручную для избежания проблем с часовыми поясами
+    const formatDate = (date) => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    };
+    
+    const mondayStr = formatDate(monday);
+    const sundayStr = formatDate(sunday);
+    
     // Подсчитываем количество занятий на неделе
     const classesCount = await client.query(`
       SELECT COUNT(*) as count
       FROM classes c
       WHERE c.class_date >= ? AND c.class_date <= ?
-    `, [monday.toISOString().split('T')[0], sunday.toISOString().split('T')[0]]);
+    `, [mondayStr, sundayStr]);
     
     // Подсчитываем количество уникальных тренеров на неделе
     const trainersCount = await client.query(`
       SELECT COUNT(DISTINCT c.trainer_id) as count
       FROM classes c
       WHERE c.class_date >= ? AND c.class_date <= ? AND c.trainer_id IS NOT NULL
-    `, [monday.toISOString().split('T')[0], sunday.toISOString().split('T')[0]]);
+    `, [mondayStr, sundayStr]);
     
     res.json({
       classes_count: parseInt(classesCount[0][0].count),
@@ -287,13 +346,24 @@ router.get('/schedule/types', async (req, res) => {
     const sunday = new Date(monday);
     sunday.setDate(monday.getDate() + 6);
     
+    // Форматируем даты вручную для избежания проблем с часовыми поясами
+    const formatDate = (date) => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    };
+    
+    const mondayStr = formatDate(monday);
+    const sundayStr = formatDate(sunday);
+    
     const typesResult = await client.query(`
       SELECT DISTINCT ct.id, ct.name, ct.description
       FROM class_types ct
       INNER JOIN classes c ON ct.id = c.type_id
       WHERE c.class_date >= ? AND c.class_date <= ?
       ORDER BY ct.name
-    `, [monday.toISOString().split('T')[0], sunday.toISOString().split('T')[0]]);
+    `, [mondayStr, sundayStr]);
     
     res.json(typesResult.rows);
   } catch (error) {
@@ -393,7 +463,7 @@ router.post('/classes/:id/book', auth, async (req, res) => {
       bookingId = bookingIns[0][0].id;
     } else {
       await client.query(`
-        UPDATE bookings SET status = 'booked', booked_at = CURRENT_TIMESTAMP WHERE id = ?
+        UPDATE bookings SET status = 'booked', booked_at = NOW() WHERE id = ?
       `, [existingAny[0][0].id]);
       bookingId = existingAny[0][0].id;
     }

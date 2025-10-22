@@ -231,7 +231,7 @@ router.post('/admin/clients/:id/subscription', adminOnly, async (req, res) => {
             WHERE user_id = ? AND end_date >= CURDATE()
         `, [user_id]);
 
-        // Use UPSERT (INSERT ... ON CONFLICT) to handle potential duplicates
+        // Use MySQL UPSERT syntax
         const insertResult = await client.query(`
             INSERT INTO user_subscriptions (user_id, plan_id, start_date, end_date)
             VALUES (?, ?, CURDATE(), DATE_ADD(CURDATE(), INTERVAL ? DAY))
@@ -244,7 +244,8 @@ router.post('/admin/clients/:id/subscription', adminOnly, async (req, res) => {
         // Get the inserted subscription data
         const [subscriptionResult] = await client.query(`
             SELECT id, start_date, end_date FROM user_subscriptions 
-            WHERE user_id = ? AND plan_id = ? AND start_date = CURDATE()
+            WHERE user_id = ? AND plan_id = ? AND end_date >= CURDATE()
+            ORDER BY start_date DESC LIMIT 1
         `, [user_id, plan_id]);
         const subscription = subscriptionResult[0];
         
@@ -270,8 +271,14 @@ router.post('/admin/clients/:id/subscription', adminOnly, async (req, res) => {
         }
         console.error('Error assigning subscription:', error);
         
-        // More specific error handling
-        if (error.code === 'ER_DUP_ENTRY' && error.sqlMessage.includes('unique_subscription')) {
+        // More specific error handling for MySQL
+        console.log('Error details:', {
+            code: error.code,
+            message: error.message,
+            sqlMessage: error.sqlMessage
+        });
+        
+        if (error.code === 'ER_DUP_ENTRY' && error.sqlMessage && error.sqlMessage.includes('unique_subscription')) {
             res.status(409).json({ message: 'Этот абонемент уже назначен клиенту на сегодняшнюю дату' });
         } else if (error.code === 'ER_NO_REFERENCED_ROW_2') {
             res.status(400).json({ message: 'Некорректные данные клиента или абонемента' });
@@ -358,9 +365,39 @@ router.post('/admin/trainers', adminOnly, async (req, res) => {
       VALUES (?, ?, ?, ?, ?, ?, ?)
     `;
     await client.query(q, [first_name, last_name, birth_date || null, photo_url || null, bio || null, email || null, passwordHash]);
-    const [idResult] = await client.query('SELECT LAST_INSERT_ID() as id');
+    
+    // Получаем ID вставленной записи (для UUID полей используем SELECT)
+    let finalId = null;
+    
+    // Сначала пробуем получить по email если он указан
+    if (email) {
+      const [idResult] = await client.query('SELECT id FROM trainers WHERE email = ?', [email]);
+      console.log('Email query result:', idResult);
+      if (idResult && idResult.length > 0) {
+        finalId = idResult[0].id;
+        console.log('Final ID from email:', finalId);
+      }
+    }
+    
+    // Если по email не нашли, получаем последний созданный тренер
+    if (!finalId) {
+      const [idResult] = await client.query('SELECT id FROM trainers ORDER BY created_at DESC LIMIT 1');
+      console.log('Last trainer query result:', idResult);
+      if (idResult && idResult.length > 0) {
+        finalId = idResult[0].id;
+        console.log('Final ID from last trainer:', finalId);
+      }
+    }
+    
+    console.log('Final ID to return:', finalId);
+    
+    if (!finalId) {
+      console.error('Failed to get trainer ID after creation');
+      return res.status(500).json({ message: 'Ошибка получения ID тренера' });
+    }
+    
     res.status(201).json({ 
-      id: idResult[0].id, 
+      id: finalId, 
       message: 'Тренер успешно добавлен'
     });
   } catch (error) {
@@ -433,23 +470,23 @@ router.put('/admin/trainers/:id', adminOnly, async (req, res) => {
     
     const currentPhotoUrl = currentResult[0][0].photo_url;
     
-    let passwordHashSet = '';
-    const params = [first_name, last_name, birth_date || null, photo_url || null, bio || null, email || null];
+    let passwordHash = null;
     if (password) {
       const bcrypt = (await import('bcrypt')).default;
-      const ph = await bcrypt.hash(password, 12);
-      passwordHashSet = ', password_hash = ?';
-      params.push(id); // placeholder will adjust below
-      // We'll push password hash before id to match placeholders
+      passwordHash = await bcrypt.hash(password, 12);
     }
+    
     let q = `UPDATE trainers 
              SET first_name = ?, last_name = ?, birth_date = ?, photo_url = ?, bio = ?, email = ?`;
+    let finalParams = [first_name, last_name, birth_date || null, photo_url || null, bio || null, email || null];
+    
     if (password) {
       q += `, password_hash = ? WHERE id = ?`;
+      finalParams.push(passwordHash, id);
     } else {
       q += ` WHERE id = ?`;
+      finalParams.push(id);
     }
-    const finalParams = password ? [first_name, last_name, birth_date || null, photo_url || null, bio || null, email || null, ph, id] : [first_name, last_name, birth_date || null, photo_url || null, bio || null, email || null, id];
     const result = await client.query(q, finalParams);
     
     if (result[0].affectedRows === 0) {

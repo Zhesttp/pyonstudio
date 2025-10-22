@@ -118,6 +118,7 @@ router.get('/me', async (req,res)=>{
             SELECT *,
                    ROW_NUMBER() OVER(PARTITION BY user_id ORDER BY end_date DESC) as rn
             FROM user_subscriptions
+            WHERE end_date >= CURDATE()
         ) us ON u.id = us.user_id AND us.rn = 1
         LEFT JOIN plans p ON us.plan_id = p.id
         WHERE u.id = ?;

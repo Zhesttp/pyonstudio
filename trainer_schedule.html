@@ -200,6 +200,7 @@
                 const firstDay = getFirstDayOfMonth(currentYear, currentMonth);
                 const daysInMonth = getDaysInMonth(currentYear, currentMonth);
                 const today = new Date();
+                today.setHours(12, 0, 0, 0); // Устанавливаем полдень для избежания проблем с часовыми поясами
                 
                 // Calculate days from previous month to show
                 const prevMonth = currentMonth === 0 ? 11 : currentMonth - 1;
@@ -229,17 +230,17 @@
                             // Previous month days
                             dayNumber = daysInPrevMonth - firstDay + cellIndex + 1;
                             isCurrentMonth = false;
-                            cellDate = new Date(prevYear, prevMonth, dayNumber);
+                            cellDate = new Date(prevYear, prevMonth, dayNumber, 12, 0, 0); // Добавляем полдень для избежания проблем с часовыми поясами
                         } else if (cellIndex < firstDay + daysInMonth) {
                             // Current month days
                             dayNumber = cellIndex - firstDay + 1;
                             isCurrentMonth = true;
-                            cellDate = new Date(currentYear, currentMonth, dayNumber);
+                            cellDate = new Date(currentYear, currentMonth, dayNumber, 12, 0, 0); // Добавляем полдень для избежания проблем с часовыми поясами
                         } else {
                             // Next month days
                             dayNumber = cellIndex - firstDay - daysInMonth + 1;
                             isCurrentMonth = false;
-                            cellDate = new Date(nextYear, nextMonth, dayNumber);
+                            cellDate = new Date(nextYear, nextMonth, dayNumber, 12, 0, 0); // Добавляем полдень для избежания проблем с часовыми поясами
                         }
                         
                         dayCell.innerHTML = `
@@ -271,8 +272,9 @@
 
             const loadTrainerClasses = async () => {
                 try {
-                    const startDate = new Date(currentYear, currentMonth, 1).toISOString().split('T')[0];
-                    const endDate = new Date(currentYear, currentMonth + 1, 0).toISOString().split('T')[0];
+                    // Используем локальные даты без преобразования в ISO для избежания проблем с часовыми поясами
+                    const startDate = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-01`;
+                    const endDate = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${new Date(currentYear, currentMonth + 1, 0).getDate()}`;
                     
                     const response = await fetch(`/api/trainer/classes?start_date=${startDate}&end_date=${endDate}`, {
                         credentials: 'include'
@@ -321,7 +323,11 @@
                 const dateDisplay = document.getElementById('date-display');
                 
                 if (datePicker && dateDisplay) {
-                    const dateString = selectedDate.toISOString().split('T')[0];
+                    // Используем локальную дату без преобразования в ISO
+                    const year = selectedDate.getFullYear();
+                    const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+                    const day = String(selectedDate.getDate()).padStart(2, '0');
+                    const dateString = `${year}-${month}-${day}`;
                     datePicker.value = dateString;
                     dateDisplay.textContent = formatDateForDisplay(selectedDate);
                 }
@@ -329,7 +335,11 @@
 
             const loadMobileDayClasses = async () => {
                 try {
-                    const dateString = selectedDate.toISOString().split('T')[0];
+                    // Используем локальную дату без преобразования в ISO
+                    const year = selectedDate.getFullYear();
+                    const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+                    const day = String(selectedDate.getDate()).padStart(2, '0');
+                    const dateString = `${year}-${month}-${day}`;
                     const response = await fetch(`/api/trainer/classes?start_date=${dateString}&end_date=${dateString}`, {
                         credentials: 'include'
                     });
@@ -407,7 +417,6 @@
                         // If it's already in YYYY-MM-DD format
                         dateKey = cls.class_date;
                     }
-                    console.log(`Grouping class "${cls.title}" for date: ${dateKey} (original: ${cls.class_date})`);
                     if (!classesByDate[dateKey]) {
                         classesByDate[dateKey] = [];
                     }
