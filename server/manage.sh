@@ -216,7 +216,8 @@ check_telegram_bot() {
     
     if grep -q "TELEGRAM_BOT_TOKEN" .env; then
       TOKEN_LINE=$(grep "TELEGRAM_BOT_TOKEN" .env)
-      if [[ "$TOKEN_LINE" == *"your_telegram_bot_token_here"* ]] || [[ "$TOKEN_LINE" == *"="* && "${TOLEGRAM_BOT_TOKEN#*=}" == "" ]]; then
+      # Проверяем, что токен не пустой и не содержит placeholder
+      if [[ "$TOKEN_LINE" == *"your_telegram_bot_token_here"* ]] || [[ "$TOKEN_LINE" == *"TELEGRAM_BOT_TOKEN=$"* ]] || [[ "$TOKEN_LINE" == *"TELEGRAM_BOT_TOKEN=\"\""* ]] || [[ -z "${TOKEN_LINE#*=}" ]]; then
         echo "⚠️  TELEGRAM_BOT_TOKEN не настроен (используется значение по умолчанию)"
       else
         echo "✅ TELEGRAM_BOT_TOKEN настроен"
@@ -225,15 +226,21 @@ check_telegram_bot() {
       echo "❌ TELEGRAM_BOT_TOKEN не найден в .env"
     fi
     
+    # TELEGRAM_CHAT_ID больше не используется в новой системе
     if grep -q "TELEGRAM_CHAT_ID" .env; then
-      CHAT_LINE=$(grep "TELEGRAM_CHAT_ID" .env)
-      if [[ "$CHAT_LINE" == *"your_telegram_chat_id_here"* ]] || [[ "$CHAT_LINE" == *"="* && "${TELEGRAM_CHAT_ID#*=}" == "" ]]; then
-        echo "⚠️  TELEGRAM_CHAT_ID не настроен (используется значение по умолчанию)"
-      else
-        echo "✅ TELEGRAM_CHAT_ID настроен"
-      fi
+      echo "ℹ️  TELEGRAM_CHAT_ID найден в .env, но больше не используется"
+      echo "   Используйте систему Telegram админов через пункт 9 меню"
     else
-      echo "❌ TELEGRAM_CHAT_ID не найден в .env"
+      echo "ℹ️  TELEGRAM_CHAT_ID не найден - это нормально для новой системы"
+    fi
+    
+    # Проверяем количество Telegram админов
+    ADMIN_COUNT=$(mysql -u pyon -ppyon123 pyon_db -e "SELECT COUNT(*) FROM telegram_admins WHERE is_active = 1;" 2>/dev/null | tail -n +2)
+    if [[ "$ADMIN_COUNT" -gt 0 ]]; then
+      echo "✅ Найдено $ADMIN_COUNT активных Telegram админов"
+    else
+      echo "⚠️  Нет активных Telegram админов"
+      echo "   Добавьте админов через пункт 9 меню"
     fi
     
     echo ""
@@ -242,9 +249,109 @@ check_telegram_bot() {
     echo "2. Получите токен бота"
     echo "3. Отправьте боту сообщение и получите Chat ID через API"
     echo "4. Обновите .env файл с реальными значениями"
+    echo "5. Добавьте Telegram админов через пункт 9 меню"
   else
     echo "❌ Файл .env не найден"
     echo "📋 Создайте файл .env на основе env.example"
+  fi
+}
+
+add_telegram_admin() {
+  echo "📱 Добавление Telegram админа..."
+  read -p "Имя админа: " NAME
+  read -p "Chat ID: " CHAT_ID
+  
+  if [[ -z "$NAME" || -z "$CHAT_ID" ]]; then
+    echo "❌ Имя и Chat ID не могут быть пустыми"
+    return 1
+  fi
+  
+  # Проверяем, что Chat ID содержит только цифры (может быть отрицательным)
+  if [[ ! "$CHAT_ID" =~ ^-?[0-9]+$ ]]; then
+    echo "❌ Chat ID должен содержать только цифры (может быть отрицательным)"
+    return 1
+  fi
+  
+  MYSQL_CMD="INSERT INTO telegram_admins (id, name, chat_id) VALUES (UUID(), '$NAME', '$CHAT_ID') ON DUPLICATE KEY UPDATE name = VALUES(name), is_active = 1;"
+  mysql -u pyon -ppyon123 pyon_db -e "$MYSQL_CMD" && echo "✅ Telegram админ '$NAME' добавлен/обновлён" || echo "❌ Ошибка добавления админа"
+}
+
+delete_telegram_admin() {
+  echo "📱 Удаление Telegram админа..."
+  read -p "Chat ID админа для удаления: " CHAT_ID
+  
+  if [[ -z "$CHAT_ID" ]]; then
+    echo "❌ Chat ID не может быть пустым"
+    return 1
+  fi
+  
+  # Показываем информацию об админе перед удалением
+  ADMIN_INFO=$(mysql -u pyon -ppyon123 pyon_db -e "SELECT name FROM telegram_admins WHERE chat_id='$CHAT_ID';" 2>/dev/null | tail -n +2)
+  
+  if [[ -z "$ADMIN_INFO" ]]; then
+    echo "❌ Telegram админ с Chat ID '$CHAT_ID' не найден"
+    return 1
+  fi
+  
+  echo "Найден админ: $ADMIN_INFO"
+  read -p "Вы уверены, что хотите удалить этого админа? (y/N): " confirm
+  
+  if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    mysql -u pyon -ppyon123 pyon_db -e "DELETE FROM telegram_admins WHERE chat_id='$CHAT_ID';" && echo "✅ Telegram админ удалён" || echo "❌ Ошибка удаления админа"
+  else
+    echo "❌ Удаление отменено"
+  fi
+}
+
+list_telegram_admins() {
+  echo "📱 Список Telegram админов:"
+  echo "┌─────────────────────────────────────────────────────────────┐"
+  echo "│ ID                                    │ Имя        │ Chat ID  │ Статус │"
+  echo "├─────────────────────────────────────────────────────────────┤"
+  mysql -u pyon -ppyon123 pyon_db -e "SELECT 
+    SUBSTRING(id, 1, 8) as short_id,
+    name,
+    chat_id,
+    CASE WHEN is_active = 1 THEN 'Активен' ELSE 'Неактивен' END as status
+  FROM telegram_admins 
+  ORDER BY created_at;" 2>/dev/null | tail -n +2 | while read -r line; do
+    if [[ -n "$line" ]]; then
+      printf "│ %-36s │ %-10s │ %-8s │ %-6s │\n" $line
+    fi
+  done
+  echo "└─────────────────────────────────────────────────────────────┘"
+}
+
+toggle_telegram_admin() {
+  echo "📱 Изменение статуса Telegram админа..."
+  read -p "Chat ID админа: " CHAT_ID
+  
+  if [[ -z "$CHAT_ID" ]]; then
+    echo "❌ Chat ID не может быть пустым"
+    return 1
+  fi
+  
+  # Получаем текущий статус
+  CURRENT_STATUS=$(mysql -u pyon -ppyon123 pyon_db -e "SELECT is_active, name FROM telegram_admins WHERE chat_id='$CHAT_ID';" 2>/dev/null | tail -n +2)
+  
+  if [[ -z "$CURRENT_STATUS" ]]; then
+    echo "❌ Telegram админ с Chat ID '$CHAT_ID' не найден"
+    return 1
+  fi
+  
+  read -r IS_ACTIVE NAME <<< "$CURRENT_STATUS"
+  NEW_STATUS=$((1 - IS_ACTIVE))
+  STATUS_TEXT=$([ "$NEW_STATUS" -eq 1 ] && echo "активен" || echo "неактивен")
+  
+  echo "Админ: $NAME"
+  echo "Текущий статус: $([ "$IS_ACTIVE" -eq 1 ] && echo "активен" || echo "неактивен")"
+  echo "Новый статус: $STATUS_TEXT"
+  
+  read -p "Продолжить? (y/N): " confirm
+  if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    mysql -u pyon -ppyon123 pyon_db -e "UPDATE telegram_admins SET is_active=$NEW_STATUS WHERE chat_id='$CHAT_ID';" && echo "✅ Статус админа изменён на '$STATUS_TEXT'" || echo "❌ Ошибка изменения статуса"
+  else
+    echo "❌ Изменение отменено"
   fi
 }
 
@@ -306,16 +413,20 @@ while true; do
   echo ""
   echo "📱 TELEGRAM БОТ:"
   echo "8) Проверить настройки Telegram бота"
+  echo "9) Добавить Telegram админа"
+  echo "10) Удалить Telegram админа"
+  echo "11) Список Telegram админов"
+  echo "12) Изменить статус Telegram админа"
   echo ""
   echo "👨‍💼 АДМИНЫ:"
-  echo "9) Добавить/обновить админа"
-  echo "10) Удалить админа"
-  echo "11) Список админов"
+  echo "13) Добавить/обновить админа"
+  echo "14) Удалить админа"
+  echo "15) Список админов"
   echo ""
   echo "🗄️  БАЗА ДАННЫХ:"
-  echo "12) Показать все таблицы БД"
-  echo "13) Показать содержимое таблицы"
-  echo "14) 🔥 ПЕРЕСОЗДАТЬ БАЗУ ДАННЫХ (ОСТОРОЖНО!)"
+  echo "16) Показать все таблицы БД"
+  echo "17) Показать содержимое таблицы"
+  echo "18) 🔥 ПЕРЕСОЗДАТЬ БАЗУ ДАННЫХ (ОСТОРОЖНО!)"
   echo ""
   echo "0) Выход"
   read -p "Выбор: " choice
@@ -328,12 +439,16 @@ while true; do
     6) pm2_status;;
     7) pm2_restart;;
     8) check_telegram_bot;;
-    9) add_admin;;
-    10) delete_admin;;
-    11) list_admins;;
-    12) show_tables;;
-    13) show_table;;
-    14) recreate_database;;
+    9) add_telegram_admin;;
+    10) delete_telegram_admin;;
+    11) list_telegram_admins;;
+    12) toggle_telegram_admin;;
+    13) add_admin;;
+    14) delete_admin;;
+    15) list_admins;;
+    16) show_tables;;
+    17) show_table;;
+    18) recreate_database;;
     0) exit 0;;
     *) echo "Неверный выбор";;
   esac

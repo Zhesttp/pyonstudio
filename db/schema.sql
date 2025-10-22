@@ -5,6 +5,7 @@ USE pyon_db;
 
 -- Function to generate unique account number
 DELIMITER $$
+DROP FUNCTION IF EXISTS generate_account_number$$
 CREATE FUNCTION generate_account_number() RETURNS VARCHAR(10)
 READS SQL DATA
 DETERMINISTIC
@@ -35,7 +36,7 @@ END$$
 DELIMITER ;
 
 -- ADMINS
-CREATE TABLE admins (
+CREATE TABLE IF NOT EXISTS admins (
     id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -43,8 +44,18 @@ CREATE TABLE admins (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- TELEGRAM ADMINS (для получения уведомлений от бота)
+CREATE TABLE IF NOT EXISTS telegram_admins (
+    id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
+    name VARCHAR(255) NOT NULL,
+    chat_id VARCHAR(50) UNIQUE NOT NULL,
+    is_active TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
 -- USERS
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
@@ -62,7 +73,7 @@ CREATE TABLE users (
 );
 
 -- TRAINERS
-CREATE TABLE trainers (
+CREATE TABLE IF NOT EXISTS trainers (
     id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
@@ -77,7 +88,7 @@ CREATE TABLE trainers (
 );
 
 -- SUBSCRIPTIONS (plans)
-CREATE TABLE plans (
+CREATE TABLE IF NOT EXISTS plans (
     id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     title VARCHAR(255) UNIQUE NOT NULL,
     description TEXT,
@@ -91,7 +102,7 @@ CREATE TABLE plans (
 );
 
 -- USER_SUBSCRIPTIONS
-CREATE TABLE user_subscriptions (
+CREATE TABLE IF NOT EXISTS user_subscriptions (
     id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     user_id CHAR(36) NOT NULL,
     plan_id CHAR(36) NOT NULL,
@@ -103,7 +114,7 @@ CREATE TABLE user_subscriptions (
 );
 
 -- CLASSES (sessions)
-CREATE TABLE classes (
+CREATE TABLE IF NOT EXISTS classes (
     id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     title VARCHAR(255) NOT NULL,
     description TEXT,
@@ -121,7 +132,7 @@ CREATE TABLE classes (
 );
 
 -- BOOKINGS
-CREATE TABLE bookings (
+CREATE TABLE IF NOT EXISTS bookings (
     id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     user_id CHAR(36) NOT NULL,
     class_id CHAR(36) NOT NULL,
@@ -133,8 +144,28 @@ CREATE TABLE bookings (
 );
 
 -- INDEXES
-CREATE INDEX idx_classes_date ON classes (class_date);
-CREATE INDEX idx_bookings_user ON bookings (user_id);
+-- Создаем индексы только если их еще нет
+SET @index_exists = (SELECT COUNT(*) FROM information_schema.STATISTICS 
+                    WHERE TABLE_SCHEMA = 'pyon_db' 
+                    AND TABLE_NAME = 'classes' 
+                    AND INDEX_NAME = 'idx_classes_date');
+SET @sql = IF(@index_exists = 0, 
+              'CREATE INDEX idx_classes_date ON classes (class_date)', 
+              'SELECT "Index idx_classes_date already exists" as message');
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @index_exists = (SELECT COUNT(*) FROM information_schema.STATISTICS 
+                    WHERE TABLE_SCHEMA = 'pyon_db' 
+                    AND TABLE_NAME = 'bookings' 
+                    AND INDEX_NAME = 'idx_bookings_user');
+SET @sql = IF(@index_exists = 0, 
+              'CREATE INDEX idx_bookings_user ON bookings (user_id)', 
+              'SELECT "Index idx_bookings_user already exists" as message');
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
 
 
 
@@ -142,18 +173,18 @@ CREATE INDEX idx_bookings_user ON bookings (user_id);
 -- === EXTENDED TABLES ===
 
 -- ROLES & PERMISSIONS
-CREATE TABLE roles (
+CREATE TABLE IF NOT EXISTS roles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) UNIQUE NOT NULL
 );
 
-CREATE TABLE permissions (
+CREATE TABLE IF NOT EXISTS permissions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     code VARCHAR(255) UNIQUE NOT NULL,
     description TEXT
 );
 
-CREATE TABLE role_permissions (
+CREATE TABLE IF NOT EXISTS role_permissions (
     role_id INT NOT NULL,
     permission_id INT NOT NULL,
     PRIMARY KEY (role_id, permission_id),
@@ -161,7 +192,7 @@ CREATE TABLE role_permissions (
     FOREIGN KEY (permission_id) REFERENCES permissions(id) ON DELETE CASCADE
 );
 
-CREATE TABLE user_roles (
+CREATE TABLE IF NOT EXISTS user_roles (
     user_id CHAR(36) NOT NULL,
     role_id INT NOT NULL,
     PRIMARY KEY (user_id, role_id),
@@ -170,7 +201,7 @@ CREATE TABLE user_roles (
 );
 
 -- AUDIT LOG
-CREATE TABLE audit_log (
+CREATE TABLE IF NOT EXISTS audit_log (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     actor_id CHAR(36),
     actor_type TEXT, -- admin / user / trainer
@@ -184,7 +215,7 @@ CREATE TABLE audit_log (
 );
 
 -- PAYMENTS
-CREATE TABLE payments (
+CREATE TABLE IF NOT EXISTS payments (
     id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     user_id CHAR(36) NOT NULL,
     plan_id CHAR(36),
@@ -202,17 +233,37 @@ CREATE TABLE payments (
 );
 
 -- CLASS TYPES
-CREATE TABLE class_types (
+CREATE TABLE IF NOT EXISTS class_types (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) UNIQUE NOT NULL,
     description TEXT
 );
 
-ALTER TABLE classes ADD COLUMN type_id INT;
-ALTER TABLE classes ADD CONSTRAINT fk_class_type FOREIGN KEY (type_id) REFERENCES class_types(id);
+-- Добавляем колонку type_id только если ее еще нет
+SET @column_exists = (SELECT COUNT(*) FROM information_schema.COLUMNS 
+                     WHERE TABLE_SCHEMA = 'pyon_db' 
+                     AND TABLE_NAME = 'classes' 
+                     AND COLUMN_NAME = 'type_id');
+SET @sql = IF(@column_exists = 0, 
+              'ALTER TABLE classes ADD COLUMN type_id INT', 
+              'SELECT "Column type_id already exists" as message');
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+-- Добавляем constraint только если его еще нет
+SET @constraint_exists = (SELECT COUNT(*) FROM information_schema.KEY_COLUMN_USAGE 
+                         WHERE TABLE_SCHEMA = 'pyon_db' 
+                         AND TABLE_NAME = 'classes' 
+                         AND CONSTRAINT_NAME = 'fk_class_type');
+SET @sql = IF(@constraint_exists = 0, 
+              'ALTER TABLE classes ADD CONSTRAINT fk_class_type FOREIGN KEY (type_id) REFERENCES class_types(id)', 
+              'SELECT "Constraint fk_class_type already exists" as message');
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
 
 -- WAITLIST
-CREATE TABLE waitlist_entries (
+CREATE TABLE IF NOT EXISTS waitlist_entries (
     id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     user_id CHAR(36) NOT NULL,
     class_id CHAR(36) NOT NULL,
@@ -223,7 +274,7 @@ CREATE TABLE waitlist_entries (
 );
 
 -- ATTENDANCE (separate from bookings)
-CREATE TABLE attendance (
+CREATE TABLE IF NOT EXISTS attendance (
     id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     booking_id CHAR(36) NOT NULL,
     status VARCHAR(20),
@@ -234,7 +285,7 @@ CREATE TABLE attendance (
 );
 
 -- UPLOADS
-CREATE TABLE uploads (
+CREATE TABLE IF NOT EXISTS uploads (
     id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     owner_table TEXT,
     owner_id CHAR(36),
@@ -245,21 +296,21 @@ CREATE TABLE uploads (
 );
 
 -- SETTINGS
-CREATE TABLE settings (
+CREATE TABLE IF NOT EXISTS settings (
     `key` VARCHAR(255) PRIMARY KEY,
     value JSON,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- TRANSLATIONS
-CREATE TABLE translations (
+CREATE TABLE IF NOT EXISTS translations (
     `key` VARCHAR(255) PRIMARY KEY,
     ru TEXT,
     en TEXT
 );
 
 -- WEBHOOKS
-CREATE TABLE webhooks (
+CREATE TABLE IF NOT EXISTS webhooks (
     id CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     event VARCHAR(255) NOT NULL,
     target_url VARCHAR(500) NOT NULL,
@@ -269,10 +320,20 @@ CREATE TABLE webhooks (
 );
 
 -- OPTIMISTIC LOCK EXAMPLE
-ALTER TABLE users ADD COLUMN row_version INT DEFAULT 1;
+-- Добавляем колонку row_version только если ее еще нет
+SET @column_exists = (SELECT COUNT(*) FROM information_schema.COLUMNS 
+                     WHERE TABLE_SCHEMA = 'pyon_db' 
+                     AND TABLE_NAME = 'users' 
+                     AND COLUMN_NAME = 'row_version');
+SET @sql = IF(@column_exists = 0, 
+              'ALTER TABLE users ADD COLUMN row_version INT DEFAULT 1', 
+              'SELECT "Column row_version already exists" as message');
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
 
 -- ACHIEVEMENTS META
-CREATE TABLE achievements (
+CREATE TABLE IF NOT EXISTS achievements (
     id INT AUTO_INCREMENT PRIMARY KEY,
     code VARCHAR(255) UNIQUE NOT NULL,
     title VARCHAR(255) NOT NULL,
@@ -281,7 +342,7 @@ CREATE TABLE achievements (
 );
 
 -- USER ACHIEVEMENTS
-CREATE TABLE user_achievements (
+CREATE TABLE IF NOT EXISTS user_achievements (
     user_id CHAR(36) NOT NULL,
     achievement_id INT NOT NULL,
     unlocked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

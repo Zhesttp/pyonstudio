@@ -1,11 +1,46 @@
 import express from 'express';
 import TelegramBot from 'node-telegram-bot-api';
 import { body, validationResult } from 'express-validator';
+import { pool } from '../db.js';
 
 const router = express.Router();
 
 // Initialize Telegram bot
 const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: false });
+
+// Функция для отправки сообщений всем активным Telegram админам
+async function sendToAllTelegramAdmins(message) {
+  try {
+    const client = await pool.getConnection();
+    try {
+      // Получаем всех активных Telegram админов
+      const [admins] = await client.query('SELECT chat_id, name FROM telegram_admins WHERE is_active = 1');
+      
+      if (admins.length === 0) {
+        console.log('⚠️  Нет активных Telegram админов для отправки уведомлений');
+        return;
+      }
+      
+      console.log(`📱 Отправка сообщения ${admins.length} Telegram админам...`);
+      
+      // Отправляем сообщение каждому админу
+      for (const admin of admins) {
+        try {
+          await bot.sendMessage(admin.chat_id, message, {
+            parse_mode: 'Markdown'
+          });
+          console.log(`✅ Сообщение отправлено админу: ${admin.name} (${admin.chat_id})`);
+        } catch (error) {
+          console.error(`❌ Ошибка отправки админу ${admin.name} (${admin.chat_id}):`, error.message);
+        }
+      }
+    } finally {
+      client.release();
+    }
+  } catch (error) {
+    console.error('❌ Ошибка получения списка Telegram админов:', error.message);
+  }
+}
 
 // Validation middleware
 const contactValidation = [
@@ -57,16 +92,9 @@ ${message}
       minute: '2-digit'
     })}`;
 
-    // Send message to Telegram
-    if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
-      try {
-        await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, telegramMessage, {
-          parse_mode: 'Markdown'
-        });
-      } catch (telegramError) {
-        console.error('Telegram error:', telegramError);
-        // Don't fail the request if Telegram fails
-      }
+    // Send message to all active Telegram admins
+    if (process.env.TELEGRAM_BOT_TOKEN) {
+      await sendToAllTelegramAdmins(telegramMessage);
     }
 
     res.json({

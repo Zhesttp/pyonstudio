@@ -70,8 +70,8 @@ async function cleanupOrphanedPhotos() {
 // Initialize Telegram bot
 async function initializeTelegramBot() {
   try {
-    if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_CHAT_ID) {
-      console.log('⚠️  Telegram bot не настроен: отсутствуют TELEGRAM_BOT_TOKEN или TELEGRAM_CHAT_ID');
+    if (!process.env.TELEGRAM_BOT_TOKEN) {
+      console.log('⚠️  Telegram bot не настроен: отсутствует TELEGRAM_BOT_TOKEN');
       return null;
     }
 
@@ -81,20 +81,25 @@ async function initializeTelegramBot() {
     const botInfo = await bot.getMe();
     console.log(`✅ Telegram бот инициализирован: @${botInfo.username}`);
     
-    // Отправляем уведомление о запуске сервера
-    const isProduction = process.env.NODE_ENV === 'production';
-    const domain = process.env.DOMAIN || process.env.SERVER_URL;
+    // Отправляем уведомление только от главного процесса (id: 0)
+    // Это предотвращает дублирование сообщений в кластер режиме PM2
+    const isMainProcess = !process.env.pm_id || process.env.pm_id === '0';
     
-    const startupMessage = `🚀 *PYon Studio Server Started*
+    if (isMainProcess) {
+      // Отправляем уведомление о запуске сервера всем активным админам
+      const isProduction = process.env.NODE_ENV === 'production';
+      const domain = process.env.DOMAIN || process.env.SERVER_URL;
+      
+      const startupMessage = `🚀 *PYon Studio Server Started*
 
 ⏰ *Время запуска:* ${new Date().toLocaleString('ru-RU', {
-      timeZone: 'Europe/Minsk',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit'
-    })}
+        timeZone: 'Europe/Minsk',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+      })}
 
 🌐 *Режим:* ${process.env.NODE_ENV || 'development'}
 📊 *Порт:* ${process.env.PORT || 3000}
@@ -105,15 +110,52 @@ ${domain ? `🌍 *Домен:* ${domain}` : ''}
 📱 Telegram бот активен и готов принимать уведомления
 ${isProduction ? '🎯 Сайт доступен для пользователей!' : '🔧 Режим разработки'}`;
 
-    await bot.sendMessage(process.env.TELEGRAM_CHAT_ID, startupMessage, {
-      parse_mode: 'Markdown'
-    });
+      // Отправляем уведомление всем активным Telegram админам
+      await sendToAllTelegramAdmins(bot, startupMessage);
+      
+      console.log('📱 Уведомление о запуске отправлено всем Telegram админам');
+    } else {
+      console.log(`📱 Telegram бот готов (процесс ${process.env.pm_id || 'unknown'})`);
+    }
     
-    console.log('📱 Уведомление о запуске отправлено в Telegram');
     return bot;
   } catch (error) {
     console.error('❌ Ошибка инициализации Telegram бота:', error.message);
     return null;
+  }
+}
+
+// Функция для отправки сообщений всем активным Telegram админам
+async function sendToAllTelegramAdmins(bot, message) {
+  try {
+    const client = await pool.getConnection();
+    try {
+      // Получаем всех активных Telegram админов
+      const [admins] = await client.query('SELECT chat_id, name FROM telegram_admins WHERE is_active = 1');
+      
+      if (admins.length === 0) {
+        console.log('⚠️  Нет активных Telegram админов для отправки уведомлений');
+        return;
+      }
+      
+      console.log(`📱 Отправка уведомления ${admins.length} Telegram админам...`);
+      
+      // Отправляем сообщение каждому админу
+      for (const admin of admins) {
+        try {
+          await bot.sendMessage(admin.chat_id, message, {
+            parse_mode: 'Markdown'
+          });
+          console.log(`✅ Уведомление отправлено админу: ${admin.name} (${admin.chat_id})`);
+        } catch (error) {
+          console.error(`❌ Ошибка отправки админу ${admin.name} (${admin.chat_id}):`, error.message);
+        }
+      }
+    } finally {
+      client.release();
+    }
+  } catch (error) {
+    console.error('❌ Ошибка получения списка Telegram админов:', error.message);
   }
 }
 
