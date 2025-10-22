@@ -11,7 +11,11 @@ add_admin() {
   read -p "Имя: " NAME
   read -p "Email: " EMAIL
   read -s -p "Пароль: " PASS; echo
-  MYSQL_CMD="INSERT INTO admins (id,name,email,password_hash) VALUES (UUID(),'$NAME','$EMAIL', '$PASS') ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash), name = VALUES(name);"
+  
+  # Хешируем пароль с помощью Node.js
+  HASHED_PASS=$(node -e "const bcrypt = require('bcrypt'); console.log(bcrypt.hashSync('$PASS', 12));")
+  
+  MYSQL_CMD="INSERT INTO admins (id,name,email,password_hash) VALUES (UUID(),'$NAME','$EMAIL', '$HASHED_PASS') ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash), name = VALUES(name);"
   mysql -u pyon -ppyon123 pyon_db -e "$MYSQL_CMD" && echo "Админ добавлен/обновлён"
 }
 

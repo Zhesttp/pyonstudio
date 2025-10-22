@@ -196,7 +196,7 @@ router.get('/me/upcoming-classes', auth, async (req, res) => {
              c.start_time,
              c.end_time,
              c.place,
-             t.first_name || ' ' || t.last_name AS trainer_name
+             CONCAT(t.first_name, ' ', t.last_name) AS trainer_name
       FROM bookings b
       JOIN classes c ON c.id = b.class_id
       LEFT JOIN trainers t ON c.trainer_id = t.id

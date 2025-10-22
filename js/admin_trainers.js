@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('trainer-form');
     const modalTitle = document.getElementById('trainer-modal-title');
     const deleteBtn = document.getElementById('trainer-delete');
+    const resetPasswordBtn = document.getElementById('reset-password-btn');
     
     // Photo upload elements
     const photoInput = document.getElementById('trainer-photo');
@@ -178,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
             form.querySelector('#trainer-email').value = trainer.email || '';
             form.querySelector('#trainer-password').value = '';
             deleteBtn.style.display = 'inline-flex';
+            resetPasswordBtn.style.display = 'inline-flex';
             
             // Показать существующее фото если есть
             showExistingPhoto(trainer.photo_url);
@@ -186,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modalTitle.textContent = 'Добавить тренера';
             form.reset();
             deleteBtn.style.display = 'none';
+            resetPasswordBtn.style.display = 'none';
             hidePhotoPreview();
             form.querySelector('#trainer-email').value = '';
             form.querySelector('#trainer-password').value = '';
@@ -276,36 +279,87 @@ document.addEventListener('DOMContentLoaded', () => {
         const method = isEdit ? 'PUT' : 'POST';
 
         try {
-            // Если есть новое фото, загружаем его отдельно
             let photoUrl = null;
-            if (selectedPhotoFile) {
-                photoUrl = await uploadPhoto(selectedPhotoFile);
-            } else if (isEdit && currentTrainer.photo_url && photoPreview.style.display !== 'none') {
-                // При редактировании сохраняем существующее фото только если предпросмотр видим
-                photoUrl = currentTrainer.photo_url;
-            }
-            // Если photoUrl остается null, это означает удаление фото
+            let trainerId = currentTrainer?.id;
 
-            const dataToSend = {
-                ...trainerData,
-                photo_url: photoUrl
-            };
+            if (isEdit) {
+                // При редактировании
+                if (selectedPhotoFile) {
+                    photoUrl = await uploadPhoto(selectedPhotoFile, trainerId);
+                } else if (currentTrainer.photo_url && photoPreview.style.display !== 'none') {
+                    // Сохраняем существующее фото только если предпросмотр видим
+                    photoUrl = currentTrainer.photo_url;
+                }
+                // Если photoUrl остается null, это означает удаление фото
 
-            const res = await fetch(url, {
-                method,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-Token': getCsrfToken()
-                },
-                credentials: 'include',
-                body: JSON.stringify(dataToSend)
-            });
+                const dataToSend = {
+                    ...trainerData,
+                    photo_url: photoUrl
+                };
 
-            const result = res.ok ? (method === 'POST' ? await res.json() : null) : null;
-            
-            if (!res.ok) {
-                const error = await res.json();
-                throw new Error(error.message || 'Ошибка сохранения');
+                const res = await fetch(url, {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': getCsrfToken()
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(dataToSend)
+                });
+
+                if (!res.ok) {
+                    const error = await res.json();
+                    throw new Error(error.message || 'Ошибка сохранения');
+                }
+            } else {
+                // При создании нового тренера
+                // Сначала создаем тренера без фото
+                const dataToSend = {
+                    ...trainerData,
+                    photo_url: null
+                };
+
+                const res = await fetch(url, {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': getCsrfToken()
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(dataToSend)
+                });
+
+                if (!res.ok) {
+                    const error = await res.json();
+                    throw new Error(error.message || 'Ошибка сохранения');
+                }
+
+                const result = await res.json();
+                trainerId = result.id;
+
+                // Теперь загружаем фото если есть
+                if (selectedPhotoFile) {
+                    photoUrl = await uploadPhoto(selectedPhotoFile, trainerId);
+                    
+                    // Обновляем тренера с URL фото
+                    const updateRes = await fetch(`/api/admin/trainers/${trainerId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-Token': getCsrfToken()
+                        },
+                        credentials: 'include',
+                        body: JSON.stringify({
+                            ...trainerData,
+                            photo_url: photoUrl
+                        })
+                    });
+
+                    if (!updateRes.ok) {
+                        const error = await updateRes.json();
+                        throw new Error(error.message || 'Ошибка обновления фото');
+                    }
+                }
             }
 
             closeModal();
@@ -328,9 +382,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const uploadPhoto = async (file) => {
+    const uploadPhoto = async (file, trainerId) => {
         const formData = new FormData();
         formData.append('photo', file);
+        formData.append('trainer_id', trainerId);
 
         try {
             const res = await fetch('/api/admin/trainers/upload-photo', {
@@ -480,6 +535,15 @@ document.addEventListener('DOMContentLoaded', () => {
     deleteBtn.addEventListener('click', async () => {
         if (currentTrainer && confirm(`Вы уверены, что хотите удалить тренера ${currentTrainer.first_name} ${currentTrainer.last_name}?`)) {
             await deleteTrainer(currentTrainer.id);
+        }
+    });
+    
+    // Сброс пароля
+    resetPasswordBtn.addEventListener('click', () => {
+        if (confirm('Сбросить пароль тренера на "123456"? Тренер сможет войти с этим паролем.')) {
+            const passwordInput = document.getElementById('trainer-password');
+            passwordInput.value = '123456';
+            showNotification('Пароль установлен на "123456". Не забудьте сохранить изменения!', 'info');
         }
     });
 

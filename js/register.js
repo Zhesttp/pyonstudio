@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const csrf = document.cookie.split('; ').find(c => c.startsWith('XSRF-TOKEN='))?.split('=')[1];
         
         try {
-            const r = await fetch('http://localhost:3000/api/register', {
+            const r = await fetch('/api/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf },
                 credentials: 'include',
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             
             if (r.status === 201) {
-                location.href = 'http://localhost:3000/profile';
+                location.href = '/profile';
                 return;
             }
             

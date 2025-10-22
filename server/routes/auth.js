@@ -74,7 +74,7 @@ router.post('/register', registerValidation, async (req, res) => {
         const userId = userIdResult[0][0].id;
         client.release();
 
-        const token = jwt.sign({ id: userId, email: email }, process.env.JWT_SECRET, { expiresIn: '7d' });
+        const token = jwt.sign({ id: userId, email: email, role: 'user' }, process.env.JWT_SECRET, { expiresIn: '7d' });
         res.cookie('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
@@ -141,7 +141,7 @@ router.post('/quick-register', [
         const accountNumber = accountResult[0][0]?.account_number || null;
         client.release();
 
-        const token = jwt.sign({ id: userId, email: tempEmail }, process.env.JWT_SECRET, { expiresIn: '7d' });
+        const token = jwt.sign({ id: userId, email: tempEmail, role: 'user' }, process.env.JWT_SECRET, { expiresIn: '7d' });
         res.cookie('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',

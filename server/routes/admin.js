@@ -91,10 +91,12 @@ router.get('/admin/clients/:id', adminOnly, async (req, res) => {
              p.title AS plan_title, us.end_date,
              (CASE WHEN us.end_date >= CURDATE() THEN 'Активен' ELSE 'Неактивен' END) AS sub_status
       FROM users u
-      LEFT JOIN user_subscriptions us ON us.user_id = u.id
+      LEFT JOIN (
+        SELECT us2.*, ROW_NUMBER() OVER(PARTITION BY us2.user_id ORDER BY us2.end_date DESC) as rn
+        FROM user_subscriptions us2
+      ) us ON u.id = us.user_id AND us.rn = 1
       LEFT JOIN plans p ON p.id = us.plan_id
       WHERE u.id = ?
-      ORDER BY us.end_date DESC NULLS LAST LIMIT 1
     `;
     const [rows] = await client.query(q, [id]);
     
@@ -544,11 +546,6 @@ router.post('/admin/trainers/upload-photo', adminOnly, upload.single('photo'), a
       return res.status(400).json({ message: 'Файл не был загружен' });
     }
 
-    const { trainer_id } = req.body;
-    if (!trainer_id) {
-      return res.status(400).json({ message: 'ID тренера обязателен' });
-    }
-
     // Verify file was actually saved
     const filePath = path.join(__dirname, '../../trainers', req.file.filename);
     if (!fs.existsSync(filePath)) {
@@ -558,10 +555,13 @@ router.post('/admin/trainers/upload-photo', adminOnly, upload.single('photo'), a
 
     const photoUrl = `/trainers/${req.file.filename}`;
     
-    // Update trainer with photo URL
-    client = await pool.getConnection();
-    await client.query('UPDATE trainers SET photo_url = ? WHERE id = ?', [photoUrl, trainer_id]);
-    client.release();
+    // If trainer_id is provided, update trainer with photo URL
+    const { trainer_id } = req.body;
+    if (trainer_id) {
+      client = await pool.getConnection();
+      await client.query('UPDATE trainers SET photo_url = ? WHERE id = ?', [photoUrl, trainer_id]);
+      client.release();
+    }
     
     console.log(`Photo uploaded successfully: ${photoUrl}`);
     res.json({ photo_url: photoUrl });

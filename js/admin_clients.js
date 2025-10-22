@@ -559,6 +559,12 @@ document.addEventListener('DOMContentLoaded', () => {
     accountSearchInput.addEventListener('input', (e) => {
         let value = e.target.value;
         
+        // Если поле пустое, не добавляем ничего и показываем всех клиентов
+        if (!value) {
+            renderTable();
+            return;
+        }
+        
         // Если пользователь ввел только цифры, автоматически добавляем "PY-"
         if (/^\d+$/.test(value)) {
             e.target.value = `PY-${value}`;
@@ -567,25 +573,26 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (value.toLowerCase() === 'py') {
             e.target.value = 'PY-';
         }
-        // Если пользователь ввел "py" (строчными), заменяем на "PY-"
-        else if (value.toLowerCase() === 'py') {
-            e.target.value = 'PY-';
-        }
         
         renderTable();
     });
     
-    // Обработка фокуса - если поле пустое, показываем "PY-"
+    // Обработка фокуса - показываем placeholder, но не заполняем поле
     accountSearchInput.addEventListener('focus', (e) => {
-        if (!e.target.value) {
-            e.target.value = 'PY-';
-        }
+        // Не заполняем поле автоматически, чтобы не мешать очистке фильтра
     });
     
     // Обработка клавиши Escape - очистка поля
     accountSearchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             e.target.value = '';
+            renderTable();
+        }
+    });
+    
+    // Обработка очистки поля - показываем всех клиентов
+    accountSearchInput.addEventListener('blur', (e) => {
+        if (!e.target.value) {
             renderTable();
         }
     });

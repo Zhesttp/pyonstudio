@@ -95,7 +95,17 @@
                             </div>
                             <div class="form-group">
                                 <label for="trainer-password">Пароль (минимум 6 символов)</label>
-                                <input type="password" id="trainer-password" name="password" minlength="6" placeholder="Задать пароль">
+                                <div class="password-input-group">
+                                    <input type="password" id="trainer-password" name="password" minlength="6" placeholder="Задать пароль">
+                                    <button type="button" id="reset-password-btn" class="btn btn--sm btn--outline" style="display: none;" title="Сбросить пароль на 123456">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                                            <path d="M3 3v5h5"/>
+                                        </svg>
+                                        Сбросить
+                                    </button>
+                                </div>
+                                <small class="form-hint">Оставьте пустым, чтобы не изменять пароль. Для сброса пароля нажмите "Сбросить"</small>
                             </div>
                         </div>
                         

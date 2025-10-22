@@ -44,6 +44,31 @@
     box-shadow: 0 2px 4px rgba(0, 184, 148, 0.3);
 }
 
+/* Стили для группировки поля пароля */
+.password-input-group {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.password-input-group input {
+    flex: 1;
+}
+
+.password-input-group .btn {
+    flex-shrink: 0;
+    height: 40px;
+    padding: 0 12px;
+}
+
+.form-hint {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
 /* Стили для поиска по номеру аккаунта */
 .account-search-input {
     width: 100%;

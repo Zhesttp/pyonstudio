@@ -15,7 +15,7 @@ router.get('/admin/classes', adminOnly, async (req, res) => {
     const q = `
       SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.duration_minutes, c.place,
              c.trainer_id, c.max_participants,
-             t.first_name || ' ' || t.last_name AS trainer_name,
+             CONCAT(t.first_name, ' ', t.last_name) AS trainer_name,
              c.type_id,
              ct.name AS type_name,
              COUNT(b.id) AS bookings_count,
@@ -41,8 +41,8 @@ router.get('/admin/classes', adminOnly, async (req, res) => {
 router.post('/admin/classes', adminOnly, async (req, res) => {
   const { title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id, type_id, max_participants } = req.body;
   
-  if (!title || !class_date || !start_time || !end_time || !duration_minutes || !max_participants) {
-    return res.status(400).json({ message: 'Обязательные поля: название, дата, время начала, время конца, длительность и максимум участников' });
+  if (!title || !class_date || !start_time || !end_time || !duration_minutes || !max_participants || !trainer_id) {
+    return res.status(400).json({ message: 'Обязательные поля: название, дата, время начала, время конца, длительность, максимум участников и тренер' });
   }
 
   // Валидация данных
@@ -52,6 +52,12 @@ router.post('/admin/classes', adminOnly, async (req, res) => {
 
   if (duration_minutes < 15 || duration_minutes > 300) {
     return res.status(400).json({ message: 'Длительность занятия должна быть от 15 до 300 минут' });
+  }
+
+  // Валидация UUID для trainer_id
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  if (!uuidRegex.test(trainer_id)) {
+    return res.status(400).json({ message: 'Некорректный ID тренера' });
   }
 
   // Проверка даты (не в прошлом)
@@ -67,7 +73,7 @@ router.post('/admin/classes', adminOnly, async (req, res) => {
       INSERT INTO classes (title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id, type_id, max_participants)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
-    await client.query(q, [title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id || null, type_id || null, max_participants]);
+    await client.query(q, [title, description, class_date, start_time, end_time, duration_minutes, place, trainer_id, type_id || null, max_participants]);
     const [idResult] = await client.query('SELECT LAST_INSERT_ID() as id');
     res.status(201).json({ id: idResult[0].id, message: 'Занятие успешно создано' });
   } catch (error) {
@@ -166,7 +172,7 @@ router.get('/classes', auth, async (req, res) => {
     const q = `
       SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place,
              c.type_id, c.max_participants,
-             t.first_name || ' ' || t.last_name AS trainer_name,
+             CONCAT(t.first_name, ' ', t.last_name) AS trainer_name,
              ct.name AS type_name,
              COUNT(b.id) AS bookings_count,
              (c.max_participants - COUNT(b.id)) AS available_spots,
@@ -206,7 +212,7 @@ router.get('/schedule/week', async (req, res) => {
     const q = `
       SELECT c.id, c.title, c.description, c.class_date, c.start_time, c.end_time, c.place,
              c.type_id, c.max_participants,
-             t.first_name || ' ' || t.last_name AS trainer_name,
+             CONCAT(t.first_name, ' ', t.last_name) AS trainer_name,
              ct.name AS type_name,
              COUNT(b.id) AS bookings_count,
              (c.max_participants - COUNT(b.id)) AS available_spots,
