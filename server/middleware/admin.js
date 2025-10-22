@@ -43,6 +43,12 @@ export const adminOnly = async (req, res, next) => {
 export const trainerOnly = async (req, res, next) => {
   const token = req.cookies.token;
   
+  console.log('Trainer auth check:', {
+    url: req.originalUrl,
+    hasToken: !!token,
+    cookies: req.cookies
+  });
+  
   const handleUnauthorized = () => {
     // For API requests - always JSON error
     if (req.originalUrl.startsWith('/api/')) {
@@ -53,12 +59,16 @@ export const trainerOnly = async (req, res, next) => {
   };
 
   if (!token) {
+    console.log('No token found for trainer request');
     return handleUnauthorized();
   }
   
   try {
     const data = jwt.verify(token, process.env.JWT_SECRET);
+    console.log('Token verified:', { role: data.role, id: data.id });
+    
     if (data.role !== 'trainer') {
+      console.log('Role mismatch:', { expected: 'trainer', actual: data.role });
       if (req.originalUrl.startsWith('/api/')) {
         return res.status(403).json({ message: 'Доступ запрещен' });
       }
