@@ -214,7 +214,7 @@ router.post('/login', loginValidation, async (req, res) => {
                 return res.status(401).json({ message: 'Неверные учетные данные' });
             }
             const tkn = jwt.sign({ id: trainer.id, email: trainer.email, role: 'trainer' }, process.env.JWT_SECRET, { expiresIn: '7d' });
-            res.cookie('token', tkn, {
+            res.cookie('trainer_token', tkn, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: 'lax',

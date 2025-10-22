@@ -41,7 +41,7 @@ export const adminOnly = async (req, res, next) => {
 };
 
 export const trainerOnly = async (req, res, next) => {
-  const token = req.cookies.token;
+  const token = req.cookies.trainer_token;
   
   console.log('Trainer auth check:', {
     url: req.originalUrl,
@@ -77,14 +77,14 @@ export const trainerOnly = async (req, res, next) => {
     // verify trainer exists in DB
     const [result] = await pool.query('SELECT 1 FROM trainers WHERE id = ?', [data.id]);
     if (result.length === 0) {
-      res.clearCookie('token');
+      res.clearCookie('trainer_token');
       return handleUnauthorized();
     }
     req.user = data;
     next();
   } catch (error) {
     console.error('Trainer token verification failed:', error.message);
-    res.clearCookie('token');
+    res.clearCookie('trainer_token');
     return handleUnauthorized();
   }
 };

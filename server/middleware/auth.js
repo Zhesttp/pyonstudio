@@ -2,7 +2,8 @@ import jwt from 'jsonwebtoken';
 import { pool } from '../db.js';
 
 export const auth = async (req, res, next) => {
-  const token = req.cookies.token;
+  const userToken = req.cookies.token;
+  const trainerToken = req.cookies.trainer_token;
 
   const handleUnauthorized = () => {
     // Для API запросов - всегда JSON ошибка
@@ -13,23 +14,39 @@ export const auth = async (req, res, next) => {
     return res.redirect('/login');
   };
 
-  if (!token) {
-    return handleUnauthorized();
+  // Try user token first
+  if (userToken) {
+    try {
+      const decoded = jwt.verify(userToken, process.env.JWT_SECRET);
+      if (decoded.role === 'user' || !decoded.role) {
+        // verify user exists in DB
+        const [userRes] = await pool.query('SELECT 1 FROM users WHERE id = ?', [decoded.id]);
+        if (userRes.length > 0) {
+          req.user = decoded;
+          return next();
+        }
+      }
+    } catch (e) {
+      res.clearCookie('token');
+    }
   }
   
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    // verify user exists in DB (users or trainers)
-    const [userRes] = await pool.query('SELECT 1 FROM users WHERE id = ?', [decoded.id]);
-    const [trainerRes] = await pool.query('SELECT 1 FROM trainers WHERE id = ?', [decoded.id]);
-    if (userRes.length === 0 && trainerRes.length === 0) {
-      res.clearCookie('token');
-      return handleUnauthorized();
+  // Try trainer token
+  if (trainerToken) {
+    try {
+      const decoded = jwt.verify(trainerToken, process.env.JWT_SECRET);
+      if (decoded.role === 'trainer') {
+        // verify trainer exists in DB
+        const [trainerRes] = await pool.query('SELECT 1 FROM trainers WHERE id = ?', [decoded.id]);
+        if (trainerRes.length > 0) {
+          req.user = decoded;
+          return next();
+        }
+      }
+    } catch (e) {
+      res.clearCookie('trainer_token');
     }
-    req.user = decoded;
-    next();
-  } catch (e) {
-    res.clearCookie('token');
-    return handleUnauthorized();
   }
+  
+  return handleUnauthorized();
 };

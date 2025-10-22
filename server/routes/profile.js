@@ -47,20 +47,37 @@ router.get('/me', async (req, res, next) => {
     }
   }
   
-  // Check user/trainer token if no admin token
+  // Check user token if no admin token
   if(req.cookies?.token) {
     try{
       const data=jwt.verify(req.cookies.token,process.env.JWT_SECRET);
-      console.log('User/trainer token verified:', data);
-      if(data.role === 'user' || data.role === 'trainer' || !data.role) { // backwards compatibility
-        // Continue to user/trainer data fetching
+      console.log('User token verified:', data);
+      if(data.role === 'user' || !data.role) { // backwards compatibility
+        // Continue to user data fetching
         req.user = data;
         next();
         return;
       }
     }catch(error){
-      console.error('User/trainer token verification failed:', error.message);
+      console.error('User token verification failed:', error.message);
       res.clearCookie('token');
+    }
+  }
+  
+  // Check trainer token if no admin or user token
+  if(req.cookies?.trainer_token) {
+    try{
+      const data=jwt.verify(req.cookies.trainer_token,process.env.JWT_SECRET);
+      console.log('Trainer token verified:', data);
+      if(data.role === 'trainer') {
+        // Continue to trainer data fetching
+        req.user = data;
+        next();
+        return;
+      }
+    }catch(error){
+      console.error('Trainer token verification failed:', error.message);
+      res.clearCookie('trainer_token');
     }
   }
   
